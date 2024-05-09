@@ -18,7 +18,7 @@ const menuItems = [
   },
 ]
 
-export function Navbar() {
+export function Navbar1() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   const toggleMenu = () => {
