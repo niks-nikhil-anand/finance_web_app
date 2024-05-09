@@ -9,11 +9,7 @@ const menuItems = [
     href: '#',
   },
   {
-    name: 'EMI Calculator',
-    href: '#',
-  },
-  {
-    name: 'Eligibility Calculator',
+    name: 'Loan Calculator',
     href: '#',
   },
   {
@@ -26,10 +22,6 @@ const menuItems = [
   },
   {
     name: 'Contact Us',
-    href: '#',
-  },
-  {
-    name: 'Current Interest Rate',
     href: '#',
   },
   {
