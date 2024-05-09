@@ -9,11 +9,31 @@ const menuItems = [
     href: '#',
   },
   {
-    name: '',
+    name: 'EMI Calculator',
     href: '#',
   },
   {
-    name: 'Contact',
+    name: 'Eligibility Calculator',
+    href: '#',
+  },
+  {
+    name: 'Current Interest Rate',
+    href: '#',
+  },
+  {
+    name: 'About Us',
+    href: '#',
+  },
+  {
+    name: 'Contact Us',
+    href: '#',
+  },
+  {
+    name: 'Current Interest Rate',
+    href: '#',
+  },
+  {
+    name: 'Become Our Partner',
     href: '#',
   },
 ]
