@@ -1,4 +1,5 @@
 import EmiCalculator from "@/component/Dynamic/EmiCalculator";
+import AllBanks from "@/component/Homepage/AllBanks";
 import Blog from "@/component/Homepage/Blog";
 import ContentSection from "@/component/Homepage/ContentSection";
 import Footer from "@/component/Homepage/Footer";
@@ -15,7 +16,7 @@ export default function Home() {
     <Hero/>
     <ContentSection/>
     <StepComponent/>
-    
+    <AllBanks/>
     <EmiCalculator/>
     <InterestRate/>
     <Testimonial/>

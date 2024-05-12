@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    images: {
+      domains: ['www.apnarupee.com'], // Add your domain here
+    },
+  };
+  
+  export default nextConfig;
+  

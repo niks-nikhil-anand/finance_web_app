@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
+import { Menu, X,  ChevronRight } from 'lucide-react'
 
 const menuItems = [
   {
