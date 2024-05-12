@@ -7,7 +7,8 @@ const EmiCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(100000);
   const [interestRate, setInterestRate] = useState(5);
   const [loanTerm, setLoanTerm] = useState(10);
-  const [emiData, setEmiData] = useState([{ name: 'EMI', value: 0 }]);
+  const [emiData, setEmiData] = useState([{ name: 'Principal', value: 0 }, { name: 'Interest', value: 0 }]);
+  const [monthlyEmi, setMonthlyEmi] = useState(0);
 
   useEffect(() => {
     updateEmiData(loanAmount, interestRate, loanTerm);
@@ -27,8 +28,14 @@ const EmiCalculator = () => {
 
   const updateEmiData = (amount, rate, term) => {
     const emi = calculateEmi(amount, rate, term);
-    const newData = [{ name: 'EMI', value: parseFloat(emi) }];
+    const principal = parseFloat(amount);
+    const interest = parseFloat(emi) * term - principal;
+    const newData = [
+      { name: 'Principal', value: principal },
+      { name: 'Interest', value: interest },
+    ];
     setEmiData(newData);
+    setMonthlyEmi(parseFloat(emi));
   };
 
   const calculateEmi = (amount, rate, term) => {
@@ -59,8 +66,8 @@ const EmiCalculator = () => {
           <TextField type="number" value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)} />
         </div>
       </div>
-      <div style={{ width: '45%' }}>
-        <Typography variant="h6">EMI Chart</Typography>
+      <div style={{ width: '45%', position: 'relative' }}>
+        <Typography variant="h6" style={{ textAlign: 'center', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>Total Amount: {(emiData[0].value + emiData[1].value).toFixed(0)}</Typography>
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
             <Pie
@@ -80,18 +87,22 @@ const EmiCalculator = () => {
             <Legend />
           </PieChart>
         </ResponsiveContainer>
-        <Grid container spacing={1} style={{ marginTop: '20px' }}>
-          <Grid item xs={6}>
-            <Typography>Principal Amount: {loanAmount}</Typography>
-            <Typography>Interest Paid: {(emiData[0].value * loanTerm - loanAmount).toFixed(2)}</Typography>
+        <div style={{ marginTop: '20px' }}>
+          <Grid container spacing={1}>
+            <Grid item xs={4}>
+              <Typography>Monthly EMI: {monthlyEmi}</Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Typography>Principal Amount: {emiData[0].value}</Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Typography>Interest Paid: {emiData[1].value}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Typography>Monthly EMI: {emiData[0].value}</Typography>
-          </Grid>
-        </Grid>
+        </div>
       </div>
     </div>
   );
 };
 
-export default EmiCalculator; // Make sure the component is exported correctly
+export default EmiCalculator;
