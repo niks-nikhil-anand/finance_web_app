@@ -4,7 +4,7 @@ import calculator from '../../../public/cal.png'
 
 const InterestRate = () => {
   return (
-    <div className='sm:p-10 p-6 font-[sans-serif] bg-gray-300 text-[#333] mb-[2rem]'>
+    <div className='sm:p-10 p-6 font-[sans-serif]  text-[#333] mb-[2rem]'>
       <div className='flex flex-col justify-center items-center'>
         <div className='mb-[3rem]'>
           <h1 className='text-3xl font-bold sm:text-4xl '>Lowest Loan Interest Rates</h1>
