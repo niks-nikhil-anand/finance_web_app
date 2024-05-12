@@ -38,7 +38,7 @@ export function Navbar1() {
   }
 
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-gray shadow-2xl bg-[#0a4275] text-gray-200">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
@@ -55,7 +55,7 @@ export function Navbar1() {
               />
             </svg>
           </span>
-          <span className="font-bold">Nikhil</span>
+          <span className="font-bold">Legal 257</span>
         </div>
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
@@ -63,12 +63,10 @@ export function Navbar1() {
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+                  className="inline-flex items-center text-sm font-semibold  hover:text-gray-900 text-gray-200"
                 >
                   {item.name}
-                  <span>
-                    <ChevronDown className="ml-2 h-4 w-4" />
-                  </span>
+                  
                 </a>
               </li>
             ))}
@@ -77,15 +75,9 @@ export function Navbar1() {
         <div className="hidden space-x-2 lg:block">
           <button
             type="button"
-            className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            className="rounded-md border border-gray px-3 py-2 text-sm font-semibold  shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black text-gray-200"
           >
-            Sign In
-          </button>
-          <button
-            type="button"
-            className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Log In
+           Apply Now
           </button>
         </div>
         <div className="lg:hidden">

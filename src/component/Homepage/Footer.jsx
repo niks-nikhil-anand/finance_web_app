@@ -18,9 +18,9 @@ const Footer = () => {
             <h4 class="text-lg font-semibold mb-8 text-white">Navigation</h4>
             <ul class="space-y-4">
               <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Home</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">About</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Services</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Contact</a></li>
+              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">About Us</a></li>
+              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Contact Us</a></li>
+              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Become Our Partner</a></li>
             </ul>
           </div>
 
@@ -61,9 +61,9 @@ const Footer = () => {
           <div>
             <h4 class="text-lg font-semibold mb-8 text-white">Contact Us</h4>
             <div class="space-y-4">
-              <p class="text-gray-300 text-sm">123 Street, City Name</p>
-              <p class="text-gray-300 text-sm">contact@example.com</p>
-              <p class="text-gray-300 text-sm">+1 234 567 890</p>
+              <p class="text-gray-300 text-sm">Uttar Khatowal Nagaon Assam</p>
+              <p class="text-gray-300 text-sm">csprozana@gmail.com</p>
+              <p class="text-gray-300 text-sm">+91 94352 66783</p>
             </div>
           </div>
 
@@ -71,8 +71,8 @@ const Footer = () => {
       </div>
 
       <div class="text-center py-5 bg-[#08355e]">
-        <p class='text-gray-300 text-sm'>© 2023<a href='https://readymadeui.com/' target='_blank'
-          class="hover:underline mx-1">ReadymadeUI</a>All Rights Reserved.</p>
+        <p class='text-gray-300 text-sm'>© 2024<a href='https://devtrekker.site/' target='_blank'
+          class="hover:underline mx-1">Legal 257</a>Developed by Nikhil</p>
       </div>
     </footer>
     </div>

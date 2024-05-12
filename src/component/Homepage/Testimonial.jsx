@@ -3,7 +3,7 @@ import React from 'react'
 const Testimonial = () => {
   return (
     <div>
-        <div class="sm:p-10 p-6 font-[sans-serif] bg-blue-50 text-[#333]">
+        <div class="sm:p-10 p-6 font-[sans-serif] bg-blue-50 text-[#333] shadow-xl">
             <div class="max-w-6xl mx-auto">
                 <div class="grid md:grid-cols-3 gap-4">
                     <div class="col-span-2">
