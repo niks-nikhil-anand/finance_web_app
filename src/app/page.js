@@ -1,4 +1,4 @@
-import EmiCalculator from "@/component/EmiCalculator/calculator";
+import EmiCalculator from "@/component/EmiCalculator/Calculator";
 import AllBanks from "@/component/Homepage/AllBanks";
 import Blog from "@/component/Homepage/Blog";
 import ContentSection from "@/component/Homepage/ContentSection";

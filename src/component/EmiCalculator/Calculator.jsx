@@ -1,46 +1,43 @@
 "use client"
-import React, { useState } from 'react';
-import { Slider, Typography, TextField } from '@mui/material';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import { Slider, Typography, TextField, Grid } from '@mui/material';
+import { Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const EmiCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(100000);
   const [interestRate, setInterestRate] = useState(5);
   const [loanTerm, setLoanTerm] = useState(10);
-  const [emiData, setEmiData] = useState([]);
+  const [emiData, setEmiData] = useState([{ name: 'EMI', value: 0 }]);
+
+  useEffect(() => {
+    updateEmiData(loanAmount, interestRate, loanTerm);
+  }, [loanAmount, interestRate, loanTerm]);
 
   const handleLoanAmountChange = (event, newValue) => {
     setLoanAmount(newValue);
-    updateEmiData(newValue, interestRate, loanTerm);
   };
 
   const handleInterestRateChange = (event, newValue) => {
     setInterestRate(newValue);
-    updateEmiData(loanAmount, newValue, loanTerm);
   };
 
   const handleLoanTermChange = (event, newValue) => {
     setLoanTerm(newValue);
-    updateEmiData(loanAmount, interestRate, newValue);
   };
 
   const updateEmiData = (amount, rate, term) => {
-    // Calculate EMI data based on loan amount, interest rate, and loan term
     const emi = calculateEmi(amount, rate, term);
-    // Generate data for the MUI chart
-    const newData = [];
-    for (let i = 1; i <= term; i++) {
-      newData.push({ month: i, emi: emi * i });
-    }
+    const newData = [{ name: 'EMI', value: parseFloat(emi) }];
     setEmiData(newData);
   };
 
   const calculateEmi = (amount, rate, term) => {
-    // EMI calculation logic (formula)
     const monthlyRate = rate / 1200;
     const emi = amount * monthlyRate / (1 - Math.pow(1 + monthlyRate, -term));
     return emi.toFixed(2);
   };
+
+  const COLORS = ['#0088FE', '#FFBB28'];
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '800px', margin: 'auto' }}>
@@ -64,17 +61,37 @@ const EmiCalculator = () => {
       </div>
       <div style={{ width: '45%' }}>
         <Typography variant="h6">EMI Chart</Typography>
-        <LineChart width={400} height={300} data={emiData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="emi" stroke="#8884d8" />
-        </LineChart>
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={emiData}
+              dataKey="value"
+              nameKey="name"
+              outerRadius="80%"
+              innerRadius="60%"
+              fill="#8884d8"
+              label
+            >
+              {emiData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+        <Grid container spacing={1} style={{ marginTop: '20px' }}>
+          <Grid item xs={6}>
+            <Typography>Principal Amount: {loanAmount}</Typography>
+            <Typography>Interest Paid: {(emiData[0].value * loanTerm - loanAmount).toFixed(2)}</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography>Monthly EMI: {emiData[0].value}</Typography>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );
 };
 
-export default EmiCalculator;
+export default EmiCalculator; // Make sure the component is exported correctly
