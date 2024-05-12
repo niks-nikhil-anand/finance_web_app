@@ -72,14 +72,14 @@ const AllBanks = () => {
     ];
 
     return (
-        <div className='flex flex-col justify-center items-center bg-blue-50 mt-[3rem]'>
+        <div className='flex flex-col justify-center items-center bg-blue-50 py-[3rem]'>
             <div>
                 <h1 className='text-3xl font-bold sm:text-4xl '>Banks In Our Network</h1>
             </div>
             <div className='flex mt-[2rem]'>
-                <div className='flex flex-wrap gap-[2rem]  justify-center'>
+                <div className='flex flex-wrap gap-[2rem]  justify-center '>
                     {Banks.map((bank, index) => (
-                        <div key={index} className='bg-white p-5'>
+                        <div key={index} className='bg-white p-5 shadow-lg rounded-lg'>
                             <Image src={bank.image} height={150} width={150} alt='bank'/>
                         </div>
                     ))}
