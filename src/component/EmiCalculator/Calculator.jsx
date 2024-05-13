@@ -51,7 +51,7 @@ const EmiCalculator = () => {
       <div>
         <h1 className='text-3xl font-bold sm:text-4xl'>EMI Calculator</h1>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', margin: 'auto' }} className='mt-4'>
+      <div className='flex justify-between gap-[10rem] mt-10 shadow-lg p-10'>
         <div style={{}}>
           <Typography variant="h6">EMI Calculator</Typography>
           <div>
@@ -70,7 +70,7 @@ const EmiCalculator = () => {
             <TextField type="number" value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)} />
           </div>
         </div>
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }} >
           <Typography variant="h6" style={{ textAlign: 'center', position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)' }} className='w-[4rem] font-bold text-xl'>Total Amount: ₹{(emiData[0].value + emiData[1].value).toFixed(0)}</Typography>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -91,15 +91,15 @@ const EmiCalculator = () => {
               <Legend />
             </PieChart>
           </ResponsiveContainer>
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: '20px' }} className='ml-5'>
             <Grid container spacing={1}>
-              <Grid item xs={4}>
+              <Grid item xs={3}>
                 <Typography>Monthly EMI: ₹{monthlyEmi}</Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography>Principal Amount: ₹{emiData[0].value}</Typography>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={3}>
                 <Typography>Interest Paid: ₹{emiData[1].value.toFixed(0)}</Typography>
               </Grid>
             </Grid>

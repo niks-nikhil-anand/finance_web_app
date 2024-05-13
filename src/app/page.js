@@ -2,6 +2,7 @@ import EmiCalculator from "@/component/EmiCalculator/Calculator";
 import AllBanks from "@/component/Homepage/AllBanks";
 import Blog from "@/component/Homepage/Blog";
 import ContentSection from "@/component/Homepage/ContentSection";
+import Faqs, { FaqSimple } from "@/component/Homepage/Faqs";
 import Footer from "@/component/Homepage/Footer";
 import Hero from "@/component/Homepage/Hero";
 import InterestRate from "@/component/Homepage/InterestRate";
@@ -21,6 +22,7 @@ export default function Home() {
     <InterestRate/>
     <Testimonial/>
     <Blog/>
+    <Faqs/>
     <Footer/>
     </>
   );
