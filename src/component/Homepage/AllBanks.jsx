@@ -79,7 +79,7 @@ const AllBanks = () => {
             <div className='flex mt-[2rem]'>
                 <div className='flex flex-wrap gap-[2rem]  justify-center '>
                     {Banks.map((bank, index) => (
-                        <div key={index} className='bg-white p-5 shadow-lg rounded-lg'>
+                        <div key={index} className='bg-white p-5 shadow-lg rounded-lg w-[5rem] md:w-[10rem]'>
                             <Image src={bank.image} height={150} width={150} alt='bank'/>
                         </div>
                     ))}
