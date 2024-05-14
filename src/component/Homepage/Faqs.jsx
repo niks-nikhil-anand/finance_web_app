@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Container from '../Shared/Container';
 
 const faqs = [
   {
@@ -29,7 +30,8 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-5">
+    <div>
+      <Container>
       <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
@@ -58,6 +60,7 @@ const FAQSection = () => {
           </div>
         ))}
       </div>
+      </Container>
     </div>
   );
 };

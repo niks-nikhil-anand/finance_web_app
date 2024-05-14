@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import Container from '../Shared/Container';
 
 const AllBanks = () => {
 
@@ -73,7 +74,8 @@ const AllBanks = () => {
 
     return (
         <div className='flex flex-col justify-center items-center bg-blue-50 py-[3rem]'>
-            <div>
+            <Container>
+            <div className='flex justify-center'>
                 <h1 className='text-3xl font-bold sm:text-4xl '>Banks In Our Network</h1>
             </div>
             <div className='flex mt-[2rem]'>
@@ -85,6 +87,7 @@ const AllBanks = () => {
                     ))}
                 </div>
             </div>
+            </Container>
         </div>
     );
 }

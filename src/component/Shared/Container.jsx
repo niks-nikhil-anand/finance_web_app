@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const Container = () => {
+const Container = ({ className, children, ...props }) => {
   return (
-    <div>Container</div>
-  )
-}
+    <section
+      {...props}
+      className={"max-w-7xl mx-auto px-4 w-full" + (className ? " " + className : "")}
+    >
+      {children}
+    </section>
+  );
+};
 
-export default Container
+export default Container;

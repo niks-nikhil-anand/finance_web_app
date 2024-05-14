@@ -1,11 +1,13 @@
 import React from 'react'
+import Container from '../Shared/Container'
 
 const ContentSection = () => {
   return (
     <div>
-       
+ 
 
 <section className='sm:p-10 p-6 font-[sans-serif] bg-blue-50 text-[#333] shadow-xl'>
+<Container>   
   <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
     <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
       <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right ">
@@ -188,7 +190,9 @@ const ContentSection = () => {
       </div>
     </div>
   </div>
+  </Container> 
 </section>
+
     </div>
   )
 }

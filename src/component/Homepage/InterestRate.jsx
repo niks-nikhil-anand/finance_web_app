@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 import calculator from '../../../public/cal.png'
+import Container from '../Shared/Container'
 
 const InterestRate = () => {
   return (
     <div className='sm:p-10 p-6 font-[sans-serif] text-[#333] mb-8'>
+      <Container>
       <div className='flex flex-col justify-center items-center'>
         <div className='mb-12'>
           <h1 className='text-3xl font-bold sm:text-4xl'>Lowest Loan Interest Rates</h1>
@@ -152,6 +154,7 @@ const InterestRate = () => {
           </div>
         </div>
       </div>
+      </Container>
     </div>
   )
 }
