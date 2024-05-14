@@ -3,11 +3,16 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import logo from '../../../public/logo.png'
+import logo from '../../../public/logo.png';
 import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [loanCalcOpen, setLoanCalcOpen] = useState(false);
+  const [loansOpen, setLoansOpen] = useState(false);
+
+  const handleMouseEnter = (setFunction) => () => setFunction(true);
+  const handleMouseLeave = (setFunction) => () => setFunction(false);
 
   return (
     <nav className="bg-blue-600 text-white">
@@ -17,21 +22,51 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Image src={logo} alt="TailGrids" height={80} width={80} />
             </div>
-            <div className="hidden md:block ml-10 flex items-baseline space-x-4">
+            <div className="hidden md:flex ml-10 items-baseline space-x-4">
+              <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium">Home</Link>
               <div className="relative inline-block text-left">
                 <button
-                  onClick={() => setIsOpen(!isOpen)}
+                  onMouseEnter={handleMouseEnter(setLoanCalcOpen)}
+                 
                   type="button"
                   className="px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Loan Calculator &#x25BE;
                 </button>
-                {isOpen && (
-                  <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMI Calculator</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Eligibility Calculator</a>
-                  </div>
-                )}
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: loanCalcOpen ? 1 : 0, y: loanCalcOpen ? 0 : -10 }}
+                  transition={{ duration: 0.2 }}
+                  className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loanCalcOpen ? 'block' : 'hidden'}`}
+                  onMouseEnter={handleMouseEnter(setLoanCalcOpen)}
+                  onMouseLeave={handleMouseLeave(setLoanCalcOpen)}
+                >
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMI Calculator</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Eligibility Calculator</a>
+                </motion.div>
+              </div>
+              <div className="relative inline-block text-left">
+                <button
+                  onMouseEnter={handleMouseEnter(setLoansOpen)}
+                 
+                  type="button"
+                  className="px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Loans &#x25BE;
+                </button>
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: loansOpen ? 1 : 0, y: loansOpen ? 0 : -10 }}
+                  transition={{ duration: 0.2 }}
+                  className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loansOpen ? 'block' : 'hidden'}`}
+                  onMouseEnter={handleMouseEnter(setLoansOpen)}
+                  onMouseLeave={handleMouseLeave(setLoansOpen)}
+                >
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Personal Loan</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Business Loan</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home Loan</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Education Loan</a>
+                </motion.div>
               </div>
               <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium">Blog</Link>
               <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
@@ -40,12 +75,12 @@ const Navbar = () => {
               <a href="#" className="px-3 py-2 rounded-md text-sm font-medium">Become Our Partner</a>
             </div>
           </div>
-          <div className="hidden md:block ml-4 flex items-center md:ml-6">
-            <div className="min-h-[200px] flex items-center justify-center">
-              <button className="px-6 py-2 font-medium bg-white text-black w-fit transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+          <div className="hidden md:flex ml-4 items-center md:ml-6">
+            <Link href={"/applynow"}>
+              <button className="px-6 py-2 font-medium bg-white text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
                 Apply Now
               </button>
-            </div>
+            </Link>
           </div>
           <div className="-mr-2 flex md:hidden">
             <button
@@ -80,7 +115,6 @@ const Navbar = () => {
           <div className="ml-4">
             <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-white">EMI Calculator</a>
             <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Eligibility Calculator</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Option 3</a>
           </div>
           <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Blog</a>
           <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">About Us</a>

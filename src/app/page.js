@@ -14,7 +14,7 @@ import Testimonial from "@/component/Homepage/Testimonial";
 export default function Home() {
   return (
     <>
-    <Navbar/>
+   
     <Hero/>
     <ContentSection/>
     <StepComponent/>
@@ -26,7 +26,7 @@ export default function Home() {
     <DownloadAppSection/>
     <FAQSection/>
 
-    <Footer/>
+   
     </>
   );
 }
