@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Slider, Typography, TextField, Grid } from '@mui/material';
 import { Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { motion } from 'framer-motion';
+
 
 const EmiCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(100000);
@@ -47,7 +49,12 @@ const EmiCalculator = () => {
   const COLORS = ['#0088FE', '#FF0000'];
 
   return (
-    <div className='bg-gray-300 w-full flex flex-col justify-center items-center sm:p-10 p-6 font-[sans-serif] text-[#333] mb-[2rem]'>
+    <motion.div
+    initial={{ opacity: 0, y: -50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className='bg-gray-300 w-full flex flex-col justify-center items-center sm:p-10 p-6 font-[sans-serif] text-[#333] mb-[2rem] shadow-lg'
+  >
       <div>
         <h1 className='text-3xl font-bold sm:text-4xl'>EMI Calculator</h1>
       </div>
@@ -106,7 +113,7 @@ const EmiCalculator = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
