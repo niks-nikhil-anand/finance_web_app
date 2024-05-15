@@ -22,7 +22,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row h-screen mb-[20rem] md:mb-[0rem]">
       <div className="md:w-1/2 bg-yellow-500 text-white p-10 flex flex-col justify-center items-center md:items-start">
         <motion.div
           initial={{ opacity: 0, x: -100 }}

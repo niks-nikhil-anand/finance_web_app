@@ -10,7 +10,7 @@ const GlassmorphismForm = () => {
   const handlePreviousStep = () => setStep(step - 1);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 mb-[6rem] md:mb-[0rem]">
       <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-white mb-6">GST/ITR Filling Form</h2>
         <form>
