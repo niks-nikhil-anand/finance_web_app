@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import Container from '../Shared/Container';
 
-const AllBanks = () => {
+const   AllBanks = () => {
 
     const Banks = [
         {

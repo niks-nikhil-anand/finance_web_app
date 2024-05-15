@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['www.apnarupee.com'], // Add your domain here
+      domains: ['www.apnarupee.com' ,"readymadeui.com"], // Add your domain here
     },
   };
   

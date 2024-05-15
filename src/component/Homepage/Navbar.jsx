@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex ml-4 items-center md:ml-6">
             <Link href={"/applynow"}>
-              <button className="px-6 py-2 font-medium bg-gray-800 text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+              <button className="px-6 py-2 font-medium bg-yellow-600 text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
                 Apply Now
               </button>
             </Link>

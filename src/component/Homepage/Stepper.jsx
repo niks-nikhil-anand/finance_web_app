@@ -9,7 +9,7 @@ const Stepper = () => {
     <div className='bg-blue-50 py-[3rem]'>
       <div class="max-w-6xl mx-auto font-[sans-serif] text-[#333] ">
       <h2 class="md:text-4xl text-2xl font-extrabold text-center mb-16">How it works</h2>
-      <div class="flex gap-12 flex-col md:flex-row justify-center items-center">
+      <div class="flex gap-10 flex-col md:flex-row justify-center items-center">
       <motion.div 
           initial={{ opacity: 0, y: 20 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties when component is visible

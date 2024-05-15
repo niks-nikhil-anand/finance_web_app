@@ -6,12 +6,12 @@ const ContentSection = () => {
     <div>
  
 
-<section className='sm:p-10 p-6 font-[sans-serif] bg-gray-300 text-[#333] shadow-xl'>
+<section className='sm:p-10   bg-gray-300 text-[#333] shadow-xl'>
 <Container>   
-  <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+  <div className="max-w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
     <div className="flex gap-5 flex-col md:flex-row">
       <div className=" max-w-full text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right ">
-        <h2 className="md:text-3xl text-xl font-bold sm:text-4xl"> One-Stop Solution for Financial and Tax Services</h2>
+        <h2 className="md:text-3xl  font-extrabold text-xl"> One-Stop Solution for Financial and Tax Services</h2>
 
         <p className="mt-4 text-black-600 ">
         At Legal257, we offer a full suite of financial and tax services . From expert GST and ITR filing services to competitive loan offerings.
@@ -27,7 +27,7 @@ const ContentSection = () => {
 
       <div className="flex flex-col md:flex-row gap-[2rem]">
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:bg-yellow-400 focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
@@ -59,7 +59,7 @@ const ContentSection = () => {
         </a>
 
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:bg-yellow-400 focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
