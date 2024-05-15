@@ -1,5 +1,6 @@
 import React from 'react'
 import Container from '../Shared/Container'
+import Link from 'next/link'
 
 const ContentSection = () => {
   return (
@@ -17,17 +18,17 @@ const ContentSection = () => {
         At Legal257, we offer a full suite of financial and tax services . From expert GST and ITR filing services to competitive loan offerings.
         </p>
 
-        <a
-          href="#"
+        <Link
+         href={"/applynow"}
           className="mt-8 inline-block rounded bg-yellow-500 px-12 py-3 md:text-2xl font-medium text-black transition hover:bg-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 text-xl"
         >
           Apply Now
-        </a>
+        </Link>
       </div>
 
       <div className="flex flex-col md:flex-row gap-[2rem]">
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:bg-yellow-400 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-yellow-400 focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
@@ -59,7 +60,7 @@ const ContentSection = () => {
         </a>
 
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:bg-yellow-400 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-yellow-400 focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
@@ -95,7 +96,7 @@ const ContentSection = () => {
    
 
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-yellow-400 focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
@@ -119,7 +120,7 @@ const ContentSection = () => {
             </svg>
           </span>
 
-          <h2 className="mt-2 font-bold ">GOLD LOAN </h2>
+          <h2 className="mt-2 font-bold ">GST Filling </h2>
 
           <p className=" sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
           Navigate the complexities of GST compliance with ease. Our GST filing services  ensuring timely and accurate filings. 

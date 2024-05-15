@@ -27,7 +27,7 @@ const Banner2 = () => {
           </motion.p>
           <div className="flex flex-col md:flex-row gap-4">
             <motion.a
-              href="#"
+              href="/applynow"
               className="bg-red-500 hover:bg-red-600 text-black font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors duration-300"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -36,13 +36,13 @@ const Banner2 = () => {
              Apply Now
             </motion.a>
             <motion.a
-              href="#"
+              href="/applyloan"
               className="border border-blue-500 hover:bg-blue-500 text-white hover:text-black font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors duration-300"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              Learn More
+              Check Eligibility
             </motion.a>
           </div>
         </div>

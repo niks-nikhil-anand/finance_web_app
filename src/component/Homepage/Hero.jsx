@@ -79,7 +79,7 @@ const Hero = () => {
               </motion.a>
 
               <motion.a
-                href="#"
+                href="/applyloan"
                 className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-yellow-500 shadow hover:text-yellow-400 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

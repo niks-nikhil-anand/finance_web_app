@@ -41,8 +41,8 @@ const Navbar = () => {
                   onMouseEnter={handleMouseEnter(setLoanCalcOpen)}
                   onMouseLeave={handleMouseLeave(setLoanCalcOpen)}
                 >
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMI Calculator</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Eligibility Calculator</a>
+                  <Link href={"/calculator"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMI Calculator</Link>
+                  <Link href={"/applyloan"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Eligibility Calculator</Link>
                 </motion.div>
               </div>
               <div className="relative inline-block text-left">
@@ -62,17 +62,18 @@ const Navbar = () => {
                   onMouseEnter={handleMouseEnter(setLoansOpen)}
                   onMouseLeave={handleMouseLeave(setLoansOpen)}
                 >
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Personal Loan</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Business Loan</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home Loan</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Education Loan</a>
+                  <Link href={"/applyloan"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Personal Loan</Link>
+                  <Link href={"/applyloan"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Business Loan</Link>
+                  <Link href={"/applyloan"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Loan Against Property</Link>
+                  <Link href={"/applyloan"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home Loan</Link>
+                  
                 </motion.div>
               </div>
               <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium">Blog</Link>
               <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
-              <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium">Media Gallery</Link>
+              <Link href="/gallery" className="px-3 py-2 rounded-md text-sm font-medium">Media Gallery</Link>
               <Link href="/contact" className="px-3 py-2 rounded-md text-sm font-medium">Contact Us</Link>
-              <a href="#" className="px-3 py-2 rounded-md text-sm font-medium">Become Our Partner</a>
+              <Link href={"/partnersignup"} className="px-3 py-2 rounded-md text-sm font-medium">Become Our Partner</Link>
             </div>
           </div>
           <div className="hidden md:flex ml-4 items-center md:ml-6">
@@ -110,17 +111,25 @@ const Navbar = () => {
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Loan Calculator</a>
+          <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Loan Calculator</Link>
           {/* Submenu for mobile view */}
           <div className="ml-4">
-            <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-white">EMI Calculator</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Eligibility Calculator</a>
+            <Link href={"/calculator"} className="block px-3 py-2 rounded-md text-sm font-medium text-white">EMI Calculator</Link>
+            <Link href={"/applyloan"} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Eligibility Calculator</Link>
           </div>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Blog</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">About Us</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Media Gallery</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</a>
+          <Link href={"/blog"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Blog</Link>
+          <Link href={"/about"} className="block px-3 py-2 rounded-md text-base font-medium text-white">About Us</Link>
+          <Link  href={"/applyloan"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Loan </Link>
+          {/* Submenu for mobile view */}
+          <div className="ml-4">
+            <Link href={"/applyloan"} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Personal Loan</Link>
+            <Link href={"/applyloan"} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Business Loan</Link>
+            <Link href={"/applyloan"} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Loan Against Property</Link>
+            <Link href={"/applyloan"} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Home Loan</Link>
+          </div>
+          <Link href={"/gallery"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Media Gallery</Link>
+          <Link href={"/contact"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
+          <Link href={"/partnersignup"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
         </div>
       </motion.div>
     </nav>
