@@ -20,7 +20,10 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
+              <Link href={"/"}>
+              
               <Image src={logo} alt="TailGrids" height={80} width={80} />
+              </Link>
             </div>
             <div className="hidden md:flex ml-10 items-baseline space-x-4">
               <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium">Home</Link>
@@ -111,6 +114,7 @@ const Navbar = () => {
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <Link href={"/"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Home</Link>
           <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Loan Calculator</Link>
           {/* Submenu for mobile view */}
           <div className="ml-4">

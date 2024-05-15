@@ -1,6 +1,10 @@
 import React from 'react'
 import Container from '../Shared/Container'
 import Link from 'next/link'
+import Image from 'next/image'
+import gif1 from '../../../public/gif1.gif'
+import gif2 from '../../../public/gif2.gif'
+import gif3 from '../../../public/gif3.gif'
 
 const ContentSection = () => {
   return (
@@ -28,28 +32,11 @@ const ContentSection = () => {
 
       <div className="flex flex-col md:flex-row gap-[2rem]">
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-yellow-400 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-white focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-              <path
-                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              ></path>
-            </svg>
+          <Image src={gif1} alt="Example GIF" className="mx-auto" height={50} width={50} />
           </span>
 
           <h2 className="mt-2 font-bold">Best Loan Offer</h2>
@@ -60,28 +47,11 @@ const ContentSection = () => {
         </a>
 
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-yellow-400 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-white focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-              <path
-                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              ></path>
-            </svg>
+          <Image src={gif2} alt="Example GIF" className="mx-auto" height={50} width={50} />
           </span>
 
           <h2 className="mt-2 font-bold">ITR Filling Service</h2>
@@ -90,34 +60,12 @@ const ContentSection = () => {
           Ensure your income tax returns are filed accurately and on time with our expert ITR filing services. 
           </p>
         </a>
-
-       
-
-   
-
         <a
-          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-yellow-400 focus:outline-none focus:ring"
+          className="block rounded-xl border border-yellow-500 p-4 shadow-sm hover:border-gray-200 hover:ring-1 bg-white focus:outline-none focus:ring"
           href="#"
         >
           <span className="inline-block rounded-lg bg-gray-50 p-3">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-              <path
-                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              ></path>
-            </svg>
+          <Image src={gif3} alt="Example GIF" className="mx-auto" height={50} width={50} />
           </span>
 
           <h2 className="mt-2 font-bold ">GST Filling </h2>

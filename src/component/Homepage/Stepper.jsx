@@ -14,41 +14,41 @@ const Stepper = () => {
           initial={{ opacity: 0, y: 20 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties when component is visible
           transition={{ duration: 0.5 }} // Animation duration
-          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-white shadow-lg w-[15rem] md:w-[30rem]"
+          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-gray-200 shadow-lg w-[15rem] md:w-[30rem]"
         >
          <Image src={step2} height={50} width={50} alt='step2' />
-          <h3 class="text-xl font-semibold mb-2">Check Eligibility</h3>
-          <p class="text-gray-500 text-sm">Check your eligibility for loan and Apply</p>
+          <h3 class="text-xl font-semibold mb-2 text-black">Check Eligibility</h3>
+          <p class=" text-sm text-black">Check your eligibility for loan and Apply</p>
         </motion.div>
         <motion.div 
           initial={{ opacity: 0, y: 20 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties when component is visible
           transition={{ duration: 0.5 }} // Animation duration
-          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-white shadow-lg w-[15rem] md:w-[30rem]"
+          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-gray-200 shadow-lg w-[15rem] md:w-[30rem]"
         >
          <Image src={step2} height={50} width={50} alt='step2' />
-          <h3 class="text-xl font-semibold mb-2">Submit Application</h3>
-          <p class="text-gray-500 text-sm">Complete Application & Upload all Document </p>
+          <h3 class="text-xl font-semibold mb-2 text-black">Submit Application</h3>
+          <p class=" text-sm text-black">Complete Application & Upload all Document </p>
         </motion.div>
         <motion.div 
           initial={{ opacity: 0, y: 20 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties when component is visible
           transition={{ duration: 0.5 }} // Animation duration
-          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-white shadow-lg w-[15rem] md:w-[30rem]"
+          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-gray-200 text-black shadow-lg w-[15rem] md:w-[30rem]"
         >
          <Image src={step2} height={50} width={50} alt='step2' />
-          <h3 class="text-xl font-semibold mb-2">Get Sanctioned</h3>
-          <p class="text-gray-500 text-sm">We will evaluate your application propose a fair sanction</p>
+          <h3 class="text-xl font-semibold mb-2 ">Get Sanctioned</h3>
+          <p class="text-black text-sm">We will evaluate your application propose a fair sanction</p>
         </motion.div>
         <motion.div 
           initial={{ opacity: 0, y: 20 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties when component is visible
           transition={{ duration: 0.5 }} // Animation duration
-          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-white shadow-lg w-[15rem] md:w-[30rem]"
+          class="p-4 text-center flex flex-col justify-center items-center gap-5 rounded bg-gray-200 shadow-lg w-[15rem] md:w-[30rem]"
         >
          <Image src={step2} height={50} width={50} alt='step2' />
-          <h3 class="text-xl font-semibold mb-2">Receive Funds</h3>
-          <p class="text-gray-500 text-sm">Receive your loan within 7 Business days</p>
+          <h3 class="text-xl font-semibold mb-2 text-black">Receive Funds</h3>
+          <p class="text-gray-500 text-sm text-black">Receive your loan within 7 Business days</p>
         </motion.div>
         
         
