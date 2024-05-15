@@ -3,10 +3,10 @@ import React from 'react'
 const Banner = () => {
   return (
     <div>
-        <div class="grid grid-cols-3 min-h-[164px] py-6 px-16 bg-blue-500 font-[sans-serif] overflow-hidden">
+        <div class="flex min-h-[164px] py-6 pl-3 bg-gray-900 font-[sans-serif] overflow-hidden md:pl-[10rem]">
     <div class="col-span-2">
-        <h1 class="text-3xl font-bold text-white">Welcome to ReadymadeUI!</h1>
-        <p class="text-sm text-gray-200 mt-1">Best tailwind css readymade UI plateform</p>
+        <h1 class="text-2xl md:text-3xl  font-bold text-yellow-500">Welcome to Legal257</h1>
+        <p class="text-sm text-gray-200 mt-1">Hassle-Free ITR and GST Filing - Start Your Application Today!</p>
         <a href="javascript:void(0)"><button type="button"
                 class="py-2.5 px-4 text-sm font-semibold bg-white text-blue-500 hover:bg-slate-100 mt-4 rounded">Get
                 Started</button></a>

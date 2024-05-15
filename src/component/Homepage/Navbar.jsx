@@ -15,7 +15,7 @@ const Navbar = () => {
   const handleMouseLeave = (setFunction) => () => setFunction(false);
 
   return (
-    <nav className="bg-blue-600 text-white">
+    <nav className="bg-gray-600 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex ml-4 items-center md:ml-6">
             <Link href={"/applynow"}>
-              <button className="px-6 py-2 font-medium bg-white text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+              <button className="px-6 py-2 font-medium bg-gray-800 text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
                 Apply Now
               </button>
             </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="bg-blue-600 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-blue-700"
+              className="bg-yellow-500 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-blue-700"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >

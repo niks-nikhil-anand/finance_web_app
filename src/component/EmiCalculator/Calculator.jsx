@@ -53,7 +53,7 @@ const EmiCalculator = () => {
     initial={{ opacity: 0, y: -50 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
-    className='bg-gray-300 w-full flex flex-col justify-center items-center sm:p-10 p-6 font-[sans-serif] text-[#333] mb-[2rem] shadow-lg'
+    className='bg-blue-50 w-full flex flex-col justify-center items-center sm:p-10 p-6 font-[sans-serif] text-[#333] mb-[2rem] shadow-lg'
   >
       <div>
         <h1 className='text-3xl font-bold sm:text-4xl'>EMI Calculator</h1>

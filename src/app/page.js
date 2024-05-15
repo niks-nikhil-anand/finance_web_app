@@ -1,6 +1,7 @@
 import EmiCalculator from "@/component/EmiCalculator/Calculator";
 import AllBanks from "@/component/Homepage/AllBanks";
 import DownloadAppSection from "@/component/Homepage/AppBanner";
+import Banner from "@/component/Homepage/Banner";
 import Blog from "@/component/Homepage/Blog";
 import ContentSection from "@/component/Homepage/ContentSection";
 import FAQSection from "@/component/Homepage/Faqs";
@@ -10,6 +11,7 @@ import InterestRate from "@/component/Homepage/InterestRate";
 import Navbar from "@/component/Homepage/Navbar";
 import StepComponent from "@/component/Homepage/Stepper";
 import Testimonial from "@/component/Homepage/Testimonial";
+import Banner2 from "@/component/Shared/Banner";
 
 export default function Home() {
   return (
@@ -19,8 +21,10 @@ export default function Home() {
     <ContentSection/>
     <StepComponent/>
     <AllBanks/>
+    <Banner/>
    <EmiCalculator/>
     <InterestRate/>
+    <Banner2/>
     <Testimonial/>
     <Blog/>
     <DownloadAppSection/>

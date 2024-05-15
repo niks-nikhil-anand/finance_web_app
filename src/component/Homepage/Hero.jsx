@@ -20,8 +20,8 @@ const Hero = () => {
 
   return (
     <div>
-      <section className="relative flex flex-col md:flex-row">
-        <div className="w-[50vw] mx-auto overflow-hidden">
+      <section className="relative flex flex-col md:flex-row bg-blue-50">
+        <div className="w-full md:w-[50vw] mx-auto overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
@@ -35,7 +35,7 @@ const Hero = () => {
               alt={`Hero ${currentSlide + 1}`} 
               layout="fill" 
               objectFit="cover" 
-              className="rounded-lg"
+              className=""
             />
           </motion.div>
         </div>
@@ -65,13 +65,13 @@ const Hero = () => {
                 <strong className="block font-extrabold text-rose-700 mt-5"> Compare Best Loans Offer </strong>
                 </h4>
             <p className="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus numquam ea!
+            Filing your ITR and GST doesn't have to be a daunting task. With our hassle-free services, you can file your taxes quickly and efficiently.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <motion.a
                 href="/applynow"
-                className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+                className="block w-full rounded bg-yellow-500 px-12 py-3 text-sm font-medium text-black-500 shadow hover:bg-yellow-300 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -80,7 +80,7 @@ const Hero = () => {
 
               <motion.a
                 href="#"
-                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-yellow-500 shadow hover:text-yellow-400 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >

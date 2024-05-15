@@ -32,13 +32,13 @@ const FAQSection = () => {
   return (
     <div>
       <Container>
-      <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
-      <div className="space-y-4">
+      <h2 className="text-3xl font-bold text-center mb-10 mt-10">Frequently Asked Questions</h2>
+      <div className="space-y-4 mb-10">
         {faqs.map((faq, index) => (
           <div key={index} className="border-b-2 border-gray-200 pb-4">
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full text-left flex justify-between items-center py-2 text-xl font-medium"
+              className="w-full text-left flex justify-between items-center py-2 text-sm md:text-xl font-medium"
             >
               {faq.question}
               <motion.span

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const Stepper = () => {
   return (
-    <div className='bg-gray-300 py-[3rem]'>
+    <div className='bg-blue-50 py-[3rem]'>
       <div class="max-w-6xl mx-auto font-[sans-serif] text-[#333] ">
       <h2 class="md:text-4xl text-2xl font-extrabold text-center mb-16">How it works</h2>
       <div class="flex gap-12 flex-col md:flex-row justify-center items-center">
