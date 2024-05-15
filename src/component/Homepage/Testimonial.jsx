@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Testimonial = () => {
   return (
@@ -84,7 +85,7 @@ const Testimonial = () => {
                 transition={{ duration: 0.5, delay: index * 0.3 }}
               >
                 <div className="flex items-center">
-                  <img src={client.image} className="w-10 h-10 rounded-full" alt={client.name} />
+                  <Image src={client.image} className="w-10 h-10 rounded-full" alt={client.name} height={50} width={50} />
                   <div className="ml-4">
                     <h4 className="text-sm font-extrabold">{client.name}</h4>
                     <p className="mt-1 text-xs text-gray-400">{client.title}</p>

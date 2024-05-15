@@ -65,7 +65,7 @@ const Hero = () => {
                 <strong className="block font-extrabold text-rose-700 mt-5"> Compare Best Loans Offer </strong>
                 </h4>
             <p className="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-            Filing your ITR and GST doesn't have to be a daunting task. With our hassle-free services, you can file your taxes quickly and efficiently.
+            Filing your ITR and GST does not have to be a daunting task. With our hassle-free services, you can file your taxes quickly and efficiently.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">
