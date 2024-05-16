@@ -38,7 +38,7 @@ const GlassmorphismForm = () => {
                   className="w-full p-2 rounded bg-white bg-opacity-50"
                   onChange={(e) => setRegistrationType(e.target.value)}
                 >
-                  <option value="">Select</option>
+                 
                   <option value="itr">ITR File New Registration</option>
                   <option value="gst">GST Registration</option>
                   <option value="itr">ITR RETURN</option>

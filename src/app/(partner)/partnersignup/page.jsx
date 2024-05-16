@@ -12,6 +12,7 @@ export default function Signup() {
     phone: '',
     city: '',
     partnerType: '',
+    interest: '',
     message: '',
     aadhaarCard: null,
     panCard: null,
@@ -55,7 +56,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row  mb-[20rem] md:mb-[0rem]">
+    <div className="flex flex-col md:flex-row mb-[20rem] md:mb-[0rem]">
       <div className="md:w-1/2 bg-yellow-500 text-white p-10 flex flex-col justify-center items-center md:items-start">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
@@ -133,6 +134,21 @@ export default function Signup() {
                   <option value="Retailer">Retailer</option>
                   <option value="Branch">Branch</option>
                   <option value="DSA">DSA</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Interested In</label>
+                <select
+                  name="interest"
+                  value={formData.interest}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                >
+                  <option value="">Select Interest</option>
+                  <option value="Sourcing Finance Loan Service">Sourcing Finance Loan Service</option>
+                  <option value="Fintech Banking Service">Fintech Banking Service</option>
+                  <option value="GST ITR Tax Pay Service">GST ITR Tax Pay Service</option>
+                  <option value="All Services">All Services</option>
                 </select>
               </div>
               <div className="mb-4">
