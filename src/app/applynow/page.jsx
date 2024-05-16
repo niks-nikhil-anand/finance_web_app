@@ -29,7 +29,7 @@ const GlassmorphismForm = () => {
                 <input type="tel" className="w-full p-2 rounded bg-white bg-opacity-50" />
               </div>
               <div className="mb-4">
-                <label className="block text-white">Retailer ID (Optional)</label>
+                <label className="block text-white">Partner ID (Optional)</label>
                 <input type="text" className="w-full p-2 rounded bg-white bg-opacity-50" />
               </div>
               <div className="mb-4">
@@ -41,6 +41,15 @@ const GlassmorphismForm = () => {
                   <option value="">Select</option>
                   <option value="itr">ITR File New Registration</option>
                   <option value="gst">GST Registration</option>
+                  <option value="itr">ITR RETURN</option>
+                  <option value="gst">GST RETURN</option>
+                  <option value="gst">BUSINESS REGISTRATION </option>
+                  <option value="gst">MSME REGISTRATION</option>
+                  <option value="gst">LEGAL ISSUES LEGAL NOTICE</option>
+                  <option value="gst">LOAN NOC CERTIFICATE</option>
+                  <option value="gst">BUSINESS LICENSE</option>
+                  <option value="gst">FOOD LICENSE</option>
+                  <option value="gst">TARDE LICENSE </option>
                 </select>
               </div>
               <button 
