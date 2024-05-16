@@ -12,11 +12,12 @@ import Navbar from "@/component/Homepage/Navbar";
 import StepComponent from "@/component/Homepage/Stepper";
 import Testimonial from "@/component/Homepage/Testimonial";
 import Banner2 from "@/component/Shared/Banner";
+import WhatsappIcon from "@/component/Shared/StickyWhatsapp";
 
 export default function Home() {
   return (
     <>
-   
+   <WhatsappIcon/>
     <Hero/>
     <ContentSection/>
     <StepComponent/>
