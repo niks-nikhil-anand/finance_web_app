@@ -89,7 +89,7 @@ const LoanForm = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Purpose of Loan</label>
+          <label className="block text-sm font-medium text-gray-700">Loan Type</label>
           <select
             name="purposeOfLoan"
             value={formData.purposeOfLoan}

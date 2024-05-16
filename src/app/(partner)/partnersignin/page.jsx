@@ -44,7 +44,7 @@ export default function Signin() {
         
         <form>
           <div className="mb-4">
-            <label className="block mb-1">Retailer ID or Email ID</label>
+            <label className="block mb-1">Partner ID or Email ID</label>
             <input
               type="text"
               name="retailerId"
