@@ -131,7 +131,7 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="">Select Partner Type</option>
-                  <option value="Retailer">Retailer</option>
+                  <option value="Retailer">CSP</option>
                   <option value="Branch">Branch</option>
                   <option value="DSA">DSA</option>
                 </select>
