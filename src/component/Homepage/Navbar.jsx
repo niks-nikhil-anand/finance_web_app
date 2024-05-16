@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import logo from '../../../public/logo.png';
+import logo from '../../../public/logo2.png';
 import Image from 'next/image';
 
 const Navbar = () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Link href={"/"}>
               
-              <Image src={logo} alt="TailGrids" height={80} width={80} />
+              <Image src={logo} alt="TailGrids" height={80} width={100} />
               </Link>
             </div>
             <div className="hidden md:flex ml-10 items-baseline space-x-4">

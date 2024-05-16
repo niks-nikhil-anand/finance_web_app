@@ -96,10 +96,17 @@ const LoanForm = () => {
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           >
-            <option value="">Select Purpose</option>
-            <option value="property">Loan Against Property</option>
-            <option value="commercialProperty">Loan Against Commercial Property</option>
-            <option value="rentalProperty">Loan Against Rental Property</option>
+            <option value="">Loan Type</option>
+            <option value="BusinessLoan">Business Loan</option>
+            <option value="personalLoan">Personal Loan</option>
+            <option value="homeLoan">Home Loan</option>
+            <option value="loanAgainstProperty">Loan Against Property</option>
+            <option value="goldLoan">Gold Loan</option>
+            <option value="educationLoan">Education Loan</option>
+            <option value="microFinanceGroupLoan">Micro Finance Group Loan</option>
+            <option value="dailyCollectionLoan">Daily Collection Loan</option>
+            <option value="mobileAppMicroLoan">Mobile App Micro Loan</option>
+            <option value="mobileFinanceLoan">Mobile Finance Loan</option>
           </select>
         </div>
         <div>
