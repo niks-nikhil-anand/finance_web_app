@@ -5,8 +5,17 @@ import { motion } from 'framer-motion';
 const GlassmorphismForm = () => {
   const [step, setStep] = useState(1);
   const [registrationType, setRegistrationType] = useState('');
-  
-  const handleNextStep = () => setStep(step + 1);
+  const [error, setError] = useState('');
+
+  const handleNextStep = () => {
+    if (!registrationType) {
+      setError('Please select a registration type.');
+    } else {
+      setError('');
+      setStep(step + 1);
+    }
+  };
+
   const handlePreviousStep = () => setStep(step - 1);
 
   return (
@@ -38,19 +47,20 @@ const GlassmorphismForm = () => {
                   className="w-full p-2 rounded bg-white bg-opacity-50"
                   onChange={(e) => setRegistrationType(e.target.value)}
                 >
-                 
+                  <option value="">Select Registration Type</option>
                   <option value="itr">ITR File New Registration</option>
                   <option value="gst">GST Registration</option>
                   <option value="itr">ITR RETURN</option>
-                  <option value="gst">GST RETURN</option>
-                  <option value="gst">BUSINESS REGISTRATION </option>
+                  <option value="itr">GST RETURN</option>
+                  <option value="itr">BUSINESS REGISTRATION</option>
                   <option value="gst">MSME REGISTRATION</option>
-                  <option value="gst">LEGAL ISSUES LEGAL NOTICE</option>
+                  <option value="itr">LEGAL ISSUES LEGAL NOTICE</option>
                   <option value="gst">LOAN NOC CERTIFICATE</option>
-                  <option value="gst">BUSINESS LICENSE</option>
+                  <option value="itr">BUSINESS LICENSE</option>
                   <option value="gst">FOOD LICENSE</option>
-                  <option value="gst">TARDE LICENSE </option>
+                  <option value="gst">TRADE LICENSE</option>
                 </select>
+                {error && <p className="text-red-500 mt-2">{error}</p>}
               </div>
               <button 
                 type="button" 

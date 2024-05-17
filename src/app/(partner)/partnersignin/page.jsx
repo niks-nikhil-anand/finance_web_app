@@ -1,21 +1,28 @@
-"use client"
+"use client";
+
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Illustration from '../../../../public/Illustration.png'
+import Illustration from '../../../../public/Illustration.png';
 import Link from 'next/link';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 export default function Signin() {
   const [formData, setFormData] = useState({
     retailerId: '',
     password: ''
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -31,7 +38,7 @@ export default function Signin() {
           </h1>
           <div className="hidden md:block">
             <Image
-             src={Illustration}
+              src={Illustration}
               alt="Financial Freedom"
               width={300}
               height={300}
@@ -40,8 +47,7 @@ export default function Signin() {
         </motion.div>
       </div>
       <div className="md:w-1/2 bg-white p-10 flex flex-col justify-center">
-        <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-        
+        <h2 className="text-2xl font-bold mb-4">Login In</h2>
         <form>
           <div className="mb-4">
             <label className="block mb-1">CSP/DSA/BRANCH CODE</label>
@@ -53,23 +59,39 @@ export default function Signin() {
               className="w-full border border-gray-300 p-2 rounded"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label className="block mb-1">Password</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               onChange={handleChange}
               className="w-full border border-gray-300 p-2 rounded"
             />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute inset-y-0 right-0 flex items-center px-3 py-2 text-gray-600 hover:text-gray-900"
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5 mt-5" aria-hidden="true" />
+              ) : (
+                <EyeIcon className="h-5 w-5 mt-5" aria-hidden="true" />
+              )}
+            </button>
           </div>
           <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded">
             Sign In
           </button>
         </form>
         <p className="mt-4">
+          <Link href="/forgotpassword" className="text-blue-500">
+            Forgot Password?
+          </Link>
+        </p>
+        <p className="mt-4">
           Do not have an account?{' '}
-          <Link href={"/partnersignup"} className="text-blue-500">
+          <Link href="/partnersignup" className="text-blue-500">
             Create Account
           </Link>
         </p>

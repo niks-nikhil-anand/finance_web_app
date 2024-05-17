@@ -11,6 +11,8 @@ export default function Signup() {
     email: '',
     phone: '',
     city: '',
+    pincode: '',
+    state: '',
     partnerType: '',
     interest: '',
     message: '',
@@ -54,6 +56,14 @@ export default function Signup() {
     e.preventDefault();
     // handle form submission
   };
+
+  const indianStates = [
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana',
+    'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
+    'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana',
+    'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh',
+    'Dadra and Nagar Haveli and Daman and Diu', 'Delhi', 'Lakshadweep', 'Puducherry'
+  ];
 
   return (
     <div className="flex flex-col md:flex-row mb-[20rem] md:mb-[0rem]">
@@ -121,6 +131,30 @@ export default function Signup() {
                   onChange={handleChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Pincode</label>
+                <input
+                  type="text"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">State</label>
+                <select
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                >
+                  <option value="">Select State</option>
+                  {indianStates.map((state) => (
+                    <option key={state} value={state}>{state}</option>
+                  ))}
+                </select>
               </div>
               <div className="mb-4">
                 <label className="block mb-1">Partner Type</label>

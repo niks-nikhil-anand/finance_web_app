@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import App from '../../../public/App.png'
+import App from '../../../public/app.png'
 import qr from '../../../public/qr.png'
 import gp from '../../../public/gp.svg'
 import Image from 'next/image';
