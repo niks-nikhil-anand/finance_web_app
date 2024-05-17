@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import app from '../../../public/app.png'
+import appbanner from '../../../public/appbanner.png'
 import qr from '../../../public/qr.png'
 import gp from '../../../public/gp.svg'
-import Image from 'next/image'
 
 const DownloadAppSection = () => {
   return (
@@ -73,7 +73,7 @@ const DownloadAppSection = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Image src={app} alt="Mobile App" height={500} width={500} className="w-[20rem] " />
+        <Image src={appbanner} alt="Mobile App" height={500} width={500} className="w-[20rem] " />
       </motion.div>
     </div>
   );
