@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 import app from '../../../public/app.png'
 import qr from '../../../public/qr.png'
 import gp from '../../../public/gp.svg'
-import Image from 'next/image';
+import Image from 'next/image'
 
 const DownloadAppSection = () => {
   return (
