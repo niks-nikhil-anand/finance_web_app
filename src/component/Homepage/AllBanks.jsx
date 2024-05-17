@@ -125,10 +125,6 @@ const AllBanks = () => {
             image: "https://www.apnarupee.com/resources/images/img/DCB%20BANK%20%20%201.PNG"
         },
         {
-            index: 31,
-            image: "https://www.apnarupee.com/resources/images/img/DEUTSCHE%20BANK%20%20%201.PNG"
-        },
-        {
             index: 32,
             image: "https://www.apnarupee.com/resources/images/img/EDELWEISS%201.png"
         },
