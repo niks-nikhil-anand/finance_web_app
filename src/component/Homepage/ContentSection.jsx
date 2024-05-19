@@ -15,7 +15,7 @@ const ContentSection = () => {
 <Container>   
   <div className="max-w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
     <div className="flex gap-5 flex-col md:flex-row">
-      <div className=" max-w-full text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right ">
+      <div className=" max-w-full text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right  ">
         <h2 className="md:text-3xl  font-extrabold text-xl"> One-Stop Solution for Financial and Tax Services</h2>
 
         <p className="mt-4 text-black-600 ">

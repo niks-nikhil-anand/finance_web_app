@@ -9,6 +9,7 @@ import { Feature } from "@/component/Homepage/Features";
 import Hero from "@/component/Homepage/Hero";
 import InterestRate from "@/component/Homepage/InterestRate";
 
+
 import StepComponent from "@/component/Homepage/Stepper";
 import Testimonial from "@/component/Homepage/Testimonial";
 
@@ -28,6 +29,7 @@ export default function Home() {
    <EmiCalculator/>
     <InterestRate/>
     <Banner2/>
+   
     <Testimonial/>
     <Blog/>
     <DownloadAppSection/>

@@ -40,7 +40,7 @@ const Navbar = () => {
                   transition={{ duration: 0.2 }}
                   className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loanCalcOpen ? "block" : "hidden"}`}
                 >
-                  <Link href="/calculator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMI Calculator</Link>
+                  <Link href="/calculator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Monthly EMI Calculator</Link>
                   <Link href="/applyloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Eligibility Calculator</Link>
                 </motion.div>
               </div>
@@ -58,10 +58,10 @@ const Navbar = () => {
                   transition={{ duration: 0.2 }}
                   className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loansOpen ? "block" : "hidden"}`}
                 >
-                  <Link href="/applyloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Personal Loan</Link>
-                  <Link href="/applyloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Business Loan</Link>
-                  <Link href="/applyloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Loan Against Property</Link>
-                  <Link href="/applyloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home Loan</Link>
+                  <Link href="/personalloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Personal Loan</Link>
+                  <Link href="/businessloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Business Loan</Link>
+                  <Link href="/loanproperty" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Loan Against Property</Link>
+                  <Link href="/homeloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home Loan</Link>
                 </motion.div>
               </div>
               <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium">Blog</Link>
@@ -73,7 +73,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex ml-4 items-center md:ml-6">
             <Link href="/applynow">
-              <button className="px-6 py-2 font-medium bg-yellow-600 text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+              <button className="px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
                 Apply Now
               </button>
             </Link>
@@ -122,7 +122,7 @@ const Navbar = () => {
               className={`overflow-hidden ${loanCalcOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/calculator" className="block px-3 py-2 rounded-md text-sm font-medium text-white">EMI Calculator</Link>
+                <Link href="/calculator" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Monthly EMI Calculator</Link>
                 <Link href="/applyloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Eligibility Calculator</Link>
               </div>
             </motion.div>

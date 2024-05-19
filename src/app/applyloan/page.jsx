@@ -65,7 +65,7 @@ const LoanForm = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-lg mx-auto p-8 bg-gradient-to-r from-indigo-500 to-purple-500 bg-opacity-20 backdrop-blur-lg shadow-lg rounded-lg"
+      className="max-w-lg mx-auto p-8 gradient-black  backdrop-blur-lg shadow-lg rounded-lg"
     >
       <h2 className="text-2xl font-bold mb-6 text-white">Loan Application Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -149,7 +149,12 @@ const LoanForm = () => {
                 ))}
               </select>
             </div>
-            <div>
+           
+          </>
+        )}
+        {step === 2 && (
+          <>
+           <div>
               <label className="block text-sm font-medium text-white">Marital Status</label>
               <select
                 name="maritalStatus"
@@ -212,24 +217,7 @@ const LoanForm = () => {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-          </>
-        )}
-        {step === 2 && (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-white">Employment Type</label>
-              <select
-                name="employmentType"
-                value={formData.employmentType}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">Select Employment Type</option>
-                <option value="salaried">Salaried</option>
-                <option value="selfEmployed">Self-Employed</option>
-                <option value="unemployed">Unemployed</option>
-              </select>
-            </div>
+            
             <div>
               <label className="block text-sm font-medium text-white">Monthly Income</label>
               <input
@@ -250,6 +238,11 @@ const LoanForm = () => {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
+          </>
+        )}
+        {step === 3 && (
+          <>
+           
             <div>
               <label className="block text-sm font-medium text-white">Aadhaar Card</label>
               <input
@@ -324,7 +317,8 @@ const LoanForm = () => {
             </div>
           </>
         )}
-        <div className="flex justify-between">
+
+       <div className="flex justify-between">
           {step > 1 && (
             <button
               type="button"
@@ -334,7 +328,7 @@ const LoanForm = () => {
               Previous
             </button>
           )}
-          {step < 2 ? (
+          {step < 3 ? (
             <button
               type="button"
               onClick={handleNextStep}
