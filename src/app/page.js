@@ -5,9 +5,10 @@ import Banner from "@/component/Homepage/Banner";
 import Blog from "@/component/Homepage/Blog";
 import ContentSection from "@/component/Homepage/ContentSection";
 import FAQSection from "@/component/Homepage/Faqs";
-import { Feature } from "@/component/Homepage/Features";
+import Feature from "@/component/Homepage/Features";
 import Hero from "@/component/Homepage/Hero";
 import InterestRate from "@/component/Homepage/InterestRate";
+import Slider from "@/component/Homepage/Slider";
 
 
 import StepComponent from "@/component/Homepage/Stepper";
@@ -25,11 +26,11 @@ export default function Home() {
     <StepComponent/>
     <AllBanks/>
     <Banner/>
-    <Feature/>
+   <Feature/>
    <EmiCalculator/>
     <InterestRate/>
     <Banner2/>
-   
+   <Slider/>
     <Testimonial/>
     <Blog/>
     <DownloadAppSection/>
