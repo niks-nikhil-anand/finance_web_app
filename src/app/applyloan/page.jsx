@@ -25,7 +25,8 @@ const LoanForm = () => {
     state: '',
     maritalStatus: '',
     loanYear: '',
-    employerStatus: ''
+    employerStatus: '',
+    loanType: ''
   });
 
   const [step, setStep] = useState(1);
@@ -36,6 +37,11 @@ const LoanForm = () => {
     "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
     "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
     "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+  ];
+  const loanTypes = [
+    "BUSINESS LOAN", "PERSONAL LOAN", "HOME LOAN", "LOAN AGAINST PROPERTY",
+    "GOLD LOAN", "EDUCATION LOAN", "MICRO FINANCE GROUP LOAN", "DAILY COLLECTION LOAN",
+    "MOBILE APP MICRO LOAN", "MOBILE FINANCE LOAN"
   ];
 
   const handleChange = (e) => {
@@ -167,6 +173,20 @@ const LoanForm = () => {
                 <option value="married">Married</option>
                 <option value="divorced">Divorced</option>
                 <option value="widowed">Widowed</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white">Loan Type</label>
+              <select
+                name="loanType"
+                value={formData.loanType}
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="">Select Loan Type</option>
+                {loanTypes.map((loan, index) => (
+                  <option key={index} value={loan}>{loan}</option>
+                ))}
               </select>
             </div>
             <div>

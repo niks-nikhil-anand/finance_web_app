@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import logo2 from '../../../public/logo2.png'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -26,12 +27,12 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 class="text-lg font-semibold mb-8 text-white">Follow Us</h4>
+            <h4 class="text-lg font-semibold mb-8 text-white">Loan Type</h4>
             <ul class="space-y-4">
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Personal Loan</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Business Loan</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Loan Against Property</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Home Loan</a></li>
+              <li><Link href="/personalloan"  class="text-gray-300 hover:text-white text-sm">Personal Loan</Link></li>
+              <li><Link href="/businessloan" class="text-gray-300 hover:text-white text-sm">Business Loan</Link></li>
+              <li><Link href="/loanproperty" class="text-gray-300 hover:text-white text-sm">Loan Against Property</Link></li>
+              <li><Link href="//homeloan" class="text-gray-300 hover:text-white text-sm">Home Loan</Link></li>
             </ul>
             
 

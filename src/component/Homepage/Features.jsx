@@ -15,6 +15,7 @@ const Feature = () => {
     "DAILY COLLECTION LOAN",
     "MOBILE APP MICRO LOAN",
     "MOBILE FINANCE LOAN",
+    "MICRO FINANCE GROUP LOAN"
   ];
 
   return (
@@ -61,7 +62,7 @@ const Feature = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 * (index + 1) }}
-              className='font-bold text-start '
+              className='font-bold '
             >
               👉 {loan}
             </motion.li>
