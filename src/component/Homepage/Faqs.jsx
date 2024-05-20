@@ -5,21 +5,33 @@ import Container from '../Shared/Container';
 
 const faqs = [
   {
-    question: "What is your return policy?",
-    answer: "You can return any item within 30 days of purchase if it is in its original condition."
+    question: "What services does Legal257 offer?",
+    answer: "At Legal257, we offer comprehensive financial and tax services including GST and ITR filing, as well as competitive loan options tailored to meet your financial needs."
   },
   {
-    question: "How long does shipping take?",
-    answer: "Shipping usually takes 5-7 business days within the contiguous United States."
+    question: "How can Legal257 help with GST filing?",
+    answer: "Our expert team ensures accurate and timely GST filing, helping your business stay compliant with all regulatory requirements, thereby avoiding any penalties."
   },
   {
-    question: "Do you ship internationally?",
-    answer: "Yes, we ship internationally. Shipping costs will apply, and will be added at checkout."
+    question: "What is the process for filing an ITR with Legal257?",
+    answer: "Filing an ITR with Legal257 is simple. Just provide us with the necessary financial documents, and our experienced professionals will handle the rest, ensuring accuracy and timely submission."
   },
   {
-    question: "Can I track my order?",
-    answer: "Yes, you can track your order using the tracking number provided in your confirmation email."
-  }
+    question: "What types of loans does Legal257 offer?",
+    answer: "Legal257 offers a variety of loan options including personal loans, business loans, and MSME loans. Our loan products are designed to meet diverse financial needs with competitive interest rates and flexible terms."
+  },
+  {
+    question: "How can I apply for a loan through Legal257?",
+    answer: "To apply for a loan, you can visit our website and fill out the online application form. Alternatively, you can contact our customer service team for assistance. We will guide you through the process and help you find the best loan option for your needs."
+  },
+  {
+    question: "What documents are required for GST and ITR filing?",
+    answer: "For GST filing, you typically need purchase and sales invoices, GST registration details, and bank statements. For ITR filing, you need income details, bank statements, investment proofs, and previous year's tax returns. Our team will provide a detailed list based on your specific situation."
+  },
+  {
+    question: "How do I contact Legal257 for support or queries?",
+    answer: "You can contact us through our website's contact form, email us at csprozana@gmail.com, or call our customer service number at 123-456-7890. Our team is available to assist you with any queries or support you may need."
+  },
 ];
 
 const FAQSection = () => {

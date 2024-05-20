@@ -27,7 +27,7 @@ const Feature = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Streamline Your Tax Filing with Ease - Apply for <span className="text-yellow-500"> ITR and GST Now!</span>
+          Transparent and Efficient Financial Solutions  <span className="text-yellow-500"> with Legal257</span>
         </motion.h1>
         <motion.p
           className="text-sm md:text-xl lg:text-2xl mb-8"
@@ -35,7 +35,7 @@ const Feature = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Hassle-Free ITR and GST Filing - Start Your Application Today!
+         Whether you're planning a dream vacation, renovating your home, funding your child's education, or covering unexpected expenses, our  Loan offerings provide you with the financial flexibility you need.
         </motion.p>
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <motion.a
