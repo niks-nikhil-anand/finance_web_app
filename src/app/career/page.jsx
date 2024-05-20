@@ -1,8 +1,16 @@
+import HeroCareer from '@/component/CareerPage/HeroCareer'
+import CareerPage from '@/component/CareerPage/JobCard'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+    <>
+    <HeroCareer/>
+   <CareerPage/>
+    
+    </>
+    </div>
   )
 }
 
