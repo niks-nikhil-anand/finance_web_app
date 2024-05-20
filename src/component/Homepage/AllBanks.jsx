@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import Container from '../Shared/Container';
+import bajajfinance from '../../../public/logo/bajajfinance.png'
+import dhanvarsa from '../../../public/logo/dhanvarsa.jpeg'
 
 const AllBanks = () => {
     const Banks = [
@@ -10,11 +12,11 @@ const AllBanks = () => {
         },
         {
             index: 1,
-            image: "https://www.apnarupee.com/resources/images/img/BAJAJ%20FINSERV%201.png"
+            image: "https://www.apnarupee.com/resources/images/img/ADITYA%20BIRLA%20CAPITAL%201.png"
         },
         {
             index: 2,
-            image: "https://www.apnarupee.com/resources/images/img/BANDHAN%20BANK%20%201.png"
+            image: "https://www.apnarupee.com/resources/images/img/AXIS%20BANK%201.png"
         },
         {
             index: 3,
@@ -22,11 +24,11 @@ const AllBanks = () => {
         },
         {
             index: 4,
-            image: "https://www.apnarupee.com/resources/images/img/IDBI%20BANK%201.png"
+            image: bajajfinance
         },
         {
             index: 5,
-            image: "https://www.apnarupee.com/resources/images/img/INDUSIND%20BANK%201.png"
+            image: dhanvarsa
         },
         {
             index: 6,
@@ -250,7 +252,7 @@ const AllBanks = () => {
         <div className='flex flex-col justify-center items-center bg-gray-300 py-[3rem]'>
             <Container>
             <div className='flex justify-center items-center'>
-                <h1 className='text-2xl md:text-3xl font-bold sm:text-4xl '>Banks In Our Network</h1>
+                <h1 className='text-2xl md:text-3xl font-bold sm:text-4xl '>BANKS - OUR NBFC CHANNEL PARTNER NETWORK</h1>
             </div>
             <div className='flex mt-[2rem]'>
                 <div className='flex flex-wrap gap-[2rem]  justify-center '>
