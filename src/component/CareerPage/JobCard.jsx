@@ -64,7 +64,7 @@ const CareerPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Career Opportunities</h1>
+      <h1 className="text-2xl md:text-3xl font-bold sm:text-4xl mb-5 text-center">Career Opportunities</h1>
       <input
         type="text"
         placeholder="Search for jobs..."
