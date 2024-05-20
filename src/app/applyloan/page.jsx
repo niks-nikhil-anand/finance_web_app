@@ -71,7 +71,7 @@ const LoanForm = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-lg mx-auto p-8 gradient-black  backdrop-blur-lg shadow-lg rounded-lg"
+      className="max-w-lg mx-auto p-8 gradient-black  backdrop-blur-lg shadow-lg my-6"
     >
       <h2 className="text-2xl font-bold mb-6 text-white">Loan Application Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
