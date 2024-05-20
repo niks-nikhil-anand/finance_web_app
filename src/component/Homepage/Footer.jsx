@@ -19,10 +19,10 @@ const Footer = () => {
           <div>
             <h4 class="text-lg font-semibold mb-8 text-white">Navigation</h4>
             <ul class="space-y-4">
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Home</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">About Us</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Contact Us</a></li>
-              <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white text-sm">Become Our Partner</a></li>
+              <li><Link href={"/about"} class="text-gray-300 hover:text-white text-sm">About Us</Link></li>
+              <li><Link href={"/contact"} class="text-gray-300 hover:text-white text-sm">Contact Us</Link></li>
+              <li><Link href={"/partnersignup"} class="text-gray-300 hover:text-white text-sm">Become Our Partner</Link></li>
+              <li><Link href={"/career"} class="text-gray-300 hover:text-white text-sm">Career</Link></li>
             </ul>
           </div>
 
