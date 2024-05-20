@@ -144,10 +144,10 @@ const Navbar = () => {
               className={`overflow-hidden ${loansOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/applyloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Personal Loan</Link>
-                <Link href="/applyloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Business Loan</Link>
-                <Link href="/applyloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Loan Against Property</Link>
-                <Link href="/applyloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Home Loan</Link>
+                <Link href="/personalloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Personal Loan</Link>
+                <Link href="/businessloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Business Loan</Link>
+                <Link href="/loanproperty" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Loan Against Property</Link>
+                <Link href="//homeloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Home Loan</Link>
               </div>
             </motion.div>
           </div>

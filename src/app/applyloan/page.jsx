@@ -188,6 +188,12 @@ const LoanForm = () => {
                 <option value="7 Years">7 Years</option>
                 <option value="8 Years">8 Years</option>
                 <option value="9 Years">9 Years</option>
+                <option value="7 Years">10 Years</option>
+                <option value="8 Years">11 Years</option>
+                <option value="9 Years">12 Years</option>
+                <option value="7 Years">13 Years</option>
+                <option value="8 Years">14 Years</option>
+                <option value="9 Years">15 Years</option>
               </select>
             </div>
             <div>

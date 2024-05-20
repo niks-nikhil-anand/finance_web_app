@@ -35,7 +35,7 @@ const Feature = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-         Whether you&apos;re planning a dream vacation, renovating your home, funding your child&apos;s education, or covering unexpected expenses, our  Loan offerings provide you with the financial flexibility you need.
+         Whether you&apos;re planning a dream vacation, renovating your home, funding your child&apos;  s education, or covering unexpected expenses, our  Loan offerings provide you with the financial flexibility you need.
         </motion.p>
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <motion.a
