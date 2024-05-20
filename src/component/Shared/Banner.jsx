@@ -35,15 +35,7 @@ const Banner2 = () => {
                     >
                         Apply Now
                     </motion.a>
-                    <motion.a
-                        href="/applyloan"
-                        className="border border-blue-500 hover:bg-blue-500 text-white hover:text-black font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors duration-300"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.9 }}
-                    >
-                        Check Eligibility
-                    </motion.a>
+                  
                 </div>
             </div>
             <div className="relative z-10 mt-8 md:mt-0 max-w-xs lg:max-w-md">
