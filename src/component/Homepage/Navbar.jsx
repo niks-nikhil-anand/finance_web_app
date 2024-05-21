@@ -153,7 +153,7 @@ const Navbar = () => {
           </div>
           <Link href={"/gallery"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Media Gallery</Link>
           <Link href={"/contact"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
-          <Link href={"/career"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Career</Link>
+          <Link href={"/career"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Job - Apply Now</Link>
           <Link href="/partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
         </div>
       </motion.div>

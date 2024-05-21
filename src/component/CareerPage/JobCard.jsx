@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const jobs = [
   { title: 'Chartered Accountant', code: 'CA', type: 'Fulltime', salary: '₹96k - 540k/year' },
@@ -41,7 +42,10 @@ const JobCard = ({ title, code, type, salary }) => (
         <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded">{salary}</span>
       </div>
     </div>
+    <Link href={"/applyjob"}>
     <button className="bg-blue-500 text-white px-4 py-2 rounded my-5">Apply Now</button>
+    </Link>
+    
   </motion.div>
 );
 
