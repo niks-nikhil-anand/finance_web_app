@@ -4,8 +4,9 @@ import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, Menu }
 import { MdDashboard , MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
 import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
-import { FaUsersLine } from "react-icons/fa6";
+import { FaUsersLine , FaHireAHelper } from "react-icons/fa6";
 import { CiShop } from "react-icons/ci";
+
 
 
 
@@ -129,6 +130,17 @@ export function SidebarAdmin() {
                 <FaUsersLine className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">All Users</span>
               </a>
+            </div>
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Hiring</label>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Leads</span>
+              </a>
+          
             </div>
           </nav>
         </div>
