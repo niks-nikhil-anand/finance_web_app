@@ -1,7 +1,13 @@
 "use client"
 import React, { useState } from 'react'
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, Menu } from 'lucide-react'
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard , MdSpaceDashboard } from "react-icons/md";
+import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch } from "react-icons/fa";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { FaUsersLine } from "react-icons/fa6";
+
+
+
 
 
 export function SidebarAdmin() {
@@ -24,61 +30,104 @@ export function SidebarAdmin() {
         <div className="mt-6 flex flex-1 flex-col justify-between">
           <nav className="-mx-3 space-y-6">
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Analytics</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">Main</label>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <BarChart className="h-5 w-5" aria-hidden="true" />
+                <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Dashboard</span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
+                <FcMoneyTransfer  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">GST</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <FaMoneyCheckAlt  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">ITR</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Loan</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
                 <Wallet className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Sales</span>
+                <span className="mx-2 text-sm font-medium">Finance</span>
               </a>
             </div>
+           
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Content</label>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <Newspaper className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Blogs</span>
-              </a>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <BellRing className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Notifications</span>
-              </a>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <Paperclip className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Checklists</span>
-              </a>
-            </div>
-            <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Customization</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">Leads</label>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
                 <Brush className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Themes</span>
+                <span className="mx-2 text-sm font-medium">GST </span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
                 <Wrench className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Setting</span>
+                <span className="mx-2 text-sm font-medium">ITR</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <Wrench className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Finance</span>
+              </a>
+            </div>
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Users</label>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <FaCodeBranch className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Branch</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <Wallet  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Finance</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <BellRing className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">DSA</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <BellRing className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">CSP</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href="#"
+              >
+                <FaUsersLine className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">All Users</span>
               </a>
             </div>
           </nav>
