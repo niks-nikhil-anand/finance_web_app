@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loanCalcOpen, setLoanCalcOpen] = useState(false);
   const [loansOpen, setLoansOpen] = useState(false);
+  const [mediaGalleryOpen, setMediaGalleryOpen] = useState(false);
 
   const toggleSubMenu = (setFunction, currentState) => () => setFunction(!currentState);
   
@@ -40,7 +41,7 @@ const Navbar = () => {
                   transition={{ duration: 0.2 }}
                   className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loanCalcOpen ? "block" : "hidden"}`}
                 >
-                  <Link href="/calculator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Monthly EMI Calculator</Link>
+                  <Link href="/calculator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Monthly EMI Calculator</Link>
                   <Link href="/applyloan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Eligibility Calculator</Link>
                 </motion.div>
               </div>
@@ -153,29 +154,32 @@ const Navbar = () => {
           </div>
           <div className="relative">
             <button
-              onClick={toggleSubMenu(setLoansOpen, loansOpen)}
+              onClick={toggleSubMenu(setMediaGalleryOpen, mediaGalleryOpen)}
               className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-white"
             >
               Media Gallery
-              <span>{loansOpen ? "▲" : "▼"}</span>
+              <span>{mediaGalleryOpen ? "▲" : "▼"}</span>
             </button>
             <motion.div
               initial={false}
-              animate={{ height: loansOpen ? "auto" : 0 }}
+              animate={{ height: mediaGalleryOpen ? "auto" : 0 }}
               transition={{ duration: 0.3 }}
-              className={`overflow-hidden ${loansOpen ? "block" : "hidden"}`}
+              className={`overflow-hidden ${mediaGalleryOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/personalloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Photo Gallery</Link>
-                <Link href="/businessloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Video Gallery</Link>
-                <Link href="/loanproperty" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Partner Testimonials</Link>
-                <Link href="/homeloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Media Gallery</Link>
+                <Link href="/photoGallery" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Photo Gallery</Link>
+                <Link href="/videoGallery" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Video Gallery</Link>
+                <Link href="/partnertestimonial" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Partner Testimonial</Link>
               </div>
             </motion.div>
           </div>
-          <Link href={"/contact"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
-          <Link href={"/career"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Job - Apply Now</Link>
+          <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
           <Link href="/partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
+          <Link href="/applynow">
+            <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+              Apply Now
+            </button>
+          </Link>
         </div>
       </motion.div>
     </nav>
