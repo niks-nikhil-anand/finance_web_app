@@ -1,10 +1,12 @@
 "use client"
 import React, { useState } from 'react'
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, Menu } from 'lucide-react'
-import { MdDashboard , MdSpaceDashboard } from "react-icons/md";
+import { MdDashboard , MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
 import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FaUsersLine } from "react-icons/fa6";
+import { CiShop } from "react-icons/ci";
+
 
 
 
@@ -38,18 +40,23 @@ export function SidebarAdmin() {
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Dashboard</span>
               </a>
+              
+            </div>
+           
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Leads</label>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <FcMoneyTransfer  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">GST</span>
+                <FcMoneyTransfer className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">GST </span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <FaMoneyCheckAlt  className="h-5 w-5" aria-hidden="true" />
+                <FaMoneyCheckAlt className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">ITR</span>
               </a>
               <a
@@ -67,30 +74,23 @@ export function SidebarAdmin() {
                 <span className="mx-2 text-sm font-medium">Finance</span>
               </a>
             </div>
-           
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Leads</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">People</label>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <Brush className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">GST </span>
+                <MdOutlinePeople  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Customer</span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <Wrench className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">ITR</span>
+                <CiShop className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Retailers</span>
               </a>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <Wrench className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Finance</span>
-              </a>
+              
             </div>
             <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">Users</label>
