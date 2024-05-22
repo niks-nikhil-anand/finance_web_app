@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div class="text-center py-5 bg-gray-600">
+      <div class="text-center py-5 bg-gray-600 px-5">
         <p class='text-white text-sm'>© 2024<a href='https://devtrekker.site/' target='_blank'
           class="hover:underline mx-1">Legal 257 | All right Reserved</a>| Developed by Nikhil</p>
       </div>
