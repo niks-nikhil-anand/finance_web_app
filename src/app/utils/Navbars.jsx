@@ -1,18 +1,15 @@
 "use client"
 import React from 'react'
 import { usePathname } from 'next/navigation';
-import NavbarAdmin from '@/component/AdminDashboard/NavbarAdmin';
 import Navbar from '@/component/Homepage/Navbar';
 
 
 const Navbars = () => {
-    const pathname = usePathname();
-    const isAdminPage = pathname === '/admin';
-  return (
-    <div>
-         {isAdminPage ? <NavbarAdmin /> : <Navbar />}
-    </div>
-  )
-}
+  const pathname = usePathname();
+  const isAdminPage = pathname === '/dashboard';
+  return !isAdminPage ? (
+  <Navbar/>
+) : null;
+};
 
 export default Navbars

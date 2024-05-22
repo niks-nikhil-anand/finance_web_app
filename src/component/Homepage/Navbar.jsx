@@ -151,7 +151,28 @@ const Navbar = () => {
               </div>
             </motion.div>
           </div>
-          <Link href={"/gallery"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Media Gallery</Link>
+          <div className="relative">
+            <button
+              onClick={toggleSubMenu(setLoansOpen, loansOpen)}
+              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-white"
+            >
+              Media Gallery
+              <span>{loansOpen ? "▲" : "▼"}</span>
+            </button>
+            <motion.div
+              initial={false}
+              animate={{ height: loansOpen ? "auto" : 0 }}
+              transition={{ duration: 0.3 }}
+              className={`overflow-hidden ${loansOpen ? "block" : "hidden"}`}
+            >
+              <div className="ml-4">
+                <Link href="/personalloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Photo Gallery</Link>
+                <Link href="/businessloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Video Gallery</Link>
+                <Link href="/loanproperty" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Partner Testimonials</Link>
+                <Link href="/homeloan" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Media Gallery</Link>
+              </div>
+            </motion.div>
+          </div>
           <Link href={"/contact"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
           <Link href={"/career"} className="block px-3 py-2 rounded-md text-base font-medium text-white">Job - Apply Now</Link>
           <Link href="/partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>

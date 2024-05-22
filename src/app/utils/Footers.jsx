@@ -2,16 +2,13 @@
 import React from 'react'
 import { usePathname } from 'next/navigation';
 import Footer from '@/component/Homepage/Footer';
-import { FooterAdmin } from '@/component/AdminDashboard/FooterAdmin';
 
 const Footers = () => {
-    const pathname = usePathname();
-    const isAdminPage = pathname === '/admin';
-  return (
-    <div>
-          {isAdminPage ? <FooterAdmin /> : <Footer />}
-    </div>
-  )
-}
+  const pathname = usePathname();
+  const isAdminPage = pathname === '/dashboard';
+  return !isAdminPage ? (
+  <Footer/>
+) : null;
+};
 
 export default Footers
