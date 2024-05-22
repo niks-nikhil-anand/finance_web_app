@@ -1,22 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Menu, X, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
-const menuItems = [
-  {
-    name: 'Home',
-    href: '#',
-  },
-  {
-    name: 'About',
-    href: '#',
-  },
-  {
-    name: 'Contact',
-    href: '#',
-  },
-]
 
 const locations = [
   {
@@ -31,7 +17,7 @@ const locations = [
 
 export default function AboutPageOne() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }

@@ -17,6 +17,8 @@
     "@mantine/hooks": "^7.9.1",
     "@mui/material": "^5.15.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "cloudinary": "^2.2.0",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.1.9",
     "lucide-react": "^0.378.0",
     "mdb-react-ui-kit": "^8.0.0",
