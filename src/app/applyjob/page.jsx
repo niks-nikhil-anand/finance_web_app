@@ -141,7 +141,7 @@ const JobApplicationForm = () => {
                   under any laws of the land. I further declare that the above entries in my
                   application form are correct. I am fully aware that I am liable for legal actions
                   including cancellation of my candidature if any information so provided by me is
-                  found to be false or incorrect. I am aware that after the "submit" button is
+                  found to be false or incorrect. I am aware that after the &quot;submit&quot; button is
                   clicked I will not be able to make any further corrections. I am responsible for
                   the correctness of the entries made in the application form.
                 </p>
