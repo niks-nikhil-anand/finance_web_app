@@ -69,6 +69,7 @@ const Navbar = () => {
               <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
               <Link href="/gallery" className="px-3 py-2 rounded-md text-sm font-medium">Media Gallery</Link>
               <Link href="/contact" className="px-3 py-2 rounded-md text-sm font-medium">Contact Us</Link>
+              <Link href="/apllyjob" className="px-3 py-2 rounded-md text-sm font-medium">Job - Apply Now</Link>
               <Link href="/partnersignup" className="px-3 py-2 rounded-md text-sm font-medium">Become Our Partner</Link>
             </div>
           </div>
