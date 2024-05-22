@@ -24,7 +24,7 @@ const loans = [
   },
   {
     bank: 'Axis Bank',
-    logo: 'https://myrupees.com/img/b5.png',
+    logo: 'https://myrupees.com/img/b3.png',
     interestRate: '8.60%',
     processingFee: 'For Salaried 10,000 + GST Self Employed 0.5% + GST',
   },
