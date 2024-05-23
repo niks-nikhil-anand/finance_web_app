@@ -2,6 +2,16 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Container from "../Shared/Container";
+import Image from "next/image";
+
+import GST from '../../../public/services/GST.jpg'
+import ITR from '../../../public/services/ITR.jpg'
+import business from '../../../public/services/business.jpg'
+import msme from '../../../public/services/msme.jpg'
+import food from '../../../public/services/food.jpg'
+import trade from '../../../public/services/trade.jpg'
+import noc from '../../../public/services/noc.jpeg'
+import legal from '../../../public/services/legal.jpg'
 
 const Portfolio = () => {
   // State for controlling which category to display
@@ -106,7 +116,7 @@ const PortfolioCard = ({
       >
         <div className="relative mb-12">
           <div className="overflow-hidden rounded-[10px] ">
-            <img src={ImageHref} alt="portfolio" className="w-full" />
+            <Image src={ImageHref} alt="portfolio" className="w-full"  height={400} width={400}/>
           </div>
           <div className="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark ">
             <span className="text-primary mb-2 block text-sm font-medium">
@@ -130,196 +140,196 @@ const PortfolioCard = ({
 
 const portfolioData = [
   {
-    ImageHref: "https://i.ibb.co/64WfFPt/image-01.jpg",
+    ImageHref: GST,
     category: "Business",
     title: "GST Return/Registration",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/PT7ghRs/image-06.jpg",
+    ImageHref:  ITR,
     category: "Business",
     title: "ITR Return/Registration",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/vkt8C1P/image-02.jpg",
+    ImageHref:  business,
     category: "Business",
     title: "Business Return/Registration",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/3FKqS1G/image-03.jpg",
+    ImageHref:  msme,
     category: "Business",
     title: "MSME REGISTRATION",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/m6dq2fX/image-04.jpg",
+    ImageHref:  food,
     category: "Business",
     title: "Food License",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  trade,
     category: "Business",
     title: "Trade License",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  noc,
     category: "Business",
     title: "Loan NOC Certificate",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  legal,
     category: "Business",
     title: "Legal Issues and Legal Notice",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/64WfFPt/image-01.jpg",
+    ImageHref: {GST},
     category: "Loan",
     title: "Business Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/PT7ghRs/image-06.jpg",
+    ImageHref:  {GST},
     category: "Loan",
     title: "Personal Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/vkt8C1P/image-02.jpg",
-    category: "Home Loan",
-    title: "Business Return/Registration",
+    ImageHref:  {GST},
+    category: "Loan",
+    title: "Home Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/3FKqS1G/image-03.jpg",
-    category: "Loan Against Property",
-    title: "MSME REGISTRATION",
+    ImageHref: {GST},
+    category: "Loan",
+    title: "Loan Against Property",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/m6dq2fX/image-04.jpg",
+    ImageHref:  {GST},
     category: "Loan",
     title: "Gold Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Loan",
     title: "Education Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref: {GST},
     category: "Loan",
     title: "Microfinance Group Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref: {GST},
     category: "Loan",
     title: "Daily Collection Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Loan",
     title: "Mobile App Micro Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Loan",
     title: "Mobile Finance Loan",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "Unified Payments Interface (UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "BBPS (Bharat Bill Payment System)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "AEPS (Aadhaar Enabled Payment System)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "DMT (Domestic Money Transfer)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "CMS (Cash Management Services)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "CIBIL (Credit Information Bureau India Limited)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "NSDL PAN Card",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "MATM (Money at the Moment)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "P2P (Peer-to-Peer) Payments",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "NSDL PAN Card",
     button: "Apply Now",
@@ -327,42 +337,42 @@ const portfolioData = [
   },
  
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref: {GST},
     category: "Finance",
     title: "Pay Bills , Recharge",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref: {GST},
     category: "Finance",
     title: "Bank Transfer , Self Transfer",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref: {GST},
     category: "Finance",
     title: "Pay Phone Number/Contacts(UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "Scan QR Code(UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref: {GST},
     category: "Finance",
     title: "Activate UPI Lite(UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref: "https://i.ibb.co/mCPjBsH/image-05.jpg",
+    ImageHref:  {GST},
     category: "Finance",
     title: "Pay UPI ID or Number",
     button: "Apply Now",
