@@ -8,6 +8,8 @@ import FAQSection from "@/component/Homepage/Faqs";
 import Feature from "@/component/Homepage/Features";
 import Hero from "@/component/Homepage/Hero";
 import InterestRate from "@/component/Homepage/InterestRate";
+import Portfolio from "@/component/Homepage/ListStyle1";
+import Service from "@/component/Homepage/ListStyle1";
 import Slider from "@/component/Homepage/Slider";
 
 
@@ -27,10 +29,12 @@ export default function Home() {
     <AllBanks/>
     <Banner/>
    <Feature/>
+ 
    <EmiCalculator/>
     <InterestRate/>
     <Banner2/>
    <Slider/>
+   <Portfolio/>
     <Testimonial/>
     <Blog/>
     <DownloadAppSection/>
