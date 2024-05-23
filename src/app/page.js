@@ -10,6 +10,7 @@ import Hero from "@/component/Homepage/Hero";
 import InterestRate from "@/component/Homepage/InterestRate";
 import Portfolio from "@/component/Homepage/ListStyle1";
 import Service from "@/component/Homepage/ListStyle1";
+import ReferEarn from "@/component/Homepage/ReferEarn";
 import Slider from "@/component/Homepage/Slider";
 
 
@@ -35,6 +36,7 @@ export default function Home() {
     <Banner2/>
    <Slider/>
    <Portfolio/>
+   <ReferEarn/>
     <Testimonial/>
     <Blog/>
     <DownloadAppSection/>
