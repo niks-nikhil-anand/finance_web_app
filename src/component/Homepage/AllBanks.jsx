@@ -252,7 +252,7 @@ const AllBanks = () => {
         <div className='flex flex-col justify-center items-center bg-gray-300 py-[3rem]'>
             <Container>
             <div className='flex justify-center items-center'>
-                <h1 className='text-2xl md:text-3xl font-bold sm:text-4xl '>BANKS & CHANNEL PARTNER NETWORK</h1>
+                <h1 className='text-xl md:text-3xl font-bold sm:text-4xl text-center '>BANKS & NBFS CHANNEL PARTNER NETWORK</h1>
             </div>
             <div className='flex mt-[2rem]'>
                 <div className='flex flex-wrap gap-[2rem]  justify-center '>

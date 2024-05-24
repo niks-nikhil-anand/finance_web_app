@@ -24,7 +24,7 @@ const LoanCalculator = () => {
       <motion.h2
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="text-2xl font-bold text-blue-500 mb-6"
+        className="text-xl md:text-2xl font-bold text-blue-500 mb-6"
       >
         Loan Interest Calculator
       </motion.h2>
@@ -69,7 +69,7 @@ const LoanCalculator = () => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-semibold"
+          className="text-xl md:text-2xl font-semibold"
         >
           Monthly EMI: ₹ {emi.toFixed(2)}
         </motion.div>
@@ -83,9 +83,9 @@ const LoanCalculator = () => {
           <span>Total Interest</span>
           <span>₹ {totalInterest.toFixed(2)}</span>
         </div>
-        <div className="flex justify-between">
-          <span>Total Amount Payable</span>
-          <span>₹ {totalAmount.toFixed(2)}</span>
+        <div className="flex justify-between items-center mt-3">
+          <span className=''>Total Amount Payable</span>
+          <span>₹{totalAmount.toFixed(2)}</span>
         </div>
       </motion.div>
       <div className="mt-6 text-center">
