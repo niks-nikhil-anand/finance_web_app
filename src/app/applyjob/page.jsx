@@ -92,7 +92,7 @@ const UploadResumeForm = () => {
           id="name"
           value={name}
           onChange={handleNameChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
           required
         />
       </div>
@@ -103,7 +103,7 @@ const UploadResumeForm = () => {
           id="email"
           value={email}
           onChange={handleEmailChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
           required
         />
       </div>
@@ -114,7 +114,7 @@ const UploadResumeForm = () => {
           id="mobile"
           value={mobile}
           onChange={handleMobileChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
           required
         />
       </div>
@@ -124,7 +124,7 @@ const UploadResumeForm = () => {
           type="file"
           id="resume"
           onChange={(e) => handleFileChange(e, setResume)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
           required
         />
       </div>
@@ -134,7 +134,7 @@ const UploadResumeForm = () => {
           type="file"
           id="aadhaarCard"
           onChange={(e) => handleFileChange(e, setAadhaarCard)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
           
         />
       </div>
@@ -144,7 +144,7 @@ const UploadResumeForm = () => {
           type="file"
           id="panCard"
           onChange={(e) => handleFileChange(e, setPanCard)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
          
         />
       </div>
@@ -154,7 +154,7 @@ const UploadResumeForm = () => {
           type="file"
           id="qualificationCertificate"
           onChange={(e) => handleFileChange(e, setQualificationCertificate)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
           
         />
       </div>
@@ -164,7 +164,7 @@ const UploadResumeForm = () => {
           type="file"
           id="experienceCertificate"
           onChange={(e) => handleFileChange(e, setExperienceCertificate)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
        
         />
       </div>
@@ -174,10 +174,25 @@ const UploadResumeForm = () => {
           type="file"
           id="computerCertificate"
           onChange={(e) => handleFileChange(e, setComputerCertificate)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full p-2 rounded bg-white bg-opacity-50"
       
         />
       </div>
+      <div className="mb-4">
+      
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id="terms"
+            className="mr-2"
+            required
+          />
+          <details>
+  <summary>I declare that I have not been convicted of any criminal offence</summary>
+  <p> under any laws of the land I further declare that the above entries in my application from are correct I am fully aware that I am liable for legal aections including cancellation of my candidature if any information so provided by me above found to be folded AR incorrect I am aware that after the "submit" button is clicked l will not able to do any further corrections I am responsible for the corrections of the entries made in the application form.</p>
+</details>
+        </div>
+        </div>
       <button
         type="submit"
         className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
