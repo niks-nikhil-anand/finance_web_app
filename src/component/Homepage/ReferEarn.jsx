@@ -15,7 +15,7 @@ const ReferEarn = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                   Join our refer and earn program to  <span className="text-yellow-500">unlock exciting rewards!</span>
+                 Refer a Loan & Earn from <span className="text-yellow-500"> ₹1000 to ₹9000 per referral </span>
                 </motion.h1>
                 <motion.p
                     className="text-sm md:text-xl lg:text-2xl mb-8"
@@ -23,7 +23,7 @@ const ReferEarn = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                   Refer your friends and colleagues to our fintech services, including hassle-free loans and comprehensive business solutions. Earn rewards for every successful referral and help us grow together. Start referring today and enjoy the benefits of our innovative financial services!
+                  Refer your friends and colleagues to our hassle-free loan services and earn rewards ranging from Rs 1,000 to Rs 9,000 for every successful referral. Simply share the customer's WhatsApp number using the link provided and start enjoying the benefits of our innovative financial services today!
                 </motion.p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                     <motion.a
