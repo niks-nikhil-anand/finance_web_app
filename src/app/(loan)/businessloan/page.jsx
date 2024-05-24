@@ -85,47 +85,53 @@ const HomeLoanTable = () => {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full md:min-w-full divide-y divide-gray-200">
-          <thead className="gradient-black">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Apply Now
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Bank
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Rate of Interest %
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Processing Fee
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200 x-paddings mx-5">
-            {loans.map((loan, index) => (
-              <motion.tr 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="hover:bg-gray-100"
-              >
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <button className="gradient_yellow text-white py-2 px-4 rounded-md hover:bg-blue-600 w-full md:w-auto">
-                    Apply Now
-                  </button>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <img src={loan.logo} alt={`${loan.bank} logo`} className="h-12" />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{loan.interestRate}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{loan.processingFee}</td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  <table className="w-full divide-y divide-gray-200">
+    <thead className="gradient-black">
+      <tr>
+        <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+          Apply Now
+        </th>
+        <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+          Bank
+        </th>
+        <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+          Rate of Interest %
+        </th>
+        <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+          Processing Fee
+        </th>
+      </tr>
+    </thead>
+    <tbody className="bg-white divide-y divide-gray-200">
+      {loans.map((loan, index) => (
+        <motion.tr
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
+          className="hover:bg-gray-100"
+        >
+          <td className="px-6 py-4 whitespace-nowrap">
+            <button className="gradient_yellow text-white py-2 px-4 rounded-md hover:bg-blue-600 w-full md:w-auto">
+              Apply Now
+            </button>
+          </td>
+          <td className="px-6 py-4 whitespace-nowrap">
+            <img
+              src={loan.logo}
+              alt={`${loan.bank} logo`}
+              className="h-[1rem] md:h-[2rem]"
+            />
+          </td>
+          <td className="px-6 py-4 whitespace-nowrap">{loan.interestRate}</td>
+          <td className="px-6 py-4 whitespace-nowrap">{loan.processingFee}</td>
+        </motion.tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+
     </div>
   );
 };

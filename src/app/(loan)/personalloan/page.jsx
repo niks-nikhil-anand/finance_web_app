@@ -117,7 +117,7 @@ const HomeLoanTable = () => {
                   </button>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <img src={loan.logo} alt={`${loan.bank} logo`} className="h-12" />
+                  <img src={loan.logo} alt={`${loan.bank} logo`}  className="h-[1rem] md:h-[2rem]" />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">{loan.interestRate}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{loan.processingFee}</td>
