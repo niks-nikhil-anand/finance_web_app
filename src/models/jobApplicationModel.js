@@ -18,10 +18,6 @@ const jobApplicationSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  hello: {
-    type: Boolean,
-    default: true,
-  },
   resume: {
     type: String,
     trim: true,
