@@ -2,7 +2,6 @@ import connectDB from "@/lib/dbConnect";
 import uploadImage from "@/lib/uploadImages";
 import JobApplication from "@/models/jobApplicationModel";
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
 
 export const POST = async (req) => {
   try {

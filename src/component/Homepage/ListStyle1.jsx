@@ -4,18 +4,18 @@ import { motion } from "framer-motion";
 import Container from "../Shared/Container";
 import Image from "next/image";
 
-import GST from '../../../public/services/GST.jpg'
-import ITR from '../../../public/services/ITR.jpg'
-import business from '../../../public/services/business.jpg'
-import msme from '../../../public/services/msme.jpg'
-import food from '../../../public/services/food.jpg'
-import trade from '../../../public/services/trade.jpg'
-import noc from '../../../public/services/noc.jpeg'
-import legal from '../../../public/services/legal.jpg'
+import GST from '../../../public/services/GST.jpg';
+import ITR from '../../../public/services/ITR.jpg';
+import business from '../../../public/services/business.jpg';
+import msme from '../../../public/services/msme.jpg';
+import food from '../../../public/services/food.jpg';
+import trade from '../../../public/services/trade.jpg';
+import noc from '../../../public/services/noc.jpeg';
+import legal from '../../../public/services/legal.jpg';
 
 const Portfolio = () => {
-  // State for controlling which category to display
-  const [showCard, setShowCard] = useState("all");
+  // State for controlling which category to display, default to "loan"
+  const [showCard, setShowCard] = useState("loan");
 
   // Function to handle category change
   const handleProject = (category) => {
@@ -92,8 +92,6 @@ const Portfolio = () => {
   );
 };
 
-
-
 const PortfolioCard = ({
   showCard,
   category,
@@ -116,7 +114,7 @@ const PortfolioCard = ({
       >
         <div className="relative mb-12">
           <div className="overflow-hidden rounded-[10px] ">
-            <Image src={ImageHref} alt="portfolio" className="w-full"  height={400} width={400}/>
+            <Image src={ImageHref} alt="portfolio" className="w-full" height={400} width={400} />
           </div>
           <div className="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark ">
             <span className="text-primary mb-2 block text-sm font-medium">
