@@ -189,7 +189,7 @@ const UploadResumeForm = () => {
           />
           <details>
   <summary>I declare that I have not been convicted of any criminal offence</summary>
-  <p> under any laws of the land I further declare that the above entries in my application from are correct I am fully aware that I am liable for legal aections including cancellation of my candidature if any information so provided by me above found to be folded AR incorrect I am aware that after the "submit" button is clicked l will not able to do any further corrections I am responsible for the corrections of the entries made in the application form.</p>
+  <p> under any laws of the land I further declare that the above entries in my application from are correct I am fully aware that I am liable for legal aections including cancellation of my candidature if any information so provided by me above found to be folded AR incorrect I am aware that after the submit button is clicked l will not able to do any further corrections I am responsible for the corrections of the entries made in the application form.</p>
 </details>
         </div>
         </div>
