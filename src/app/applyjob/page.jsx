@@ -1,163 +1,195 @@
 "use client";
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-const JobApplicationForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    job: '',
-    aadhaar: null,
-    pan: null,
-    passbook: null,
-    photocopy: null,
-    qualification: null,
-    experience: null,
-    resume: null,
-    computer: null,
-    terms: false,
-    declaration: false,
-  });
+const UploadResumeForm = () => {
+  const [resume, setResume] = useState(null);
+  const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [panCard, setPanCard] = useState(null);
+  const [qualificationCertificate, setQualificationCertificate] = useState(null);
+  const [experienceCertificate, setExperienceCertificate] = useState(null);
+  const [computerCertificate, setComputerCertificate] = useState(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value, type, files, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'file' ? files[0] : type === 'checkbox' ? checked : value,
-    });
+  const handleFileChange = (e, setFile) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMobileChange = (e) => {
+    setMobile(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Handle form submission
+    if (!resume || !name || !email || !mobile || !aadhaarCard || !panCard || !qualificationCertificate || !experienceCertificate || !computerCertificate) {
+      alert('Please fill in all fields and upload all required documents');
+      return;
+    }
+
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append('resume', resume);
+    formData.append('aadhaarCard', aadhaarCard);
+    formData.append('panCard', panCard);
+    formData.append('qualificationCertificate', qualificationCertificate);
+    formData.append('experienceCertificate', experienceCertificate);
+    formData.append('computerCertificate', computerCertificate);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('mobile', mobile);
+
+    try {
+      const response = await fetch('/api/jobApplication', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        setResume(null);
+        setAadhaarCard(null);
+        setPanCard(null);
+        setQualificationCertificate(null);
+        setExperienceCertificate(null);
+        setComputerCertificate(null);
+        setName('');
+        setEmail('');
+        setMobile('');
+      } else {
+        alert('Failed to upload resume');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while uploading the resume');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <motion.div
-      className="min-h-screen flex items-center justify-center bg-gray-100 p-5"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="w-full max-w-lg p-8 bg-white bg-opacity-30 backdrop-blur-lg rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Job Application Form</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Name</label>
-            <input
-              type="text"
-              name="name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white bg-opacity-50"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white bg-opacity-50"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Phone Number</label>
-            <input
-              type="text"
-              name="phone"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white bg-opacity-50"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Job Applied For</label>
-            <select
-              name="job"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white bg-opacity-50"
-              value={formData.job}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a job</option>
-              <option value="ACCOUNTANT">ACCOUNTANT</option>
-              <option value="AREA BRANCH MANAGER">AREA BRANCH MANAGER</option>
-              <option value="AREA MANAGER">AREA MANAGER</option>
-              <option value="AREA SALES MANAGER">AREA SALES MANAGER</option>
-              <option value="ASSISTANT MANAGER">ASSISTANT MANAGER</option>
-              <option value="BRANCH MANAGER">BRANCH MANAGER</option>
-              <option value="CASHIER">CASHIER</option>
-              <option value="CHARTERED ACCOUNTANT">CHARTERED ACCOUNTANT</option>
-              <option value="DIRECT SELLING AGENT">DIRECT SELLING AGENT</option>
-              <option value="DISTRICT DISTRIBUTOR MANAGER">DISTRICT DISTRIBUTOR MANAGER</option>
-              <option value="DISTRIBUTOR SALES MANAGER">DISTRIBUTOR SALES MANAGER</option>
-              <option value="DISTRIBUTOR TEAM MANAGER">DISTRIBUTOR TEAM MANAGER</option>
-              <option value="FIELD OFFICER">FIELD OFFICER</option>
-              <option value="LOAN MANAGER">LOAN MANAGER</option>
-              <option value="RETAILER TEAM LEADER">RETAILER TEAM LEADER</option>
-              <option value="RELATIONSHIP MANAGER">RELATIONSHIP MANAGER</option>
-              <option value="ROYAL BRANCH MANAGER">ROYAL BRANCH MANAGER</option>
-              <option value="STATE MANAGER">STATE MANAGER</option>
-              <option value="TEAM MANAGER">TEAM MANAGER</option>
-              <option value="TEAM SERVICE MANAGER">TEAM SERVICE MANAGER</option>
-              <option value="ZONAL BRANCH MANAGER">ZONAL BRANCH MANAGER</option>
-              <option value="ZONAL MANAGER">ZONAL MANAGER</option>
-            </select>
-          </div>
-          {['aadhaar', 'pan', 'passbook', 'photocopy', 'qualification', 'experience', 'resume', 'computer'].map((field) => (
-            <div key={field}>
-              <label className="block text-sm font-medium mb-1">
-                Upload {field.charAt(0).toUpperCase() + field.slice(1)} Card
-              </label>
-              <input
-                type="file"
-                name={field}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white bg-opacity-50"
-                onChange={handleChange}
-                required
-              />
-            </div>
-          ))}
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              name="terms"
-              className="mr-2"
-              checked={formData.terms}
-              onChange={handleChange}
-              required
-            />
-            <label className="text-sm">
-              <details>
-                <summary>I declare that I have not been convicted of any criminal offence</summary>
-                <p>
-                  under any laws of the land. I further declare that the above entries in my
-                  application form are correct. I am fully aware that I am liable for legal actions
-                  including cancellation of my candidature if any information so provided by me is
-                  found to be false or incorrect. I am aware that after the &quot;submit&quot; button is
-                  clicked I will not be able to make any further corrections. I am responsible for
-                  the correctness of the entries made in the application form.
-                </p>
-              </details>
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="w-full py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300"
-          >
-            Submit
-          </button>
-        </form>
+    <div className="min-h-screen flex flex-col  items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 mb-[6rem] md:mb-[0rem]" >
+      <div  className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md">
+      <h2 className="text-2xl font-bold text-white mb-6">Hiring Form - Legal257</h2>
+      
+     
+      <form onSubmit={handleSubmit} >
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={handleNameChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          required
+        />
       </div>
-    </motion.div>
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="mobile" className="block text-gray-700 font-bold mb-2">Mobile Number:</label>
+        <input
+          type="tel"
+          id="mobile"
+          value={mobile}
+          onChange={handleMobileChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="resume" className="block text-gray-700 font-bold mb-2">Upload Resume:</label>
+        <input
+          type="file"
+          id="resume"
+          onChange={(e) => handleFileChange(e, setResume)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="aadhaarCard" className="block text-gray-700 font-bold mb-2">Aadhaar Card:</label>
+        <input
+          type="file"
+          id="aadhaarCard"
+          onChange={(e) => handleFileChange(e, setAadhaarCard)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="panCard" className="block text-gray-700 font-bold mb-2">PAN Card:</label>
+        <input
+          type="file"
+          id="panCard"
+          onChange={(e) => handleFileChange(e, setPanCard)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+         
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="qualificationCertificate" className="block text-gray-700 font-bold mb-2">Qualification Certificate:</label>
+        <input
+          type="file"
+          id="qualificationCertificate"
+          onChange={(e) => handleFileChange(e, setQualificationCertificate)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="experienceCertificate" className="block text-gray-700 font-bold mb-2">Experience Certificate:</label>
+        <input
+          type="file"
+          id="experienceCertificate"
+          onChange={(e) => handleFileChange(e, setExperienceCertificate)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+       
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="computerCertificate" className="block text-gray-700 font-bold mb-2">Computer Certificate:</label>
+        <input
+          type="file"
+          id="computerCertificate"
+          onChange={(e) => handleFileChange(e, setComputerCertificate)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+      
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        disabled={loading}
+      >
+        {loading ? 'Uploading...' : 'Submit'}
+      </button>
+    </form>
+      </div>
+    </div>
+    
   );
 };
 
-export default JobApplicationForm;
+export default UploadResumeForm;

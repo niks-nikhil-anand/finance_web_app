@@ -1,6 +1,7 @@
+import { Buffer } from 'buffer';
 import cloudinary from './cloudinary';
 
-export const uploadImage = async (file, folder) => {
+const uploadImage = async (file, folder) => {
   try {
     const buffer = await file.arrayBuffer();
     const bytes = Buffer.from(buffer);
@@ -25,3 +26,5 @@ export const uploadImage = async (file, folder) => {
     throw new Error(`Failed to upload image: ${error.message}`);
   }
 };
+
+export default uploadImage;
