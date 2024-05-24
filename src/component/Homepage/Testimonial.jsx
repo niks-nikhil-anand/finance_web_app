@@ -21,7 +21,7 @@ const Testimonial = () => {
             <div className="col-span-2">
               <h2 className="text-2xl font-extrabold">What our happy client say</h2>
               <p className="text-sm text-[#333] mt-4 leading-relaxed">
-                Veniam proident aute magna anim excepteur et ex consectetur velit ullamco veniam minim aute sit. Elit occaecat officia et laboris Lorem minim. Officia do aliqua adipisicing ullamco in.
+              At Legal257, we take pride in delivering exceptional financial and tax services. Our clients satisfaction is our top priority, and we are thrilled to share their positive experiences with you.
               </p>
             </div>
             <div className="flex space-x-4 items-end justify-end">
@@ -56,25 +56,25 @@ const Testimonial = () => {
           <div className="grid md:grid-cols-3 md:gap-6 max-md:gap-10 mt-12">
             {[
               {
-                name: 'John Doe',
-                title: 'Founder of Rubik',
+                name: 'Rakesh Doe',
+                title: 'Competitive Loan Options',
                 image: 'https://readymadeui.com/profile_2.webp',
                 testimonial:
-                  'The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.',
+                  'Legal257 has been a lifesaver when it comes to finding the right loan options for my financial needs. Their team took the time to understand my specific situation and offered me a tailored solution that was both competitive and flexible. The application process was straightforward, and I received my funds quickly. It is clear that they genuinely care about their clients financial well-being. Thank you, Legal257, for your outstanding service!',
               },
               {
-                name: 'Mark Adair',
-                title: 'Founder of Alpha',
+                name: 'Sourabh Adair',
+                title: 'GST and ITR Filing Services',
                 image: 'https://readymadeui.com/profile_3.webp',
                 testimonial:
-                  'The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.',
+                  '"I have been using Legal257 for my business, GST and ITR filing for the past year, and I couldn not be happier with their services. The team is incredibly knowledgeable and always up-to-date with the latest regulations, making the entire process smooth and stress-free. Their attention to detail and commitment to compliance have saved me countless hours and potential headaches. Highly recommended for anyone looking for reliable and professional tax services!',
               },
               {
-                name: 'Simon Konecki',
-                title: 'Founder of Labar',
+                name: 'Khushi Konecki',
+                title: 'Comprehensive Financial Services',
                 image: 'https://readymadeui.com/profile_4.webp',
                 testimonial:
-                  'The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.',
+                  'Legal257 has become my go-to for all financial and tax-related matters. Their comprehensive services, including expert GST and ITR filing, have kept my business compliant and worry-free. Additionally, their loan options have provided the financial support needed to grow my business. The team is professional, responsive, and truly dedicated to helping their clients succeed. I highly recommend Legal257 to anyone seeking top-notch financial and tax services.',
               },
             ].map((client, index) => (
               <motion.div
