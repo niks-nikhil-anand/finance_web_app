@@ -21,6 +21,11 @@ import education from '../../../public/services/education.png';
 import microfinance from '../../../public/services/microfinance.jpg';
 import dailyloan from '../../../public/services/dailyloan.png';
 import mobileloan from '../../../public/services/mobileloan.jpg';
+import bbpay from '../../../public/services/bbpay.png';
+import upi from '../../../public/services/upi.jpg';
+import Aadhar from '../../../public/services/Aadhar.jpg';
+import moneytransfer from '../../../public/services/moneytransfer.jpg';
+import cashmgt from '../../../public/services/CASH-MGT.jpg';
 import Link from "next/link";
 
 const Portfolio = () => {
@@ -152,56 +157,56 @@ const portfolioData = [
     category: "Business",
     title: "GST Return/Registration",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  ITR,
     category: "Business",
     title: "ITR Return/Registration",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  business,
     category: "Business",
     title: "Business Return/Registration",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  msme,
     category: "Business",
     title: "MSME REGISTRATION",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  food,
     category: "Business",
     title: "Food License",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  trade,
     category: "Business",
     title: "Trade License",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  noc,
     category: "Business",
     title: "Loan NOC Certificate",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref:  legal,
     category: "Business",
     title: "Legal Issues and Legal Notice",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applynow",
   },
   {
     ImageHref: businessloan,
@@ -267,35 +272,35 @@ const portfolioData = [
     buttonHref: "/applyloan",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  upi,
     category: "Finance",
     title: "Unified Payments Interface (UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  bbpay,
     category: "Finance",
     title: "BBPS (Bharat Bill Payment System)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  Aadhar,
     category: "Finance",
     title: "AEPS (Aadhaar Enabled Payment System)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  moneytransfer,
     category: "Finance",
     title: "DMT (Domestic Money Transfer)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  cashmgt,
     category: "Finance",
     title: "CMS (Cash Management Services)",
     button: "Apply Now",
