@@ -11,7 +11,7 @@ const Slider = () => {
   return (
     <div className='flex flex-col items-center bg-white py-8'>
       <div className='mb-4'>
-        <h1 className='heading3 text-center'>Discover Our Featured Loan</h1>
+        <h1 className='text-xl md:text-2xl font-bold text-center'>Discover Our Featured Loan</h1>
       </div>
       <div className='flex overflow-x-auto space-x-4 p-4 w-full'>
         <div className='flex-shrink-0 w-60 sm:w-80 md:w-96 '>

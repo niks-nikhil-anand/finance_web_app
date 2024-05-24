@@ -9,7 +9,7 @@ const InterestRate = () => {
       
       <div className='flex flex-col justify-center items-center'>
         <div className=''>
-          <h1 className='text-2xl font-bold lg:text-2xl'>Lowest Loan Interest Rates</h1>
+          <h1 className='text-xl md:text-2xl font-bold mb-5 lg:text-2xl'>Lowest Loan Interest Rates</h1>
         </div>
         <div className='flex flex-col md:flex-row w-full'>
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-12 md:mb-0 md:mr-6 w-full p-6">

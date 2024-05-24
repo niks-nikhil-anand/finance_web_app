@@ -30,7 +30,6 @@ export default function Home() {
     <AllBanks/>
     <Banner/>
    <Feature/>
- 
    <EmiCalculator/>
     <InterestRate/>
     <Banner2/>

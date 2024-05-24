@@ -56,11 +56,10 @@ const EmiCalculator = () => {
     className='bg-blue-50 w-full flex flex-col justify-center items-center sm:p-10 p-6 font-[sans-serif] text-[#333] mb-[2rem] shadow-lg'
   >
       <div>
-        <h1 className='text-3xl font-bold sm:text-4xl'>EMI Calculator</h1>
+        <h1 className='text-2xl font-bold sm:text-4xl'>EMI Calculator</h1>
       </div>
-      <div className='flex justify-between  mt-10 shadow-lg p-10 flex-col md:flex-row'>
+      <div className='flex justify-between  shadow-lg p-10 flex-col md:flex-row'>
         <div style={{}}>
-          <Typography variant="h6">EMI Calculator</Typography>
           <div>
             <Typography>Loan Amount: ₹{loanAmount}</Typography>
             <Slider value={loanAmount} onChange={handleLoanAmountChange} min={10000} max={1000000} step={10000} />
@@ -78,7 +77,7 @@ const EmiCalculator = () => {
           </div>
         </div>
         <div style={{ position: 'relative' }} >
-          <Typography variant="h6" style={{ textAlign: 'center', position: 'absolute', top: '34%', left: '50%', transform: 'translate(-50%, -50%)' }} className='md:w-[4rem]  md:font-bold text-xl text-center'>Total Amount: ₹{(emiData[0].value + emiData[1].value).toFixed(0)}</Typography>
+          <Typography variant="h6" style={{ textAlign: 'center', position: 'absolute', top: '34%', left: '50%', transform: 'translate(-50%, -50%)' }} className='md:w-[4rem]  md:font-bold text-sm text-center'>Total Amount: ₹{(emiData[0].value + emiData[1].value).toFixed(0)}</Typography>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -98,19 +97,20 @@ const EmiCalculator = () => {
               <Legend />
             </PieChart>
           </ResponsiveContainer>
-          <div style={{ marginTop: '20px' }} className='ml-5 '>
-            <Grid container spacing={1} className='flex flex-col md:flex-row gap-6'>
-              <Grid  className='w-full'>
-                <Typography>Monthly EMI: ₹{monthlyEmi}</Typography>
-              </Grid>
-              <Grid className='w-full'>
-                <Typography>Interest Paid: ₹{emiData[1].value.toFixed(0)}</Typography>
-              </Grid>
-              <Grid className='w-full'>
-                <Typography>Principal Amount: ₹{emiData[0].value}</Typography>
-              </Grid>
-            </Grid>
-          </div>
+          <div className="mt-5 ml-5">
+  <div className="flex flex-col md:flex-row gap-6">
+    <div className="w-full">
+      <p>Monthly EMI: ₹{monthlyEmi}</p>
+    </div>
+    <div className="w-full">
+      <p>Interest Paid: ₹{emiData[1].value.toFixed(0)}</p>
+    </div>
+    <div className="w-full">
+      <p>Principal Amount: ₹{emiData[0].value}</p>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </motion.div>

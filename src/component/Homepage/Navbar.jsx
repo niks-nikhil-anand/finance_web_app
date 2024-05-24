@@ -129,6 +129,7 @@ const Navbar = () => {
             </motion.div>
           </div>
           <Link href="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-white">Blog</Link>
+          <Link href="/applynow" className="block px-3 py-2 rounded-md text-base font-medium text-white">GST/ITR - Apply Now </Link>
           <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-white">About Us</Link>
           <div className="relative">
             <button
@@ -174,7 +175,9 @@ const Navbar = () => {
             </motion.div>
           </div>
           <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
+          <Link href="/refer" className="block px-3 py-2 rounded-md text-base font-medium text-white">Refer & Earn</Link>
           <Link href="/applyjob" className="block px-3 py-2 rounded-md text-base font-medium text-white">Job - Apply Now</Link>
+          <Link href="//partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Fintech Banking</Link>
           <Link href="/partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
           <Link href="/applynow">
             <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
