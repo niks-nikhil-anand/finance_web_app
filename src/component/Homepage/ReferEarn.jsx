@@ -23,7 +23,7 @@ const ReferEarn = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  Refer your friends and colleagues to our hassle-free loan services and earn rewards ranging from Rs 1,000 to Rs 9,000 for every successful referral. Simply share the customer's WhatsApp number using the link provided and start enjoying the benefits of our innovative financial services today!
+                  Refer your friends and colleagues to our hassle-free loan services and earn rewards ranging from Rs 1,000 to Rs 9,000 for every successful referral. Simply share the customer&apos;s WhatsApp number using the link provided and start enjoying the benefits of our innovative financial services today!
                 </motion.p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                     <motion.a
