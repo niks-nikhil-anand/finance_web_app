@@ -12,6 +12,16 @@ import food from '../../../public/services/food.jpg';
 import trade from '../../../public/services/trade.jpg';
 import noc from '../../../public/services/noc.jpeg';
 import legal from '../../../public/services/legal.jpg';
+import businessloan from '../../../public/services/businessloan.jpg';
+import homeloan from '../../../public/services/homeloan.jpg';
+import personalloan from '../../../public/services/personalloan.jpg';
+import loanagainstproperty from '../../../public/services/loanagainstproperty.png';
+import gold from '../../../public/services/gold.jpg';
+import education from '../../../public/services/education.png';
+import microfinance from '../../../public/services/microfinance.jpg';
+import dailyloan from '../../../public/services/dailyloan.png';
+import mobileloan from '../../../public/services/mobileloan.jpg';
+import Link from "next/link";
 
 const Portfolio = () => {
   // State for controlling which category to display, default to "loan"
@@ -54,7 +64,7 @@ const Portfolio = () => {
           <div className="w-full flex flex-wrap justify-center -mx-4">
             <div className="w-full px-4">
               <ul className="flex flex-wrap justify-center mb-12 space-x-1">
-                {["All", "Finance", "Loan", "Business"].map((category) => (
+                {[ "Finance", "Loan", "Business"].map((category) => (
                   <li className="mb-1" key={category}>
                     {/* Category button */}
                     <button
@@ -114,7 +124,7 @@ const PortfolioCard = ({
       >
         <div className="relative mb-12">
           <div className="overflow-hidden rounded-[10px] ">
-            <Image src={ImageHref} alt="portfolio" className="w-full" height={400} width={400} />
+            <Image src={ImageHref} alt="portfolio" className="w-full" height={800} width={800} />
           </div>
           <div className="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark ">
             <span className="text-primary mb-2 block text-sm font-medium">
@@ -123,12 +133,12 @@ const PortfolioCard = ({
             <h3 className="text-dark dark:text-white mb-5 text-xl font-bold">
               {title}
             </h3>
-            <a
+            <Link
               href={buttonHref}
-              className="text-body-color dark:text-dark-6 hover:bg-[#40a0ff] hover:bg-primary inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-black frame"
+              className="text-body-color dark:text-dark-6 bg-gray-300 inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-black frame"
             >
               {button}
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -194,74 +204,67 @@ const portfolioData = [
     buttonHref: "#",
   },
   {
-    ImageHref: ITR,
+    ImageHref: businessloan,
     category: "Loan",
     title: "Business Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  personalloan,
     category: "Loan",
     title: "Personal Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  homeloan,
     category: "Loan",
     title: "Home Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref: ITR,
+    ImageHref: loanagainstproperty,
     category: "Loan",
     title: "Loan Against Property",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  gold,
     category: "Loan",
     title: "Gold Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  education,
     category: "Loan",
     title: "Education Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref: ITR,
+    ImageHref: microfinance,
     category: "Loan",
     title: "Microfinance Group Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref: ITR,
+    ImageHref: dailyloan,
     category: "Loan",
     title: "Daily Collection Loan",
     button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  mobileloan,
     category: "Loan",
     title: "Mobile App Micro Loan",
     button: "Apply Now",
-    buttonHref: "#",
-  },
-  {
-    ImageHref:  ITR,
-    category: "Loan",
-    title: "Mobile Finance Loan",
-    button: "Apply Now",
-    buttonHref: "#",
+    buttonHref: "/applyloan",
   },
   {
     ImageHref:  ITR,
