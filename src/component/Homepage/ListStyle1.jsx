@@ -60,10 +60,29 @@ const Portfolio = () => {
                 <p className="text-body-color text-base dark:text-dark-6">
                 Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
                 </p>
+                <div className="mt-5 flex flex-col md:flex-row gap-4 justify-center items-center">
+
+                <motion.a
+                href="/applynow"
+                className="block w-full rounded bg-yellow-500 px-12 py-3 text-sm font-medium text-black-500 shadow hover:bg-yellow-300 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Apply Now
+              </motion.a>
+              <motion.a
+                href="/applyloan"
+                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-yellow-500 shadow hover:text-yellow-400 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Check Eligibility
+              </motion.a>
+                </div>
               </div>
             </div>
           </motion.div>
-
+          
           {/* Category buttons */}
           <div className="w-full flex flex-wrap justify-center -mx-4">
             <div className="w-full px-4">
