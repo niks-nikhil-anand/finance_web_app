@@ -1,6 +1,5 @@
 "use client"
 import LoanForm from '@/app/applyloan/page';
-import AnimatedButton from '@/component/Shared/AnnimatedButtons';
 import { motion } from 'framer-motion';
 
 const loans = [

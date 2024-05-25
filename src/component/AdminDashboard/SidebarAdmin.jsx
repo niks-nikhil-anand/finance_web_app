@@ -6,6 +6,7 @@ import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch } from "react-icons/f
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FaUsersLine , FaHireAHelper } from "react-icons/fa6";
 import { CiShop } from "react-icons/ci";
+import Link from 'next/link';
 
 
 
@@ -34,13 +35,13 @@ export function SidebarAdmin() {
           <nav className="-mx-3 space-y-6">
             <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">Main</label>
-              <a
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+               href={"/dashboard"}
               >
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Dashboard</span>
-              </a>
+              </Link>
               
             </div>
            
@@ -133,13 +134,13 @@ export function SidebarAdmin() {
             </div>
             <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">Hiring</label>
-              <a
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+                href={"/dashboard/hiring"}
               >
                 <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Leads</span>
-              </a>
+              </Link>
           
             </div>
           </nav>

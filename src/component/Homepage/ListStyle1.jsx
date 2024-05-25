@@ -30,7 +30,7 @@ import Link from "next/link";
 
 const Portfolio = () => {
   // State for controlling which category to display, default to "loan"
-  const [showCard, setShowCard] = useState("loan");
+  const [showCard, setShowCard] = useState("FINANCE LOAN");
 
   // Function to handle category change
   const handleProject = (category) => {
@@ -68,8 +68,8 @@ const Portfolio = () => {
           {/* Category buttons */}
           <div className="w-full flex flex-wrap justify-center items-center">
             <div className="w-full ">
-              <ul className="flex flex-wrap justify-center mb-2 space-x-1">
-                {[ "Finance", "Loan", "Business"].map((category) => (
+              <ul className="flex flex-wrap justify-center mb-2 ">
+                {[ "FINTECH BANKING", "FINANCE LOAN", "GST/ITR TAX PAY"].map((category) => (
                   <li className="mb-1" key={category}>
                     {/* Category button */}
                     <button
@@ -83,25 +83,7 @@ const Portfolio = () => {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 flex flex-col md:flex-row gap-4 justify-center items-cente mb-6">
-
-                <motion.a
-                href="/applynow"
-                className="block w-full rounded bg-yellow-500 px-12 py-3 text-sm font-medium text-black-500 shadow hover:bg-yellow-300 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Apply Now
-              </motion.a>
-              <motion.a
-                href="/applyloan"
-                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-yellow-500 shadow hover:text-yellow-400 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Check Eligibility
-              </motion.a>
-                </div>
+             
             </div>
           </div>
 
@@ -173,189 +155,189 @@ const PortfolioCard = ({
 const portfolioData = [
   {
     ImageHref: GST,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "GST Return/Registration",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  ITR,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "ITR Return/Registration",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  business,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "Business Return/Registration",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  msme,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "MSME REGISTRATION",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  food,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "Food License",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  trade,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "Trade License",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  noc,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "Loan NOC Certificate",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref:  legal,
-    category: "Business",
+    category: "GST/ITR TAX PAY",
     title: "Legal Issues and Legal Notice",
     button: "Apply Now",
     buttonHref: "/applynow",
   },
   {
     ImageHref: businessloan,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Business Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref:  personalloan,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Personal Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref:  homeloan,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Home Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref: loanagainstproperty,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Loan Against Property",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref:  gold,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Gold Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref:  education,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Education Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref: microfinance,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Microfinance Group Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref: dailyloan,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Daily Collection Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref:  mobileloan,
-    category: "Loan",
+    category: "FINANCE LOAN",
     title: "Mobile App Micro Loan",
     button: "Apply Now",
     buttonHref: "/applyloan",
   },
   {
     ImageHref:  upi,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Unified Payments Interface (UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  bbpay,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "BBPS (Bharat Bill Payment System)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  Aadhar,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "AEPS (Aadhaar Enabled Payment System)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  moneytransfer,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "DMT (Domestic Money Transfer)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  cashmgt,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "CMS (Cash Management Services)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "CIBIL (Credit Information Bureau India Limited)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "NSDL PAN Card",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "MATM (Money at the Moment)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "P2P (Peer-to-Peer) Payments",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "NSDL PAN Card",
     button: "Apply Now",
     buttonHref: "#",
@@ -363,42 +345,42 @@ const portfolioData = [
  
   {
     ImageHref: ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Pay Bills , Recharge",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref: ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Bank Transfer , Self Transfer",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref: ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Pay Phone Number/Contacts(UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Scan QR Code(UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref: ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Activate UPI Lite(UPI)",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
     ImageHref:  ITR,
-    category: "Finance",
+    category: "FINTECH BANKING",
     title: "Pay UPI ID or Number",
     button: "Apply Now",
     buttonHref: "#",

@@ -25,6 +25,7 @@ export default function Home() {
     <>
    <WhatsappIcon/>
     <Hero/>
+   <Portfolio/>
     <ContentSection/>
     <StepComponent/>
     <AllBanks/>
@@ -34,7 +35,6 @@ export default function Home() {
     <InterestRate/>
     <Banner2/>
    <Slider/>
-   <Portfolio/>
    <ReferEarn/>
     <Testimonial/>
     <Blog/>

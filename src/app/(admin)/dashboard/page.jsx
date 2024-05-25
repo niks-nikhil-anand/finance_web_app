@@ -1,100 +1,55 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+"use client";
+import Card from '@/component/AdminDashboard/CardAdmin';
+import Graph from '@/component/AdminDashboard/GraphAdmin';
+import Table from '@/component/AdminDashboard/TableAdmin';
+import React from 'react';
 
-const JobApplicationsTable = () => {
-  const [applications, setApplications] = useState([]);
 
-  useEffect(() => {
-    const fetchApplications = async () => {
-      try {
-        const response = await axios.get('/api/jobApplication');
-        setApplications(response.data.applications);
-      } catch (error) {
-        console.error('Error fetching job applications:', error);
-      }
-    };
+// Mock data
+const tableData1 = [
+  { Name: "John Doe", Age: 28, Occupation: "Engineer" },
+  { Name: "Jane Smith", Age: 34, Occupation: "Designer" },
+  // Add more rows as needed
+];
 
-    fetchApplications();
-  }, []);
+const tableData2 = [
+  { Product: "Laptop", Price: "$1000", Stock: 25 },
+  { Product: "Phone", Price: "$500", Stock: 100 },
+  // Add more rows as needed
+];
 
-  const handleImageClick = (imageUrl) => {
-    // Handle image click to enlarge
-    console.log('Clicked image URL:', imageUrl);
-  };
+const MockGraphComponent = () => (
+  <div className="h-full bg-blue-200 rounded-lg"></div>
+);
 
+const Dashboard = () => {
   return (
-    <div>
-      <h2>Job Applications</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile Number</th>
-            <th>Resume</th>
-            <th>Aadhaar Card</th>
-            <th>PAN Card</th>
-            <th>Qualification Certificate</th>
-            <th>Experience Certificate</th>
-            <th>Computer Certificate</th>
-          </tr>
-        </thead>
-        <tbody>
-          {applications.map((application, index) => (
-            <tr key={index}>
-              <td>{application.name}</td>
-              <td>{application.email}</td>
-              <td>{application.mobile}</td>
-              <td>
-                <a href={application.resume} target="_blank" rel="noopener noreferrer">View Resume</a>
-              </td>
-              <td>
-                <img
-                  src={application.aadhaarCard}
-                  alt="Aadhaar Card"
-                  onClick={() => handleImageClick(application.aadhaarCard)}
-                  style={{ cursor: 'pointer', maxWidth: '100px' }}
-                />
-              </td>
-              <td>
-                <img
-                  src={application.panCard}
-                  alt="PAN Card"
-                  onClick={() => handleImageClick(application.panCard)}
-                  style={{ cursor: 'pointer', maxWidth: '100px' }}
-                />
-              </td>
-              <td>
-                <img
-                  src={application.qualificationCertificate}
-                  alt="Qualification Certificate"
-                  onClick={() => handleImageClick(application.qualificationCertificate)}
-                  style={{ cursor: 'pointer', maxWidth: '100px' }}
-                />
-              </td>
-              <td>
-                <img
-                  src={application.experienceCertificate}
-                  alt="Experience Certificate"
-                  onClick={() => handleImageClick(application.experienceCertificate)}
-                  style={{ cursor: 'pointer', maxWidth: '100px' }}
-                />
-              </td>
-              <td>
-                <img
-                  src={application.computerCertificate}
-                  alt="Computer Certificate"
-                  onClick={() => handleImageClick(application.computerCertificate)}
-                  style={{ cursor: 'pointer', maxWidth: '100px' }}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container  p-4">
+      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
+      
+      {/* 3 Cards in a Row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <Card title="Card 1" content="Content for card 1" color="bg-blue-500" />
+        <Card title="Card 2" content="Content for card 2" color="bg-green-500" />
+        <Card title="Card 3" content="Content for card 3" color="bg-red-500" />
+      </div>
+      
+      {/* 2 Cards in a Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <Card title="Card 4" content="Content for card 4" color="bg-purple-500" />
+        <Card title="Card 5" content="Content for card 5" color="bg-yellow-500" />
+      </div>
+      
+      {/* 2 Tables in a Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <Table title="User Data" data={tableData1} />
+        <Table title="Product Data" data={tableData2} />
+      </div>
+      
+      {/* 2 Graphs in a Row */}
+     
     </div>
   );
 };
 
-export default JobApplicationsTable;
+export default Dashboard;

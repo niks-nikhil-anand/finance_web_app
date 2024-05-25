@@ -5,7 +5,7 @@ import Footer from '@/component/Homepage/Footer';
 
 const Footers = () => {
   const pathname = usePathname();
-  const isAdminPage = pathname === '/dashboard';
+  const isAdminPage =pathname.startsWith('/dashboard');
   return !isAdminPage ? (
   <Footer/>
 ) : null;
