@@ -1,6 +1,8 @@
 import connectDB from "@/lib/dbConnect";
 import uploadImage from "@/lib/uploadImages";
 import { NextResponse } from "next/server";
+import GstRegistration from "@/models/gstApplicationModel";
+
 
 export const POST = async (req) => {
   try {
@@ -25,7 +27,6 @@ export const POST = async (req) => {
     const bankPassbook = formData.get("bankPassbook");
     const electricityBill = formData.get("electricityBill");
     console.log(aadhaarCard)
-
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
     const panUploadResult = panCard ? await uploadImage(panCard, "panCard") : null;
     const passbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
@@ -48,8 +49,7 @@ export const POST = async (req) => {
       photo: photoUploadResult ? photoUploadResult.secure_url : null,
     };
 
-    console.log(applicationData);
-
+    await GstRegistration.create(applicationData);
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });

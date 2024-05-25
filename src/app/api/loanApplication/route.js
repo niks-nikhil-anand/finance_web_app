@@ -1,5 +1,6 @@
 import connectDB from "@/lib/dbConnect";
 import uploadImage from "@/lib/uploadImages";
+import LoanApplication from "@/models/loanApplicationModel";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
@@ -11,7 +12,6 @@ export const POST = async (req) => {
     const mobileNumber = formData.get("mobileNumber");
     const gender = formData.get("gender");
     const city = formData.get("city");
-    const purposeOfLoan = formData.get("purposeOfLoan");
     const employmentType = formData.get("employmentType");
     const monthlyIncome = formData.get("monthlyIncome");
     const requiredLoanAmount = formData.get("requiredLoanAmount");
@@ -19,7 +19,6 @@ export const POST = async (req) => {
     const state = formData.get("state");
     const maritalStatus = formData.get("maritalStatus");
     const loanYear = formData.get("loanYear");
-    const employerStatus = formData.get("employerStatus");
     const loanType = formData.get("loanType");
     const aadhaarCard = formData.get("aadhaarCard");
     const panCard = formData.get("panCard");
@@ -49,7 +48,6 @@ export const POST = async (req) => {
       mobileNumber,
       gender,
       city,
-      purposeOfLoan,
       employmentType,
       monthlyIncome,
       requiredLoanAmount,
@@ -57,7 +55,6 @@ export const POST = async (req) => {
       state,
       maritalStatus,
       loanYear,
-      employerStatus,
       loanType,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
       panCard: panUploadResult ? panUploadResult.secure_url : null,
@@ -68,13 +65,13 @@ export const POST = async (req) => {
       tradeLicense: tradeUploadResult ? tradeUploadResult.secure_url : null,
       gstCertificate: gstUploadResult ? gstUploadResult.secure_url : null,
     };
-    
-    console.log(applicationData);
-    console.log(formData);
-
+    console.log(applicationData)
+    await LoanApplication.create(applicationData);
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });
+
+   
   } catch (error) {
     console.error("Error submitting application:", error);
     return NextResponse.json({ msg: "Error submitting application", error: error.message }, {

@@ -16,7 +16,8 @@ const LoanForm = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [gender, setGender] = useState('');
   const [city, setCity] = useState('');
-  const [purposeOfLoan, setPurposeOfLoan] = useState('');
+  
+
   const [employmentType, setEmploymentType] = useState('');
   const [loading, setLoading] = useState(false);
   const [monthlyIncome, setMonthlyIncome] = useState('');
@@ -25,7 +26,6 @@ const LoanForm = () => {
   const [state, setState] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [loanYear, setLoanYear] = useState('');
-  const [employerStatus, setEmployerStatus] = useState('');
   const [loanType, setLoanType] = useState('');
   const [step, setStep] = useState(1);
 
@@ -74,7 +74,6 @@ const LoanForm = () => {
     formData.append('mobileNumber', mobileNumber);
     formData.append('gender', gender);
     formData.append('city', city);
-    formData.append('purposeOfLoan', purposeOfLoan);
     formData.append('employmentType', employmentType);
     formData.append('monthlyIncome', monthlyIncome);
     formData.append('requiredLoanAmount', requiredLoanAmount);
@@ -82,7 +81,6 @@ const LoanForm = () => {
     formData.append('state', state);
     formData.append('maritalStatus', maritalStatus);
     formData.append('loanYear', loanYear);
-    formData.append('employerStatus', employerStatus);
     formData.append('loanType', loanType);
 
     try {
@@ -106,7 +104,6 @@ const LoanForm = () => {
         setMobileNumber('');
         setGender('');
         setCity('');
-        setPurposeOfLoan('');
         setEmploymentType('');
         setMonthlyIncome('');
         setRequiredLoanAmount('');
@@ -114,7 +111,6 @@ const LoanForm = () => {
         setState('');
         setMaritalStatus('');
         setLoanYear('');
-        setEmployerStatus('');
         setLoanType('');
       } else {
         throw new Error('Failed to submit form');
