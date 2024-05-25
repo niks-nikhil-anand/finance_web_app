@@ -20,9 +20,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <div className="flex-shrink-0">
+            <div className="flex">
               <Link href="/">
-                <Image src={logo} alt="TailGrids" height={80} width={100} />
+                <Image src={logo} alt="TailGrids" height={100} width={100} className="w-[12rem] md:w-[7rem]" />
               </Link>
             </div>
             <div className="hidden md:flex ml-10 items-baseline space-x-4">

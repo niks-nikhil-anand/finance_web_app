@@ -33,11 +33,6 @@ const UploadResumeForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!resume || !name || !email || !mobile || !aadhaarCard || !panCard || !qualificationCertificate || !experienceCertificate || !computerCertificate) {
-      alert('Please fill in all fields and upload all required documents');
-      return;
-    }
-
     setLoading(true);
 
     const formData = new FormData();

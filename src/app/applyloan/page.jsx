@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -61,9 +62,50 @@ const LoanForm = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    const data = new FormData();
+    Object.keys(formData).forEach((key) => {
+      data.append(key, formData[key]);
+    });
+
+    const response = await fetch('/api/loanApplication', {
+      method: 'POST',
+      body: data
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully');
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        mobileNumber: '',
+        gender: '',
+        city: '',
+        purposeOfLoan: '',
+        employmentType: '',
+        monthlyIncome: '',
+        requiredLoanAmount: '',
+        aadhaarCard: null,
+        panCard: null,
+        bankPassbook: null,
+        bankStatements: null,
+        itrFile: null,
+        msmeCertificate: null,
+        tradeLicense: null,
+        gstCertificate: null,
+        pinCode: '',
+        state: '',
+        maritalStatus: '',
+        loanYear: '',
+        employerStatus: '',
+        loanType: ''
+      });
+      setStep(1);
+    } else {
+      console.error('Failed to submit form');
+    }
   };
 
   return (
@@ -71,8 +113,11 @@ const LoanForm = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-lg mx-auto p-8 gradient-black  backdrop-blur-lg shadow-lg my-6"
+      className="min-h-screen flex flex-col  items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 mb-[6rem] md:mb-[0rem]"
     >
+      <div  className='bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md'>
+
+     
       <h2 className="text-2xl font-bold mb-6 text-white">Loan Application Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {step === 1 && (
@@ -155,12 +200,11 @@ const LoanForm = () => {
                 ))}
               </select>
             </div>
-           
           </>
         )}
         {step === 2 && (
           <>
-           <div>
+            <div>
               <label className="block text-sm font-medium text-white">Marital Status</label>
               <select
                 name="maritalStatus"
@@ -196,51 +240,42 @@ const LoanForm = () => {
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="6 Months">6 Months</option>
-                <option value="1 Year">1 Year</option>
-                <option value="2 Years">2 Years</option>
-                <option value="3 Years">3 Years</option>
-                <option value="4 Years">4 Years</option>
-                <option value="5 Years">5 Years</option>
-                <option value="6 Years">6 Years</option>
-                <option value="7 Years">7 Years</option>
-                <option value="8 Years">8 Years</option>
-                <option value="9 Years">9 Years</option>
-                <option value="7 Years">10 Years</option>
-                <option value="8 Years">11 Years</option>
-                <option value="9 Years">12 Years</option>
-                <option value="7 Years">13 Years</option>
-                <option value="8 Years">14 Years</option>
-                <option value="9 Years">15 Years</option>
+                <option value="">Select Duration</option>
+                <option value="1 year">1 Year</option>
+                <option value="2 years">2 Years</option>
+                <option value="3 years">3 Years</option>
+                <option value="4 years">4 Years</option>
+                <option value="5 years">5 Years</option>
+                <option value="6 year">6 Year</option>
+                <option value="7 years">7 Years</option>
+                <option value="8 years">8 Years</option>
+                <option value="9 years">9 Years</option>
+                <option value="10 years">10 Years</option>
+                <option value="11 year">11 Year</option>
+                <option value="12 years">12 Years</option>
+                <option value="13 years">13 Years</option>
+                <option value="14 years">14 Years</option>
+                <option value="15 years">15 Years</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Employer Status</label>
-              <select
-                name="employerStatus"
-                value={formData.employerStatus}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="business">Business</option>
-                <option value="individual">Self Employed</option>
-                <option value="private">Government Job</option>
-                <option value="public">Private Job</option>
-                <option value="public">Student</option>
-                <option value="public">Other</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Purpose of Loan</label>
-              <input
-                type="text"
-                name="purposeOfLoan"
-                value={formData.purposeOfLoan}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            
+  <label className="block text-sm font-medium text-white">Employment Type</label>
+  <select
+    name="employmentType"
+    value={formData.employmentType}
+    onChange={handleChange}
+    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+  >
+    <option value="" disabled>Select employment type</option>
+    <option value="business">Business</option>
+    <option value="self-employed">Self Employed</option>
+    <option value="government job">Government Job</option>
+    <option value="private Job">Private Job</option>
+    <option value="student">Student</option>
+    <option value="other">Other</option>
+  </select>
+</div>
+
             <div>
               <label className="block text-sm font-medium text-white">Monthly Income</label>
               <input
@@ -265,14 +300,13 @@ const LoanForm = () => {
         )}
         {step === 3 && (
           <>
-           
             <div>
               <label className="block text-sm font-medium text-white">Aadhaar Card</label>
               <input
                 type="file"
                 name="aadhaarCard"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -281,7 +315,7 @@ const LoanForm = () => {
                 type="file"
                 name="panCard"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -290,7 +324,7 @@ const LoanForm = () => {
                 type="file"
                 name="bankPassbook"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -299,7 +333,7 @@ const LoanForm = () => {
                 type="file"
                 name="bankStatements"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -308,7 +342,7 @@ const LoanForm = () => {
                 type="file"
                 name="itrFile"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -317,7 +351,7 @@ const LoanForm = () => {
                 type="file"
                 name="msmeCertificate"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -326,7 +360,7 @@ const LoanForm = () => {
                 type="file"
                 name="tradeLicense"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -335,40 +369,41 @@ const LoanForm = () => {
                 type="file"
                 name="gstCertificate"
                 onChange={handleChange}
-                className="mt-1 block w-full text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </>
         )}
-
-       <div className="flex justify-between">
+        <div className="flex justify-between">
           {step > 1 && (
             <button
               type="button"
               onClick={handlePreviousStep}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700"
+              className="px-4 py-2 text-white bg-gray-600 rounded-md"
             >
               Previous
             </button>
           )}
-          {step < 3 ? (
+          {step < 3 && (
             <button
               type="button"
               onClick={handleNextStep}
-              className="ml-auto px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700"
+              className="px-4 py-2 text-white bg-blue-600 rounded-md"
             >
               Next
             </button>
-          ) : (
+          )}
+          {step === 3 && (
             <button
               type="submit"
-              className="ml-auto px-4 py-2 bg-green-500 text-white rounded-md shadow-sm hover:bg-green-700"
+              className="px-4 py-2 text-white bg-green-600 rounded-md"
             >
               Submit
             </button>
           )}
         </div>
       </form>
+      </div>
     </motion.div>
   );
 };
