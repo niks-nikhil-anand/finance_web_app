@@ -11,6 +11,12 @@ const loans = [
     processingFee: 'NIL',
   },
   {
+    bank: 'PNB',
+    logo: 'https://myrupees.com/img/b15.png', // replace with your image paths
+    interestRate: '8.50%',
+    processingFee: 'Up to 1% of loan amount',
+  },
+  {
     bank: 'Bank of Baroda',
     logo: 'https://myrupees.com/img/b2.png',
     interestRate: '8.40%',
