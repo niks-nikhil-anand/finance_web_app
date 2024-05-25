@@ -3,6 +3,9 @@ import cloudinary from './cloudinary';
 
 const uploadImage = async (file, folder) => {
   try {
+    if (!file instanceof File || !file.arrayBuffer) {
+      throw new Error('Invalid file object');
+    }
     const buffer = await file.arrayBuffer();
     const bytes = Buffer.from(buffer);
 

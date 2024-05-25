@@ -53,6 +53,7 @@ const UploadResumeForm = () => {
       });
 
       if (response.ok) {
+        console.log(formData)
         setResume(null);
         setAadhaarCard(null);
         setPanCard(null);

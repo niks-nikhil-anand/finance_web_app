@@ -1,35 +1,32 @@
 "use client";
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const LoanForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobileNumber: '',
-    gender: '',
-    city: '',
-    purposeOfLoan: '',
-    employmentType: '',
-    monthlyIncome: '',
-    requiredLoanAmount: '',
-    aadhaarCard: null,
-    panCard: null,
-    bankPassbook: null,
-    bankStatements: null,
-    itrFile: null,
-    msmeCertificate: null,
-    tradeLicense: null,
-    gstCertificate: null,
-    pinCode: '',
-    state: '',
-    maritalStatus: '',
-    loanYear: '',
-    employerStatus: '',
-    loanType: ''
-  });
-
+  const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [panCard, setPanCard] = useState(null);
+  const [bankPassbook, setBankPassbook] = useState(null);
+  const [bankStatements, setBankStatements] = useState(null);
+  const [itrFile, setITRFile] = useState(null);
+  const [msmeCertificate, setMsmeCertificate] = useState(null);
+  const [tradeLicense, setTradeLicense] = useState(null);
+  const [gstCertificate, setGstCertificate] = useState(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [gender, setGender] = useState('');
+  const [city, setCity] = useState('');
+  const [purposeOfLoan, setPurposeOfLoan] = useState('');
+  const [employmentType, setEmploymentType] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [monthlyIncome, setMonthlyIncome] = useState('');
+  const [requiredLoanAmount, setRequiredLoanAmount] = useState('');
+  const [pinCode, setPinCode] = useState('');
+  const [state, setState] = useState('');
+  const [maritalStatus, setMaritalStatus] = useState('');
+  const [loanYear, setLoanYear] = useState('');
+  const [employerStatus, setEmployerStatus] = useState('');
+  const [loanType, setLoanType] = useState('');
   const [step, setStep] = useState(1);
 
   const statesOfIndia = [
@@ -45,14 +42,11 @@ const LoanForm = () => {
     "MOBILE APP MICRO LOAN", "MOBILE FINANCE LOAN"
   ];
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (files) {
-      setFormData({ ...formData, [name]: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
+  const handleFileChange = (e, setFile) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
     }
-  };
+  }
 
   const handleNextStep = () => {
     setStep(step + 1);
@@ -64,47 +58,74 @@ const LoanForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    Object.keys(formData).forEach((key) => {
-      data.append(key, formData[key]);
-    });
+    setLoading(true);
 
-    const response = await fetch('/api/loanApplication', {
-      method: 'POST',
-      body: data
-    });
+    const formData = new FormData();
+    formData.append('aadhaarCard', aadhaarCard);
+    formData.append('panCard', panCard);
+    formData.append('bankPassbook', bankPassbook);
+    formData.append('bankStatements', bankStatements);
+    formData.append('itrFile', itrFile);
+    formData.append('msmeCertificate', msmeCertificate);
+    formData.append('tradeLicense', tradeLicense);
+    formData.append('gstCertificate', gstCertificate);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('mobileNumber', mobileNumber);
+    formData.append('gender', gender);
+    formData.append('city', city);
+    formData.append('purposeOfLoan', purposeOfLoan);
+    formData.append('employmentType', employmentType);
+    formData.append('monthlyIncome', monthlyIncome);
+    formData.append('requiredLoanAmount', requiredLoanAmount);
+    formData.append('pinCode', pinCode);
+    formData.append('state', state);
+    formData.append('maritalStatus', maritalStatus);
+    formData.append('loanYear', loanYear);
+    formData.append('employerStatus', employerStatus);
+    formData.append('loanType', loanType);
 
-    if (response.ok) {
-      console.log('Form submitted successfully');
-      // Reset form after successful submission
-      setFormData({
-        name: '',
-        email: '',
-        mobileNumber: '',
-        gender: '',
-        city: '',
-        purposeOfLoan: '',
-        employmentType: '',
-        monthlyIncome: '',
-        requiredLoanAmount: '',
-        aadhaarCard: null,
-        panCard: null,
-        bankPassbook: null,
-        bankStatements: null,
-        itrFile: null,
-        msmeCertificate: null,
-        tradeLicense: null,
-        gstCertificate: null,
-        pinCode: '',
-        state: '',
-        maritalStatus: '',
-        loanYear: '',
-        employerStatus: '',
-        loanType: ''
+    try {
+      const response = await fetch('/api/loanApplication', {
+        method: 'POST',
+        body: formData,
       });
-      setStep(1);
-    } else {
-      console.error('Failed to submit form');
+
+      if (response.ok) {
+        console.log(formData)
+        setBankPassbook(null);
+        setAadhaarCard(null);
+        setPanCard(null);
+        setBankStatements(null);
+        setITRFile(null);
+        setMsmeCertificate(null);
+        setGstCertificate(null);
+        setTradeLicense(null);
+        setName('');
+        setEmail('');
+        setMobileNumber('');
+        setGender('');
+        setCity('');
+        setPurposeOfLoan('');
+        setEmploymentType('');
+        setMonthlyIncome('');
+        setRequiredLoanAmount('');
+        setPinCode('');
+        setState('');
+        setMaritalStatus('');
+        setLoanYear('');
+        setEmployerStatus('');
+        setLoanType('');
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      console.log(formData)
+      console.error('Error:', error);
+      alert('An error occurred while uploading the resume');
+    } finally {
+       console.log(formData)
+      setLoading(false);
     }
   };
 
@@ -127,8 +148,8 @@ const LoanForm = () => {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -137,8 +158,8 @@ const LoanForm = () => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -147,8 +168,8 @@ const LoanForm = () => {
               <input
                 type="text"
                 name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -156,8 +177,8 @@ const LoanForm = () => {
               <label className="block text-sm font-medium text-white">Gender</label>
               <select
                 name="gender"
-                value={formData.gender}
-                onChange={handleChange}
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select Gender</option>
@@ -171,8 +192,8 @@ const LoanForm = () => {
               <input
                 type="text"
                 name="city"
-                value={formData.city}
-                onChange={handleChange}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -181,8 +202,8 @@ const LoanForm = () => {
               <input
                 type="text"
                 name="pinCode"
-                value={formData.pinCode}
-                onChange={handleChange}
+                value={pinCode}
+                onChange={(e) => setPinCode(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -190,8 +211,8 @@ const LoanForm = () => {
               <label className="block text-sm font-medium text-white">State</label>
               <select
                 name="state"
-                value={formData.state}
-                onChange={handleChange}
+                value={state}
+                onChange={(e) => setState(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select State</option>
@@ -208,8 +229,8 @@ const LoanForm = () => {
               <label className="block text-sm font-medium text-white">Marital Status</label>
               <select
                 name="maritalStatus"
-                value={formData.maritalStatus}
-                onChange={handleChange}
+                value={maritalStatus}
+                onChange={(e) => setMaritalStatus(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select Marital Status</option>
@@ -223,8 +244,8 @@ const LoanForm = () => {
               <label className="block text-sm font-medium text-white">Loan Type</label>
               <select
                 name="loanType"
-                value={formData.loanType}
-                onChange={handleChange}
+                value={loanType}
+                onChange={(e) => setLoanType(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
                 {loanTypes.map((loan, index) => (
@@ -236,8 +257,8 @@ const LoanForm = () => {
               <label className="block text-sm font-medium text-white">Loan Duration</label>
               <select
                 name="loanYear"
-                value={formData.loanYear}
-                onChange={handleChange}
+                value={loanYear}
+                onChange={(e) => setLoanYear(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select Duration</option>
@@ -262,8 +283,8 @@ const LoanForm = () => {
   <label className="block text-sm font-medium text-white">Employment Type</label>
   <select
     name="employmentType"
-    value={formData.employmentType}
-    onChange={handleChange}
+    value={employmentType}
+    onChange={(e) => setEmploymentType(e.target.value)} 
     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
   >
     <option value="" disabled>Select employment type</option>
@@ -281,8 +302,8 @@ const LoanForm = () => {
               <input
                 type="text"
                 name="monthlyIncome"
-                value={formData.monthlyIncome}
-                onChange={handleChange}
+                value={monthlyIncome}
+                onChange={(e) => setMonthlyIncome(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -291,8 +312,8 @@ const LoanForm = () => {
               <input
                 type="text"
                 name="requiredLoanAmount"
-                value={formData.requiredLoanAmount}
-                onChange={handleChange}
+                value={requiredLoanAmount}
+                onChange={(e) => setRequiredLoanAmount(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -305,7 +326,8 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="aadhaarCard"
-                onChange={handleChange}
+                
+                onChange={(e) => handleFileChange(e, setAadhaarCard)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -314,7 +336,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="panCard"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setPanCard)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -323,7 +345,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="bankPassbook"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setBankPassbook)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -332,7 +354,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="bankStatements"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setBankStatements)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -341,7 +363,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="itrFile"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setITRFile)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -350,7 +372,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="msmeCertificate"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setMsmeCertificate)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -359,7 +381,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="tradeLicense"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setTradeLicense)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -368,7 +390,7 @@ const LoanForm = () => {
               <input
                 type="file"
                 name="gstCertificate"
-                onChange={handleChange}
+                onChange={(e) => handleFileChange(e, setGstCertificate)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -397,8 +419,9 @@ const LoanForm = () => {
             <button
               type="submit"
               className="px-4 py-2 text-white bg-green-600 rounded-md"
-            >
-              Submit
+              disabled={loading}
+              >
+                {loading ? 'Uploading...' : 'Submit'}
             </button>
           )}
         </div>
@@ -408,4 +431,4 @@ const LoanForm = () => {
   );
 };
 
-export default LoanForm;
+export default LoanForm

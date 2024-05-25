@@ -5,9 +5,7 @@ import { NextResponse } from "next/server";
 export const POST = async (req) => {
   try {
     await connectDB();
-
-    const formData = await req.formData();
-
+    const formData = await req.formData(); // Moved this line inside the try block
     const name = formData.get("name");
     const email = formData.get("email");
     const mobileNumber = formData.get("mobileNumber");
@@ -23,7 +21,6 @@ export const POST = async (req) => {
     const loanYear = formData.get("loanYear");
     const employerStatus = formData.get("employerStatus");
     const loanType = formData.get("loanType");
-
     const aadhaarCard = formData.get("aadhaarCard");
     const panCard = formData.get("panCard");
     const bankPassbook = formData.get("bankPassbook");
@@ -33,12 +30,10 @@ export const POST = async (req) => {
     const tradeLicense = formData.get("tradeLicense");
     const gstCertificate = formData.get("gstCertificate");
 
-    // Check if required fields are present in the form data
     if (!name || !email || !mobileNumber) {
       throw new Error("Please provide name, email, and mobile number.");
     }
 
-    // Upload files and get their URLs
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
     const panUploadResult = panCard ? await uploadImage(panCard, "panCard") : null;
     const passbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
@@ -48,7 +43,6 @@ export const POST = async (req) => {
     const tradeUploadResult = tradeLicense ? await uploadImage(tradeLicense, "tradeLicense") : null;
     const gstUploadResult = gstCertificate ? await uploadImage(gstCertificate, "gstCertificate") : null;
 
-    // Prepare application data for database insertion
     const applicationData = {
       name,
       email,
@@ -76,12 +70,12 @@ export const POST = async (req) => {
     };
     
     console.log(applicationData);
+    console.log(formData);
 
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });
   } catch (error) {
-    // Handle errors
     console.error("Error submitting application:", error);
     return NextResponse.json({ msg: "Error submitting application", error: error.message }, {
       status: 500

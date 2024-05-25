@@ -50,7 +50,7 @@ const GlassmorphismForm = () => {
     });
 
     try {
-      const response = await fetch('/api/upload', {
+      const response = await fetch('/api/businessApplication', {
         method: 'POST',
         body: data,
       });
@@ -206,7 +206,8 @@ const GlassmorphismForm = () => {
               </div>
             </motion.div>
           )}
-        </form>
+       
+       </form>
       </div>
     </div>
   );
