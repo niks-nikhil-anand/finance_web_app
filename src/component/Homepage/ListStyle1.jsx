@@ -58,8 +58,7 @@ const Portfolio = () => {
                   Our Recent Projects
                 </h2>
                 <p className="text-body-color text-base dark:text-dark-6">
-                  There are many variations of passages of Lorem Ipsum available
-                  but the majority have suffered alteration in some form.
+                Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
                 </p>
               </div>
             </div>
