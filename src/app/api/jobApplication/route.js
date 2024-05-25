@@ -3,6 +3,9 @@ import uploadImage from "@/lib/uploadImages";
 import JobApplication from "@/models/jobApplicationModel";
 import { NextResponse } from "next/server";
 
+
+
+// POST API
 export const POST = async (req) => {
   try {
     await connectDB();
@@ -53,6 +56,28 @@ await JobApplication.create(applicationData);
     // Handle errors
     console.error("Error submitting application:", error);
     return NextResponse.json({ msg: "Error submitting application", error: error.message }, {
+      status: 500
+    });
+  }
+};
+
+
+// GET API
+
+export const GET = async (req) => {
+  try {
+    await connectDB();
+
+    // Fetch all job applications from the database
+    const applications = await JobApplication.find();
+
+    return NextResponse.json({ applications }, {
+      status: 200
+    });
+  } catch (error) {
+    // Handle errors
+    console.error("Error fetching job applications:", error);
+    return NextResponse.json({ msg: "Error fetching job applications", error: error.message }, {
       status: 500
     });
   }

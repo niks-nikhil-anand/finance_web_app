@@ -79,11 +79,11 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="-mr-2 flex md:hidden ">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="bg-yellow-500 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-blue-700"
+              className="bg-yellow-500 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-yellow-500"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -103,8 +103,9 @@ const Navbar = () => {
         initial={false}
         animate={{ height: isOpen ? "auto" : 0 }}
         transition={{ duration: 0.3 }}
-        className={`md:hidden overflow-hidden`}
+        className={`md:hidden overflow-hidden bg-yellow-500`}
         id="mobile-menu"
+        
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-white">Home</Link>
@@ -180,7 +181,7 @@ const Navbar = () => {
           <Link href="//partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Fintech Banking</Link>
           <Link href="/partnersignup" className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
           <Link href="/applynow">
-            <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+            <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ">
               Apply Now
             </button>
           </Link>
