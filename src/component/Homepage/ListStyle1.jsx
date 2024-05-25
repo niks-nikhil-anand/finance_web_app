@@ -39,7 +39,7 @@ const Portfolio = () => {
 
   return (
     <>
-      <Container className="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark">
+      <Container className="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark mt-5">
         <div className="container mx-auto">
           {/* Portfolio header */}
           <motion.div
@@ -50,7 +50,7 @@ const Portfolio = () => {
           >
             {/* Portfolio title and description */}
             <div className="w-full px-4">
-              <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+              <div className="mx-auto mb-[20px] max-w-[510px] text-center">
                 <span className="text-primary mb-2 block text-lg font-semibold">
                   Our Portfolio
                 </span>
@@ -60,7 +60,30 @@ const Portfolio = () => {
                 <p className="text-body-color text-base dark:text-dark-6">
                 Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
                 </p>
-                <div className="mt-5 flex flex-col md:flex-row gap-4 justify-center items-center">
+                
+              </div>
+            </div>
+          </motion.div>
+          
+          {/* Category buttons */}
+          <div className="w-full flex flex-wrap justify-center items-center">
+            <div className="w-full ">
+              <ul className="flex flex-wrap justify-center mb-2 space-x-1">
+                {[ "Finance", "Loan", "Business"].map((category) => (
+                  <li className="mb-1" key={category}>
+                    {/* Category button */}
+                    <button
+                      onClick={() => handleProject(category.toLowerCase())} // Lowercase the category name
+                      className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${
+                        showCard === category.toLowerCase() ? "activeClasses gradient-blue text-black" : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-gray"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 flex flex-col md:flex-row gap-4 justify-center items-cente mb-6">
 
                 <motion.a
                 href="/applynow"
@@ -79,28 +102,6 @@ const Portfolio = () => {
                 Check Eligibility
               </motion.a>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* Category buttons */}
-          <div className="w-full flex flex-wrap justify-center -mx-4">
-            <div className="w-full px-4">
-              <ul className="flex flex-wrap justify-center mb-12 space-x-1">
-                {[ "Finance", "Loan", "Business"].map((category) => (
-                  <li className="mb-1" key={category}>
-                    {/* Category button */}
-                    <button
-                      onClick={() => handleProject(category.toLowerCase())} // Lowercase the category name
-                      className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${
-                        showCard === category.toLowerCase() ? "activeClasses gradient-blue text-black" : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-gray"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
