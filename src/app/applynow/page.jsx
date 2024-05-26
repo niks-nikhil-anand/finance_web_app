@@ -213,20 +213,13 @@ const GlassmorphismForm = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Submit
+                   {loading ? 'Uploading...' : 'Submit'}
                 </motion.button>
-                <button
-                  type="button"
-                  className="mt-4 w-full p-2 bg-red-500 rounded text-white"
-                  onClick={handlePreviousStep}
-                >
-                  Previous
-                </button>
+                
               </motion.div>
             )}
           </form>
-          {loading && <p className="text-center mt-4">Submitting...</p>}
-          {error && <p className="text-red-500 mt-4">{error}</p>}
+          
         </div>
       </div>
     );

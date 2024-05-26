@@ -416,8 +416,8 @@ const LoanForm = () => {
               type="submit"
               className="px-4 py-2 text-white bg-green-600 rounded-md"
               disabled={loading}
-              >
-                {loading ? 'Uploading...' : 'Submit'}
+              >  {loading ? 'Uploading...' : 'Submit'}
+              
             </button>
           )}
         </div>
