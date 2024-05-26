@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -21,13 +21,11 @@ const GlassmorphismForm = () => {
   const [photocopy, setPhotocopy] = useState(null);
   const [loading, setLoading] = useState(false);
 
-
   const handleFileChange = (e, setFile) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
-  }
-
+  };
 
   const handleNextStep = () => {
     if (!registrationType) {
@@ -45,7 +43,6 @@ const GlassmorphismForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -55,7 +52,6 @@ const GlassmorphismForm = () => {
     data.append('mobileNumber', formData.mobileNumber);
     data.append('partnerID', formData.partnerID);
     data.append('registrationType', registrationType);
-
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
     if (panCard) data.append('panCard', panCard);
@@ -78,8 +74,7 @@ const GlassmorphismForm = () => {
       }
     } catch (error) {
       console.error('Error:', error);
-     
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -139,20 +134,21 @@ const GlassmorphismForm = () => {
                   onChange={(e) => setRegistrationType(e.target.value)}
                   className="w-full p-2 rounded bg-white bg-opacity-50"
                 >
-                  <option value="">Select Registration Type</option>
-                  <option value="itr">ITR File New Registration</option>
-                  <option value="gst">GST Registration</option>
-                  <option value="itr">ITR RETURN</option>
-                  <option value="itr">GST RETURN</option>
-                  <option value="itr">BUSINESS REGISTRATION</option>
-                  <option value="gst">MSME REGISTRATION</option>
-                  <option value="itr">LEGAL ISSUES LEGAL NOTICE</option>
-                  <option value="gst">LOAN NOC CERTIFICATE</option>
-                  <option value="itr">BUSINESS LICENSE</option>
-                  <option value="gst">FOOD LICENSE</option>
-                  <option value="gst">TRADE LICENSE</option>
+                  <option disabled value="">
+                    Select Registration Type
+                  </option>
+                  <option value="ITR File New Registration">ITR File New Registration</option>
+                  <option value="GST Registration">GST Registration</option>
+                  <option value="ITR RETURN">ITR RETURN</option>
+                  <option value="GST RETURN">GST RETURN</option>
+                  <option value="BUSINESS REGISTRATION">BUSINESS REGISTRATION</option>
+                  <option value="MSME REGISTRATION">MSME REGISTRATION</option>
+                  <option value="LEGAL ISSUES LEGAL NOTICE">LEGAL ISSUES LEGAL NOTICE</option>
+                  <option value="LOAN NOC CERTIFICATE">LOAN NOC CERTIFICATE</option>
+                  <option value="BUSINESS LICENSE">BUSINESS LICENSE</option>
+                  <option value="FOOD LICENSE">FOOD LICENSE</option>
+                  <option value="TRADE LICENSE">TRADE LICENSE</option>
                 </select>
-                {error && <p className="text-red-500 mt-2">{error}</p>}
               </div>
               <button
                 type="button"
@@ -166,81 +162,75 @@ const GlassmorphismForm = () => {
 
           {step === 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              {registrationType === 'itr' && (
-                <>
-                  <div className="mb-4">
-                    <label className="block text-white">AADHAAR CARD</label>
-                    <input type="file"  name="aadhaarCard"   onChange={(e) => handleFileChange(e, setAadhaarCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">PAN CARD</label>
-                    <input type="file"
-                name="panCard"
-                onChange={(e) => handleFileChange(e, setPanCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">BANK PASSBOOK</label>
-                    <input type="file"
-                name="bankPassbook"
-                onChange={(e) => handleFileChange(e, setBankPassbook)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">BANK STATEMENTS</label>
-                    <input type="file"
-                name="bankStatements"
-                onChange={(e) => handleFileChange(e, setBankStatements)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                </>
-              )}
-              {registrationType === 'gst' && (
-                <>
-                  <div className="mb-4">
-                    <label className="block text-white">AADHAAR CARD</label>
-                    <input type="file"
-                name="aadhaarCard"  
-                onChange={(e) => handleFileChange(e, setAadhaarCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">PAN CARD</label>
-                    <input type="file"
-                name="panCard"
-                onChange={(e) => handleFileChange(e, setPanCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">PHOTO COPY</label>
-                    <input type="file" name="photocopy"  onChange={(e) => handleFileChange(e, setPhotocopy)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">BANK PASSBOOK</label>
-                    <input  type="file"
-                name="bankPassbook"
-                onChange={(e) => handleFileChange(e, setBankPassbook)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
-                    <input type="file" name="electricityBill"  onChange={(e) => handleFileChange(e, setElectricityBill)} className="w-full p-2 rounded bg-white bg-opacity-50" />
-                  </div>
-                </>
-              )}
-              <div className="flex justify-between">
+              <div className="mb-4">
+                <label className="block text-white">AADHAAR CARD</label>
+                <input
+                  type="file"
+                  name="aadhaarCard"
+                  onChange={(e) => handleFileChange(e, setAadhaarCard)}
+                  className="w-full p-2 rounded bg-white bg-opacity-50"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-white">PAN CARD</label>
+                <input
+                  type="file"
+                  name="panCard"
+                  onChange={(e) => handleFileChange(e, setPanCard)}
+                    className="w-full p-2 rounded bg-white bg-opacity-50"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-white">BANK STATEMENTS</label>
+                  <input
+                    type="file"
+                    name="bankStatements"
+                    onChange={(e) => handleFileChange(e, setBankStatements)}
+                    className="w-full p-2 rounded bg-white bg-opacity-50"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
+                  <input
+                    type="file"
+                    name="electricityBill"
+                    onChange={(e) => handleFileChange(e, setElectricityBill)}
+                    className="w-full p-2 rounded bg-white bg-opacity-50"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-white">PHOTO COPY</label>
+                  <input
+                    type="file"
+                    name="photocopy"
+                    onChange={(e) => handleFileChange(e, setPhotocopy)}
+                    className="w-full p-2 rounded bg-white bg-opacity-50"
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  className="w-full p-2 bg-green-500 rounded text-white"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Submit
+                </motion.button>
                 <button
                   type="button"
-                  className="w-full p-2 bg-blue-500 rounded text-white mr-2"
+                  className="mt-4 w-full p-2 bg-red-500 rounded text-white"
                   onClick={handlePreviousStep}
                 >
-                  Back
+                  Previous
                 </button>
-                <button type="submit" className="w-full p-2 bg-green-500 rounded text-white ml-2">
-                {loading ? 'Uploading...' : 'Submit'}
-                </button>
-              </div>
-            </motion.div>
-          )}
-       
-       </form>
+              </motion.div>
+            )}
+          </form>
+          {loading && <p className="text-center mt-4">Submitting...</p>}
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default GlassmorphismForm;
+    );
+  };
+  
+  export default GlassmorphismForm;
+  
