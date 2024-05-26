@@ -6,9 +6,10 @@ const ReferForm = () => {
     name: '',
     mobileNumber: '',
     email: '',
-    service: 'FINANCE LOAN SERVICE',
+    service: '',
     referMobileNumber: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,22 +20,28 @@ const ReferForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('mobileNumber', formData.mobileNumber);
+    data.append('service', formData.service);
+    data.append('referMobileNumber', formData.referMobileNumber);
+    
     try {
-      const response = await fetch('/api/referAndEarn', {
+      const response = await fetch('/api/referandearn', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        body: data,
       });
       if (response.ok) {
+        const result = await response.json();
+        console.log('Success:', result);
         console.log('Form submitted successfully');
-        // Reset form after submission
         setFormData({
           name: '',
           mobileNumber: '',
           email: '',
-          service: 'FINANCE LOAN SERVICE',
+          service: '',
           referMobileNumber: ''
         });
       } else {
@@ -42,6 +49,8 @@ const ReferForm = () => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -72,14 +81,16 @@ const ReferForm = () => {
             Mobile Number
           </label>
           <input
-            type="tel"
-            id="mobileNumber"
-            name="mobileNumber"
-            value={formData.mobileNumber}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
+              type="tel"
+              id="mobileNumber"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+              
+            />
+
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -96,22 +107,25 @@ const ReferForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="service">
-            Services You Want to Refer
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-          >
-            <option value="FINANCE LOAN SERVICE">Personal Loan</option>
-            <option value="FINTECH BANKING SERVICE">Business Loan</option>
-            <option value="GST ITR TAX PAY SERVICE">Loan Against Property</option>
-            <option value="ALL SERVICES">Home Loan</option>
-          </select>
-        </div>
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="service">
+    Select Financial Service
+  </label>
+  <select
+    id="service"
+    name="service"
+    value={formData.service}
+    onChange={handleChange}
+    className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+    required // Added required attribute
+  >
+    <option value="" disabled >Select Financial Service</option>
+    <option value="Personal Loan">Personal Loan</option>
+    <option value="Business Loan">Business Loan</option>
+    <option value="Loan Against Property">Loan Against Property</option>
+    <option value="Home Loan">Home Loan</option>
+  </select>
+</div>
+
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="referMobileNumber">
             Whatsapp Number (Whom you want to refer)
@@ -131,7 +145,7 @@ const ReferForm = () => {
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Submit
+           {loading ? 'Uploading...' : 'Submit'}
           </button>
         </div>
       </form>
