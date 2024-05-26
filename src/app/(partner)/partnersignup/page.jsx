@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import growth from '../../../../public/growth.png'
-import Link from 'next/link';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -16,30 +15,27 @@ export default function Signup() {
     partnerType: '',
     interest: '',
     message: '',
-    aadhaarCard: null,
-    panCard: null,
-    bankPassbook: null,
-    photoCopy: null,
-    shopPhotoCopy: null,
-    msmeCertificate: null,
-    tradeLicense: null
+    password: '',
   });
+
+  const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [panCard, setPanCard] = useState(null);
+  const [bankPassbook, setBankPassbook] = useState(null);
+  const [shopPhotoCopy, setShopPhotoCopy] = useState(null);
+  const [msmeCertificate, setMsmeCertificate] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [step, setStep] = useState(1);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (files) {
-      setFormData({
-        ...formData,
-        [name]: files[0]
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      });
+  const handleFileChange = (e, setFile) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
     }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleNextStep = (e) => {
@@ -52,9 +48,44 @@ export default function Signup() {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // handle form submission
+    setLoading(true);
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('phone', formData.phone);
+    data.append('password', formData.password);
+    data.append('city', formData.city);
+    data.append('state', formData.state);
+    data.append('partnerType', formData.partnerType);
+    data.append('interest', formData.interest);
+    data.append('message', formData.message);
+
+    if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
+    if (panCard) data.append('panCard', panCard);
+    if (bankPassbook) data.append('bankPassbook', bankPassbook);
+    if (shopPhotoCopy) data.append('shopPhotoCopy', shopPhotoCopy);
+    if (msmeCertificate) data.append('msmeCertificate', msmeCertificate);
+
+    try {
+      const response = await fetch('/api/partnerApplication', {
+        method: 'POST',
+        body: data,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Success:', result);
+      } else {
+        console.error('Error:', await response.json());
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+      console.log(data)
+    }
   };
 
   const indianStates = [
@@ -88,7 +119,6 @@ export default function Signup() {
       </div>
       <div className="md:w-1/2 bg-white p-10 flex flex-col justify-center">
         <h2 className="text-xl md:text-2xl font-bold mb-4">Become A Loan Agent / DSA With Legal257</h2>
-       
         <form onSubmit={handleSubmit}>
           {step === 1 && (
             <>
@@ -98,7 +128,7 @@ export default function Signup() {
                   type="text"
                   name="name"
                   value={formData.name}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
@@ -108,7 +138,7 @@ export default function Signup() {
                   type="email"
                   name="email"
                   value={formData.email}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
@@ -118,7 +148,17 @@ export default function Signup() {
                   type="tel"
                   name="phone"
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
@@ -128,7 +168,7 @@ export default function Signup() {
                   type="text"
                   name="city"
                   value={formData.city}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
@@ -138,7 +178,7 @@ export default function Signup() {
                   type="text"
                   name="pincode"
                   value={formData.pincode}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
@@ -147,7 +187,7 @@ export default function Signup() {
                 <select
                   name="state"
                   value={formData.state}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="">Select State</option>
@@ -161,11 +201,11 @@ export default function Signup() {
                 <select
                   name="partnerType"
                   value={formData.partnerType}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="">Select Partner Type</option>
-                  <option value="Retailer">CSP</option>
+                  <option value="CSP">CSP</option>
                   <option value="Branch">Branch</option>
                   <option value="DSA">DSA</option>
                 </select>
@@ -175,10 +215,10 @@ export default function Signup() {
                 <select
                   name="interest"
                   value={formData.interest}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="">Select Interest</option>
+                  <option value="" disabled>Select Interest</option>
                   <option value="Sourcing Finance Loan Service">Sourcing Finance Loan Service</option>
                   <option value="Fintech Banking Service">Fintech Banking Service</option>
                   <option value="GST ITR Tax Pay Service">GST ITR Tax Pay Service</option>
@@ -190,99 +230,84 @@ export default function Signup() {
                 <textarea
                   name="message"
                   value={formData.message}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-              <button onClick={handleNextStep} className="w-full py-2 px-4 bg-blue-500 text-white rounded">
+              <button
+                onClick={handleNextStep}
+                className="bg-blue-500 text-white py-2 px-4 rounded"
+              >
                 Next
               </button>
             </>
           )}
+
           {step === 2 && (
             <>
               <div className="mb-4">
-                <label className="block mb-1">AADHAAR CARD</label>
+                <label className="block mb-1">Aadhaar Card</label>
                 <input
                   type="file"
                   name="aadhaarCard"
-                  onChange={handleChange}
+                  onChange={(e) => handleFileChange(e, setAadhaarCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">PAN CARD</label>
+                <label className="block mb-1">PAN Card</label>
                 <input
                   type="file"
                   name="panCard"
-                  onChange={handleChange}
+                  onChange={(e) => handleFileChange(e, setPanCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">BANK PASSBOOK</label>
+                <label className="block mb-1">Bank Passbook</label>
                 <input
                   type="file"
                   name="bankPassbook"
-                  onChange={handleChange}
+                  onChange={(e) => handleFileChange(e, setBankPassbook)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">PHOTO COPY</label>
-                <input
-                  type="file"
-                  name="photoCopy"
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block mb-1">SHOP PHOTO COPY</label>
+                <label className="block mb-1">Shop Photo Copy</label>
                 <input
                   type="file"
                   name="shopPhotoCopy"
-                  onChange={handleChange}
+                  onChange={(e) => handleFileChange(e, setShopPhotoCopy)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">MSME CERTIFICATE</label>
+                <label className="block mb-1">MSME Certificate</label>
                 <input
                   type="file"
                   name="msmeCertificate"
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block mb-1">TRADE LICENSE</label>
-                <input
-                  type="file"
-                  name="tradeLicense"
-                  onChange={handleChange}
+                  onChange={(e) => handleFileChange(e, setMsmeCertificate)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
               <div className="flex justify-between">
-                <button onClick={handlePreviousStep} className="py-2 px-4 bg-gray-500 text-white rounded">
+                <button
+                  onClick={handlePreviousStep}
+                  className="bg-gray-500 text-white py-2 px-4 rounded"
+                >
                   Previous
                 </button>
-                <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded">
-                  Submit
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white py-2 px-4 rounded"
+                  disabled={loading}
+                >
+                  {loading ? 'Submitting...' : 'Submit'}
                 </button>
               </div>
             </>
           )}
         </form>
-        {step === 1 && (
-          <p className="mt-4">
-            Already have an account?{' '}
-            <Link href="/partnersignin" className="text-blue-500">
-              Log In
-            </Link>
-          </p>
-        )}
       </div>
     </div>
   );
