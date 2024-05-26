@@ -21,19 +21,23 @@ export const POST = async (req) => {
       throw new Error("Please provide name, email, mobile number, and registration type.");
     }
 
-    const aadhaarCard = formData.get("aadhaar");
-    const panCard = formData.get("pan");
-    const photo = formData.get("photo");
+    const aadhaarCard = formData.get("aadhaarCard");
+    const panCard = formData.get("panCard");
+    const photo = formData.get("photocopy");
     const bankPassbook = formData.get("bankPassbook");
+    const bankStatement = formData.get("bankStatements");
     const electricityBill = formData.get("electricityBill");
-    console.log(aadhaarCard)
+
+
+
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
     const panUploadResult = panCard ? await uploadImage(panCard, "panCard") : null;
     const passbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
     const electricityBillUploadResult = electricityBill ? await uploadImage(electricityBill, "electricityBill") : null;
     const photoUploadResult = photo ? await uploadImage(photo, "photo") : null;
+    const uploadbankStatement = bankStatement ? await uploadImage(bankStatement, "bankStatement") : null;
 
-    console.log(photoUploadResult)
+   
 
     // Prepare application data for database insertion
     const applicationData = {
@@ -46,7 +50,8 @@ export const POST = async (req) => {
       panCard: panUploadResult ? panUploadResult.secure_url : null,
       bankPassbook: passbookUploadResult ? passbookUploadResult.secure_url : null,
       electricityBill: electricityBillUploadResult ? electricityBillUploadResult.secure_url : null,
-      photo: photoUploadResult ? photoUploadResult.secure_url : null,
+      photoCopy: photoUploadResult ? photoUploadResult.secure_url : null,
+      bankPassbook: uploadbankStatement ? uploadbankStatement.secure_url : null,
     };
 
     await GstRegistration.create(applicationData);

@@ -11,8 +11,23 @@ const GlassmorphismForm = () => {
     email: '',
     mobileNumber: '',
     partnerID: '',
-    files: {},
   });
+
+  const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [panCard, setPanCard] = useState(null);
+  const [bankPassbook, setBankPassbook] = useState(null);
+  const [bankStatements, setBankStatements] = useState(null);
+  const [electricityBill, setElectricityBill] = useState(null);
+  const [photocopy, setPhotocopy] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+
+  const handleFileChange = (e, setFile) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  }
+
 
   const handleNextStep = () => {
     if (!registrationType) {
@@ -30,14 +45,10 @@ const GlassmorphismForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData({ ...formData, files: { ...formData.files, [name]: files[0] } });
-  };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -45,9 +56,13 @@ const GlassmorphismForm = () => {
     data.append('partnerID', formData.partnerID);
     data.append('registrationType', registrationType);
 
-    Object.keys(formData.files).forEach((key) => {
-      data.append('file', formData.files[key]);
-    });
+
+    if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
+    if (panCard) data.append('panCard', panCard);
+    if (bankPassbook) data.append('bankPassbook', bankPassbook);
+    if (bankStatements) data.append('bankStatements', bankStatements);
+    if (electricityBill) data.append('electricityBill', electricityBill);
+    if (photocopy) data.append('photocopy', photocopy);
 
     try {
       const response = await fetch('/api/businessApplication', {
@@ -63,6 +78,9 @@ const GlassmorphismForm = () => {
       }
     } catch (error) {
       console.error('Error:', error);
+     
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -152,19 +170,25 @@ const GlassmorphismForm = () => {
                 <>
                   <div className="mb-4">
                     <label className="block text-white">AADHAAR CARD</label>
-                    <input type="file" name="aadhaar" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file"  name="aadhaarCard"   onChange={(e) => handleFileChange(e, setAadhaarCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">PAN CARD</label>
-                    <input type="file" name="pan" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file"
+                name="panCard"
+                onChange={(e) => handleFileChange(e, setPanCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">BANK PASSBOOK</label>
-                    <input type="file" name="bankPassbook" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file"
+                name="bankPassbook"
+                onChange={(e) => handleFileChange(e, setBankPassbook)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">BANK STATEMENTS</label>
-                    <input type="file" name="bankStatements" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file"
+                name="bankStatements"
+                onChange={(e) => handleFileChange(e, setBankStatements)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                 </>
               )}
@@ -172,23 +196,29 @@ const GlassmorphismForm = () => {
                 <>
                   <div className="mb-4">
                     <label className="block text-white">AADHAAR CARD</label>
-                    <input type="file" name="aadhaar" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file"
+                name="aadhaarCard"  
+                onChange={(e) => handleFileChange(e, setAadhaarCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">PAN CARD</label>
-                    <input type="file" name="pan" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file"
+                name="panCard"
+                onChange={(e) => handleFileChange(e, setPanCard)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">PHOTO COPY</label>
-                    <input type="file" name="photo" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file" name="photocopy"  onChange={(e) => handleFileChange(e, setPhotocopy)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">BANK PASSBOOK</label>
-                    <input type="file" name="bankPassbook" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input  type="file"
+                name="bankPassbook"
+                onChange={(e) => handleFileChange(e, setBankPassbook)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                   <div className="mb-4">
                     <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
-                    <input type="file" name="electricityBill" onChange={handleFileChange} className="w-full p-2 rounded bg-white bg-opacity-50" />
+                    <input type="file" name="electricityBill"  onChange={(e) => handleFileChange(e, setElectricityBill)} className="w-full p-2 rounded bg-white bg-opacity-50" />
                   </div>
                 </>
               )}
@@ -201,7 +231,7 @@ const GlassmorphismForm = () => {
                   Back
                 </button>
                 <button type="submit" className="w-full p-2 bg-green-500 rounded text-white ml-2">
-                  Submit
+                {loading ? 'Uploading...' : 'Submit'}
                 </button>
               </div>
             </motion.div>

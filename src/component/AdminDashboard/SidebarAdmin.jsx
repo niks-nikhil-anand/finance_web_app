@@ -47,27 +47,20 @@ export function SidebarAdmin() {
            
             <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">Leads</label>
-              <a
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+              href={"/dashboard/gstItr"}
               >
                 <FcMoneyTransfer className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">GST </span>
-              </a>
-              <a
+                <span className="mx-2 text-sm font-medium">GST/ITR </span>
+              </Link>
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <FaMoneyCheckAlt className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">ITR</span>
-              </a>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+               href={"/dashboard/loan"}
               >
                 <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Loan</span>
-              </a>
+              </Link>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"

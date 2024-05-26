@@ -30,7 +30,7 @@ const gstRegistrationSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    photo: {
+    photoCopy: {
         type: String,
         required: false,
     },
