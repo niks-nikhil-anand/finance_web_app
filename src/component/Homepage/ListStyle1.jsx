@@ -1,5 +1,6 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Import useEffect from React
+
 import { motion } from "framer-motion";
 import Container from "../Shared/Container";
 import Image from "next/image";
@@ -30,12 +31,39 @@ import Link from "next/link";
 
 const Portfolio = () => {
   // State for controlling which category to display, default to "loan"
-  const [showCard, setShowCard] = useState("FINANCE LOAN");
+  const [showCard, setShowCard] = useState("FINANCE LOAN"); // Change default to "FINANCE LOAN"
 
-  // Function to handle category change
+
   const handleProject = (category) => {
     setShowCard(category); // Update showCard state with the selected category
+  
+    // Define color classes based on categories
+    let colorClass = "";
+    if (category.toLowerCase() === "fintech banking") {
+      colorClass = "bg-red-500"; // Red color for FINTECH BANKING
+    } else if (category.toLowerCase() === "finance loan") {
+      colorClass = "bg-blue-500"; // Blue color for FINANCE LOAN
+    } else if (category.toLowerCase() === "gst/itr tax pay") {
+      colorClass = "bg-yellow-500"; // Yellow color for GST/ITR TAX PAY
+    }
+  
+    // Update the button style with the color class
+    const buttons = document.querySelectorAll(".portfolio-button");
+    buttons.forEach((button) => {
+      button.classList.remove("bg-red-500", "bg-blue-500", "bg-yellow-500");
+      if (button.textContent.toLowerCase() === category.toLowerCase()) {
+        button.classList.add(colorClass);
+      }
+    });
   };
+  
+  useEffect(() => {
+    // Set default color for "FINTECH LOAN" when component mounts
+    handleProject("FINANCE LOAN");
+  }, []);
+  
+  
+  
 
   return (
     <>
@@ -73,13 +101,12 @@ const Portfolio = () => {
                   <li className="mb-1" key={category}>
                     {/* Category button */}
                     <button
-                      onClick={() => handleProject(category.toLowerCase())} // Lowercase the category name
-                      className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${
-                        showCard === category.toLowerCase() ? "activeClasses gradient-blue text-black" : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-gray"
-                      }`}
-                    >
-                      {category}
-                    </button>
+  onClick={() => handleProject(category.toLowerCase())} // Lowercase the category name
+  className={`portfolio-button inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 text-body-color dark:text-dark-6 hover:bg-primary hover:text-gray`}
+>
+  {category}
+</button>
+
                   </li>
                 ))}
               </ul>
@@ -123,7 +150,7 @@ const PortfolioCard = ({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className={`w-full px-4 md:w-1/2 xl:w-1/3 ${
-          showCard === "all" || showCard === category.toLowerCase()
+          showCard === "FINANCE LOAN" || showCard === category.toLowerCase()
             ? "block"
             : "hidden"
         }`}
