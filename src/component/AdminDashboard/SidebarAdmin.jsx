@@ -140,7 +140,7 @@ export function SidebarAdmin() {
               <label className="px-3 text-xs font-semibold uppercase text-white">Refer and Earn</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/hiring"}
+                href={"/dashboard/refer"}
               >
                 <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Refer Leads</span>
