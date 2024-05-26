@@ -1,6 +1,8 @@
+import bcrypt from "bcrypt";
 import connectDB from "@/lib/dbConnect";
 import uploadImage from "@/lib/uploadImages";
 import { NextResponse } from "next/server";
+import partnerApplication from "@/models/partnerApplication";
 
 export const POST = async (req) => {
   try {
@@ -11,7 +13,7 @@ export const POST = async (req) => {
     const name = formData.get("name");
     const email = formData.get("email");
     const mobileNumber = formData.get("phone");
-    const password = formData.get("password");
+    const plainPassword = formData.get("password");
     const city = formData.get("city");
     const state = formData.get("state");
     const partnerType = formData.get("partnerType");
@@ -19,9 +21,13 @@ export const POST = async (req) => {
     const message = formData.get("message");
 
     // Check if required fields are present in the form data
-    if (!name || !email || !mobileNumber || !password) {
+    if (!name || !email || !mobileNumber || !plainPassword) {
       throw new Error("Please provide name, email, mobile number, and password.");
     }
+
+     const hashedPassword = await bcrypt.hash(plainPassword, 10);
+
+
 
     const aadhaarCard = formData.get("aadhaarCard");
     const panCard = formData.get("panCard");
@@ -40,7 +46,7 @@ export const POST = async (req) => {
       name,
       email,
       mobileNumber,
-      password,
+     password: hashedPassword,
       city,
       state,
       partnerType,
@@ -53,13 +59,8 @@ export const POST = async (req) => {
       msmeCertificate: bankStatementUploadResult ? bankStatementUploadResult.secure_url : null,
     };
 
-    console.log(applicationData);
-
-    // Here you would normally save `applicationData` to your database
-    // For example:
-    // const result = await ApplicationModel.create(applicationData);
-
-    return NextResponse.json({ msg: "Application submitted successfully", data: applicationData }, {
+    await partnerApplication.create(applicationData);
+    return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });
   } catch (error) {

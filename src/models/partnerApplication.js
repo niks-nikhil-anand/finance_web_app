@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Define Schema
-const ApplicationSchema = new mongoose.Schema({
+const partnerApplicationSchema = new mongoose.Schema({
   name: { 
     type: String, 
     required: true 
@@ -28,7 +28,6 @@ const ApplicationSchema = new mongoose.Schema({
   partnerType: { 
     type: String,
     enum: ['CSP', 'Branch', 'DSA'],
-
 },
   interest: { 
     type: String 
@@ -51,12 +50,16 @@ const ApplicationSchema = new mongoose.Schema({
   msmeCertificate: { 
     type: String 
 },
+role:{
+    type : String,
+    enum: ['CSP', 'Branch', 'DSA' , 'User' , 'Admin'],
+    default: 'User'
+},
   isApproved: { 
     type: Boolean, 
-    default: false }, 
+    default: false 
+}, 
 });
 
-// Create Model
-const ApplicationModel = mongoose.model('Application', ApplicationSchema);
+export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication' , partnerApplicationSchema )
 
-export default ApplicationModel;
