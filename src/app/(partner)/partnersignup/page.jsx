@@ -77,6 +77,25 @@ export default function Signup() {
       if (response.ok) {
         const result = await response.json();
         console.log('Success:', result);
+        setAadhaarCard(null);
+        setPanCard(null);
+        setBankPassbook(null);
+        setShopPhotoCopy(null);
+        setMsmeCertificate(null);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          city: '',
+          pincode: '',
+          state: '',
+          partnerType: '',
+          interest: '',
+          message: '',
+          password: '',
+        });
+
+        
       } else {
         console.error('Error:', await response.json());
       }

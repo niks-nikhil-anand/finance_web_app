@@ -68,7 +68,15 @@ const GlassmorphismForm = () => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Success:', result);
+        setResume(null);
+        setAadhaarCard(null);
+        setPanCard(null);
+        setQualificationCertificate(null);
+        setExperienceCertificate(null);
+        setComputerCertificate(null);
+        setName('');
+        setEmail('');
+        setMobile('');
       } else {
         console.error('Error:', await response.json());
       }
