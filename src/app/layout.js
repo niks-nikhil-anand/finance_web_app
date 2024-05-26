@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbars from "./utils/Navbars";
 import Footers from "./utils/Footers";
 const inter = Inter({ subsets: ["latin"] });
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
   title: "Legal257 - Expert Financial and Tax Services | GST Filing | ITR Filing | Competitive Loans",
@@ -13,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+      <ToastContainer position="bottom-right" />
      <Navbars/>
         {children}
       <Footers/>

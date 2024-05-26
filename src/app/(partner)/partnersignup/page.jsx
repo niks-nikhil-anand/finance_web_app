@@ -3,8 +3,16 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import growth from '../../../../public/growth.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
+  const notify = () => {
+    toast.success("Form Submitted !", {
+      position: "bottom-right"
+    });
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,9 +56,29 @@ export default function Signup() {
     setStep(step - 1);
   };
 
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    notifyLoading(); 
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -94,16 +122,18 @@ export default function Signup() {
           message: '',
           password: '',
         });
+        notifySuccess();
 
         
       } else {
         console.error('Error:', await response.json());
+        notifyError(errorData.message);
       }
     } catch (error) {
       console.error('Error:', error);
+      notifyError('Something went wrong.');
     } finally {
       setLoading(false);
-      console.log(data)
     }
   };
 
@@ -327,6 +357,7 @@ export default function Signup() {
             </>
           )}
         </form>
+        <ToastContainer position="bottom-right" />
       </div>
     </div>
   );
