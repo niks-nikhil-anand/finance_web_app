@@ -7,11 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
-  const notify = () => {
-    toast.success("Form Submitted !", {
-      position: "bottom-right"
-    });
-  };
+
 
   const [formData, setFormData] = useState({
     name: '',

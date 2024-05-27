@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoanForm = () => {
   const [aadhaarCard, setAadhaarCard] = useState(null);
@@ -56,19 +58,31 @@ const LoanForm = () => {
     setStep(step - 1);
   };
 
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    notifyLoading();
 
     const formData = new FormData();
-    formData.append('aadhaarCard', aadhaarCard);
-    formData.append('panCard', panCard);
-    formData.append('bankPassbook', bankPassbook);
-    formData.append('bankStatements', bankStatements);
-    formData.append('itrFile', itrFile);
-    formData.append('msmeCertificate', msmeCertificate);
-    formData.append('tradeLicense', tradeLicense);
-    formData.append('gstCertificate', gstCertificate);
+   
     formData.append('name', name);
     formData.append('email', email);
     formData.append('mobileNumber', mobileNumber);
@@ -82,6 +96,16 @@ const LoanForm = () => {
     formData.append('maritalStatus', maritalStatus);
     formData.append('loanYear', loanYear);
     formData.append('loanType', loanType);
+
+    if (aadhaarCard) formData.append('aadhaarCard', aadhaarCard);
+    if (panCard) formData.append('panCard', panCard);
+    if (bankPassbook) formData.append('bankPassbook', bankPassbook);
+    if (bankStatements)  formData.append('bankStatements', bankStatements);
+    if (itrFile)  formData.append('itrFile', itrFile);
+    if (msmeCertificate) formData.append('msmeCertificate', msmeCertificate);
+    if (tradeLicense) formData.append('tradeLicense', tradeLicense);
+    if (gstCertificate) formData.append('gstCertificate', gstCertificate);
+    
 
     try {
       const response = await fetch('/api/loanApplication', {
@@ -112,13 +136,15 @@ const LoanForm = () => {
         setMaritalStatus('');
         setLoanYear('');
         setLoanType('');
+        notifySuccess();
       } else {
-        throw new Error('Failed to submit form');
+        console.error('Error:', await response.json());
+        notifyError(errorData.message);
       }
     } catch (error) {
       console.log(formData)
       console.error('Error:', error);
-      alert('An error occurred while uploading the resume');
+      notifyError('Something went wrong.');
     } finally {
        console.log(formData)
       setLoading(false);
