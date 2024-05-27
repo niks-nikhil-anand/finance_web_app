@@ -1,5 +1,7 @@
 "use client";
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UploadResumeForm = () => {
   const [resume, setResume] = useState(null);
@@ -31,20 +33,41 @@ const UploadResumeForm = () => {
     setMobile(e.target.value);
   };
 
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    notifyLoading();
 
     const formData = new FormData();
-    formData.append('resume', resume);
-    formData.append('aadhaarCard', aadhaarCard);
-    formData.append('panCard', panCard);
-    formData.append('qualificationCertificate', qualificationCertificate);
-    formData.append('experienceCertificate', experienceCertificate);
-    formData.append('computerCertificate', computerCertificate);
+    if (resume) formData.append('resume', resume);
+    if (aadhaarCard) formData.append('aadhaarCard', aadhaarCard);
+    if (panCard) formData.append('panCard', panCard);
+    if (qualificationCertificate) formData.append('qualificationCertificate', qualificationCertificate);
+    if (experienceCertificate) formData.append('experienceCertificate', experienceCertificate);
+    if (computerCertificate) formData.append('computerCertificate', computerCertificate);
     formData.append('name', name);
     formData.append('email', email);
     formData.append('mobile', mobile);
+
+    
 
     try {
       const response = await fetch('/api/jobApplication', {
@@ -63,13 +86,17 @@ const UploadResumeForm = () => {
         setName('');
         setEmail('');
         setMobile('');
+        notifySuccess();
       } else {
-        alert('Failed to upload resume');
+        console.error('Error:', await response.json());
+        notifyError(errorData.message);
       }
     } catch (error) {
+      console.log(formData)
       console.error('Error:', error);
-      alert('An error occurred while uploading the resume');
+      notifyError('Something went wrong.');
     } finally {
+      console.log(formData)
       setLoading(false);
     }
   };

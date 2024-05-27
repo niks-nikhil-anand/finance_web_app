@@ -1,5 +1,7 @@
 "use client"
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ReferForm = () => {
   const [formData, setFormData] = useState({
@@ -18,9 +20,28 @@ const ReferForm = () => {
     });
   };
 
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    notifyLoading();
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -44,12 +65,17 @@ const ReferForm = () => {
           service: '',
           referMobileNumber: ''
         });
+        notifySuccess();
       } else {
-        console.error('Failed to submit form');
+        console.error('Error:', await response.json());
+        notifyError(errorData.message);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.log(formData)
+      console.error('Error:', error);
+      notifyError('Something went wrong.');
     } finally{
+      console.log(formData)
       setLoading(false);
     }
   };
