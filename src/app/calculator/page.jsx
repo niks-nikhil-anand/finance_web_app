@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const LoanCalculator = () => {
   const [amount, setAmount] = useState(88000);
@@ -89,12 +90,14 @@ const LoanCalculator = () => {
         </div>
       </motion.div>
       <div className="mt-6 text-center">
+        <Link href={"/applyloan"}>
         <motion.button
           whileHover={{ scale: 1.1 }}
           className="gradient_yellow text-white base-bold px-4 py-2 rounded-lg"
         >
           Apply For Loan
         </motion.button>
+        </Link>
       </div>
     </div>
   );

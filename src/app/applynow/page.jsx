@@ -1,6 +1,8 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const GlassmorphismForm = () => {
   const [step, setStep] = useState(1);
@@ -40,12 +42,41 @@ const GlassmorphismForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    // Check if the input is for the mobile number and contains only digits
+    if (name === 'mobileNumber' && !/^\d*$/.test(value)) {
+      return; // Skip update if the value contains non-numeric characters
+    }
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    notifyLoading();
+
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -68,20 +99,28 @@ const GlassmorphismForm = () => {
 
       if (response.ok) {
         const result = await response.json();
-        setResume(null);
         setAadhaarCard(null);
         setPanCard(null);
-        setQualificationCertificate(null);
-        setExperienceCertificate(null);
-        setComputerCertificate(null);
-        setName('');
-        setEmail('');
-        setMobile('');
+        setBankPassbook(null);
+        setBankStatements(null);
+        setElectricityBill(null);
+        setPhotocopy(null);
+        setFormData({
+          name: '',
+          email: '',
+          mobileNumber: '',
+          partnerID: '',
+        });
+        setRegistrationType('');
+        notifySuccess();
       } else {
-        console.error('Error:', await response.json());
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        notifyError(errorData.message);
       }
     } catch (error) {
       console.error('Error:', error);
+      notifyError('Something went wrong.');
     } finally {
       setLoading(false);
     }
@@ -122,10 +161,12 @@ const GlassmorphismForm = () => {
                   value={formData.mobileNumber}
                   onChange={handleInputChange}
                   className="w-full p-2 rounded bg-white bg-opacity-50"
+                  pattern="\d*"
+                  maxLength="10"
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">Partner ID (Optional)</label>
+                <label className="block text-white">Partner ID/Refer Mobile Number (Optional)</label>
                 <input
                   type="text"
                   name="partnerID"
@@ -157,6 +198,9 @@ const GlassmorphismForm = () => {
                   <option value="FOOD LICENSE">FOOD LICENSE</option>
                   <option value="TRADE LICENSE">TRADE LICENSE</option>
                 </select>
+                {error && (
+                  <p className="text-red-500 mt-2">{error}</p>
+                )}
               </div>
               <button
                 type="button"
@@ -185,53 +229,66 @@ const GlassmorphismForm = () => {
                   type="file"
                   name="panCard"
                   onChange={(e) => handleFileChange(e, setPanCard)}
-                    className="w-full p-2 rounded bg-white bg-opacity-50"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-white">BANK STATEMENTS</label>
-                  <input
-                    type="file"
-                    name="bankStatements"
-                    onChange={(e) => handleFileChange(e, setBankStatements)}
-                    className="w-full p-2 rounded bg-white bg-opacity-50"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
-                  <input
-                    type="file"
-                    name="electricityBill"
-                    onChange={(e) => handleFileChange(e, setElectricityBill)}
-                    className="w-full p-2 rounded bg-white bg-opacity-50"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-white">PHOTO COPY</label>
-                  <input
-                    type="file"
-                    name="photocopy"
-                    onChange={(e) => handleFileChange(e, setPhotocopy)}
-                    className="w-full p-2 rounded bg-white bg-opacity-50"
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  className="w-full p-2 bg-green-500 rounded text-white"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                   {loading ? 'Uploading...' : 'Submit'}
-                </motion.button>
-                
-              </motion.div>
-            )}
-          </form>
-          
-        </div>
+                  className="w-full p-2 rounded bg-white bg-opacity-50"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-white">BANK STATEMENTS</label>
+                <input
+                  type="file"
+                  name="bankStatements"
+                  onChange={(e) => handleFileChange(e, setBankStatements)}
+                  className="w-full p-2 rounded bg-white bg-opacity-50"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
+                <input
+                  type="file"
+                  name="electricityBill"
+                  onChange={(e) => handleFileChange(e, setElectricityBill)}
+                  className="w-full p-2 rounded bg-white bg-opacity-50"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-white">PHOTO COPY</label>
+                <input
+                  type="file"
+                  name="photocopy"
+                  onChange={(e) => handleFileChange(e, setPhotocopy)}
+                  className="w-full p-2 rounded bg-white bg-opacity-50"
+                />
+              </div>
+              <div className="flex justify-between">
+  <motion.button
+    type="button"
+    onClick={handlePreviousStep}
+    className="w-1/3 p-2 bg-gray-400 rounded text-white"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    Previous
+  </motion.button>
+  <motion.button
+    type="submit"
+    className="w-1/3 p-2 bg-blue-500 rounded text-white"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    {loading ? 'Uploading...' : 'Next'}
+  </motion.button>
+</div>
+
+             
+            </motion.div>
+          )}
+        </form>
+        <ToastContainer position="bottom-right" />
       </div>
-    );
-  };
-  
-  export default GlassmorphismForm;
-  
+    </div>
+  );
+};
+
+export default GlassmorphismForm;
+
+                
