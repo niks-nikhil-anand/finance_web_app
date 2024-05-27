@@ -20,30 +20,30 @@ const jobApplicationSchema = new mongoose.Schema({
   },
   resume: {
     type: String,
-    trim: true,
+    
   },
   aadhaarCard: {
     type: String,
-    trim: true,
+    
   },
   panCard: {
     type: String,
-    trim: true,
+    
   },
   qualificationCertificate: {
     type: String,
-    trim: true,
+    
   },
   experienceCertificate: {
     type: String,
-    trim: true,
+    
   },
   computerCertificate: {
     type: String,
-    trim: true,
+    
   },
 }, {
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true, 
 });
 
 // Export the JobApplication model, creating it if it doesn't already exist

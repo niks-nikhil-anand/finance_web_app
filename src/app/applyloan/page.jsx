@@ -49,7 +49,20 @@ const LoanForm = () => {
       setFile(e.target.files[0]);
     }
   }
-
+  const handlePinCodeChange = (e) => {
+    const value = e.target.value;
+    if (value.match(/^\d{0,6}$/)) {
+      setPinCode(value);
+    }
+  };
+  const handleMonthlyIncomeChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, ''); // Remove any non-numeric characters
+    setMonthlyIncome(value);
+  };
+  const handleRequiredLoanAmountChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, ''); // Remove any non-numeric characters
+    setRequiredLoanAmount(value);
+  };
   const handleNextStep = () => {
     setStep(step + 1);
   };
@@ -203,7 +216,7 @@ const LoanForm = () => {
                 onChange={(e) => setGender(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="">Select Gender</option>
+                <option value="" disabled>Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -220,15 +233,17 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Pin Code</label>
-              <input
-                type="text"
-                name="pinCode"
-                value={pinCode}
-                onChange={(e) => setPinCode(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
+                    <label className="block text-sm font-medium text-white">Pin Code</label>
+                    <input
+                      type="text"
+                      name="pinCode"
+                      value={pinCode}
+                      onChange={handlePinCodeChange}
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      pattern="\d{6}"
+                      maxLength="6"
+                    />
+    </div>
             <div>
               <label className="block text-sm font-medium text-white">State</label>
               <select
@@ -237,7 +252,7 @@ const LoanForm = () => {
                 onChange={(e) => setState(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="">Select State</option>
+                <option value="" disabled>Select State</option>
                 {statesOfIndia.map((state, index) => (
                   <option key={index} value={state}>{state}</option>
                 ))}
@@ -255,7 +270,7 @@ const LoanForm = () => {
                 onChange={(e) => setMaritalStatus(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="">Select Marital Status</option>
+                <option value="" disabled>Select Marital Status</option>
                 <option value="single">Single</option>
                 <option value="married">Married</option>
                 <option value="divorced">Divorced</option>
@@ -270,6 +285,7 @@ const LoanForm = () => {
                 onChange={(e) => setLoanType(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
+                    <option value="" disabled>Select Loan type</option>
                 {loanTypes.map((loan, index) => (
                   <option key={index} value={loan}>{loan}</option>
                 ))}
@@ -283,22 +299,22 @@ const LoanForm = () => {
                 onChange={(e) => setLoanYear(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="">Select Duration</option>
+                <option value="" disabled>Select Duration</option>
                 <option value="1 year">1 Year</option>
-                <option value="2 years">2 Years</option>
-                <option value="3 years">3 Years</option>
-                <option value="4 years">4 Years</option>
-                <option value="5 years">5 Years</option>
+                <option value="2 years">2 Year</option>
+                <option value="3 years">3 Year</option>
+                <option value="4 years">4 Year</option>
+                <option value="5 years">5 Year</option>
                 <option value="6 year">6 Year</option>
-                <option value="7 years">7 Years</option>
-                <option value="8 years">8 Years</option>
-                <option value="9 years">9 Years</option>
-                <option value="10 years">10 Years</option>
+                <option value="7 years">7 Year</option>
+                <option value="8 years">8 Year</option>
+                <option value="9 years">9 Year</option>
+                <option value="10 years">10 Year</option>
                 <option value="11 year">11 Year</option>
-                <option value="12 years">12 Years</option>
-                <option value="13 years">13 Years</option>
-                <option value="14 years">14 Years</option>
-                <option value="15 years">15 Years</option>
+                <option value="12 years">12 Year</option>
+                <option value="13 years">13 Year</option>
+                <option value="14 years">14 Year</option>
+                <option value="15 years">15 Year</option>
               </select>
             </div>
             <div>
@@ -318,27 +334,38 @@ const LoanForm = () => {
     <option value="other">Other</option>
   </select>
 </div>
-
-            <div>
-              <label className="block text-sm font-medium text-white">Monthly Income</label>
-              <input
-                type="text"
-                name="monthlyIncome"
-                value={monthlyIncome}
-                onChange={(e) => setMonthlyIncome(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Required Loan Amount</label>
-              <input
-                type="text"
-                name="requiredLoanAmount"
-                value={requiredLoanAmount}
-                onChange={(e) => setRequiredLoanAmount(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
+<div>
+<label className="block text-sm font-medium text-white">Monthly Income</label>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span className="text-gray-500 sm:text-sm">₹</span>
+        </div>
+        <input
+          type="text"
+          name="monthlyIncome"
+          value={monthlyIncome}
+          onChange={handleMonthlyIncomeChange}
+          className="block w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="0.00"
+        />
+      </div>
+      </div>
+      <div>
+      <label className="block text-sm font-medium text-white">Required Loan Amount</label>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span className="text-gray-500 sm:text-sm">₹</span>
+        </div>
+        <input
+          type="text"
+          name="requiredLoanAmount"
+          value={requiredLoanAmount}
+          onChange={handleRequiredLoanAmountChange}
+          className="block w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="0.00"
+        />
+      </div>
+      </div>
           </>
         )}
         {step === 3 && (

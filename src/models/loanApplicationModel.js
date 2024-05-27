@@ -60,35 +60,35 @@ const LoanApplicationSchema = new mongoose.Schema({
   },
   aadhaarCard: {
     type: String,
-    required: true
+    
   },
   panCard: {
     type: String,
-    required: true
+    
   },
   bankPassbook: {
     type: String,
-    required: true
+    
   },
   bankStatements: {
     type: String,
-    required: true
+    
   },
   itrFile: {
     type: String,
-    required: true
+    
   },
   msmeCertificate: {
     type: String,
-    required: true
+    
   },
   tradeLicense: {
     type: String,
-    required: true
+    
   },
   gstCertificate: {
     type: String,
-    required: true
+    
   }
 });
 
