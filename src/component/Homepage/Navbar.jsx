@@ -169,8 +169,8 @@ const Navbar = () => {
               className={`overflow-hidden ${mediaGalleryOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/photoGallery" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Photo Gallery</Link>
-                <Link href="/videoGallery" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Video Gallery</Link>
+                <Link href="/photogallery" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Photo Gallery</Link>
+                <Link href="/videogallery" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Video Gallery</Link>
                 <Link href="/partnertestimonial" className="block px-3 py-2 rounded-md text-sm font-medium text-white">Partner Testimonial</Link>
               </div>
             </motion.div>
