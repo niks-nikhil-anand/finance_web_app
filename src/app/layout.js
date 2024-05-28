@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 export const metadata = {
   title: "Legal257 - Expert Financial and Tax Services | GST Filing | ITR Filing | Competitive Loans",
   description: "At Legal257, we provide top-notch financial and tax services, including expert GST and ITR filing to keep your business compliant. Explore our competitive loan options tailored to meet your financial needs.",
