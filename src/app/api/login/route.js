@@ -28,6 +28,9 @@ export const POST = async (req) => {
                 status: 408
             });
         }
+
+       
+        
         console.log(applicationData);
         console.log(partner);
 

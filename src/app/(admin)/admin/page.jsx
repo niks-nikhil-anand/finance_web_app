@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation'; // Import useRouter from Next.js
+import { signIn } from 'next-auth/react';
+
 
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
 
 
@@ -53,7 +53,6 @@ const LoginForm = () => {
         setEmail('');
         setPassword('');
         notifySuccess();
-        router.push('/dashboard');
       } else {
         const errorResult = await response.json();
         console.error('Error:', errorResult);
