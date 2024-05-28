@@ -37,7 +37,7 @@ export default function Home() {
    <Slider/>
    <ReferEarn/>
     <Testimonial/>
-    <Blog/>
+   
     <DownloadAppSection/>
     <FAQSection/>
 
