@@ -180,62 +180,7 @@ const PortfolioCard = ({
 };
 
 const portfolioData = [
-  {
-    ImageHref: GST,
-    category: "GST/ITR TAX PAY",
-    title: "GST Return/Registration",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  ITR,
-    category: "GST/ITR TAX PAY",
-    title: "ITR Return/Registration",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  business,
-    category: "GST/ITR TAX PAY",
-    title: "Business Return/Registration",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  msme,
-    category: "GST/ITR TAX PAY",
-    title: "MSME REGISTRATION",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  food,
-    category: "GST/ITR TAX PAY",
-    title: "Food License",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  trade,
-    category: "GST/ITR TAX PAY",
-    title: "Trade License",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  noc,
-    category: "GST/ITR TAX PAY",
-    title: "Loan NOC Certificate",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
-  {
-    ImageHref:  legal,
-    category: "GST/ITR TAX PAY",
-    title: "Legal Issues and Legal Notice",
-    button: "Apply Now",
-    buttonHref: "/applynow",
-  },
+ 
   {
     ImageHref: businessloan,
     category: "FINANCE LOAN",

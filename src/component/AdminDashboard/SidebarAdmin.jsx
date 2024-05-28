@@ -2,11 +2,14 @@
 import React, { useState } from 'react'
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, Menu } from 'lucide-react'
 import { MdDashboard , MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
-import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch } from "react-icons/fa";
+import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch , FaPeopleCarry } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FaUsersLine , FaHireAHelper } from "react-icons/fa6";
+import { IoShareSocialSharp } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import Link from 'next/link';
+
+
 
 
 
@@ -61,92 +64,56 @@ export function SidebarAdmin() {
                 <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Loan</span>
               </Link>
-              <a
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+                href={"/dashboard/refer"}
               >
-                <Wallet className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Finance</span>
-              </a>
+                <IoShareSocialSharp  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Refer Leads</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/hiring"}
+              >
+                <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium"> Hiring Leads</span>
+              </Link>
             </div>
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">People</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">User</label>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <MdOutlinePeople  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Customer</span>
+                 <FaUsersLine className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">User</span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <CiShop className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Retailers</span>
-              </a>
-              
-            </div>
-            <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Users</label>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <FaCodeBranch className="h-5 w-5" aria-hidden="true" />
+                 <FaCodeBranch className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Branch</span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <Wallet  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Finance</span>
-              </a>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <BellRing className="h-5 w-5" aria-hidden="true" />
+                <MdOutlinePeople  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">DSA</span>
               </a>
               <a
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href="#"
               >
-                <BellRing className="h-5 w-5" aria-hidden="true" />
+                <CiShop  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">CSP</span>
               </a>
-              <a
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
-              >
-                <FaUsersLine className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">All Users</span>
-              </a>
+              
             </div>
-            <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Hiring</label>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/hiring"}
-              >
-                <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Leads</span>
-              </Link>
-          
-            </div>
-            <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Refer and Earn</label>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/refer"}
-              >
-                <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Refer Leads</span>
-              </Link>
-          
-            </div>
+            
+           
+            
           </nav>
         </div>
       </aside>
