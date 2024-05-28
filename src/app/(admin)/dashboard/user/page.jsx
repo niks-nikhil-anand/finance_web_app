@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
@@ -19,20 +19,25 @@ const JobApplicationsTable = () => {
     fetchApplications();
   }, []);
 
+  const handleRoleChange = (id, role) => {
+    // Add your logic to handle role changes
+  };
+
   const handleImageClick = (imageUrl) => {
     window.open(imageUrl, '_blank');
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto w-[80%] bg-gray-100">
+      className="container mx-auto w-[80%] bg-gray-100"
+    >
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">ALL Users - Legal 257</h2>
-      <div className="overflow-auto max-h-[30rem] no-scrollbar ">
+      <div className="overflow-auto max-h-[30rem] no-scrollbar">
         <table className="min-w-full bg-white border border-gray-300">
-          <thead className='bg-purple-100'>
+          <thead className="bg-purple-100">
             <tr>
               <th className="py-2 px-4 border border-gray-300">Name</th>
               <th className="py-2 px-4 border border-gray-300">Email</th>
@@ -43,7 +48,6 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">State</th>
               <th className="py-2 px-4 border border-gray-300">Partner Type</th>
               <th className="py-2 px-4 border border-gray-300">Interest</th>
-             
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
               <th className="py-2 px-4 border border-gray-300">PAN Card</th>
               <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
@@ -70,13 +74,21 @@ const JobApplicationsTable = () => {
                     ))}
                   </select>
                 </td>
-                <td className="py-2 px-4 border border-gray-300">{application.isApproved ? 'Yes' : 'No'}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
+                    value={application.isApproved ? 'Yes' : 'No'}
+                    onChange={(e) => handleRoleChange(application.id, e.target.value)}
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.city}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.state}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.partnerType}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.interest}</td>
-                
                 <td className="py-2 px-4 border border-gray-300">
                   {application.aadhaarCard ? (
                     <a
@@ -153,3 +165,4 @@ const JobApplicationsTable = () => {
 };
 
 export default JobApplicationsTable;
+``
