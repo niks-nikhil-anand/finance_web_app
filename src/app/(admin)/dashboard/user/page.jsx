@@ -3,16 +3,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
-const GstApplicationsTable = () => {
+const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('/api/businessApplication');
+        const response = await axios.get('/api/user');
         setApplications(response.data);
       } catch (error) {
-        console.error('Error fetching GST applications:', error);
+        console.error('Error fetching job applications:', error);
       }
     };
 
@@ -24,118 +24,118 @@ const GstApplicationsTable = () => {
   };
 
   return (
-    <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-    className="container mx-auto  w-[80%] bg-gray-100"
-    >
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">GST/ITR Applications</h2>
-      <div className="overflow-auto max-h-[30rem]">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="container mx-auto w-[80%] bg-gray-100">
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Job Applications</h2>
+      <div className="overflow-auto max-h-96">
         <table className="min-w-full bg-white border border-gray-300">
-          <thead className="bg-purple-100">
+          <thead className='bg-purple-100'>
             <tr>
               <th className="py-2 px-4 border border-gray-300">Name</th>
-              <th className="py-2 px-4 border border-gray-300 w-36">Email</th>
+              <th className="py-2 px-4 border border-gray-300">Email</th>
+              <th className="py-2 px-4 border border-gray-300">Role</th>
+              <th className="py-2 px-4 border border-gray-300">Approved</th>
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
-              <th className="py-2 px-4 border border-gray-300">Partner ID</th>
-              <th className="py-2 px-4 border border-gray-300">Registration Type</th>
+              <th className="py-2 px-4 border border-gray-300">City</th>
+              <th className="py-2 px-4 border border-gray-300">State</th>
+              <th className="py-2 px-4 border border-gray-300">Partner Type</th>
+              <th className="py-2 px-4 border border-gray-300">Interest</th>
+             
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
               <th className="py-2 px-4 border border-gray-300">PAN Card</th>
               <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
-              <th className="py-2 px-4 border border-gray-300">Electricity Bill</th>
-              <th className="py-2 px-4 border border-gray-300">Photo</th>
-              <th className="py-2 px-4 border border-gray-300">Bank Statements</th>
+              <th className="py-2 px-4 border border-gray-300">Shop Photo Copy</th>
+              <th className="py-2 px-4 border border-gray-300">MSME Certificate</th>
             </tr>
           </thead>
           <tbody>
             {applications.map((application, index) => (
-              <motion.tr
-                key={index}
-                className="hover:bg-gray-100"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
+              <tr key={index} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border border-gray-300">{application.name}</td>
-                <td className="py-2 px-4 border border-gray-300 text-sm">{application.email}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.email}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.role}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.isApproved ? 'Yes' : 'No'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.partnerID}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.registrationType}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.city}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.state}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.partnerType}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.interest}</td>
+                
                 <td className="py-2 px-4 border border-gray-300">
-                  {application.aadhaarCard && (
+                  {application.aadhaarCard ? (
                     <a
                       href="#"
                       onClick={() => handleImageClick(application.aadhaarCard)}
                       className="text-blue-500 hover:underline"
                     >
-                       Aadhaar Card
+                      View Aadhaar Card
                     </a>
+                  ) : (
+                    'Not Available'
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  {application.panCard && (
+                  {application.panCard ? (
                     <a
                       href="#"
                       onClick={() => handleImageClick(application.panCard)}
                       className="text-blue-500 hover:underline"
                     >
-                       PAN Card
+                      View PAN Card
                     </a>
+                  ) : (
+                    'Not Available'
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  {application.bankPassbook && (
+                  {application.bankPassbook ? (
                     <a
                       href="#"
                       onClick={() => handleImageClick(application.bankPassbook)}
                       className="text-blue-500 hover:underline"
                     >
-                       Bank Passbook
+                      View Bank Passbook
                     </a>
+                  ) : (
+                    'Not Available'
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  {application.electricityBill && (
+                  {application.shopPhotoCopy ? (
                     <a
                       href="#"
-                      onClick={() => handleImageClick(application.electricityBill)}
+                      onClick={() => handleImageClick(application.shopPhotoCopy)}
                       className="text-blue-500 hover:underline"
                     >
-                       Electricity Bill
+                      View Shop Photo Copy
                     </a>
+                  ) : (
+                    'Not Available'
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  {application.photoCopy && (
+                  {application.msmeCertificate ? (
                     <a
                       href="#"
-                      onClick={() => handleImageClick(application.photoCopy)}
+                      onClick={() => handleImageClick(application.msmeCertificate)}
                       className="text-blue-500 hover:underline"
                     >
-                       Photo
+                      View MSME Certificate
                     </a>
+                  ) : (
+                    'Not Available'
                   )}
                 </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.bankStatement && (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.bankStatement)}
-                      className="text-blue-500 hover:underline"
-                    >
-                       Bank Statements
-                    </a>
-                  )}
-                </td>
-              </motion.tr>
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
-      
     </motion.div>
   );
 };
 
-export default GstApplicationsTable;
+export default JobApplicationsTable;
