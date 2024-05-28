@@ -29,15 +29,15 @@ const JobApplicationsTable = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="container mx-auto w-[80%] bg-gray-100">
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Job Applications</h2>
-      <div className="overflow-auto max-h-96">
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">ALL Users - Legal 257</h2>
+      <div className="overflow-auto max-h-[30rem] no-scrollbar ">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className='bg-purple-100'>
             <tr>
               <th className="py-2 px-4 border border-gray-300">Name</th>
               <th className="py-2 px-4 border border-gray-300">Email</th>
               <th className="py-2 px-4 border border-gray-300">Role</th>
-              <th className="py-2 px-4 border border-gray-300">Approved</th>
+              <th className="py-2 px-4 border border-gray-300">KYC Approved</th>
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-300">City</th>
               <th className="py-2 px-4 border border-gray-300">State</th>
@@ -49,6 +49,7 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
               <th className="py-2 px-4 border border-gray-300">Shop Photo Copy</th>
               <th className="py-2 px-4 border border-gray-300">MSME Certificate</th>
+              <th className="py-2 px-4 border border-gray-300">User Legal257 ID</th>
             </tr>
           </thead>
           <tbody>
@@ -56,7 +57,19 @@ const JobApplicationsTable = () => {
               <tr key={index} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border border-gray-300">{application.name}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.email}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.role}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
+                    value={application.role}
+                    onChange={(e) => handleRoleChange(application.id, e.target.value)}
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    {['CSP', 'Branch', 'DSA', 'User', 'Admin'].map((role) => (
+                      <option key={role} value={role}>
+                        {role}
+                      </option>
+                    ))}
+                  </select>
+                </td>
                 <td className="py-2 px-4 border border-gray-300">{application.isApproved ? 'Yes' : 'No'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.city}</td>
@@ -129,6 +142,7 @@ const JobApplicationsTable = () => {
                     'Not Available'
                   )}
                 </td>
+                <td className="py-2 px-4 border border-gray-300">{application._id}</td>
               </tr>
             ))}
           </tbody>

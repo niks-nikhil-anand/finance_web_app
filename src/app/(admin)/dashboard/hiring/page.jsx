@@ -31,7 +31,7 @@ const JobApplicationsTable = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto  w-[80%] bg-gray-100">
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Job Applications</h2>
-      <div className="overflow-auto max-h-96">
+      <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className='bg-purple-100'>
             <tr>
