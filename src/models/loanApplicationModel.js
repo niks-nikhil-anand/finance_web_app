@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const LoanApplicationSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    
   },
   email: {
     type: String,
@@ -20,43 +20,43 @@ const LoanApplicationSchema = new mongoose.Schema({
   },
   city: {
     type: String,
-    required: true
+    
   },
   employmentType: {
     type: String,
-    required: true
+   
   },
   monthlyIncome: {
     type: Number,
-    required: true
+   
   },
   requiredLoanAmount: {
     type: String,
-    required: true
+    
   },
   pinCode: {
     type: String,
-    required: true
+    
   },
   state: {
     type: String,
-    required: true
+    
   },
   maritalStatus: {
     type: String,
-    required: true
+    
   },
   loanYear: {
     type: String,
-    required: true
+   
   },
   employmentType: {
     type: String,
-    required: true
+    
   },
   loanType: {
     type: String,
-    required: true
+   
   },
   aadhaarCard: {
     type: String,
