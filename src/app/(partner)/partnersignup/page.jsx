@@ -5,6 +5,7 @@ import { useState } from 'react';
 import growth from '../../../../public/growth.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 export default function Signup() {
 
@@ -285,8 +286,21 @@ export default function Signup() {
               >
                 Next
               </button>
+              
             </>
           )}
+          <div>
+                <p className="mt-2 text-sm text-gray-600">
+              Already have an account?{' '}
+              <Link
+                href={"/partnersignin"}
+                title=""
+                className="font-semibold text-black transition-all duration-200 hover:underline"
+              >
+               Login
+              </Link>
+            </p>
+                </div>
 
           {step === 2 && (
             <>
@@ -349,6 +363,8 @@ export default function Signup() {
                 >
                   {loading ? 'Submitting...' : 'Submit'}
                 </button>
+                
+               
               </div>
             </>
           )}
