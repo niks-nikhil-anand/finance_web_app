@@ -186,6 +186,7 @@ const Navbar = () => {
           <Link href="/contact" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
           <Link href="/refer" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Refer & Earn</Link>
           <Link href="/applyjob" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Job - Apply Now</Link>
+          <Link href="/manualPayment" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Manual Payment</Link>
           <Link href="//partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Fintech Banking</Link>
           <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
           <Link href="/applynow" onClick={handleLinkClick}>
