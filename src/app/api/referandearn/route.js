@@ -14,6 +14,7 @@ export const POST =  async (req, res) => {
     const mobileNumber = formData.get("mobileNumber");
     const service = formData.get("service");
     const referMobileNumber = formData.get("referMobileNumber");
+    const contactNumber = formData.get("contactNumber");
 
     const applicationData = {
       name,
@@ -21,9 +22,11 @@ export const POST =  async (req, res) => {
       mobileNumber,
       service,
       referMobileNumber,
+      contactNumber
       
     };
     await referApplicationModel.create(applicationData);
+    console.log(applicationData)
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });

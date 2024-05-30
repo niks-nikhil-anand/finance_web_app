@@ -189,7 +189,7 @@ const ReferForm = () => {
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="contactNumber">
-              Contact Number
+              Contact Number (Whom you want to refer)
             </label>
             <input
               type="tel"
@@ -218,13 +218,13 @@ const ReferForm = () => {
         </form>
         <div>
           <p className="mt-2 text-sm text-gray-600 ">
-            Already Applied for Refer & Earn?{' '}
+            Already Applied?{' '}
             <Link
-              href={"/contact"}
+              href={"https://wa.link/248lpp"}
               title=""
               className="font-semibold text-black transition-all duration-200 hover:underline"
             >
-              Contact Us
+              Whatsapp Now
             </Link>
           </p>
         </div>

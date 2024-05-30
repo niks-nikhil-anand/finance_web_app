@@ -20,7 +20,9 @@ const referApplicationSchema = new mongoose.Schema({
   },
   referMobileNumber: {
     type: String,
-    required: true,
+  },
+  contactNumber: {
+    type: String,
   },
   status: {
     type: String,

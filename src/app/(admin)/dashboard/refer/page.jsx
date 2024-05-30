@@ -36,6 +36,7 @@ const ReferApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-300">Service</th>
               <th className="py-2 px-4 border border-gray-300">Refer Mobile Number</th>
+              <th className="py-2 px-4 border border-gray-300">contactNumber</th>
               <th className="py-2 px-4 border border-gray-300">Status</th>
             </tr>
           </thead>
@@ -53,6 +54,7 @@ const ReferApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.service}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.referMobileNumber}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.contactNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.status}</td>
               </motion.tr>
             ))}
