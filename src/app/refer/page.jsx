@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -175,6 +176,18 @@ const ReferForm = () => {
           </button>
         </div>
       </form>
+      <div>
+                <p className="mt-2 text-sm text-gray-600">
+              Already Applied for Refer & Earn ?{' '}
+              <Link
+                href={"/contact"}
+                title=""
+                className="font-semibold text-black transition-all duration-200 hover:underline"
+              >
+               Contact Us 
+              </Link>
+            </p>
+                </div>
       </div>
       
       
