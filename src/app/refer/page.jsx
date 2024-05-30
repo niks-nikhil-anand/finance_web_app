@@ -210,14 +210,14 @@ const ReferForm = () => {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               {loading ? 'Uploading...' : 'Submit'}
             </button>
           </div>
         </form>
         <div>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-600 ">
             Already Applied for Refer & Earn?{' '}
             <Link
               href={"/contact"}
