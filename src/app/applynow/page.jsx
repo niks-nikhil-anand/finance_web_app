@@ -130,40 +130,9 @@ const GlassmorphismForm = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 gap-5">
+      
       <div>
-      <div className="relative z-10 p-8 max-w-[20rem] md:max-w-3xl text-center md:text-left">
-                <motion.h1
-                    className="text-xl md:text-xl lg:text-2xl font-bold mb-4"
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    Streamline Your Tax Filing with Ease - Apply for <span className="text-yellow-500">ITR and GST Now!</span>
-                </motion.h1>
-                <motion.p
-                    className="text-sm md:text-xl lg:text-xl mb-8 "
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                    Hassle-Free ITR and GST Filing - Start Your Application Today!
-                </motion.p>
-              
-            </div>
-      <div>
-      <div className="relative z-10 md:mt-0 max-w-xs lg:max-w-md mt-5">
-                <Image
-                    src={paymentqr}
-                    alt="Financial Planning"
-                    width={300}
-                    height={300}
-                    className="rounded-lg"
-                />
-            </div>
-      </div>
-      </div>
-      <div>
-      <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md md:mt-[15rem]">
+      <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md ">
         <h2 className="text-2xl font-bold text-white mb-6">GST/ITR Filling Form</h2>
         <form onSubmit={handleSubmit}>
           {step === 1 && (
