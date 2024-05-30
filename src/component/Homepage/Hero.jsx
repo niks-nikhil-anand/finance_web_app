@@ -5,15 +5,17 @@ import Typing from 'react-typing-effect';
 import Image from 'next/image';
 import hero2 from '../../../public/hero2.jpg';
 import hero3 from '../../../public/hero3.jpg';
+import Aadhar from '../../../public/services/Aadhar.jpg';
+import gst1 from '../../../public/services/gst1.png';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [hero2, hero3];
+  const slides = [hero2, hero3 , Aadhar , gst1];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
-    }, 5000); // Change slide every 5 seconds
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, []);
