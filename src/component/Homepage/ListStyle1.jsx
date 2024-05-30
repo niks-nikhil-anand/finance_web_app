@@ -27,6 +27,7 @@ import upi from '../../../public/services/upi.jpg';
 import Aadhar from '../../../public/services/Aadhar.jpg';
 import moneytransfer from '../../../public/services/moneytransfer.jpg';
 import cashmgt from '../../../public/services/CASH-MGT.jpg';
+import licence from '../../../public/services/licence.png';
 import Link from "next/link";
 
 const Portfolio = () => {
@@ -365,7 +366,7 @@ const portfolioData = [
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  GST,
     category: "GST/ITR TAX PAY",
     title: "GST Registration",
     button: "Apply Now",
@@ -386,49 +387,49 @@ const portfolioData = [
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  business,
     category: "GST/ITR TAX PAY",
     title: "BUSINESS REGISTRATION",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  msme,
     category: "GST/ITR TAX PAY",
     title: "MSME REGISTRATION",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  legal,
     category: "GST/ITR TAX PAY",
     title: "LEGAL ISSUES LEGAL NOTICE",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  noc,
     category: "GST/ITR TAX PAY",
     title: "LOAN NOC CERTIFICATE",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  licence,
     category: "GST/ITR TAX PAY",
     title: "BUSINESS LICENSE",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  food,
     category: "GST/ITR TAX PAY",
     title: "FOOD LICENSE",
     button: "Apply Now",
     buttonHref: "#",
   },
   {
-    ImageHref:  ITR,
+    ImageHref:  trade,
     category: "GST/ITR TAX PAY",
     title: "TRADE LICENSE",
     button: "Apply Now",
