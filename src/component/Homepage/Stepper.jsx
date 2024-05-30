@@ -48,7 +48,7 @@ const Stepper = () => {
         >
          <Image src={step2} height={50} width={50} alt='step2' />
           <h3 class="text-xl font-semibold mb-2 text-black">Receive Funds</h3>
-          <p class="text-gray-500 text-sm text-black">Receive your loan within 7 Business days</p>
+          <p class="text-gray-500 text-sm ">Receive your loan within 7 Business days</p>
         </motion.div>
         
         
