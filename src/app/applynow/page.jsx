@@ -279,7 +279,7 @@ const GlassmorphismForm = () => {
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
   >
-    {loading ? 'Uploading...' : 'Next'}
+    {loading ? 'Uploading...' : 'Submit'}
   </motion.button>
 </div>
 
