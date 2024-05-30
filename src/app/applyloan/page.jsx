@@ -56,11 +56,11 @@ const LoanForm = () => {
     }
   };
   const handleMonthlyIncomeChange = (e) => {
-    const value = e.target.value.replace(/[^0-9]/g, ''); // Remove any non-numeric characters
+    const value = e.target.value.replace(/[^0-9]/g, ''); 
     setMonthlyIncome(value);
   };
   const handleRequiredLoanAmountChange = (e) => {
-    const value = e.target.value.replace(/[^0-9]/g, ''); // Remove any non-numeric characters
+    const value = e.target.value.replace(/[^0-9]/g, ''); 
     setRequiredLoanAmount(value);
   };
   const handleNextStep = () => {
