@@ -111,16 +111,16 @@ const Navbar = () => {
         initial={false}
         animate={{ height: isOpen ? "auto" : 0 }}
         transition={{ duration: 0.3 }}
-        className={`md:hidden overflow-hidden bg-yellow-500`}
+        className={`md:hidden overflow-hidden bg-blue-50 text-black`}
         id="mobile-menu"
         
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <Link href="/" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Home</Link>
+          <Link href="/" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Home</Link>
           <div className="relative">
             <button
               onClick={toggleSubMenu(setLoanCalcOpen, loanCalcOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-white"
+              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-black"
             >
               Loan Calculator
               <span>{loanCalcOpen ? "▲" : "▼"}</span>
@@ -132,18 +132,18 @@ const Navbar = () => {
               className={`overflow-hidden ${loanCalcOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/calculator" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Monthly EMI Calculator</Link>
-                <Link href="/applyloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Eligibility Calculator</Link>
+                <Link href="/calculator" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Monthly EMI Calculator</Link>
+                <Link href="/applyloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Eligibility Calculator</Link>
               </div>
             </motion.div>
           </div>
           
-          <Link href="/applynow" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">GST/ITR - Apply Now </Link>
-          <Link href="/about" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">About Us</Link>
+          <Link href="/applynow" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">GST/ITR - Apply Now </Link>
+          <Link href="/about" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">About Us</Link>
           <div className="relative">
             <button
               onClick={toggleSubMenu(setLoansOpen, loansOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-white"
+              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-black"
             >
               Loans
               <span>{loansOpen ? "▲" : "▼"}</span>
@@ -155,17 +155,17 @@ const Navbar = () => {
               className={`overflow-hidden ${loansOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/personalloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Personal Loan</Link>
-                <Link href="/businessloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Business Loan</Link>
-                <Link href="/loanproperty"  onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Loan Against Property</Link>
-                <Link href="/homeloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Home Loan</Link>
+                <Link href="/personalloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Personal Loan</Link>
+                <Link href="/businessloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Business Loan</Link>
+                <Link href="/loanproperty"  onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Loan Against Property</Link>
+                <Link href="/homeloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Home Loan</Link>
               </div>
             </motion.div>
           </div>
           <div className="relative">
             <button
               onClick={toggleSubMenu(setMediaGalleryOpen, mediaGalleryOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-white"
+              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-balck"
             >
               Media Gallery
               <span>{mediaGalleryOpen ? "▲" : "▼"}</span>
@@ -177,18 +177,18 @@ const Navbar = () => {
               className={`overflow-hidden ${mediaGalleryOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Photo Gallery</Link>
-                <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Video Gallery</Link>
-                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-white">Partner Testimonial</Link>
+                <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Photo Gallery</Link>
+                <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Video Gallery</Link>
+                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Partner Testimonial</Link>
               </div>
             </motion.div>
           </div>
-          <Link href="/contact" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Contact Us</Link>
-          <Link href="/refer" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Refer & Earn</Link>
-          <Link href="/applyjob" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Job - Apply Now</Link>
-          <Link href="/manualPayment" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Manual Payment</Link>
-          <Link href="//partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Fintech Banking</Link>
-          <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-white">Become Our Partner</Link>
+          <Link href="/contact" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Contact Us</Link>
+          <Link href="/refer" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Refer & Earn</Link>
+          <Link href="/applyjob" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Job - Apply Now</Link>
+          <Link href="/manualPayment" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Manual Payment</Link>
+          <Link href="//partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Fintech Banking</Link>
+          <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Become Our Partner</Link>
           <Link href="/applynow" onClick={handleLinkClick}>
             <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ">
               Apply Now
