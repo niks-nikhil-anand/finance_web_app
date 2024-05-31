@@ -169,7 +169,7 @@ const PortfolioCard = ({
             </h3>
             <Link
               href={buttonHref}
-              className="text-body-color dark:text-dark-6 bg-gray-300 inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-black frame"
+              className=" gradient_yellow  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-black frame"
             >
               {button}
             </Link>
