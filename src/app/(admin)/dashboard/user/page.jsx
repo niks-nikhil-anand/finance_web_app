@@ -21,17 +21,18 @@ const JobApplicationsTable = () => {
 
   const handleRoleChange = async (id, role, isApproved) => {
     try {
-      await axios.post('/api/updateRole', { userId: id, role, isApproved });
+      const response = await axios.post('/api/updateRole', { userId: id, role, isApproved });
       setApplications((prevApplications) =>
         prevApplications.map((application) =>
-          application._id === id ? { ...application, role, isApproved } : application
+          application._id === id ? { ...application, role, isApproved: isApproved === 'Yes' } : application
         )
       );
-      console.log(applications)
+      console.log(response.data);
     } catch (error) {
       console.error('Error updating role:', error);
     }
   };
+  
 
   const handleImageClick = (imageUrl) => {
     window.open(imageUrl, '_blank');
@@ -74,7 +75,7 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.role}
-                    onChange={(e) => handleRoleChange(application.id, e.target.value, application.isApproved)}
+                    onChange={(e) => handleRoleChange(application._id, e.target.value, application.isApproved)}
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
                     {['CSP', 'Branch', 'DSA', 'User', 'Admin'].map((role) => (
@@ -87,7 +88,7 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.isApproved ? 'Yes' : 'No'}
-                    onChange={(e) => handleRoleChange(application.id, application.role, e.target.value)}
+                    onChange={(e) => handleRoleChange(application._id, application.role, e.target.value)}
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
                     <option value="Yes">Yes</option>
