@@ -79,32 +79,29 @@ export function SidebarAdmin() {
                  <FaUsersLine className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">User</span>
               </Link>
-              <a
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+                href={"/user/branch"}
               >
                  <FaCodeBranch className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Branch</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+                href={"/user/dsa"}
               >
                 <MdOutlinePeople  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">DSA</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href="#"
+                href={"/user/csp"}
               >
                 <CiShop  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">CSP</span>
-              </a>
+              </Link>
               
             </div>
-            
-           
-            
           </nav>
         </div>
       </aside>
