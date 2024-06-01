@@ -1,5 +1,6 @@
 "use client";
 import MountainChart from '@/component/AdminComp/(Charts)/MountainCharts';
+import PieChartComponent from '@/component/AdminComp/(Charts)/PieCharts';
 import CardDataStats from '@/component/AdminComp/CardDataStats';
 import Card from '@/component/AdminDashboard/CardAdmin';
 import Graph from '@/component/AdminDashboard/GraphAdmin';
@@ -76,6 +77,9 @@ const Dashboard = () => {
 
       <div>
         <MountainChart/>
+      </div>
+      <div>
+        <PieChartComponent/>
       </div>
       
       {/* 2 Graphs in a Row */}
