@@ -117,7 +117,7 @@ const Navbar = () => {
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link href="/" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Home</Link>
-          <Link href="/" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Rozana Pay</Link>
+          <Link href="/rozanaPay" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Rozana Pay</Link>
           <div className="relative">
             <button
               onClick={toggleSubMenu(setLoanCalcOpen, loanCalcOpen)}
