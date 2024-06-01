@@ -61,7 +61,7 @@ const CSPTable = () => {
                 <td className="py-2 px-4 border border-gray-300">{application.name}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.email}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.role}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.isApproved}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.isApproved ? 'Yes' : 'No'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.city}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.state}</td>

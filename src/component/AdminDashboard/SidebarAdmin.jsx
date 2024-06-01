@@ -81,21 +81,21 @@ export function SidebarAdmin() {
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/user/branch"}
+                href={"/dashboard/user/branch"}
               >
                  <FaCodeBranch className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Branch</span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/user/dsa"}
+                href={"/dashboard/user/dsa"}
               >
                 <MdOutlinePeople  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">DSA</span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/user/csp"}
+                href={"/dashboard/user/csp"}
               >
                 <CiShop  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">CSP</span>
