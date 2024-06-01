@@ -1,4 +1,5 @@
 "use client";
+import MountainChart from '@/component/AdminComp/(Charts)/MountainCharts';
 import CardDataStats from '@/component/AdminComp/CardDataStats';
 import Card from '@/component/AdminDashboard/CardAdmin';
 import Graph from '@/component/AdminDashboard/GraphAdmin';
@@ -9,14 +10,26 @@ import { FaEye, FaMoneyBillWave, FaBox, FaChartLine } from 'react-icons/fa';
 
 // Mock data
 const tableData1 = [
-  { Name: "John Doe", Age: 28, Occupation: "Engineer" },
-  { Name: "Jane Smith", Age: 34, Occupation: "Designer" },
-  // Add more rows as needed
+  { Name: "John Doe", Role: 24, Services: "Finance" },
+  { Name: "Jane Smith", Role: 34, Occupation: "GST/ITR" },
+  { Name: "John Doe", Role: 24, Services: "Finance" },
+  { Name: "Jane Smith", Role: 34, Occupation: "GST/ITR" },
+  { Name: "John Doe", Role: 24, Services: "Finance" },
+  { Name: "Jane Smith", Role: 34, Occupation: "GST/ITR" },
+  { Name: "John Doe", Role: 24, Services: "Finance" },
+  { Name: "Jane Smith", Role: 34, Occupation: "GST/ITR" },
+  
 ];
 
 const tableData2 = [
-  { Product: "Laptop", Price: "$1000", Stock: 25 },
-  { Product: "Phone", Price: "$500", Stock: 100 },
+  { User: "User1", Wallet: "₹1000", Role: 25 },
+  { Product: "User2", Wallet: "₹500", Role: 100 },
+  { User: "User1", Wallet: "₹1000", Role: 25 },
+  { Product: "User2", Wallet: "₹500", Role: 100 },
+  { User: "User1", Wallet: "₹1000", Role: 25 },
+  { Product: "User2", Wallet: "₹500", Role: 100 },
+  { User: "User1", Wallet: "₹1000", Role: 25 },
+  { Product: "User2", Wallet: "₹500", Role: 100 },
   // Add more rows as needed
 ];
 
@@ -58,7 +71,11 @@ const Dashboard = () => {
       {/* 2 Tables in a Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <Table title="User Data" data={tableData1} />
-        <Table title="Product Data" data={tableData2} />
+        <Table title="Wallet Data" data={tableData2} />
+      </div>
+
+      <div>
+        <MountainChart/>
       </div>
       
       {/* 2 Graphs in a Row */}
