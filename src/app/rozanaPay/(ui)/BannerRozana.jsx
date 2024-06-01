@@ -23,7 +23,7 @@ const BannerRozana = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    Whether you're paying bills, transferring money, or recharging your mobile, Rozana Pay offers a comprehensive solution to meet all your needs.
+                    Whether you&apos;re paying bills, transferring money, or recharging your mobile, Rozana Pay offers a comprehensive solution to meet all your needs.
                 </motion.p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                     <motion.a

@@ -33,7 +33,7 @@ const RozanaPayDetails = () => {
         className="mb-8"
       >
         <p className="text-lg md:text-xl leading-relaxed">
-          Legal257 is excited to introduce Rozana Pay, an innovative payment platform designed to streamline your daily financial transactions with unmatched ease and security. Whether you're paying bills, transferring money, or recharging your mobile, Rozana Pay offers a comprehensive solution to meet all your needs.
+          Legal257 is excited to introduce Rozana Pay, an innovative payment platform designed to streamline your daily financial transactions with unmatched ease and security. Whether you&apos;re paying bills, transferring money, or recharging your mobile, Rozana Pay offers a comprehensive solution to meet all your needs.
         </p>
       </motion.div>
 
@@ -62,7 +62,7 @@ const RozanaPayDetails = () => {
           Legal257 Rozana Pay is designed to provide you with a secure, reliable, and user-friendly experience. Our platform ensures that every transaction is protected with the highest level of security protocols, giving you peace of mind with every payment.
         </p>
         <p className="text-lg md:text-xl leading-relaxed mt-4">
-          Stay tuned for the official launch of Legal257 Rozana Pay and be ready to transform the way you handle your daily transactions. Simplify your financial life with Legal257 Rozana Pay – where convenience meets security.
+          Stay tuned for the official launch of Legal257 Rozana Pay and be ready to transform the way you handle your daily transactions. Simplify your financial life with Legal257 Rozana Pay  where convenience meets security.
         </p>
       </motion.div>
     </div>
