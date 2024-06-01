@@ -11,6 +11,7 @@ const Navbar = () => {
   const [loanCalcOpen, setLoanCalcOpen] = useState(false);
   const [loansOpen, setLoansOpen] = useState(false);
   const [mediaGalleryOpen, setMediaGalleryOpen] = useState(false);
+  const [microLoanOpen, setMicroLoanOpen] = useState(false);
 
   const toggleSubMenu = (setFunction, currentState) => () => setFunction(!currentState);
 
@@ -20,6 +21,7 @@ const Navbar = () => {
     setLoanCalcOpen(false);
     setLoansOpen(false);
     setMediaGalleryOpen(false);
+    setMicroLoanOpen(false)
   };
   
   return (
@@ -189,6 +191,28 @@ const Navbar = () => {
           <Link href="/applyjob" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Job - Apply Now</Link>
           <Link href="/manualPayment" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Manual Payment</Link>
           <Link href="//partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Fintech Banking</Link>
+          <div className="relative">
+            <button
+              onClick={toggleSubMenu(setMicroLoanOpen, microLoanOpen)}
+              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-balck"
+            >
+             JonoJivan Micro Loan
+              <span>{microLoanOpen ? "▲" : "▼"}</span>
+            </button>
+            <motion.div
+              initial={false}
+              animate={{ height: microLoanOpen ? "auto" : 0 }}
+              transition={{ duration: 0.3 }}
+              className={`overflow-hidden ${microLoanOpen ? "block" : "hidden"}`}
+            >
+              <div className="ml-4">
+                <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Personal Loan</Link>
+                <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Daily Finance Loan</Link>
+                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Mobile Finance Loan</Link>
+                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Finance Group Loan</Link>
+              </div>
+            </motion.div>
+          </div>
           <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Become Our Partner</Link>
           <Link href="/applynow" onClick={handleLinkClick}>
             <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ">
