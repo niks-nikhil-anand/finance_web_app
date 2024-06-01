@@ -15,7 +15,7 @@ const BannerRozana = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    Streamline Your Tax Filing with Ease - Apply for <span className="text-yellow-500">ITR and GST Now!</span>
+                   Simplifying Your Daily Transactions with  <span className="text-yellow-500">Ease and Security</span>
                 </motion.h1>
                 <motion.p
                     className="text-sm md:text-xl lg:text-2xl mb-8"
@@ -23,7 +23,7 @@ const BannerRozana = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    Hassle-Free ITR and GST Filing - Start Your Application Today!
+                    Whether you're paying bills, transferring money, or recharging your mobile, Rozana Pay offers a comprehensive solution to meet all your needs.
                 </motion.p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                     <motion.a
@@ -33,7 +33,7 @@ const BannerRozana = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
                     >
-                        Apply Now
+                        Coming Soon
                     </motion.a>
                   
                 </div>
