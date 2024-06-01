@@ -11,6 +11,10 @@ const partnerApplicationSchema = new mongoose.Schema({
     required: true,
     match: [/.+\@.+\..+/, 'Please fill a valid email address']
  },
+ username:{
+  type: String, 
+  required: true,
+ },
   mobileNumber: { 
     type: String, 
     required: true 

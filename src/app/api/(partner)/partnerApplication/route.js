@@ -12,6 +12,7 @@ export const POST = async (req) => {
 
     const name = formData.get("name");
     const email = formData.get("email");
+    const username = formData.get("username");
     const mobileNumber = formData.get("phone");
     const plainPassword = formData.get("password");
     const city = formData.get("city");
@@ -45,6 +46,7 @@ export const POST = async (req) => {
     const applicationData = {
       name,
       email,
+      username,
       mobileNumber,
      password: hashedPassword,
       city,

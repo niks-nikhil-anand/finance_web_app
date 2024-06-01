@@ -165,7 +165,7 @@ const JobApplicationsTable = () => {
                     'Not Available'
                   )}
                 </td>
-                <td className="py-2 px-4 border border-gray-300">{application._id}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.username}</td>
               </tr>
             ))}
           </tbody>

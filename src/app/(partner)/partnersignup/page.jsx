@@ -1,14 +1,13 @@
-"use client"
+"use client";
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import growth from '../../../../public/growth.png'
+import { useEffect, useState } from 'react';
+import growth from '../../../../public/growth.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 
 export default function Signup() {
-
 
   const [formData, setFormData] = useState({
     name: '',
@@ -21,6 +20,7 @@ export default function Signup() {
     interest: '',
     message: '',
     password: '',
+    username: '', 
   });
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
@@ -29,7 +29,6 @@ export default function Signup() {
   const [shopPhotoCopy, setShopPhotoCopy] = useState(null);
   const [msmeCertificate, setMsmeCertificate] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [step, setStep] = useState(1);
 
   const handleFileChange = (e, setFile) => {
@@ -41,6 +40,11 @@ export default function Signup() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleUsernameChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 7);
+    setFormData({ ...formData, username: 'Legal257' + value });
   };
 
   const handleNextStep = (e) => {
@@ -71,7 +75,6 @@ export default function Signup() {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -80,6 +83,7 @@ export default function Signup() {
     data.append('name', formData.name);
     data.append('email', formData.email);
     data.append('phone', formData.phone);
+    data.append('username', formData.username);
     data.append('password', formData.password);
     data.append('city', formData.city);
     data.append('state', formData.state);
@@ -118,12 +122,12 @@ export default function Signup() {
           interest: '',
           message: '',
           password: '',
+          username: '',
         });
         notifySuccess();
-
-        
       } else {
-        console.error('Error:', await response.json());
+        const errorData = await response.json();
+        console.error('Error:', errorData);
         notifyError(errorData.message);
       }
     } catch (error) {
@@ -141,6 +145,10 @@ export default function Signup() {
     'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh',
     'Dadra and Nagar Haveli and Daman and Diu', 'Delhi', 'Lakshadweep', 'Puducherry'
   ];
+
+  useEffect(() => {
+    setFormData({ ...formData, username: 'Legal257' });
+  }, []);
 
   return (
     <div className="flex flex-col md:flex-row mb-[20rem] md:mb-[0rem]">
@@ -189,6 +197,21 @@ export default function Signup() {
                 />
               </div>
               <div className="mb-4">
+                <label className="block mb-1">Unique Id(7 digits only)</label>
+                <div className="flex">
+                  <span className="bg-gray-200 p-2 rounded-l">Legal257</span>
+                  <input
+                    type="text"
+                    name="username"
+                    value={formData.username.replace('Legal257', '')}
+                    onChange={handleUsernameChange}
+                    className="w-full border border-gray-300 p-2 rounded-r"
+                    maxLength={7}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="mb-4">
                 <label className="block mb-1">Phone Number</label>
                 <input
                   type="tel"
@@ -196,6 +219,7 @@ export default function Signup() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -206,6 +230,7 @@ export default function Signup() {
                   value={formData.password}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -236,60 +261,36 @@ export default function Signup() {
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="">Select State</option>
+                  <option value="">Select a state</option>
                   {indianStates.map((state) => (
-                    <option key={state} value={state}>{state}</option>
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Partner Type</label>
+                <label className="block mb-1">Type of Partner</label>
                 <select
                   name="partnerType"
                   value={formData.partnerType}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="">Select Partner Type</option>
-                  <option value="CSP">CSP</option>
-                  <option value="Branch">Branch</option>
+                  <option value="">Select a type</option>
                   <option value="DSA">DSA</option>
+                  <option value="CSP">CSP</option>
+                  <option value="BRANCH">BRANCH</option>
                 </select>
-              </div>
-              <div className="mb-4">
-                <label className="block mb-1">Interested In</label>
-                <select
-                  name="interest"
-                  value={formData.interest}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                >
-                  <option value="" disabled>Select Interest</option>
-                  <option value="Sourcing Finance Loan Service">Sourcing Finance Loan Service</option>
-                  <option value="Fintech Banking Service">Fintech Banking Service</option>
-                  <option value="GST ITR Tax Pay Service">GST ITR Tax Pay Service</option>
-                  <option value="All Services">All Services</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <label className="block mb-1">Message</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
               </div>
               <button
+                type="button"
                 onClick={handleNextStep}
-                className="bg-blue-500 text-white py-2 px-4 rounded"
+                className="bg-blue-500 text-white p-2 rounded w-full"
               >
                 Next
               </button>
-              
-            </>
-          )}
-          <div>
+              <div>
                 <p className="mt-2 text-sm text-gray-600">
               Already have an account?{' '}
               <Link
@@ -301,14 +302,37 @@ export default function Signup() {
               </Link>
             </p>
                 </div>
-
+            </>
+          )}
           {step === 2 && (
             <>
+              <div className="mb-4">
+                <label className="block mb-1">Interest</label>
+                <select
+                  name="interest"
+                  value={formData.interest}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                >
+                  <option value="">Select an interest</option>
+                  <option value="Personal Loan">Personal Loan</option>
+                  <option value="Home Loan">Home Loan</option>
+                  <option value="Business Loan">Business Loan</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Message</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
               <div className="mb-4">
                 <label className="block mb-1">Aadhaar Card</label>
                 <input
                   type="file"
-                  name="aadhaarCard"
                   onChange={(e) => handleFileChange(e, setAadhaarCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
@@ -317,7 +341,6 @@ export default function Signup() {
                 <label className="block mb-1">PAN Card</label>
                 <input
                   type="file"
-                  name="panCard"
                   onChange={(e) => handleFileChange(e, setPanCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
@@ -326,7 +349,6 @@ export default function Signup() {
                 <label className="block mb-1">Bank Passbook</label>
                 <input
                   type="file"
-                  name="bankPassbook"
                   onChange={(e) => handleFileChange(e, setBankPassbook)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
@@ -335,7 +357,6 @@ export default function Signup() {
                 <label className="block mb-1">Shop Photo Copy</label>
                 <input
                   type="file"
-                  name="shopPhotoCopy"
                   onChange={(e) => handleFileChange(e, setShopPhotoCopy)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
@@ -344,33 +365,30 @@ export default function Signup() {
                 <label className="block mb-1">MSME Certificate</label>
                 <input
                   type="file"
-                  name="msmeCertificate"
                   onChange={(e) => handleFileChange(e, setMsmeCertificate)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
               <div className="flex justify-between">
                 <button
+                  type="button"
                   onClick={handlePreviousStep}
-                  className="bg-gray-500 text-white py-2 px-4 rounded"
+                  className="bg-gray-500 text-white p-2 rounded"
                 >
                   Previous
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded"
-                  disabled={loading}
+                  className="bg-green-500 text-white p-2 rounded "
                 >
-                  {loading ? 'Submitting...' : 'Submit'}
+                   {loading ? 'Submitting...' : 'Submit'}
                 </button>
-                
-               
               </div>
             </>
           )}
         </form>
-        <ToastContainer position="bottom-right" />
       </div>
+      <ToastContainer />
     </div>
   );
 }
