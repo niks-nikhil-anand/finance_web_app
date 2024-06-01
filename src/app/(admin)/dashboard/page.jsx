@@ -1,8 +1,10 @@
 "use client";
+import CardDataStats from '@/component/AdminComp/CardDataStats';
 import Card from '@/component/AdminDashboard/CardAdmin';
 import Graph from '@/component/AdminDashboard/GraphAdmin';
 import Table from '@/component/AdminDashboard/TableAdmin';
 import React from 'react';
+import { FaEye, FaMoneyBillWave, FaBox, FaChartLine } from 'react-icons/fa';
 
 
 // Mock data
@@ -24,11 +26,24 @@ const MockGraphComponent = () => (
 
 const Dashboard = () => {
   return (
-    <div className="container  p-4">
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-      
+    <div className="container  p-4  mx-auto  w-[80%] bg-gray-100 overflow-auto max-h-[40rem] no-scrollbar ">
+      <h1 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Dashboard</h1>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <CardDataStats title="Total views" total="$3.456K" rate="0.43%" levelUp>
+          <FaEye className="text-primary dark:text-white" size={22} />
+        </CardDataStats>
+        <CardDataStats title="Total Profit" total="$45.2K" rate="4.35%" levelUp>
+          <FaMoneyBillWave className="text-primary dark:text-white" size={20} />
+        </CardDataStats>
+        <CardDataStats title="Total Users" total="2.450" rate="2.59%" levelUp>
+          <FaBox className="text-primary dark:text-white" size={22} />
+        </CardDataStats>
+        <CardDataStats title="Total Expenses" total="$4.256" rate="0.11%" levelUp={false}>
+          <FaChartLine className="text-primary dark:text-white" size={20} />
+        </CardDataStats>
+      </div>
       {/* 3 Cards in a Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 mt-5">
         <Card title="Card 1" content="Content for card 1" color="bg-blue-500" />
         <Card title="Card 2" content="Content for card 2" color="bg-green-500" />
         <Card title="Card 3" content="Content for card 3" color="bg-red-500" />
