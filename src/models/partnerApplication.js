@@ -25,6 +25,11 @@
       type: String, 
       required: true 
   },
+    services: { 
+      type: String, 
+      enum: ['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan' , 'All Services' , 'None'],
+      default: 'None'
+  },
     city: { 
       type: String
   },
