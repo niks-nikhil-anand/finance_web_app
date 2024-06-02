@@ -40,7 +40,7 @@ export const POST = async (req) => {
         });
 
         // Set the cookie with the token
-        response.cookies.set('authToken', token, {
+        response.cookies.set('userAuthToken', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production', // Ensure secure cookies in production
             sameSite: 'strict',

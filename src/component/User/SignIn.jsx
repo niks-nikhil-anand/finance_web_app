@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const SignInUser = () => {
-    const router = useRouter();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,6 @@ const SignInUser = () => {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -38,40 +37,44 @@ const SignInUser = () => {
     const data = new FormData();
     data.append('email', email);
     data.append('password', password);
-    try {
-        const response = await fetch('/api/loginUser', {
-            method: 'POST',
-            body: data,
-          });
 
-      if (!res.ok) {
+    try {
+      const response = await fetch('/api/loginUser', {
+        method: 'POST',
+        body: data,
+      });
+
+      if (response.ok) {
         const result = await response.json();
         console.log('Success:', result);
-        console.log('Form submitted successfully');
         setEmail('');
         setPassword('');
         notifySuccess();
-        
-      }
-    }catch (error) {
-        console.error('Error:', error);
-        notifyError('Something went wrong.');
-      } finally {
-        setLoading(false);
-        console.log(data)
-      }
-    };
 
-  const fetchUserDetails = async (identifier) => {
-    const res = await fetch(`/api/getUserDetails?identifier=${identifier}`);
-    if (res.ok) {
-      return res.json();
+        // Fetch username after successful login
+        const userResponse = await fetch(`/api/params/${email}`);
+        if (userResponse.ok) {
+          const userResult = await userResponse.json();
+          console.log(userResult)
+          const username = userResult[0].username;
+          router.push(`/user/${username}`);
+        } else {
+          notifyError('Failed to fetch username.');
+        }
+      } else {
+        notifyError('Login failed.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      notifyError('Something went wrong.');
+    } finally {
+      setLoading(false);
     }
-    return null;
   };
 
   return (
     <div>
+      <ToastContainer />
       <form onSubmit={handleSubmit} className="mt-8">
         <div className="space-y-5">
           <div>
@@ -82,7 +85,7 @@ const SignInUser = () => {
               <input
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="email"
-                placeholder="Email"
+                id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -106,7 +109,7 @@ const SignInUser = () => {
               <input
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="password"
-                placeholder="Password"
+                id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -118,7 +121,7 @@ const SignInUser = () => {
               type="submit"
               className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
             >
-               {loading ? 'Logging in...' : 'Log in'} <ArrowRight className="ml-2" size={16} />
+              {loading ? 'Logging in...' : 'Log in'} <ArrowRight className="ml-2" size={16} />
             </button>
           </div>
         </div>
