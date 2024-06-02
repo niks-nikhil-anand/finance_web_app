@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 
 
 
+
 const LoginForm = () => {
   const router = useRouter()
   const [email, setEmail] = useState('');
@@ -109,10 +110,10 @@ const LoginForm = () => {
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition duration-300"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Log in'} <ArrowRight className="ml-2" size={16} />
+            {loading ? 'Logging in...' : 'Log in'} 
           </motion.button>
         </form>
       </div>
