@@ -42,7 +42,7 @@ const LoginForm = () => {
     data.append('password', password);
 
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('/api/loginAdmin', {
         method: 'POST',
         body: data,
       });

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
@@ -6,13 +7,12 @@ export function FooterUser() {
     <section className="relative overflow-hidden bg-gray-800 shadow-lg py-8">
       <div className="container relative z-10 mx-auto px-4">
         <div className="-m-8 flex flex-wrap items-center justify-between">
-          <div className="w-auto p-8">
-            <a href="#">
+          <div className="w-auto p-8">      
               <div className="inline-flex items-center">
-                <FaFacebookF size={40} className="text-white" />
-                <span className="ml-4 text-lg font-bold text-white">DevUI</span>
+                <Link href={"/"}>
+                <span className="ml-4 text-lg font-bold text-white">Legal 257</span>
+                </Link>
               </div>
-            </a>
           </div>
           <div className="w-auto p-8">
             <ul className="-m-5 flex flex-wrap items-center">
