@@ -1,3 +1,4 @@
+import { FooterUser } from "@/component/User/FooterUser";
 import NavbarUser from "@/component/User/NavbarUser";
 
 const Layout = ({ children }) => {
@@ -5,7 +6,8 @@ const Layout = ({ children }) => {
         <div>
          
           <NavbarUser />
-          
+          {children}
+          <FooterUser/>
         </div>
   );
 }

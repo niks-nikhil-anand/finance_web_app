@@ -20,7 +20,7 @@ const NavbarUser = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-800 p-4 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="text-white font-bold text-lg">Legal 257 - DSA</div>
         <motion.div

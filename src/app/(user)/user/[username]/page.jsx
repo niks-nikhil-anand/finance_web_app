@@ -1,8 +1,11 @@
+import ColorfulCard from '@/component/User/Card'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div className=' h-[75vh]'>
+      <ColorfulCard/>
+    </div>
   )
 }
 
