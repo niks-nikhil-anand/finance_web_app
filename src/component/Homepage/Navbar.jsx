@@ -214,9 +214,9 @@ const Navbar = () => {
             </motion.div>
           </div>
           <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Become Our Partner</Link>
-          <Link href="/applynow" onClick={handleLinkClick}>
+          <Link href="/partnersignin" onClick={handleLinkClick}>
             <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ">
-              Apply Now
+              Sign In
             </button>
           </Link>
         </div>

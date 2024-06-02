@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation'
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const SignInUser = () => {
     const router = useRouter();
@@ -93,13 +94,13 @@ const SignInUser = () => {
               <label htmlFor="password" className="text-base font-medium text-gray-900">
                 Password
               </label>
-              <a
-                href="#"
+              <Link
+                href={"/forgotpassword"}
                 title=""
                 className="text-sm font-semibold text-black hover:underline"
               >
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
               <input
