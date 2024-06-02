@@ -51,7 +51,7 @@ const SignInUser = () => {
         setEmail('');
         setPassword('');
         notifySuccess();
-        router.push('/dashboard')
+        
       }
     }catch (error) {
         console.error('Error:', error);

@@ -1,3 +1,5 @@
+import 'tailwindcss/tailwind.css';
+import '@/app/globals.css';
 import NavbarAdmin from "@/component/AdminDashboard/NavbarAdmin";
 import { SidebarAdmin } from "@/component/AdminDashboard/SidebarAdmin";
 
