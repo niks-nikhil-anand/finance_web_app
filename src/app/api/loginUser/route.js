@@ -30,12 +30,6 @@ export const POST = async (req) => {
             });
         }
 
-        // if (partner.role !== 'admin') {
-        //     return NextResponse.json({ msg: "Access denied" }, {
-        //         status: 403
-        //     });
-        // }
-
         // Generate a JWT token
         const token = generateToken({ id: partner._id, email: partner.email });
 

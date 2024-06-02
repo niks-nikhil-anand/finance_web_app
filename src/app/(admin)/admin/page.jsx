@@ -112,7 +112,7 @@ const LoginForm = () => {
             className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition duration-300"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Log in'}
+            {loading ? 'Logging in...' : 'Log in'} <ArrowRight className="ml-2" size={16} />
           </motion.button>
         </form>
       </div>

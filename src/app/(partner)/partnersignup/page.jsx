@@ -278,9 +278,9 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="">Select a type</option>
-                  <option value="DSA">DSA</option>
-                  <option value="CSP">CSP</option>
-                  <option value="BRANCH">BRANCH</option>
+                  <option value="DSA">CSP</option>
+                  <option value="CSP">Branch</option>
+                  <option value="BRANCH">DSA</option>
                 </select>
               </div>
               <button
@@ -315,9 +315,9 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="">Select an interest</option>
-                  <option value="Personal Loan">Personal Loan</option>
-                  <option value="Home Loan">Home Loan</option>
-                  <option value="Business Loan">Business Loan</option>
+                  <option value="Personal Loan">GST/ITR Services</option>
+                  <option value="Home Loan">Fintech Services</option>
+                  <option value="Business Loan">Finance Services-Loan</option>
                 </select>
               </div>
               <div className="mb-4">
