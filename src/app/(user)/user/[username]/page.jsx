@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className=' h-[75vh]'>
+    <div className=''>
       <ColorfulCard/>
     </div>
   )
