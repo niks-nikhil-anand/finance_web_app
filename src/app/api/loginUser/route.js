@@ -31,7 +31,8 @@ export const POST = async (req) => {
         }
 
         // Generate a JWT token
-        const token = generateToken({ id: partner._id, email: partner.email });
+        const token = generateToken({ id: partner._id, email: partner.email , username: partner.username });
+        console.log('Generated token:', token);
 
         const response = NextResponse.json({
             msg: "Form is working fine"
@@ -47,6 +48,8 @@ export const POST = async (req) => {
             maxAge: 60 * 60 * 24 * 7, // 1 week
             path: '/'
         });
+
+        console.log('Response with cookie:', response);
 
         return response;
 
