@@ -19,20 +19,19 @@ const JobApplicationsTable = () => {
     fetchApplications();
   }, []);
 
-  const handleRoleChange = async (id, role, isApproved) => {
+  const handleRoleChange = async (id, role, isApproved, services) => {
     try {
-      const response = await axios.post('/api/updateRole', { userId: id, role, isApproved });
+      const response = await axios.post('/api/updateRole', { userId: id, role, isApproved, services });
       setApplications((prevApplications) =>
         prevApplications.map((application) =>
-          application._id === id ? { ...application, role, isApproved: isApproved === 'Yes' } : application
+          application._id === id ? { ...application, role, isApproved: isApproved === 'Yes', services } : application
         )
       );
       console.log(response.data);
     } catch (error) {
-      console.error('Error updating role:', error);
+      console.error('Error updating role and services:', error);
     }
   };
-  
 
   const handleImageClick = (imageUrl) => {
     window.open(imageUrl, '_blank');
@@ -46,13 +45,14 @@ const JobApplicationsTable = () => {
       className="container mx-auto w-[80%] bg-gray-100"
     >
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">ALL Users - Legal 257</h2>
-      <div className="overflow-auto max-h-[30rem] ">
+      <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-purple-100">
             <tr>
               <th className="py-2 px-4 border border-gray-300">Name</th>
               <th className="py-2 px-4 border border-gray-300">Email</th>
               <th className="py-2 px-4 border border-gray-300">Role</th>
+              <th className="py-2 px-4 border border-gray-300">Services</th>
               <th className="py-2 px-4 border border-gray-300">KYC Approved</th>
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-300">City</th>
@@ -75,7 +75,7 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.role}
-                    onChange={(e) => handleRoleChange(application._id, e.target.value, application.isApproved)}
+                    onChange={(e) => handleRoleChange(application._id, e.target.value, application.isApproved, application.services)}
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
                     {['CSP', 'Branch', 'DSA', 'User', 'Admin'].map((role) => (
@@ -87,8 +87,21 @@ const JobApplicationsTable = () => {
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <select
+                    value={application.services}
+                    onChange={(e) => handleRoleChange(application._id, application.role, application.isApproved, e.target.value)}
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    {['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan', 'All Services', 'None'].map((service) => (
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
                     value={application.isApproved ? 'Yes' : 'No'}
-                    onChange={(e) => handleRoleChange(application._id, application.role, e.target.value)}
+                    onChange={(e) => handleRoleChange(application._id, application.role, e.target.value, application.services)}
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
                     <option value="Yes">Yes</option>
