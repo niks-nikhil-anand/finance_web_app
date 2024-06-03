@@ -1,36 +1,74 @@
 import mongoose from "mongoose";
 
 const microLoanSchema = mongoose.Schema({
-    name:{
+    nomineeName:{
         type: String,
         required: true,
     },
-    email:{
-        type: String,
-    },
-    mobile:{
+    guarantorName:{
         type: String,
         required: true,
     },
-    village:{
+    nomineeEmail:{
         type: String,
     },
-    DOB:{
-        type: String,
-    },
-    nominee:{
-        type: String,
-    },
-    relation:{
+    guarantorEmail:{
         type: String,
     },
     loanType:{
+        type: String,
+    },
+    nomineeMobile:{
+        type: String,
+        required: true,
+    },
+    guarantorMobile:{
+        type: String,
+        required: true,
+    },
+    nomineeVillage:{
+        type: String,
+    },
+    guarantorVillage:{
+        type: String,
+    },
+    nomineeDOB:{
+        type: String,
+    },
+    guarantorDOB:{
+        type: String,
+    },
+    nomineeRelation:{
+        type: String,
+    },
+    guarantorRelation:{
+        type: String,
+    },
+    guarantorPanCardNumber:{
+        type: String,
+    },
+    nomineePanCardNumber:{
+        type: String,
+    },
+    guarantorAadhaarCardNumber:{
+        type: String,
+    },
+    nomineeAadhaarCardNumber:{
         type: String,
     },
     panCard:{
         type: String,
     },
     aadhaarCard:{
+        type: String,
+    },
+    bankPassbook:{
+        type: String,
+    },
+    bankStatement:{
+        type: String,
+    },
+    photoCopy:{
         type: String,
     },
 })
