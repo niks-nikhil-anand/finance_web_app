@@ -41,6 +41,11 @@ const gstUserSchema = new mongoose.Schema({
         type: String,
         
     },
+    status: {
+      type : String,
+      enum: ['Pending', 'Processing', 'Completed' , 'Reject'],
+      default: 'Pending'
+      }
 });
 
 export default mongoose.models.GstUser || mongoose.model('GstUser', gstUserSchema);

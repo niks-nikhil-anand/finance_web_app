@@ -88,6 +88,11 @@ const loanUserSchema = mongoose.Schema({
       gstCertificate: {
         type: String,
         
+      },
+      status: {
+        type : String,
+      enum: ['Pending', 'Processing', 'Completed' , 'Reject'],
+      default: 'Pending'
       }
 })
 

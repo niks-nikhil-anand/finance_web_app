@@ -206,10 +206,10 @@ const Navbar = () => {
               className={`overflow-hidden ${microLoanOpen ? "block" : "hidden"}`}
             >
               <div className="ml-4">
-                <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Personal Loan</Link>
-                <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Daily Collection Micro Loan</Link>
-                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Mobile Finance Loan</Link>
-                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Finance Group Loan</Link>
+                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Personal Loan</Link>
+                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Daily Collection Micro Loan</Link>
+                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Mobile Finance Loan</Link>
+                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Finance Group Loan</Link>
               </div>
             </motion.div>
           </div>
