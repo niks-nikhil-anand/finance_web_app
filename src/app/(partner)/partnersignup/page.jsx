@@ -172,7 +172,7 @@ export default function Signup() {
         </motion.div>
       </div>
       <div className="md:w-1/2 bg-white p-10 flex flex-col justify-center">
-        <h2 className="text-xl md:text-2xl font-bold mb-4">Become DSA/CSP With Legal257</h2>
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Become DSA/CSP/Branch With Legal257</h2>
         <form onSubmit={handleSubmit}>
           {step === 1 && (
             <>
