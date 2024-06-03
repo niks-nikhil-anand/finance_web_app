@@ -34,7 +34,7 @@ const BranchTable = () => {
       className="container mx-auto w-[80%] bg-gray-100"
     >
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Branch - Legal 257</h2>
-      <div className="overflow-auto max-h-[30rem] no-scrollbar">
+      <div className="overflow-auto max-h-[30rem] ">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-purple-100">
             <tr>
