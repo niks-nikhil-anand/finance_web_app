@@ -179,7 +179,7 @@ const LoanForm = () => {
         {step === 1 && (
           <>
             <div>
-              <label className="block text-sm font-medium text-white">Name</label>
+              <label className="block text-sm font-medium text-white">Customer Name</label>
               <input
                 type="text"
                 name="name"
@@ -189,7 +189,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Email</label>
+              <label className="block text-sm font-medium text-white">Customer Email</label>
               <input
                 type="email"
                 name="email"
@@ -199,7 +199,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Mobile Number</label>
+              <label className="block text-sm font-medium text-white">Customer Mobile Number</label>
               <input
                 type="text"
                 name="mobileNumber"
@@ -209,7 +209,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Gender</label>
+              <label className="block text-sm font-medium text-white">Customer Gender</label>
               <select
                 name="gender"
                 value={gender}
@@ -223,7 +223,7 @@ const LoanForm = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">City</label>
+              <label className="block text-sm font-medium text-white">Customer City</label>
               <input
                 type="text"
                 name="city"
@@ -233,7 +233,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-                    <label className="block text-sm font-medium text-white">Pin Code</label>
+                    <label className="block text-sm font-medium text-white">Customer Pin Code</label>
                     <input
                       type="text"
                       name="pinCode"
@@ -245,7 +245,7 @@ const LoanForm = () => {
                     />
     </div>
             <div>
-              <label className="block text-sm font-medium text-white">State</label>
+              <label className="block text-sm font-medium text-white">Customer State</label>
               <select
                 name="state"
                 value={state}
@@ -263,7 +263,7 @@ const LoanForm = () => {
         {step === 2 && (
           <>
             <div>
-              <label className="block text-sm font-medium text-white">Marital Status</label>
+              <label className="block text-sm font-medium text-white">Customer Marital Status</label>
               <select
                 name="maritalStatus"
                 value={maritalStatus}
@@ -318,7 +318,7 @@ const LoanForm = () => {
               </select>
             </div>
             <div>
-  <label className="block text-sm font-medium text-white">Employment Type</label>
+  <label className="block text-sm font-medium text-white">Customer Employment Type</label>
   <select
     name="employmentType"
     value={employmentType}
@@ -335,7 +335,7 @@ const LoanForm = () => {
   </select>
 </div>
 <div>
-<label className="block text-sm font-medium text-white">Monthly Income</label>
+<label className="block text-sm font-medium text-white">Customer Monthly Income</label>
       <div className="mt-1 relative rounded-md shadow-sm">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <span className="text-gray-500 sm:text-sm">₹</span>
@@ -371,7 +371,7 @@ const LoanForm = () => {
         {step === 3 && (
           <>
             <div>
-              <label className="block text-sm font-medium text-white">Aadhaar Card</label>
+              <label className="block text-sm font-medium text-white">Customer Aadhaar Card</label>
               <input
                 type="file"
                 name="aadhaarCard"
@@ -381,7 +381,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">PAN Card</label>
+              <label className="block text-sm font-medium text-white">Customer PAN Card</label>
               <input
                 type="file"
                 name="panCard"
@@ -390,7 +390,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Bank Passbook</label>
+              <label className="block text-sm font-medium text-white">Customer Bank Passbook</label>
               <input
                 type="file"
                 name="bankPassbook"
@@ -399,7 +399,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Bank Statements</label>
+              <label className="block text-sm font-medium text-white">Customer Bank Statements</label>
               <input
                 type="file"
                 name="bankStatements"
@@ -408,7 +408,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">ITR File</label>
+              <label className="block text-sm font-medium text-white">Customer ITR File</label>
               <input
                 type="file"
                 name="itrFile"
@@ -417,7 +417,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">MSME Certificate</label>
+              <label className="block text-sm font-medium text-white">Customer MSME Certificate</label>
               <input
                 type="file"
                 name="msmeCertificate"
@@ -426,7 +426,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">Trade License</label>
+              <label className="block text-sm font-medium text-white">Customer Trade License</label>
               <input
                 type="file"
                 name="tradeLicense"
@@ -435,7 +435,7 @@ const LoanForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white">GST Certificate</label>
+              <label className="block text-sm font-medium text-white">Customer GST Certificate</label>
               <input
                 type="file"
                 name="gstCertificate"

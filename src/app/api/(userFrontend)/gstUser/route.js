@@ -1,14 +1,13 @@
 import connectDB from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
-import gstUserModel from "@/models/gstUserModel";
 import { cookies } from "next/headers";
 import uploadImage from "@/lib/uploadImages";
 import jwt from 'jsonwebtoken';
+import loanApplicationModel from "@/models/loanApplicationModel";
 
 export const POST = async (req) => {
   try {
     await connectDB();
-
     const formData = await req.formData();
     const cookieStore = cookies();
     const authToken = cookieStore.get("userAuthToken");
@@ -61,7 +60,7 @@ export const POST = async (req) => {
       bankStatement: uploadbankStatement ? uploadbankStatement.secure_url : null,
     };
 
-    await gstUserModel.create(applicationData);
+    await loanApplicationModel.create(applicationData);
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });

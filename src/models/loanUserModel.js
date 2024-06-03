@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
-const LoanApplicationSchema = new mongoose.Schema({
+const LoanUserSchema = new mongoose.Schema({
   name: {
+    type: String,
+    required: true
+    
+  },
+  username:{
     type: String,
     required: true
   },
@@ -92,4 +97,4 @@ const LoanApplicationSchema = new mongoose.Schema({
 });
 
 
-export default mongoose.models.LoanApplication || mongoose.model('LoanApplication', LoanApplicationSchema);
+export default mongoose.models.LoanUser || mongoose.model('LoanUser', LoanUserSchema);
