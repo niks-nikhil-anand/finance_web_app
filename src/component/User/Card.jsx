@@ -11,7 +11,7 @@ import {
   FaWallet 
 } from 'react-icons/fa';
 
-import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { GiPayMoney } from "react-icons/gi";
 
 import Link from 'next/link';
 
@@ -30,7 +30,7 @@ const cardData = [
   },
   {
     title: 'Jono Jivan Micro Loan',
-    icon: FaMoneyCheckDollar,
+    icon: GiPayMoney ,
     bgColor: 'bg-gradient-to-r from-green-400 via-blue-400 to-purple-500',
     link: 'loan',
   },
