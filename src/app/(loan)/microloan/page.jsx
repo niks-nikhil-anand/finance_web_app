@@ -59,6 +59,14 @@ const LoanForm = () => {
     });
   };
 
+  const handleNextStep = () => {
+    setStep(step + 1);
+  };
+
+  const handlePreviousStep = () => {
+    setStep(step - 1);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -85,6 +93,9 @@ const LoanForm = () => {
 
     if (aadhaarCard) formData.append('aadhaarCard', aadhaarCard);
     if (panCard) formData.append('panCard', panCard);
+    if (bankPassbook) formData.append('bankPassbook', bankPassbook);
+    if (bankStatement) formData.append('bankStatement', bankStatement);
+    if (photoCopy) formData.append('photoCopy', photoCopy);
 
     try {
       const response = await fetch('/api/loanApplication', {
@@ -112,6 +123,9 @@ const LoanForm = () => {
         setLoanType('');
         setAadhaarCard(null);
         setPanCard(null);
+        setBankPassbook(null);
+        setBankStatement(null);
+        setPhotoCopy(null);
         notifySuccess();
       } else {
         const errorData = await response.json();
@@ -124,283 +138,282 @@ const LoanForm = () => {
     }
   };
 
-  const renderStepContent = () => {
-    switch (step) {
-      case 1:
-        return (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Name</label>
-              <input
-                type="text"
-                name="nomineeName"
-                value={nomineeName}
-                onChange={(e) => setNomineeName(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Email</label>
-              <input
-                type="email"
-                name="nomineeEmail"
-                value={nomineeEmail}
-                onChange={(e) => setNomineeEmail(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Mobile Number</label>
-              <input
-                type="text"
-                name="nomineeMobile"
-                value={nomineeMobile}
-                onChange={(e) => setNomineeMobile(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Village</label>
-              <input
-                type="text"
-                name="nomineeVillage"
-                value={nomineeVillage}
-                onChange={(e) => setNomineeVillage(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Relation</label>
-              <input
-                type="text"
-                name="nomineeRelation"
-                value={nomineeRelation}
-                onChange={(e) => setNomineeRelation(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Date of Birth</label>
-              <input
-                type="date"
-                name="nomineeDOB"
-                value={nomineeDOB}
-                onChange={(e) => setNomineeDOB(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee PAN Card Number</label>
-              <input
-                type="text"
-                name="nomineePanCardNumber"
-                value={nomineePanCardNumber}
-                onChange={(e) => setNomineePanCardNumber(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Nominee Aadhaar Card Number</label>
-              <input
-                type="text"
-                name="nomineeAadhaarCardNumber"
-                value={nomineeAadhaarCardNumber}
-                onChange={(e) => setNomineeAadhaarCardNumber(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </>
-        );
-      case 2:
-        return (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Name</label>
-              <input
-                type="text"
-                name="guarantorName"
-                value={guarantorName}
-                onChange={(e) => setGuarantorName(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Email</label>
-              <input
-                type="email"
-                name="guarantorEmail"
-                value={guarantorEmail}
-                onChange={(e) => setGuarantorEmail(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Mobile Number</label>
-              <input
-                type="text"
-                name="guarantorMobile"
-                value={guarantorMobile}
-                onChange={(e) => setGuarantorMobile(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Village</label>
-              <input
-                type="text"
-                name="guarantorVillage"
-                value={guarantorVillage}
-                onChange={(e) => setGuarantorVillage(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Relation</label>
-              <input
-                type="text"
-                name="guarantorRelation"
-                value={guarantorRelation}
-                onChange={(e) => setGuarantorRelation(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Date of Birth</label>
-              <input
-                type="date"
-                name="guarantorDOB"
-                value={guarantorDOB}
-                onChange={(e) => setGuarantorDOB(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor PAN Card Number</label>
-              <input
-                type="text"
-                name="guarantorPanCardNumber"
-                value={guarantorPanCardNumber}
-                onChange={(e) => setGuarantorPanCardNumber(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Guarantor Aadhaar Card Number</label>
-              <input
-                type="text"
-                name="guarantorAadhaarCardNumber"
-                value={guarantorAadhaarCardNumber}
-                onChange={(e) => setGuarantorAadhaarCardNumber(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </>
-        );
-      case 3:
-        return (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-white">Aadhaar Card</label>
-              <input
-                type="file"
-                name="aadhaarCard"
-                accept=".pdf"
-                onChange={(e) => handleFileChange(e, setAadhaarCard)}
-                className="mt-1 block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">PAN Card</label>
-              <input
-                type="file"
-                name="panCard"
-                accept=".pdf"
-                onChange={(e) => handleFileChange(e, setPanCard)}
-                className="mt-1 block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Bank Passbook</label>
-              <input
-                type="file"
-                name="bankPassbook"
-                accept=".pdf"
-                onChange={(e) => handleFileChange(e, setBankPassbook)}
-                className="mt-1 block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Bank Statement</label>
-              <input
-                type="file"
-                name="bankStatement"
-                accept=".pdf"
-                onChange={(e) => handleFileChange(e, setBankStatement)}
-                className="mt-1 block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white">Photo Copy</label>
-              <input
-                type="file"
-                name="photoCopy"
-                accept=".pdf"
-                onChange={(e) => handleFileChange(e, setPhotoCopy)}
-                className="mt-1 block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              />
-            </div>
-          </>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-lg mx-auto">
-      <h2 className="text-2xl font-bold text-white mb-6">Loan Application Form</h2>
-      <form onSubmit={handleSubmit}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {renderStepContent()}
-        </motion.div>
-        <div className="flex justify-between mt-6">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex flex-col  items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 mb-[6rem] md:mb-[0rem]"
+    >
+      <div  className='bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md'>
+
+     
+      <h2 className="text-2xl font-bold mb-6 text-white">Loan Application Form</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {step === 1 && (
+          <>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Name</label>
+                <input
+                  type="text"
+                  name="nomineeName"
+                  value={nomineeName}
+                  onChange={(e) => setNomineeName(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Email</label>
+                <input
+                  type="email"
+                  name="nomineeEmail"
+                  value={nomineeEmail}
+                  onChange={(e) => setNomineeEmail(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Mobile Number</label>
+                <input
+                  type="text"
+                  name="nomineeMobile"
+                  value={nomineeMobile}
+                  onChange={(e) => setNomineeMobile(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Village</label>
+                <input
+                  type="text"
+                  name="nomineeVillage"
+                  value={nomineeVillage}
+                  onChange={(e) => setNomineeVillage(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Relation</label>
+                <input
+                  type="text"
+                  name="nomineeRelation"
+                  value={nomineeRelation}
+                  onChange={(e) => setNomineeRelation(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Date of Birth</label>
+                <input
+                  type="date"
+                  name="nomineeDOB"
+                  value={nomineeDOB}
+                  onChange={(e) => setNomineeDOB(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee PAN Card Number</label>
+                <input
+                  type="text"
+                  name="nomineePanCardNumber"
+                  value={nomineePanCardNumber}
+                  onChange={(e) => setNomineePanCardNumber(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Nominee Aadhaar Card Number</label>
+                <input
+                  type="text"
+                  name="nomineeAadhaarCardNumber"
+                  value={nomineeAadhaarCardNumber}
+                  onChange={(e) => setNomineeAadhaarCardNumber(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              </>
+        )}
+        {step === 2 && (
+          <>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Name</label>
+                <input
+                  type="text"
+                  name="guarantorName"
+                  value={guarantorName}
+                  onChange={(e) => setGuarantorName(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Email</label>
+                <input
+                  type="email"
+                  name="guarantorEmail"
+                  value={guarantorEmail}
+                  onChange={(e) => setGuarantorEmail(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Mobile Number</label>
+                <input
+                  type="text"
+                  name="guarantorMobile"
+                  value={guarantorMobile}
+                  onChange={(e) => setGuarantorMobile(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Village</label>
+                <input
+                  type="text"
+                  name="guarantorVillage"
+                  value={guarantorVillage}
+                  onChange={(e) => setGuarantorVillage(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Relation</label>
+                <input
+                  type="text"
+                  name="guarantorRelation"
+                  value={guarantorRelation}
+                  onChange={(e) => setGuarantorRelation(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Date of Birth</label>
+                <input
+                  type="date"
+                  name="guarantorDOB"
+                  value={guarantorDOB}
+                  onChange={(e) => setGuarantorDOB(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor PAN Card Number</label>
+                <input
+                  type="text"
+                  name="guarantorPanCardNumber"
+                  value={guarantorPanCardNumber}
+                  onChange={(e) => setGuarantorPanCardNumber(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Guarantor Aadhaar Card Number</label>
+                <input
+                  type="text"
+                  name="guarantorAadhaarCardNumber"
+                  value={guarantorAadhaarCardNumber}
+                  onChange={(e) => setGuarantorAadhaarCardNumber(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              </>
+        )}
+        {step === 3 && (
+          <>
+              <div>
+                <label className="block text-sm font-medium text-white">Loan Type</label>
+                <select
+                  name="loanType"
+                  value={loanType}
+                  onChange={(e) => setLoanType(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">Select Loan Type</option>
+                  <option value="personal">Personal Loan</option>
+                  <option value="business">Business Loan</option>
+                  <option value="education">Education Loan</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Aadhaar Card</label>
+                <input
+                  type="file"
+                  name="aadhaarCard"
+                  onChange={(e) => handleFileChange(e, setAadhaarCard)}
+                  className="mt-1 block w-full text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">PAN Card</label>
+                <input
+                  type="file"
+                  name="panCard"
+                  onChange={(e) => handleFileChange(e, setPanCard)}
+                  className="mt-1 block w-full text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Bank Passbook</label>
+                <input
+                  type="file"
+                  name="bankPassbook"
+                  onChange={(e) => handleFileChange(e, setBankPassbook)}
+                  className="mt-1 block w-full text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Bank Statement</label>
+                <input
+                  type="file"
+                  name="bankStatement"
+                  onChange={(e) => handleFileChange(e, setBankStatement)}
+                  className="mt-1 block w-full text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white">Photo</label>
+                <input
+                  type="file"
+                  name="photoCopy"
+                  onChange={(e) => handleFileChange(e, setPhotoCopy)}
+                  className="mt-1 block w-full text-white"
+                />
+              </div>
+              </>
+        )}
+        <div className="flex justify-between">
           {step > 1 && (
             <button
               type="button"
-              onClick={() => setStep(step - 1)}
-              className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+              onClick={handlePreviousStep}
+              className="px-4 py-2 text-white bg-gray-600 rounded-md"
             >
               Previous
             </button>
           )}
-          {step < 3 ? (
+          {step < 3 && (
             <button
               type="button"
-              onClick={() => setStep(step + 1)}
-              className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+              onClick={handleNextStep}
+              className="px-4 py-2 text-white bg-blue-600 rounded-md"
             >
               Next
             </button>
-          ) : (
+          )}
+          {step === 3 && (
             <button
               type="submit"
-              className={`bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 ${
-                loading ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              className="px-4 py-2 text-white bg-green-600 rounded-md"
               disabled={loading}
-            >
-              {loading ? 'Submitting...' : 'Submit'}
+              >  {loading ? 'Uploading...' : 'Submit'}
+              
             </button>
           )}
         </div>
       </form>
-      <ToastContainer />
-    </div>
+      </div>
+    </motion.div>
   );
 };
 
-export default LoanForm;
+export default LoanForm
