@@ -148,7 +148,7 @@ const LoanForm = () => {
       <div  className='bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md'>
 
      
-      <h2 className="text-2xl font-bold mb-6 text-white">Loan Application Form</h2>
+      <h2 className="text-2xl font-bold mb-6 text-white">JonoJivan Micro Loan Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {step === 1 && (
           <>
@@ -328,10 +328,10 @@ const LoanForm = () => {
                   onChange={(e) => setLoanType(e.target.value)}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 >
-                  <option value="">Select Loan Type</option>
-                  <option value="personal">Personal Loan</option>
-                  <option value="business">Business Loan</option>
-                  <option value="education">Education Loan</option>
+                  <option value="" disabled>Select Loan Type</option>
+                  <option value="personal">Micro Personal Loan</option>
+                  <option value="business">Daily Collection Micro Loan</option>
+                  <option value="education">Micro Finance Group Loan</option>
                 </select>
               </div>
               <div>
