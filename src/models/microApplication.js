@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
-const microLoanSchema = mongoose.Schema({
+
+const microLoanApplicationSchema = mongoose.Schema({
     nomineeName:{
         type: String,
         required: true,
@@ -74,6 +75,5 @@ const microLoanSchema = mongoose.Schema({
 })
 
 
-export default mongoose.models.MicroLoan || mongoose.model('MicroLoan',
-    microLoanSchema
-)
+
+export default mongoose.models.MicroLoanApplication || mongoose.model('MicroLoanApplication' , microLoanApplicationSchema)

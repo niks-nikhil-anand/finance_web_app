@@ -32,7 +32,7 @@ const cardData = [
     title: 'Jono Jivan Micro Loan',
     icon: GiPayMoney ,
     bgColor: 'bg-gradient-to-r from-green-400 via-blue-400 to-purple-500',
-    link: 'loan',
+    link: 'microLoan',
   },
   {
     title: 'Contact Us',
