@@ -24,6 +24,9 @@ const microLoanSchema = mongoose.Schema({
     relation:{
         type: String,
     },
+    loanType:{
+        type: String,
+    },
     panCard:{
         type: String,
     },
