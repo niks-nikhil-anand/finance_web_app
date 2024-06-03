@@ -1,11 +1,14 @@
 import connectDB from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
-import gstUserModel from "@/models/gstUserModel";
 import { cookies } from "next/headers";
 import uploadImage from "@/lib/uploadImages";
 import jwt from 'jsonwebtoken';
+import loanUserModel from "@/models/loanUserModel";
+
 
 export const POST = async (req) => {
+    
+  try {
     await connectDB();
 
     const formData = await req.formData();
@@ -17,9 +20,6 @@ export const POST = async (req) => {
     }
 
     const username = jwt.decode(authToken.value)?.username;
-  try {
-    await connectDB();
-    const formData = await req.formData(); // Moved this line inside the try block
     const name = formData.get("name");
     const email = formData.get("email");
     const mobileNumber = formData.get("mobileNumber");
@@ -79,8 +79,7 @@ export const POST = async (req) => {
       tradeLicense: tradeUploadResult ? tradeUploadResult.secure_url : null,
       gstCertificate: gstUploadResult ? gstUploadResult.secure_url : null,
     };
-    console.log(applicationData)
-    await LoanApplication.create(applicationData);
+    await loanUserModel.create(applicationData);
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });

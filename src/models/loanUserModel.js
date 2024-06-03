@@ -96,5 +96,6 @@ const LoanUserSchema = new mongoose.Schema({
   }
 });
 
+export default mongoose.models.LoanUser || mongoose.model('LoanUser' , LoanUserSchema)
 
-export default mongoose.models.LoanUser || mongoose.model('LoanUser', LoanUserSchema);
+
