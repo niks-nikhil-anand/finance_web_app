@@ -77,23 +77,23 @@ export const POST = async (req) => {
 
 
 // GET request handler
-// export const GET = async (req) => {
-//   try {
-//     await connectDB();
+export const GET = async (req) => {
+  try {
+    await connectDB();
 
-//     // Retrieve all GST registration records
-//     const gstRegistrations = await GstRegistration.find();
+    // Retrieve all GST registration records
+    const gstRegistrations = await gstUserModel.find();
 
-//     // Respond with the retrieved data
-//     return NextResponse.json(gstRegistrations, {
-//       status: 200
-//     });
-//   } catch (error) {
-//     // Handle errors
-//     console.error("Error retrieving GST registrations:", error);
-//     return NextResponse.json({ msg: "Error retrieving GST registrations", error: error.message }, {
-//       status: 500
-//     });
-//   }
-// };
+    // Respond with the retrieved data
+    return NextResponse.json(gstRegistrations, {
+      status: 200
+    });
+  } catch (error) {
+    // Handle errors
+    console.error("Error retrieving GST registrations:", error);
+    return NextResponse.json({ msg: "Error retrieving GST registrations", error: error.message }, {
+      status: 500
+    });
+  }
+};
 

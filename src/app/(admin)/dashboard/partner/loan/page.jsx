@@ -9,7 +9,7 @@ const PartnerLoanTable = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('/api/loanApplication');
+        const response = await axios.get('/api/loanUser');
         setApplications(response.data);
       } catch (error) {
         console.error('Error fetching loan applications:', error);
@@ -25,12 +25,12 @@ const PartnerLoanTable = () => {
 
   return (
     <motion.div 
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-    className="container mx-auto  w-[80%] bg-gray-100"
-  >
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Loan Applications</h2>
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="container mx-auto w-[80%] bg-gray-100"
+    >
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Loan Applications</h2>
       <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -61,89 +61,89 @@ const PartnerLoanTable = () => {
           <tbody>
             {applications.map((application, index) => (
               <tr key={index} className="hover:bg-gray-100">
-                <td className="py-2 px-4 border border-gray-300">{application.name}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.email}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.gender}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.city}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.employmentType}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.monthlyIncome}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.requiredLoanAmount}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.pinCode}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.state}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.maritalStatus}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.loanYear}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.loanType}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.name || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.email || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.mobileNumber || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.gender || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.city || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.employmentType || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.monthlyIncome || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.requiredLoanAmount || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.pinCode || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.state || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.maritalStatus || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.loanYear || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.loanType || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.aadhaarCard)}
+                    onClick={() => handleImageClick(application.aadhaarCard || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                    Aadhaar Card
+                    {application.aadhaarCard ? 'Aadhaar Card' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.panCard)}
+                    onClick={() => handleImageClick(application.panCard || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                    PAN Card
+                    {application.panCard ? 'PAN Card' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.bankPassbook)}
+                    onClick={() => handleImageClick(application.bankPassbook || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                   Bank Passbook
+                    {application.bankPassbook ? 'Bank Passbook' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.bankStatements)}
+                    onClick={() => handleImageClick(application.bankStatements || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                     Bank Statements
+                    {application.bankStatements ? 'Bank Statements' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.itrFile)}
+                    onClick={() => handleImageClick(application.itrFile || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                     ITR File
+                    {application.itrFile ? 'ITR File' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.msmeCertificate)}
+                    onClick={() => handleImageClick(application.msmeCertificate || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                    MSME Certificate
+                    {application.msmeCertificate ? 'MSME Certificate' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.tradeLicense)}
+                    onClick={() => handleImageClick(application.tradeLicense || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                   Trade License
+                    {application.tradeLicense ? 'Trade License' : 'Not Available'}
                   </a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a
                     href="#"
-                    onClick={() => handleImageClick(application.gstCertificate)}
+                    onClick={() => handleImageClick(application.gstCertificate || '#')}
                     className="text-blue-500 hover:underline"
                   >
-                    GST Certificate
+                    {application.gstCertificate ? 'GST Certificate' : 'Not Available'}
                   </a>
                 </td>
               </tr>
@@ -151,7 +151,6 @@ const PartnerLoanTable = () => {
           </tbody>
         </table>
       </div>
-     
     </motion.div>
   );
 };

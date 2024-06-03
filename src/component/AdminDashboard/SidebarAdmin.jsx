@@ -4,10 +4,16 @@ import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, Menu }
 import { MdDashboard , MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
 import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch , FaPeopleCarry } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
-import { FaUsersLine , FaHireAHelper } from "react-icons/fa6";
+import { FaUsersLine , FaHireAHelper , FaMoneyBillTransfer } from "react-icons/fa6";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import Link from 'next/link';
+import { RiMoneyRupeeCircleLine } from "react-icons/ri";
+import { FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
+
+
+import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
+
 export function SidebarAdmin() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +29,7 @@ export function SidebarAdmin() {
       </div>
       <aside className={`flex h-screen w-64 flex-col overflow-y-auto border-r bg-gray-800 px-5 py-8 ${isOpen ? 'block' : 'hidden'} lg:block`}>
         <a href="#" className="hidden lg:block">
-          <MdDashboard  className="h-10 w-10 text-white" aria-hidden="true" />
+          <FcAcceptDatabase   className="h-10 w-10 text-white" aria-hidden="true" />
         </a>
         <div className="mt-6 flex flex-1 flex-col justify-between">
           <nav className="-mx-3 space-y-6">
@@ -33,7 +39,7 @@ export function SidebarAdmin() {
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                href={"/dashboard"}
               >
-                <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
+                <FcAcceptDatabase  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Dashboard</span>
               </Link>
               
@@ -42,36 +48,57 @@ export function SidebarAdmin() {
               <label className="px-3 text-xs font-semibold uppercase text-white">Partner Leads</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-               href={"/dashboard/partner/gstitr"}
+               href={"/dashboard/partner/loan"}
               >
-                <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
+                <FaMoneyBillTrendUp   className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Loan Leads</span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/partner/loan"}
+                href={"/dashboard/partner/gstitr"}
+              >
+                <FaMoneyCheckDollar  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">GST/ITR Leads</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/partner/gstitr"}
               >
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">GST/ITR Leads</span>
+                <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/partner/gstitr"}
+              >
+                <RiMoneyRupeeCircleLine  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Rozana Pay</span>
               </Link>
               
             </div>
            
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Leads</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">Customer Leads</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
               href={"/dashboard/gstItr"}
               >
                 <FcMoneyTransfer className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">GST/ITR </span>
+                <span className="mx-2 text-sm font-medium">GST/ITR Lead </span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                href={"/dashboard/loan"}
               >
                 <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Loan</span>
+                <span className="mx-2 text-sm font-medium">Loan Lead</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+               href={"/dashboard/loan"}
+              >
+                <FaMoneyBillTransfer  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
@@ -94,7 +121,7 @@ export function SidebarAdmin() {
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href={"/dashboard/user"}
               >
-                 <FaUsersLine className="h-5 w-5" aria-hidden="true" />
+                 <FcBusinessman  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">User</span>
               </Link>
               <Link

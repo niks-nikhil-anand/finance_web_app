@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { MdLightMode ,  MdDarkMode} from "react-icons/md";
 import { IoIosNotifications } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { IoSettings } from "react-icons/io5";
+import { FcSettings } from "react-icons/fc";
+
 const NavbarAdmin = ({ toggleSidebar }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -33,7 +34,7 @@ const NavbarAdmin = ({ toggleSidebar }) => {
         <IoIosNotifications className="w-8 h-8" />
         </button>
         <button className="">
-        <IoSettings className="w-8 h-8" />
+        <FcSettings  className="w-8 h-8" />
         </button>
         <div className="relative group">
           <button className="">

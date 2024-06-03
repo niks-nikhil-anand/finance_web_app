@@ -93,18 +93,18 @@ export const POST = async (req) => {
   }
 };
 
-// export const GET = async (req) => {
-//   try {
-//     await connectDB();
-//     const applications = await LoanApplication.find();
+export const GET = async (req) => {
+  try {
+    await connectDB();
+    const applications = await loanUserModel.find();
 
-//     return NextResponse.json(applications, {
-//       status: 200,
-//     });
-//   } catch (error) {
-//     console.error("Error fetching loan applications:", error);
-//     return NextResponse.json({ msg: "Error fetching loan applications", error: error.message }, {
-//       status: 500,
-//     });
-//   }
-// };
+    return NextResponse.json(applications, {
+      status: 200,
+    });
+  } catch (error) {
+    console.error("Error fetching loan applications:", error);
+    return NextResponse.json({ msg: "Error fetching loan applications", error: error.message }, {
+      status: 500,
+    });
+  }
+};
