@@ -1,8 +1,8 @@
-import connectDB from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import uploadImage from "@/lib/uploadImages";
 import jwt from 'jsonwebtoken';
+import uploadImage from "@/lib/uploadImages";
+import connectDB from "@/lib/dbConnect";
 import loanUserModel from "@/models/loanUserModel";
 
 
@@ -79,7 +79,7 @@ export const POST = async (req) => {
       tradeLicense: tradeUploadResult ? tradeUploadResult.secure_url : null,
       gstCertificate: gstUploadResult ? gstUploadResult.secure_url : null,
     };
-    await loanUserModel.create(applicationData);
+    await loanUserModel.create(applicationData)
     return NextResponse.json({ msg: "Application submitted successfully" }, {
       status: 200
     });

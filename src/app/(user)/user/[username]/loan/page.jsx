@@ -121,7 +121,7 @@ const LoanForm = () => {
     
 
     try {
-      const response = await fetch('/api/loanApplication', {
+      const response = await fetch('/api/loanUser', {
         method: 'POST',
         body: formData,
       });

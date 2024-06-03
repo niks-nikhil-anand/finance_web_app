@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from "mongoose";
 const gstUserSchema = new mongoose.Schema({
     name: {
         type: String,
