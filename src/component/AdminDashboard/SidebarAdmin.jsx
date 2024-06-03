@@ -6,7 +6,7 @@ import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch , FaPeopleCarry } fro
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FaUsersLine , FaHireAHelper , FaMoneyBillTransfer } from "react-icons/fa6";
 import { IoShareSocialSharp } from "react-icons/io5";
-import { CiShop } from "react-icons/ci";
+import { CiShop , CiBank } from "react-icons/ci";
 import Link from 'next/link';
 import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
@@ -67,12 +67,25 @@ export function SidebarAdmin() {
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
               </Link>
+             
+              
+            </div>
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Banking</label>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+               href={"/dashboard/partner/loan"}
+              >
+                <FaMoneyBillTrendUp   className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Rozana Pay</span>
+              </Link>
+             
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href={"/dashboard/partner/gstitr"}
               >
-                <RiMoneyRupeeCircleLine  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Rozana Pay</span>
+                <CiBank  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Fintech Banking</span>
               </Link>
               
             </div>
