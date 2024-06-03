@@ -94,7 +94,7 @@ const GlassmorphismForm = () => {
     if (photocopy) data.append('photocopy', photocopy);
 
     try {
-      const response = await fetch('/api/', {
+      const response = await fetch('/api/gstUser', {
         method: 'POST',
         body: data,
       });
@@ -133,7 +133,7 @@ const GlassmorphismForm = () => {
       
       <div>
       <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md ">
-        <h2 className="text-2xl font-bold text-white mb-6">GST/ITR Filling Form</h2>
+        <h2 className="text-2xl font-bold text-white mb-6">GST/ITR Agent Form</h2>
         <form onSubmit={handleSubmit}>
           {step === 1 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
