@@ -14,7 +14,6 @@ const GlassmorphismForm = () => {
     name: '',
     email: '',
     mobileNumber: '',
-    partnerID: '',
   });
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
@@ -83,7 +82,6 @@ const GlassmorphismForm = () => {
     data.append('name', formData.name);
     data.append('email', formData.email);
     data.append('mobileNumber', formData.mobileNumber);
-    data.append('partnerID', formData.partnerID);
     data.append('registrationType', registrationType);
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
@@ -111,7 +109,6 @@ const GlassmorphismForm = () => {
           name: '',
           email: '',
           mobileNumber: '',
-          partnerID: '',
         });
         setRegistrationType('');
         notifySuccess();
@@ -132,13 +129,13 @@ const GlassmorphismForm = () => {
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 gap-5">
       
       <div>
-      <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md ">
+      <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full  ">
         <h2 className="text-2xl font-bold text-white mb-6">GST/ITR Agent Form</h2>
         <form onSubmit={handleSubmit}>
           {step === 1 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               <div className="mb-4">
-                <label className="block text-white">Name</label>
+                <label className="block text-white"> Customer Name</label>
                 <input
                   type="text"
                   name="name"
@@ -148,7 +145,7 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">Email</label>
+                <label className="block text-white">Customer Email</label>
                 <input
                   type="email"
                   name="email"
@@ -158,7 +155,7 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">Mobile Number</label>
+                <label className="block text-white">Customer Mobile Number</label>
                 <input
                   type="tel"
                   name="mobileNumber"
@@ -169,18 +166,9 @@ const GlassmorphismForm = () => {
                   maxLength="10"
                 />
               </div>
+              
               <div className="mb-4">
-                <label className="block text-white">Partner ID/Refer Mobile Number (Optional)</label>
-                <input
-                  type="text"
-                  name="partnerID"
-                  value={formData.partnerID}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Registration Type</label>
+                <label className="block text-white">Customer Registration Type</label>
                 <select
                   name="registrationType"
                   value={registrationType}
@@ -219,7 +207,7 @@ const GlassmorphismForm = () => {
           {step === 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               <div className="mb-4">
-                <label className="block text-white">AADHAAR CARD</label>
+                <label className="block text-white">Customer AADHAAR CARD</label>
                 <input
                   type="file"
                   name="aadhaarCard"
@@ -228,7 +216,7 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">PAN CARD</label>
+                <label className="block text-white">Customer PAN CARD</label>
                 <input
                   type="file"
                   name="panCard"
@@ -237,7 +225,7 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">BANK STATEMENTS</label>
+                <label className="block text-white">Customer BANK STATEMENTS</label>
                 <input
                   type="file"
                   name="bankStatements"
@@ -246,7 +234,7 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
+                <label className="block text-white">Customer ELECTRICITY BILL OR RENT AGREEMENT</label>
                 <input
                   type="file"
                   name="electricityBill"
@@ -255,7 +243,7 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-white">PHOTO COPY</label>
+                <label className="block text-white">Customer PHOTO COPY</label>
                 <input
                   type="file"
                   name="photocopy"

@@ -21,7 +21,6 @@ export const POST = async (req) => {
     const name = formData.get("name");
     const email = formData.get("email");
     const mobileNumber = formData.get("mobileNumber");
-    const partnerID = formData.get("partnerID");
     const registrationType = formData.get("registrationType");
 
     // Check if required fields are present in the form data
@@ -53,7 +52,6 @@ export const POST = async (req) => {
       email,
       username,
       mobileNumber,
-      partnerID,
       registrationType,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
       panCard: panUploadResult ? panUploadResult.secure_url : null,

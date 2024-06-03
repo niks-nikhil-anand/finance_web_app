@@ -18,10 +18,6 @@ const gstUserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    partnerID: {
-        type: String,
-        required: false,
-    },
     registrationType: {
         type: String,
         required: true,
