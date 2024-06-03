@@ -10,6 +10,9 @@ import {
   FaRegFileAlt, 
   FaWallet 
 } from 'react-icons/fa';
+
+import { FaMoneyCheckDollar } from "react-icons/fa6";
+
 import Link from 'next/link';
 
 const cardData = [
@@ -22,6 +25,12 @@ const cardData = [
   {
     title: 'Loan',
     icon: FaMoneyCheckAlt,
+    bgColor: 'bg-gradient-to-r from-green-400 via-blue-400 to-purple-500',
+    link: 'loan',
+  },
+  {
+    title: 'Jono Jivan Micro Loan',
+    icon: FaMoneyCheckDollar,
     bgColor: 'bg-gradient-to-r from-green-400 via-blue-400 to-purple-500',
     link: 'loan',
   },
