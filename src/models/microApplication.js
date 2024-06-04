@@ -1,79 +1,39 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
+const microLoanApplicationSchema = new mongoose.Schema(
+  {
+    aadhaarCard: { type: String, required: false },
+    panCard: { type: String, required: false },
+    bankPassbook: { type: String, required: false },
+    bankStatements: { type: String, required: false },
+    photoCopy: { type: String, required: false },
+    nominee: {
+      name: { type: String, required: true },
+      email: { type: String, required: false },
+      mobile: { type: String, required: false },
+      village: { type: String, required: false },
+      relation: { type: String, required: false },
+      dob: { type: Date, required: false },
+      panCardNumber: { type: String, required: false },
+      aadhaarCardNumber: { type: String, required: false },
+    },
+    guarantor: {
+      name: { type: String, required: true },
+      email: { type: String, required: false },
+      mobile: { type: String, required: false },
+      village: { type: String, required: false },
+      relation: { type: String, required: false },
+      dob: { type: Date, required: false },
+      panCardNumber: { type: String, required: false },
+      aadhaarCardNumber: { type: String, required: false },
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const microLoanApplicationSchema = mongoose.Schema({
-    nomineeName:{
-        type: String,
-        required: true,
-    },
-    guarantorName:{
-        type: String,
-        required: true,
-    },
-    nomineeEmail:{
-        type: String,
-    },
-    guarantorEmail:{
-        type: String,
-    },
-    loanType:{
-        type: String,
-    },
-    nomineeMobile:{
-        type: String,
-        required: true,
-    },
-    guarantorMobile:{
-        type: String,
-        required: true,
-    },
-    nomineeVillage:{
-        type: String,
-    },
-    guarantorVillage:{
-        type: String,
-    },
-    nomineeDOB:{
-        type: String,
-    },
-    guarantorDOB:{
-        type: String,
-    },
-    nomineeRelation:{
-        type: String,
-    },
-    guarantorRelation:{
-        type: String,
-    },
-    guarantorPanCardNumber:{
-        type: String,
-    },
-    nomineePanCardNumber:{
-        type: String,
-    },
-    guarantorAadhaarCardNumber:{
-        type: String,
-    },
-    nomineeAadhaarCardNumber:{
-        type: String,
-    },
-    panCard:{
-        type: String,
-    },
-    aadhaarCard:{
-        type: String,
-    },
-    bankPassbook:{
-        type: String,
-    },
-    bankStatement:{
-        type: String,
-    },
-    photoCopy:{
-        type: String,
-    },
-})
-
+// export default mongoose.models.MicroLoanApplication || mongoose.model('MicroLoanApplication', microLoanApplicationSchema);
 
 
 export default mongoose.models.MicroLoanApplication || mongoose.model('MicroLoanApplication' , microLoanApplicationSchema)

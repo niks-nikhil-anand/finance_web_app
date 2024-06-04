@@ -1,14 +1,13 @@
 "use client"
 import React, { useState } from 'react'
-import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, Menu } from 'lucide-react'
-import { MdDashboard , MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
+import {  Menu } from 'lucide-react'
+import {  MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
 import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch , FaPeopleCarry } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
-import { FaUsersLine , FaHireAHelper , FaMoneyBillTransfer } from "react-icons/fa6";
+import {  FaHireAHelper , FaMoneyBillTransfer } from "react-icons/fa6";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { CiShop , CiBank } from "react-icons/ci";
 import Link from 'next/link';
-import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
 
 
@@ -108,7 +107,7 @@ export function SidebarAdmin() {
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-               href={"/dashboard/loan"}
+               href={"/dashboard/microLoan"}
               >
                 <FaMoneyBillTransfer  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
