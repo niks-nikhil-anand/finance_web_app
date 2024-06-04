@@ -3,9 +3,7 @@ import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { 
   FaFileInvoiceDollar, 
-  FaMoneyCheckAlt, 
-  FaEnvelope, 
-  FaComments, 
+  FaMoneyCheckAlt,  
   FaBuilding, 
   FaRegFileAlt, 
   FaWallet 

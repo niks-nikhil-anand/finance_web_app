@@ -70,6 +70,9 @@
       type: Boolean, 
       default: false 
   }, 
+  wallet:{
+    
+  }
   });
 
   export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication' , partnerApplicationSchema )
