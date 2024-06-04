@@ -27,6 +27,24 @@ const microLoanApplicationSchema = new mongoose.Schema(
       panCardNumber: { type: String, required: false },
       aadhaarCardNumber: { type: String, required: false },
     },
+    loanType :{
+      type:String
+    },
+    employmentType :{
+      type:String
+    },
+    monthlyIncome :{
+      type:String
+    },
+    requiredLoanAmount :{
+      type:String
+    },
+    maritalStatus :{
+      type:String
+    },
+    loanYear :{
+      type:String
+    },
   },
   {
     timestamps: true,

@@ -15,6 +15,14 @@ export const POST = async (req) => {
     const bankPassbook = formData.get("bankPassbook");
     const bankStatements = formData.get("bankStatements");
     const photoCopy = formData.get("photoCopy");
+
+    // extra field 
+    const loanType = formData.get("loanType")
+    const employmentType = formData.get("employmentType")
+    const monthlyIncome = formData.get("monthlyIncome")
+    const requiredLoanAmount = formData.get("requiredLoanAmount")
+    const maritalStatus = formData.get("maritalStatus")
+    const loanYear = formData.get("loanYear")
    
     // Nominee data
     const nomineeName = formData.get("nomineeName");
@@ -72,6 +80,12 @@ export const POST = async (req) => {
         panCardNumber: guarantorPanCardNumber,
         aadhaarCardNumber: guarantorAadhaarCardNumber,
       },
+      loanType ,
+      employmentType,
+      monthlyIncome ,
+      requiredLoanAmount,
+      maritalStatus,
+      loanYear
     };
 
     await microApplication.create(applicationData); // Corrected model usage

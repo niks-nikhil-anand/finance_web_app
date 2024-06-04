@@ -33,6 +33,11 @@ const LoanForm = () => {
 
   const [loanType, setLoanType] = useState('');
   const [step, setStep] = useState(1);
+  const [monthlyIncome, setMonthlyIncome] = useState('');
+  const [requiredLoanAmount, setRequiredLoanAmount] = useState('');
+  const [employmentType, setEmploymentType] = useState('');
+  const [maritalStatus, setMaritalStatus] = useState('');
+  const [loanYear, setLoanYear] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e, setFile) => {
@@ -89,7 +94,18 @@ const LoanForm = () => {
     formData.append('guarantorDOB', guarantorDOB);
     formData.append('guarantorPanCardNumber', guarantorPanCardNumber);
     formData.append('guarantorAadhaarCardNumber', guarantorAadhaarCardNumber);
+
+    
     formData.append('loanType', loanType);
+    formData.append('employmentType', employmentType);
+    formData.append('monthlyIncome', monthlyIncome);
+    formData.append('requiredLoanAmount', requiredLoanAmount);
+    formData.append('maritalStatus', maritalStatus);
+    formData.append('loanYear', loanYear);
+
+
+
+
 
     if (aadhaarCard) formData.append('aadhaarCard', aadhaarCard);
     if (panCard) formData.append('panCard', panCard);
@@ -121,6 +137,16 @@ const LoanForm = () => {
         setGuarantorPanCardNumber('');
         setGuarantorAadhaarCardNumber('');
         setLoanType('');
+
+
+        setEmploymentType('');
+        setMonthlyIncome('');
+        setRequiredLoanAmount('');
+
+        setMaritalStatus('');
+        setLoanYear('');
+
+
         setAadhaarCard(null);
         setPanCard(null);
         setBankPassbook(null);
@@ -332,8 +358,108 @@ const LoanForm = () => {
                   <option value="personal">Micro Personal Loan</option>
                   <option value="business">Daily Collection Micro Loan</option>
                   <option value="education">Micro Finance Group Loan</option>
+                  <option value="education">Mobile Finance Loan</option>
                 </select>
               </div>
+
+              // Added Extra
+              <div>
+              <label className="block text-sm font-medium text-white">Marital Status</label>
+              <select
+                name="maritalStatus"
+                value={maritalStatus}
+                onChange={(e) => setMaritalStatus(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled>Select Marital Status</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+              </select>
+            </div>
+            
+
+            <div>
+              <label className="block text-sm font-medium text-white">Loan Duration</label>
+              <select
+                name="loanYear"
+                value={loanYear}
+                onChange={(e) => setLoanYear(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled>Select Duration</option>
+                <option value="1 year">1 Year</option>
+                <option value="2 years">2 Year</option>
+                <option value="3 years">3 Year</option>
+                <option value="4 years">4 Year</option>
+                <option value="5 years">5 Year</option>
+                <option value="6 year">6 Year</option>
+                <option value="7 years">7 Year</option>
+                <option value="8 years">8 Year</option>
+                <option value="9 years">9 Year</option>
+                <option value="10 years">10 Year</option>
+                <option value="11 year">11 Year</option>
+                <option value="12 years">12 Year</option>
+                <option value="13 years">13 Year</option>
+                <option value="14 years">14 Year</option>
+                <option value="15 years">15 Year</option>
+              </select>
+            </div>
+
+
+            <div>
+  <label className="block text-sm font-medium text-white">Employment Type</label>
+  <select
+    name="employmentType"
+    value={employmentType}
+    onChange={(e) => setEmploymentType(e.target.value)} 
+    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+  >
+    <option value="" disabled>Select employment type</option>
+    <option value="business">Business</option>
+    <option value="self-employed">Self Employed</option>
+    <option value="government job">Government Job</option>
+    <option value="private Job">Private Job</option>
+    <option value="student">Student</option>
+    <option value="other">Other</option>
+  </select>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium text-white">Monthly Income</label>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span className="text-gray-500 sm:text-sm">₹</span>
+        </div>
+        <input
+          type="text"
+          name="monthlyIncome"
+          value={monthlyIncome}
+          onChange={handleMonthlyIncomeChange}
+          className="block w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="0.00"
+        />
+      </div>
+      </div>
+      <div>
+      <label className="block text-sm font-medium text-white">Required Loan Amount</label>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span className="text-gray-500 sm:text-sm">₹</span>
+        </div>
+        <input
+          type="text"
+          name="requiredLoanAmount"
+          value={requiredLoanAmount}
+          onChange={handleRequiredLoanAmountChange}
+          className="block w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="0.00"
+        />
+      </div>
+      </div>
+
               <div>
                 <label className="block text-sm font-medium text-white">Aadhaar Card</label>
                 <input
