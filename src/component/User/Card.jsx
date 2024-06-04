@@ -10,7 +10,9 @@ import {
   FaRegFileAlt, 
   FaWallet 
 } from 'react-icons/fa';
-
+import { LuLogOut } from "react-icons/lu";
+import { FaIndianRupeeSign , FaWpforms } from "react-icons/fa6";
+import { ImProfile } from "react-icons/im";
 import { GiPayMoney } from "react-icons/gi";
 
 import Link from 'next/link';
@@ -35,18 +37,6 @@ const cardData = [
     link: 'microLoan',
   },
   {
-    title: 'Contact Us',
-    icon: FaEnvelope,
-    bgColor: 'bg-gradient-to-r from-blue-500 via-teal-400 to-green-400',
-    link: 'contactus',
-  },
-  {
-    title: 'Chat Now',
-    icon: FaComments,
-    bgColor: 'bg-gradient-to-r from-pink-500 via-red-400 to-yellow-400',
-    link: 'chatnow',
-  },
-  {
     title: 'Fintech Services',
     icon: FaBuilding,
     bgColor: 'bg-gradient-to-r from-purple-400 via-pink-400 to-red-400',
@@ -54,7 +44,7 @@ const cardData = [
   },
   {
     title: 'Complaint',
-    icon: FaRegFileAlt,
+    icon: FaWpforms,
     bgColor: 'bg-gradient-to-r from-red-400 via-yellow-400 to-green-400',
     link: 'complaint',
   },
@@ -65,10 +55,22 @@ const cardData = [
     link: 'status',
   },
   {
-    title: 'Wallet',
-    icon: FaWallet,
+    title: 'Rozana Pay',
+    icon: FaIndianRupeeSign,
     bgColor: 'bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400',
     link: 'wallet',
+  },
+  {
+    title: 'Profile',
+    icon: ImProfile,
+    bgColor: 'bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400',
+    link: 'profile',
+  },
+  {
+    title: 'LogOut',
+    icon: LuLogOut,
+    bgColor: 'bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400',
+    link: 'logout',
   },
 ];
 
@@ -82,16 +84,15 @@ const ColorfulCard = () => {
       {cardData.map((card, index) => (
         <div
           key={index}
-          className={`flex flex-col items-center justify-center p-6 m-2 rounded-lg shadow-lg text-white w-48 ${card.bgColor}`}
+          className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full md:w-48 ${card.bgColor}`}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           whileHover={{ scale: 1.1, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
           transition={{ duration: 0.3 }}
         >
-          <Link href={`/user/${username}/${card.link}`}>
-           
-              <card.icon className="text-6xl mb-4" />
-              <h2 className="text-xl font-bold text-center">{card.title}</h2>
+          <Link href={`/user/${username}/${card.link}`} className="flex flex-col items-center justify-center">
+              <card.icon className="text-4xl md:text-6xl mb-2 md:mb-4" />
+              <h2 className="text-lg md:text-xl font-bold text-center">{card.title}</h2>
             
           </Link>
         </div>
