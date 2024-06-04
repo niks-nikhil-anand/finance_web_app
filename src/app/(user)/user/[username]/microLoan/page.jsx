@@ -11,6 +11,16 @@ const LoanForm = () => {
   const [bankStatement, setBankStatement] = useState(null);
   const [photoCopy, setPhotoCopy] = useState(null);
 
+  // customer
+  const [customerName, setCustomerName] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [customerMobile, setCustomerMobile] = useState('');
+  const [customerCity, setCustomerCity] = useState('');
+  const [customerGender, setCustomerGender] = useState('');
+  const [customerDOB, setCustomerDOB] = useState('');
+  const [customerPinCode, setCustomerPinCode] = useState('');
+  const [customerState, setCustomerState] = useState('');
+
   // Nominee fields
   const [nomineeName, setNomineeName] = useState('');
   const [nomineeEmail, setNomineeEmail] = useState('');
@@ -39,6 +49,14 @@ const LoanForm = () => {
   const [maritalStatus, setMaritalStatus] = useState('');
   const [loanYear, setLoanYear] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const statesOfIndia = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
+    "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+  ];
 
   const handleFileChange = (e, setFile) => {
     if (e.target.files) {
@@ -80,6 +98,12 @@ const LoanForm = () => {
   const handlePreviousStep = () => {
     setStep(step - 1);
   };
+  const handlePinCodeChange = (e) => {
+    const value = e.target.value;
+    if (value.match(/^\d{0,6}$/)) {
+      setCustomerPinCode(value);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,6 +137,14 @@ const LoanForm = () => {
     formData.append('loanYear', loanYear);
 
 
+    formData.append('customerName', customerName);
+    formData.append('customerEmail', customerEmail);
+    formData.append('customerMobile', customerMobile);
+    formData.append('customerCity', customerCity);
+    formData.append('customerGender', customerGender);
+    formData.append('customerPinCode', customerPinCode);
+    formData.append('customerState', customerState);
+
 
 
 
@@ -121,6 +153,10 @@ const LoanForm = () => {
     if (bankPassbook) formData.append('bankPassbook', bankPassbook);
     if (bankStatement) formData.append('bankStatement', bankStatement);
     if (photoCopy) formData.append('photoCopy', photoCopy);
+
+
+    
+  
 
     try {
       const response = await fetch('/api/microLoanApplication', {
@@ -185,7 +221,101 @@ const LoanForm = () => {
      
       <h2 className="text-2xl font-bold mb-6 text-white">JonoJivan Micro Loan Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {step === 1 && (
+      {step === 1 && (
+          <>
+            <div>
+              <label className="block text-sm font-medium text-white"> Customer Name</label>
+              <input
+                type="text"
+                name="customerName"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white">Customer Email</label>
+              <input
+                type="email"
+                name="customerEmail"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)} 
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white">Customer Mobile Number</label>
+              <input
+                type="text"
+                name="customerMobile"
+                value={customerMobile}
+                onChange={(e) => setCustomerMobile(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white">Customer Gender</label>
+              <select
+                name="customerGender"
+                value={customerGender}
+                onChange={(e) => setCustomerGender(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+                <label className="block text-sm font-medium text-white">Customer Date of Birth</label>
+                <input
+                  type="date"
+                  name="customerDOB"
+                  value={customerDOB}
+                  onChange={(e) => setCustomerDOB(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+            <div>
+              <label className="block text-sm font-medium text-white">Customer City</label>
+              <input
+                type="text"
+                name="customerCity"
+                value={customerCity}
+                onChange={(e) => setCustomerCity(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <div>
+                    <label className="block text-sm font-medium text-white">Customer Pin Code</label>
+                    <input
+                      type="text"
+                      name="customerPinCode"
+                      value={customerPinCode}
+                      onChange={handlePinCodeChange}
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      pattern="\d{6}"
+                      maxLength="6"
+                    />
+    </div>
+            <div>
+              <label className="block text-sm font-medium text-white">Customer State</label>
+              <select
+                name="customerState"
+                value={customerState}
+                onChange={(e) => setCustomerState(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled>Select State</option>
+                {statesOfIndia.map((state, index) => (
+                  <option key={index} value={state}>{state}</option>
+                ))}
+              </select>
+            </div>
+          </>
+        )}
+        {step === 2 && (
           <>
               <div>
                 <label className="block text-sm font-medium text-white">Nominee Name</label>
@@ -218,7 +348,7 @@ const LoanForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white">Nominee Village</label>
+                <label className="block text-sm font-medium text-white">Nominee City</label>
                 <input
                   type="text"
                   name="nomineeVillage"
@@ -269,7 +399,7 @@ const LoanForm = () => {
               </div>
               </>
         )}
-        {step === 2 && (
+        {step === 3 && (
           <>
               <div>
                 <label className="block text-sm font-medium text-white">Guarantor Name</label>
@@ -302,7 +432,7 @@ const LoanForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white">Guarantor Village</label>
+                <label className="block text-sm font-medium text-white">Guarantor City</label>
                 <input
                   type="text"
                   name="guarantorVillage"
@@ -353,7 +483,7 @@ const LoanForm = () => {
               </div>
               </>
         )}
-        {step === 3 && (
+        {step === 4 && (
           <>
               <div>
                 <label className="block text-sm font-medium text-white">Loan Type</label>
@@ -526,7 +656,7 @@ const LoanForm = () => {
               Previous
             </button>
           )}
-          {step < 3 && (
+          {step < 4 && (
             <button
               type="button"
               onClick={handleNextStep}
@@ -535,7 +665,7 @@ const LoanForm = () => {
               Next
             </button>
           )}
-          {step === 3 && (
+          {step === 4 && (
             <button
               type="submit"
               className="px-4 py-2 text-white bg-green-600 rounded-md"

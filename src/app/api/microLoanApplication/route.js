@@ -34,6 +34,18 @@ export const POST = async (req) => {
     const nomineePanCardNumber = formData.get("nomineePanCardNumber");
     const nomineeAadhaarCardNumber = formData.get("nomineeAadhaarCardNumber");
 
+    // Customer data
+    const customerName = formData.get("customerName");
+    const customerEmail = formData.get("customerEmail");
+    const customerMobile = formData.get("customerMobile");
+    const customerCity = formData.get("customerCity");
+    const customerGender = formData.get("customerGender");
+    const customerPinCode = formData.get("customerPinCode");
+    const customerState = formData.get("customerState");
+    const customerDOB = formData.get("customerDOB");
+
+
+
     // Guarantor data
     const guarantorName = formData.get("guarantorName");
     const guarantorEmail = formData.get("guarantorEmail");
@@ -43,6 +55,10 @@ export const POST = async (req) => {
     const guarantorDOB = formData.get("guarantorDOB");
     const guarantorPanCardNumber = formData.get("guarantorPanCardNumber");
     const guarantorAadhaarCardNumber = formData.get("guarantorAadhaarCardNumber");
+
+
+
+
 
     if (!nomineeName || !guarantorName) {
       throw new Error("Please provide nominee and guarantor names.");
@@ -79,6 +95,16 @@ export const POST = async (req) => {
         dob: guarantorDOB,
         panCardNumber: guarantorPanCardNumber,
         aadhaarCardNumber: guarantorAadhaarCardNumber,
+      },
+      customer:{
+        name: customerName,
+        email:customerEmail,
+        mobile: customerMobile,
+        city:customerCity,
+        gender: customerGender,
+        dob: customerDOB,
+        pinCode: customerPinCode,
+        state: customerState,
       },
       loanType ,
       employmentType,
