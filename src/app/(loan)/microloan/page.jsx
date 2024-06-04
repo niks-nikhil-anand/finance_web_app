@@ -46,6 +46,15 @@ const LoanForm = () => {
     }
   };
 
+  const handleMonthlyIncomeChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, ''); 
+    setMonthlyIncome(value);
+  };
+  const handleRequiredLoanAmountChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, ''); 
+    setRequiredLoanAmount(value);
+  };
+
   const notifyLoading = () => {
     toast.info("Submitting form...", {
       position: "bottom-right"
@@ -95,7 +104,7 @@ const LoanForm = () => {
     formData.append('guarantorPanCardNumber', guarantorPanCardNumber);
     formData.append('guarantorAadhaarCardNumber', guarantorAadhaarCardNumber);
 
-    
+
     formData.append('loanType', loanType);
     formData.append('employmentType', employmentType);
     formData.append('monthlyIncome', monthlyIncome);
