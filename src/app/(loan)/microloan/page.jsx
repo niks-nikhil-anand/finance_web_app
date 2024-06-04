@@ -371,7 +371,7 @@ const LoanForm = () => {
                 </select>
               </div>
 
-              // Added Extra
+              
               <div>
               <label className="block text-sm font-medium text-white">Marital Status</label>
               <select
