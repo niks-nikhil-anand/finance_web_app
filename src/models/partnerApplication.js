@@ -66,13 +66,10 @@
       enum: ['CSP', 'Branch', 'DSA' , 'User' , 'Admin'],
       default: 'User'
   },
-    isApproved: { 
+   isApproved: { 
       type: Boolean, 
       default: false 
   }, 
-  wallet:{
-    
-  }
   });
 
   export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication' , partnerApplicationSchema )

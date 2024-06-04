@@ -28,7 +28,12 @@ const walletSchema = new mongoose.Schema({
     description: {
       type: String
     }
-  }]
+  }],
+  partner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PartnerApplication',
+    required: true
+  }
 });
 
-export default Wallet = mongoose.models.Wallet || mongoose.model('Wallet' , walletSchema)
+export default mongoose.models.Wallet || mongoose.model('Wallet', walletSchema);
