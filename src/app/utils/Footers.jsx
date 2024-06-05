@@ -7,8 +7,9 @@ const Footers = () => {
   const pathname = usePathname();
   const isAdminPage = pathname.startsWith('/dashboard');
   const isUserPage = pathname.startsWith('/user');
+  const isBranchPage = pathname.startsWith('/branch');
 
-  if (isAdminPage || isUserPage) {
+  if (isAdminPage || isUserPage || isBranchPage) {
     return null; 
   }
 
