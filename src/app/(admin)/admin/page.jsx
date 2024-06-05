@@ -52,7 +52,19 @@ const LoginForm = () => {
         setEmail('');
         setPassword('');
         notifySuccess();
-        router.push(userType === 'Super Admin' ? '/dashboard' : '/branch');
+
+        if (userType === 'Branch') {
+          const userResponse = await fetch(`/api/params/${email}`);
+          if (userResponse.ok) {
+            const userResult = await userResponse.json();
+            const username = userResult[0].username;
+            router.push(`/branch/${username}`);
+          } else {
+            notifyError('Failed to fetch user details');
+          }
+        } else {
+          router.push('/dashboard');
+        }
       } else {
         const errorResult = await response.json();
         console.error('Error:', errorResult);
@@ -77,9 +89,9 @@ const LoginForm = () => {
           </h2>
         </div>
         <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
-        <div className="mb-4">
+          <div className="mb-4">
             <label htmlFor="userType" className="block text-sm font-medium text-gray-700">
-              Select Account Type
+              Account Type
             </label>
             <select
               id="userType"
@@ -87,6 +99,7 @@ const LoginForm = () => {
               onChange={(e) => setUserType(e.target.value)}
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             >
+              <option value="" disabled>Select Account Type</option>
               <option value="Super Admin">Super Admin</option>
               <option value="Branch">Branch</option>
             </select>
@@ -134,3 +147,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+  

@@ -10,10 +10,6 @@ export const POST = async (req) => {
         const formData = await req.formData();
         const email = formData.get("email");
         const password = formData.get("password");
-        const applicationData = {
-            email,
-            password
-        };
 
         const partner = await partnerApplication.findOne({ email });
 
@@ -26,6 +22,13 @@ export const POST = async (req) => {
         const isMatch = await bcrypt.compare(password, partner.password);
         if (!isMatch) {
             return NextResponse.json({ msg: "Invalid email or password" }, {
+                status: 408
+            });
+        }
+
+        // const validRoles = ['DSA', 'CSP'];
+        if (partner.isApproved === false ) {
+            return NextResponse.json({ msg: "Not Authorised " }, {
                 status: 408
             });
         }

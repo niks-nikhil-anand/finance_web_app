@@ -3,23 +3,35 @@ import { parse } from 'cookie';
 import jwt from 'jsonwebtoken';
 
 export async function middleware(req) {
-  // Get the cookie header from the request
   const cookieHeader = req.headers.get('cookie');
-  // Parse the cookies
   const cookies = parse(cookieHeader || '');
-  const authToken = cookies.authToken; // The name of your auth token cookie
+  const userAuthToken = cookies.userAuthToken;
+  const authBranchToken = cookies.authBranchToken;
+  const authToken = cookies.authToken;
 
-  // Check if the request is for the /dashboard route
-  if (req.nextUrl.pathname.startsWith('/dashboard')) {
-    if (!authToken) {
-      // Redirect to /admin if auth token is missing
-      const url = new URL('/admin', req.nextUrl.origin);
+  if (req.nextUrl.pathname.startsWith('/user')) {
+    if (!userAuthToken) {
+      const url = new URL('/partnersignin', req.nextUrl.origin);
       return NextResponse.redirect(url);
     }
-    // Proceed with the request if auth token is available
     return NextResponse.next();
   }
 
-  // Proceed with the request for other routes
+  if (req.nextUrl.pathname.startsWith('/branch')) {
+    if (!authBranchToken) {
+      const url = new URL('/admin', req.nextUrl.origin);
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
+
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!authToken) {
+      const url = new URL('/admin', req.nextUrl.origin);
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 }

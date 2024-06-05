@@ -83,9 +83,9 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:flex ml-4 items-center md:ml-6">
-            <Link href="/applynow">
+            <Link href="/partnersignin">
               <button className="px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
-                Apply Now
+                Sign In
               </button>
             </Link>
           </div>
