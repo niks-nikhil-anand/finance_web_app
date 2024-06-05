@@ -70,6 +70,10 @@
       type: Boolean, 
       default: false 
   }, 
+  branch :{
+    type : mongoose.Schema.Types.ObjectId,
+    ref: 'Branch'
+  }
   });
 
   export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication' , partnerApplicationSchema )

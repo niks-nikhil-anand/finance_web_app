@@ -1,14 +1,15 @@
 "use client"
 import React, { useState } from 'react'
 import {  Menu } from 'lucide-react'
+import Link from 'next/link';
 import {  MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
-import { FaHandHoldingUsd , FaMoneyCheckAlt , FaCodeBranch , FaPeopleCarry } from "react-icons/fa";
+import { FaHandHoldingUsd , FaCodeBranch  } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
-import {  FaHireAHelper , FaMoneyBillTransfer } from "react-icons/fa6";
+import {  FaHireAHelper , FaMoneyBillTransfer ,  FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { CiShop , CiBank } from "react-icons/ci";
-import Link from 'next/link';
-import { FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
+import { RiAdminFill } from "react-icons/ri";
+
 
 
 import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
@@ -126,6 +127,25 @@ export function SidebarAdmin() {
                 <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium"> Hiring Leads</span>
               </Link>
+            </div>
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Update Role</label>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/createBranch"}
+              >
+                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Create Branch</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/user/branch"}
+              >
+                 <RiAdminFill className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Create Admin</span>
+              </Link>
+              
+              
             </div>
             <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">User</label>
