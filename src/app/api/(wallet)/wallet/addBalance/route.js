@@ -40,7 +40,8 @@ export const POST = async (req) => {
     }
 
     const { amount } = await req.json();
-    if (!amount || amount <= 0) {
+    const numericAmount = parseFloat(amount); // Ensure amount is parsed as a number
+    if (isNaN(numericAmount) || numericAmount <= 0) {
       console.log("Invalid amount.");
       return NextResponse.json({ message: 'Invalid amount' }, { status: 400 });
     }
@@ -51,9 +52,9 @@ export const POST = async (req) => {
       wallet = new walletModel({ partner: userId, totalAmount: 0, availableToWithdraw: 0, transactions: [] });
     }
 
-    wallet.totalAmount += amount;
-    wallet.availableToWithdraw += amount; // Adjust based on your business logic
-    wallet.transactions.push({ type: 'credit', amount, date: new Date() });
+    wallet.totalAmount += numericAmount;
+    wallet.availableToWithdraw += numericAmount; // Adjust based on your business logic
+    wallet.transactions.push({ type: 'credit', amount: numericAmount, date: new Date() });
 
     await wallet.save();
     console.log("Wallet updated successfully.");

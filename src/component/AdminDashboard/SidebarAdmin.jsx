@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {  MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
 import { FaHandHoldingUsd , FaCodeBranch  } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
-import {  FaHireAHelper , FaMoneyBillTransfer ,  FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
+import {  FaHireAHelper , FaMoneyBillTransfer , FaCreditCard , FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { CiShop , CiBank } from "react-icons/ci";
 import { RiAdminFill } from "react-icons/ri";
@@ -78,6 +78,13 @@ export function SidebarAdmin() {
               >
                 <FaMoneyBillTrendUp   className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Rozana Pay</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+               href={"/dashboard/transactions"}
+              >
+                <FaCreditCard   className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Transactions</span>
               </Link>
              
               <Link

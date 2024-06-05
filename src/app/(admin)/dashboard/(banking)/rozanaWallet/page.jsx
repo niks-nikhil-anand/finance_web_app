@@ -17,10 +17,6 @@ const WalletManager = () => {
 
         const balanceResponse = await axios.get('/api/wallet/balance');
         setBalance(balanceResponse.data.balance);
-
-        // Uncomment and ensure this endpoint exists and returns data in the expected format
-        // const transactionsResponse = await axios.get('/api/wallet/transaction');
-        // setTransactions(transactionsResponse.data.transactions);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -66,7 +62,7 @@ const WalletManager = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl font-bold">Available Balance</h1>
+        <h1 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Available Balance</h1>
         <div className="text-6xl mt-4">
           ₹ {balance.toLocaleString('en-IN')}
         </div>
@@ -79,7 +75,7 @@ const WalletManager = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-bold mb-4">Add Balance</h2>
+          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Add Balance</h2>
           <input
             type="number"
             value={addAmount}
@@ -101,7 +97,7 @@ const WalletManager = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-bold mb-4">Send Balance</h2>
+          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Send Balance</h2>
           <input
             type="number"
             value={sendAmount}
@@ -125,39 +121,7 @@ const WalletManager = () => {
         </motion.div>
       </div>
 
-      <motion.div
-        className="p-6 bg-white rounded-lg shadow-md"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-2xl font-bold mb-4">All Transactions</h2>
-        <table className="min-w-full bg-white border">
-          <thead>
-            <tr>
-              <th className="py-2 px-4 border">ID</th>
-              <th className="py-2 px-4 border">Type</th>
-              <th className="py-2 px-4 border">Amount</th>
-              <th className="py-2 px-4 border">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction) => (
-              <tr key={transaction.id}>
-                <td className="py-2 px-4 border">{transaction.id}</td>
-                <td className="py-2 px-4 border">{transaction.type}</td>
-                <td className="py-2 px-4 border">₹ {transaction.amount.toLocaleString('en-IN')}</td>
-                <td className="py-2 px-4 border">{new Date(transaction.date).toLocaleString()}</td>
-              </tr>
-            ))}
-            {transactions.length === 0 && (
-              <tr>
-                <td className="py-2 px-4 border" colSpan="4">No transactions</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </motion.div>
+      
     </div>
   );
 };
