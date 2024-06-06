@@ -1,18 +1,12 @@
-import React from 'react';
-import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers';
-import { 
-  FaFileInvoiceDollar, 
-  FaMoneyCheckAlt,  
-  FaBuilding, 
-  FaRegFileAlt, 
-  FaWallet 
-} from 'react-icons/fa';
-import { FaIndianRupeeSign , FaWpforms } from 'react-icons/fa6';
+"use client"
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // Import axios for API requests
+import { FaFileInvoiceDollar, FaMoneyCheckAlt, FaBuilding, FaRegFileAlt, FaWallet } from 'react-icons/fa';
+import { FaIndianRupeeSign, FaWpforms } from 'react-icons/fa6';
 import { ImProfile } from 'react-icons/im';
 import { GiPayMoney } from 'react-icons/gi';
 import Link from 'next/link';
-import { LuLogOut } from "react-icons/lu";
+import { LuLogOut } from 'react-icons/lu';
 
 import LogoutButton from './LogoutButton.jsx';
 
@@ -74,9 +68,25 @@ const cardData = [
 ];
 
 const ColorfulCard = () => {
-  const cookieStore = cookies();
-  const authToken = cookieStore.get('userAuthToken');
-  const username = jwt.decode(authToken.value)?.username;
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/user/cookies');
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error('Error fetching username:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleButtonClick = (title) => {
+    console.log('Clicked:', title);
+    // Add logic for handling button clicks here
+  };
 
   return (
     <div className="flex flex-wrap justify-center items-center space-y-2 p-4 gap-4">
@@ -84,13 +94,15 @@ const ColorfulCard = () => {
         card.link === 'logout' ? (
           <LogoutButton key={index} bgColor={card.bgColor} />
         ) : (
-          <Link href={`/user/${username}/${card.link}`} key={index} passHref>
-            <div
-              className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full md:w-48 ${card.bgColor}`}
-            >
-              <card.icon className="text-4xl md:text-6xl mb-2 md:mb-4" />
-              <h2 className="text-lg md:text-xl font-bold text-center">{card.title}</h2>
-            </div>
+          <Link href={`/user/${username}/${card.link}`} key={index} >
+              <div
+                className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full md:w-48 ${card.bgColor}`}
+                onClick={() => handleButtonClick(card.title)}
+              >
+                <card.icon className="text-4xl md:text-6xl mb-2 md:mb-4" />
+                <h2 className="text-lg md:text-xl font-bold text-center">{card.title}</h2>
+              </div>
+            
           </Link>
         )
       ))}

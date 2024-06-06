@@ -34,8 +34,7 @@ export const POST = async (req) => {
         }
 
         // Generate a JWT token
-        const token = generateToken({ id: partner._id, email: partner.email , username: partner.username });
-        console.log('Generated token:', token);
+        const token = generateToken({ id: partner._id, email: partner.email , username: partner.username , services:partner.services });
 
         const response = NextResponse.json({
             msg: "Form is working fine"

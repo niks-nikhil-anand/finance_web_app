@@ -1,11 +1,26 @@
 import mongoose from "mongoose";
 
-const microLoanApplicationSchema = new mongoose.Schema(
+const microLoanUserSchema = new mongoose.Schema(
   {
-    aadhaarCard: { type: String, required: false },
-    panCard: { type: String, required: false },
-    bankPassbook: { type: String, required: false },
-    bankStatements: { type: String, required: false },
+    aadhaarCard:
+    {
+      type: String,
+      required: false
+    },
+    panCard:
+    {
+      type: String,
+      required: false
+    },
+    bankPassbook:
+    {
+      type: String,
+      required: false
+    },
+    bankStatements: {
+      type: String,
+      required: false
+    },
     photoCopy: { type: String, required: false },
     nominee: {
       name: { type: String, required: true },
@@ -55,6 +70,16 @@ const microLoanApplicationSchema = new mongoose.Schema(
     loanYear :{
       type:String
     },
+    status: {
+      type : String,
+      enum: ['Pending', 'Processing', 'Completed' , 'Reject'],
+      default: 'Pending'
+    },
+    partner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PartnerApplication',
+        required: true
+    },
   },
   {
     timestamps: true,
@@ -62,5 +87,4 @@ const microLoanApplicationSchema = new mongoose.Schema(
 );
 
 
-
-export default mongoose.models.MicroLoanApplication || mongoose.model('MicroLoanApplication' , microLoanApplicationSchema)
+export default mongoose.models.MicroLoanUser || mongoose.model('MicroLoanUser' , microLoanUserSchema)

@@ -7,13 +7,13 @@ const WalletManager = () => {
   const [balance, setBalance] = useState(0);
   const [addAmount, setAddAmount] = useState('');
   const [sendAmount, setSendAmount] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await axios.post('/api/wallet/initialize'); // Ensure this endpoint exists and works
+        await axios.post('/api/wallet/initialize'); 
 
         const balanceResponse = await axios.get('/api/wallet/balance');
         setBalance(balanceResponse.data.balance);
@@ -39,14 +39,14 @@ const WalletManager = () => {
   };
 
   const handleSendBalance = async () => {
-    if (!sendAmount || !mobileNumber) return;
+    if (!sendAmount || !email) return;
 
     try {
-      const response = await axios.post('/api/wallet/send', { amount: sendAmount, mobileNumber });
+      const response = await axios.post('/api/wallet/send', { amount: sendAmount, email });
       setBalance(response.data.newBalance);
       setTransactions(response.data.transactions);
       setSendAmount('');
-      setMobileNumber('');
+      setEmail('');
     } catch (error) {
       console.error("Error sending balance:", error);
     }
@@ -104,11 +104,11 @@ const WalletManager = () => {
             placeholder="Enter amount"
           />
           <input
-            type="text"
-            value={mobileNumber}
-            onChange={(e) => setMobileNumber(e.target.value)}
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-2 border rounded-md mb-4"
-            placeholder="Enter Mobile Number"
+            placeholder="Enter Email Id"
           />
           <button
             onClick={handleSendBalance}

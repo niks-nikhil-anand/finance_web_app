@@ -92,7 +92,10 @@ const JobApplicationsTable = () => {
                     onChange={(e) => handleRoleChange(application._id, application.role, application.isApproved, e.target.value)}
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan', 'All Services', 'None'].map((service) => (
+                    {['GST/ITR Services',
+                     'Fintech Services', 
+                     'Finance Services-Loan', 
+                     'All Services', ].map((service) => (
                       <option key={service} value={service}>
                         {service}
                       </option>

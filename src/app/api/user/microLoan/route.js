@@ -1,7 +1,7 @@
 import connectDB from "@/lib/dbConnect";
 import uploadImage from "@/lib/uploadImages";
-import microApplication from "@/models/microApplication";
-import { NextResponse } from "next/server";
+import microLoanUserModel from "@/models/microLoanUserModel";
+
 
 
 export const POST = async (req) => {
@@ -116,7 +116,7 @@ export const POST = async (req) => {
 
     console.log(applicationData)
 
-    await microApplication.create(applicationData); // Corrected model usage
+    await microLoanUserModel.create(applicationData); // Corrected model usage
 
     return NextResponse.json({ msg: "Application submitted successfully" }, { status: 200 });
   } catch (error) {
@@ -128,7 +128,7 @@ export const POST = async (req) => {
 export const GET = async () => {
   try {
     await connectDB();
-    const applications = await microApplication.find(); // Corrected model usage
+    const applications = await microLoanUserModel.find(); // Corrected model usage
 
     return NextResponse.json(applications, { status: 200 });
   } catch (error) {
