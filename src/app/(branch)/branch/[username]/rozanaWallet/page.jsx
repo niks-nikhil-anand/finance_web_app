@@ -13,9 +13,9 @@ const WalletManager = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await axios.post('/api/wallet/initialize'); // Ensure this endpoint exists and works
+        await axios.post('/api/branch/wallet/initialize'); // Ensure this endpoint exists and works
 
-        const balanceResponse = await axios.get('/api/wallet/balance');
+        const balanceResponse = await axios.get('/api/branch/wallet/balance');
         setBalance(balanceResponse.data.balance);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -30,7 +30,7 @@ const WalletManager = () => {
     if (!sendAmount || !mobileNumber) return;
 
     try {
-      const response = await axios.post('/api/wallet/send', { amount: sendAmount, mobileNumber });
+      const response = await axios.post('/api/branch/wallet/send', { amount: sendAmount, mobileNumber });
       setBalance(response.data.newBalance);
       setTransactions(response.data.transactions);
       setSendAmount('');
