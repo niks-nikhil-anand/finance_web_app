@@ -1,20 +1,56 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {  Menu } from 'lucide-react'
-import {  MdSpaceDashboard , MdOutlinePeople  } from "react-icons/md";
-import { FaHandHoldingUsd , FaMoneyCheckAlt  , FaPeopleCarry } from "react-icons/fa";
+import {  MdSpaceDashboard   } from "react-icons/md";
+import { FaHandHoldingUsd , FaUserAlt   , FaRupeeSign , FaRegCreditCard } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
-import {  FaHireAHelper , FaMoneyBillTransfer , FaCodeBranch } from "react-icons/fa6";
-import { IoShareSocialSharp } from "react-icons/io5";
-import { CiShop , CiBank } from "react-icons/ci";
+import {  FaMoneyBillTransfer , FaCodeBranch } from "react-icons/fa6";
+import { TiUserAdd } from "react-icons/ti";
+import { CiBank } from "react-icons/ci";
 import Link from 'next/link';
-import { FaMoneyBillTrendUp , FaMoneyCheckDollar  } from "react-icons/fa6";
+import {  FaMoneyCheckDollar  } from "react-icons/fa6";
 
 
-import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
+import { FcAcceptDatabase} from "react-icons/fc";
 
 export function SidebarBranch() {
   const [isOpen, setIsOpen] = useState(false);
+  const [partner, setPartner] = useState([]);
+
+  useEffect(() => {
+    const fetchPartnerData = async () => {
+      try {
+        const response = await fetch('/api/branch/cookies');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setPartner(data[0]);
+        console.log(partner)
+      } catch (error) {
+        console.error('Error fetching partner data:', error);
+      }finally{
+        console.log(partner)
+      }
+    };
+
+    fetchPartnerData();
+  }, []); 
+
+  const handleLinkClick = async () => {
+    try {
+      const response = await fetch('/api/branch/cookies');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setPartner(data[0]);
+      console.log(partner);
+    } catch (error) {
+      console.error('Error fetching partner data:', error);
+    }
+  };
+
 
   return (
     <div>
@@ -33,13 +69,13 @@ export function SidebarBranch() {
         <div className="mt-6 flex flex-1 flex-col justify-between">
           <nav className="-mx-3 space-y-6">
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Main</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">Branch Name</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                href={"/dashboard"}
               >
                 <FcAcceptDatabase  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Dashboard</span>
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>Dashboard</span>
               </Link>
               
             </div>
@@ -47,14 +83,14 @@ export function SidebarBranch() {
               <label className="px-3 text-xs font-semibold uppercase text-white">DSA/CSP </label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-               href={"/dashboard/partner/loan"}
+                href={`/branch/${partner.username}/addPartner`}
               >
-                <FaMoneyBillTrendUp   className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Add DSA/CSP </span>
+                <TiUserAdd   className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>Add DSA/CSP </span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/partner/gstitr"}
+                href={`/branch/${partner.username}/csp`}
               >
                 <FaMoneyCheckDollar  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">CSP </span>
@@ -64,7 +100,14 @@ export function SidebarBranch() {
                 href={"/dashboard/partner/gstitr"}
               >
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">DSA</span>
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>DSA</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={`/branch/${partner.username}/addPartner`}
+              >
+                <FaUserAlt  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>DSA/CSP Partner</span>
               </Link>
              
               
@@ -73,10 +116,17 @@ export function SidebarBranch() {
               <label className="px-3 text-xs font-semibold uppercase text-white">Banking</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-               href={"/dashboard/rozanaWallet"}
+                href={`/branch/${partner.username}/rozanaWallet`}
               >
-                <FaMoneyBillTrendUp   className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Rozana Pay</span>
+                <FaRupeeSign   className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>Rozana Pay</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={`/branch/${partner.username}/transactions`}
+              >
+                <FaRegCreditCard   className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>Transactions</span>
               </Link>
              
               <Link
@@ -84,7 +134,7 @@ export function SidebarBranch() {
                 href={"/dashboard/partner/gstitr"}
               >
                 <CiBank  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Fintech Banking</span>
+                <span className="mx-2 text-sm font-medium" onClick={handleLinkClick}>Fintech Banking</span>
               </Link>
               
             </div>

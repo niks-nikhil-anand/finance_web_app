@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -7,7 +7,7 @@ const WalletManager = () => {
   const [balance, setBalance] = useState(0);
   const [addAmount, setAddAmount] = useState('');
   const [sendAmount, setSendAmount] = useState('');
-  const [userId, setUserId] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const WalletManager = () => {
 
   const handleAddBalance = async () => {
     if (!addAmount) return;
-  
+
     try {
       const response = await axios.post('/api/wallet/addBalance', { amount: addAmount });
       setBalance(response.data.newBalance);
@@ -35,20 +35,18 @@ const WalletManager = () => {
       setAddAmount('');
     } catch (error) {
       console.error("Error adding balance:", error);
-    } finally {
-      console.log(addAmount);
     }
   };
 
   const handleSendBalance = async () => {
-    if (!sendAmount || !userId) return;
+    if (!sendAmount || !mobileNumber) return;
 
     try {
-      const response = await axios.post('/api/wallet/send', { amount: sendAmount, userId });
+      const response = await axios.post('/api/wallet/send', { amount: sendAmount, mobileNumber });
       setBalance(response.data.newBalance);
       setTransactions(response.data.transactions);
       setSendAmount('');
-      setUserId('');
+      setMobileNumber('');
     } catch (error) {
       console.error("Error sending balance:", error);
     }
@@ -62,7 +60,7 @@ const WalletManager = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Available Balance</h1>
+        <h1 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Available Balance</h1>
         <div className="text-6xl mt-4">
           ₹ {balance.toLocaleString('en-IN')}
         </div>
@@ -75,7 +73,7 @@ const WalletManager = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Add Balance</h2>
+          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Add Balance</h2>
           <input
             type="number"
             value={addAmount}
@@ -97,7 +95,7 @@ const WalletManager = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Send Balance</h2>
+          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Send Balance</h2>
           <input
             type="number"
             value={sendAmount}
@@ -107,10 +105,10 @@ const WalletManager = () => {
           />
           <input
             type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            value={mobileNumber}
+            onChange={(e) => setMobileNumber(e.target.value)}
             className="w-full px-4 py-2 border rounded-md mb-4"
-            placeholder="Enter user ID"
+            placeholder="Enter Mobile Number"
           />
           <button
             onClick={handleSendBalance}
@@ -120,8 +118,6 @@ const WalletManager = () => {
           </button>
         </motion.div>
       </div>
-
-      
     </div>
   );
 };
