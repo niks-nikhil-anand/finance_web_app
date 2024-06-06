@@ -93,7 +93,12 @@ const loanUserSchema = mongoose.Schema({
         type : String,
       enum: ['Pending', 'Processing', 'Completed' , 'Reject'],
       default: 'Pending'
-      }
+      },
+      partner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PartnerApplication',
+        required: true
+    },
 })
 
 export default mongoose.models.LoanUser || mongoose.model('LoanUser', loanUserSchema);

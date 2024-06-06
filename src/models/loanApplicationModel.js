@@ -8,7 +8,8 @@ const LoanApplicationSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    match: [/.+\@.+\..+/, 'Please fill a valid email address']
+    match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+    unique:true
   },
   mobileNumber: {
     type: String,

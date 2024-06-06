@@ -92,7 +92,7 @@ const GlassmorphismForm = () => {
     if (photocopy) data.append('photocopy', photocopy);
 
     try {
-      const response = await fetch('/api/gstUser', {
+      const response = await fetch('/api/partner/gstUser', {
         method: 'POST',
         body: data,
       });
