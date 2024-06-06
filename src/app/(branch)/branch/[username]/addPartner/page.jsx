@@ -95,7 +95,7 @@ export default function Signup() {
     if (msmeCertificate) data.append('msmeCertificate', msmeCertificate);
 
     try {
-      const response = await fetch('/api/partnerApplication', {
+      const response = await fetch('/api/branch/partner', {
         method: 'POST',
         body: data,
       });
@@ -291,9 +291,10 @@ export default function Signup() {
                     className="w-full border border-gray-300 p-2 rounded"
                   >
                     <option value="">Select Interest</option>
-                    <option value="Academics">Academics</option>
-                    <option value="Digital Marketing">Digital Marketing</option>
-                    <option value="Personality Development">Personality Development</option>
+                    <option value="GST/ITR Services">GST/ITR Services</option>
+                    <option value="Fintech Services">Fintech Services</option>
+                    <option value="Finance Services(Loan)">Finance Services(Loan)</option>
+                    <option value="All Services">All Services</option>
                   </select>
                 </div>
               </div>

@@ -72,7 +72,8 @@
   }, 
   branch :{
     type : mongoose.Schema.Types.ObjectId,
-    ref: 'Branch'
+    ref: 'Branch',
+    required: false
   }
   });
 
