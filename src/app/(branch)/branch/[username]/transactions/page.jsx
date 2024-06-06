@@ -9,7 +9,7 @@ const ReferApplicationsTable = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const transactionsResponse = await axios.get('/api/wallet/transaction');
+        const transactionsResponse = await axios.get('/api/branch/wallet/transaction');
         setApplications(transactionsResponse.data.transactions);
       } catch (error) {
         console.error('Error fetching refer applications:', error);

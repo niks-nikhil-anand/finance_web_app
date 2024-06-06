@@ -9,7 +9,7 @@ export const GET = async () => {
     await connectDB();
 
     const cookieStore = cookies();
-    const authToken = cookieStore.get("authToken");
+    const authToken = cookieStore.get("authBranchToken");
 
     if (!authToken) {
       return NextResponse.json({ message: "User authentication token is missing." }, { status: 401 });
