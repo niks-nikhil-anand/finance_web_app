@@ -1,65 +1,78 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
-const Wallet = () => {
-  const [totalAmount, setTotalAmount] = useState(1000); // Example initial amount
-  const [availableToWithdraw, setAvailableToWithdraw] = useState(800); // Example initial available amount
-  const [transactions, setTransactions] = useState([
-    { id: 1, type: 'Deposit', amount: 500, dateTime: '2024-06-03 10:30 AM', message: 'Received from GST/ITR' },
-    { id: 2, type: 'Withdrawal', amount: -200, dateTime: '2024-06-02 03:45 PM', message: 'Grocery Loan' },
-    { id: 3, type: 'Deposit', amount: 300, dateTime: '2024-06-01 09:15 AM', message: 'Salary credit' },
-    // Add more transactions as needed
-  ]);
+const WalletManager = () => {
+  const [balance, setBalance] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await axios.post('/api/user/wallet/initialize'); // Ensure this endpoint exists and works
+
+        const balanceResponse = await axios.get('/api/user/wallet/balance');
+        setBalance(balanceResponse.data.balance);
+
+        const transactionsResponse = await axios.get('/api/user/wallet/transaction');
+        setTransactions(transactionsResponse.data.transactions);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div className="wallet-container p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-bold mb-4">Your Wallet</h2>
-      <div className="wallet-info grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <motion.div
+        className="mb-6 p-6 bg-white rounded-lg shadow-md text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Available Balance</h1>
+        <div className="text-6xl mt-4">
+          ₹ {balance.toLocaleString('en-IN')}
+        </div>
+      </motion.div>
+
+      <div className="grid grid-cols-1 gap-6 mb-6">
         <motion.div
-          className="wallet-card p-4 bg-blue-200 rounded-md shadow-md"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="p-6 bg-white rounded-lg shadow-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-lg font-semibold mb-2">Total Amount</h3>
-          <p className="text-xl font-bold">{totalAmount}</p>
-        </motion.div>
-        <motion.div
-          className="wallet-card p-4 bg-green-200 rounded-md shadow-md"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <h3 className="text-lg font-semibold mb-2">Available to Withdraw</h3>
-          <p className="text-xl font-bold">{availableToWithdraw}</p>
+          <h2 className="text-xl font-bold mb-4">Transactions</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50 flex md:table-row flex-col w-full md:w-auto">
+                <tr className="flex md:table-row flex-col w-full md:w-auto">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {transactions.map((transaction) => (
+                  <tr key={transaction.id} className="flex md:table-row flex-col w-full md:w-auto">
+                    <td className="px-6 py-4 whitespace-nowrap">{transaction.type}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">₹ {transaction.amount.toLocaleString('en-IN')}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{new Date(transaction.date).toLocaleDateString('en-IN')}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{new Date(transaction.date).toLocaleTimeString('en-IN')}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </motion.div>
       </div>
-      <h3 className="text-lg font-semibold mb-2">All Transactions</h3>
-      <ul className="transactions-list">
-        {transactions.map((transaction) => (
-          <motion.li
-            key={transaction.id}
-            className={`transaction-item ${transaction.amount > 0 ? 'text-green-500' : 'text-red-500'} p-4 bg-gray-100 rounded-md shadow-md`}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-              <div className="mb-2 md:mb-0">
-                <p>{transaction.type}</p>
-                <p>{transaction.amount}</p>
-              </div>
-              <div className="text-sm">
-                <p>{transaction.dateTime}</p>
-                <p>{transaction.message}</p>
-              </div>
-            </div>
-          </motion.li>
-        ))}
-      </ul>
     </div>
   );
 };
 
-export default Wallet;
+export default WalletManager;

@@ -8,12 +8,13 @@ import {
   FaRegFileAlt, 
   FaWallet 
 } from 'react-icons/fa';
-import { LuLogOut } from "react-icons/lu";
-import { FaIndianRupeeSign , FaWpforms } from "react-icons/fa6";
-import { ImProfile } from "react-icons/im";
-import { GiPayMoney } from "react-icons/gi";
-
+import { FaIndianRupeeSign , FaWpforms } from 'react-icons/fa6';
+import { ImProfile } from 'react-icons/im';
+import { GiPayMoney } from 'react-icons/gi';
 import Link from 'next/link';
+import { LuLogOut } from "react-icons/lu";
+
+import LogoutButton from './LogoutButton.jsx';
 
 const cardData = [
   {
@@ -30,7 +31,7 @@ const cardData = [
   },
   {
     title: 'Jono Jivan Micro Loan',
-    icon: GiPayMoney ,
+    icon: GiPayMoney,
     bgColor: 'bg-gradient-to-r from-green-400 via-blue-400 to-purple-500',
     link: 'microLoan',
   },
@@ -80,20 +81,18 @@ const ColorfulCard = () => {
   return (
     <div className="flex flex-wrap justify-center items-center space-y-4 p-4">
       {cardData.map((card, index) => (
-        <div
-          key={index}
-          className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full md:w-48 ${card.bgColor}`}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.1, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
-          transition={{ duration: 0.3 }}
-        >
-          <Link href={`/user/${username}/${card.link}`} className="flex flex-col items-center justify-center">
+        card.link === 'logout' ? (
+          <LogoutButton key={index} bgColor={card.bgColor} />
+        ) : (
+          <Link href={`/user/${username}/${card.link}`} key={index} passHref>
+            <div
+              className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full md:w-48 ${card.bgColor}`}
+            >
               <card.icon className="text-4xl md:text-6xl mb-2 md:mb-4" />
               <h2 className="text-lg md:text-xl font-bold text-center">{card.title}</h2>
-            
+            </div>
           </Link>
-        </div>
+        )
       ))}
     </div>
   );
