@@ -79,7 +79,7 @@ const ColorfulCard = () => {
   const username = jwt.decode(authToken.value)?.username;
 
   return (
-    <div className="flex flex-wrap justify-center items-center space-y-4 p-4">
+    <div className="flex flex-wrap justify-center items-center space-y-2 p-4 gap-4">
       {cardData.map((card, index) => (
         card.link === 'logout' ? (
           <LogoutButton key={index} bgColor={card.bgColor} />
