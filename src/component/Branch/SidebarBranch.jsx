@@ -129,21 +129,21 @@ export function SidebarBranch() {
               <label className="px-3 text-xs font-semibold uppercase text-white">DSA/CSP Leads</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={`/branch/${partner.username}/csp`}
+                href={`/branch/${partner.username}/gstbranch`}
               >
                 <FcMoneyTransfer className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">GST/ITR Lead </span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={`/branch/${partner.username}/csp`}
+                href={`/branch/${partner.username}/loan`}
               >
                 <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Loan Lead</span>
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={`/branch/${partner.username}/csp`}
+                href={`/branch/${partner.username}/microLoan`}
               >
                 <FaMoneyBillTransfer  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
