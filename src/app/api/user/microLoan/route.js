@@ -1,12 +1,28 @@
 import connectDB from "@/lib/dbConnect";
 import uploadImage from "@/lib/uploadImages";
+import { cookies } from "next/headers";
+import jwt from 'jsonwebtoken';
 import microLoanUserModel from "@/models/microLoanUserModel";
+import { NextResponse } from "next/server";
 
 
 
 export const POST = async (req) => {
   try {
     await connectDB();
+    const cookieStore = cookies();
+    const authToken = cookieStore.get("userAuthToken");
+
+    if (!authToken) {
+      throw new Error("User authentication token is missing.");
+    }
+
+    const decodedToken = jwt.decode(authToken.value);
+    if (!decodedToken || !decodedToken.id) {
+      throw new Error("Invalid token.");
+    }
+
+    const username = decodedToken.id;
     const formData = await req.formData(); // Ensures formData is awaited
 
     // Applicant data
@@ -111,7 +127,8 @@ export const POST = async (req) => {
       monthlyIncome ,
       requiredLoanAmount,
       maritalStatus,
-      loanYear
+      loanYear,
+      partner: username
     };
 
     console.log(applicationData)

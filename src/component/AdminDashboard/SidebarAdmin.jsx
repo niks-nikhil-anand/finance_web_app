@@ -62,7 +62,7 @@ export function SidebarAdmin() {
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/partner/gstitr"}
+                href={"/dashboard/partner/microLoan"}
               >
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
