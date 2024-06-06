@@ -8,7 +8,6 @@ const WalletManager = () => {
   const [addAmount, setAddAmount] = useState('');
   const [sendAmount, setSendAmount] = useState('');
   const [email, setEmail] = useState('');
-  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,9 +1,9 @@
-
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import partnerApplication from "@/models/partnerApplication";
 import walletModel from "@/models/walletModel";
+import connectDB from "@/lib/dbConnect";
 
 export const POST = async (req) => {
   try {
@@ -28,11 +28,11 @@ export const POST = async (req) => {
     const userId = decodedToken.id;
     console.log(`User ID decoded from token: ${userId}`);
 
-    const { mobileNumber, amount } = await req.json();
-    console.log(mobileNumber)
-    console.log(amount)
+    const { email, amount } = await req.json();
+    console.log(email); // Corrected logging from mobileNumber to email
+    console.log(amount);
 
-    const partner = await partnerApplication.findOne({ mobileNumber });
+    const partner = await partnerApplication.findOne({ email });
     if (!partner) {
       console.log("Partner not found.");
       return NextResponse.json({ message: 'Partner not found' }, { status: 404 });
@@ -44,11 +44,11 @@ export const POST = async (req) => {
       return NextResponse.json({ message: 'User wallet not found' }, { status: 404 });
     }
 
-    const partnerWallet = await walletModel.findOne({ partner: partner._id });
+    let partnerWallet = await walletModel.findOne({ partner: partner._id });
     if (!partnerWallet) {
       console.log("Partner wallet not found. Creating new wallet...");
-      const newPartnerWallet = new walletModel({ partner: partner._id, totalAmount: 0, availableToWithdraw: 0, transactions: [] });
-      await newPartnerWallet.save();
+      partnerWallet = new walletModel({ partner: partner._id, totalAmount: 0, availableToWithdraw: 0, transactions: [] });
+      await partnerWallet.save();
     }
 
     const numericAmount = parseFloat(amount);
