@@ -8,7 +8,9 @@ import {
   FaRegFileAlt,
   FaWallet,
 } from "react-icons/fa";
-import { FaIndianRupeeSign, FaWpforms } from "react-icons/fa6";
+import { SiGoogledocs } from "react-icons/si";
+
+import { FaIndianRupeeSign, FaIdCard } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { GiPayMoney } from "react-icons/gi";
 import Link from "next/link";
@@ -48,8 +50,14 @@ const cardData = [
     link: "wallet",
   },
   {
+    title: "Certificate",
+    icon: SiGoogledocs,
+    bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
+    link: "certificateLegal257",
+  },
+  {
     title: "Id Card",
-    icon: ImProfile,
+    icon: FaIdCard,
     bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
     link: "profile",
   },

@@ -90,7 +90,7 @@ const IdCard = () => {
               <span className="font-semibold">Username:- </span>{user.username}
             </h3>
             <p className="text-xs my-1">
-              <span className="font-semibold mr-[1rem]">Services:- </span>{user.services}
+              <span className="font-bold mr-[1rem]">Services:- </span>{user.services}
             </p>
           </div>
           <hr />
