@@ -46,9 +46,8 @@ export const POST = async (req) => {
 
     let partnerWallet = await walletModel.findOne({ partner: partner._id });
     if (!partnerWallet) {
-      console.log("Partner wallet not found. Creating new wallet...");
-      partnerWallet = new walletModel({ partner: partner._id, totalAmount: 0, availableToWithdraw: 0, transactions: [] });
-      await partnerWallet.save();
+      console.log("Partner wallet not found.");
+      return NextResponse.json({ message: 'Partner wallet not found' }, { status: 404 });
     }
 
     const numericAmount = parseFloat(amount);
@@ -57,22 +56,22 @@ export const POST = async (req) => {
       return NextResponse.json({ message: 'Invalid amount' }, { status: 400 });
     }
 
-    if (numericAmount > userWallet.availableToWithdraw) {
-      console.log("Insufficient balance.");
-      return NextResponse.json({ message: 'Insufficient balance' }, { status: 400 });
+    if (numericAmount > partnerWallet.totalAmount) {
+      console.log("Insufficient balance in partner's wallet.");
+      return NextResponse.json({ message: 'Insufficient balance in partner\'s wallet' }, { status: 400 });
     }
 
-    // Deduct amount from the user wallet
-    userWallet.totalAmount -= numericAmount;
-    userWallet.availableToWithdraw -= numericAmount;
-    userWallet.transactions.push({ type: 'debit', amount: numericAmount, date: new Date() });
+    // Deduct amount from the partner wallet
+    partnerWallet.totalAmount -= numericAmount;
+    partnerWallet.availableToWithdraw -= numericAmount;
+    partnerWallet.transactions.push({ type: 'debit', amount: numericAmount, date: new Date() });
 
-    // Add amount to the partner wallet
-    partnerWallet.totalAmount += numericAmount;
-    partnerWallet.transactions.push({ type: 'credit', amount: numericAmount, date: new Date() });
+    // Add amount to the user wallet
+    userWallet.totalAmount += numericAmount;
+    userWallet.transactions.push({ type: 'credit', amount: numericAmount, date: new Date() });
 
-    await userWallet.save();
     await partnerWallet.save();
+    await userWallet.save();
     console.log("Wallets updated successfully.");
 
     return NextResponse.json({ newBalance: userWallet.totalAmount, transactions: userWallet.transactions }, { status: 200 });

@@ -83,6 +83,7 @@ const WalletManager = () => {
             Send Balance
           </button>
         </motion.div>
+        
       </div>
     </div>
   );

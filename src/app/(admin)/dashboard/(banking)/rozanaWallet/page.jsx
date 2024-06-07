@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import DeductBalanceForm from '@/component/AdminDashboard/DeductBalance';
 
 const WalletManager = () => {
   const [balance, setBalance] = useState(0);
   const [addAmount, setAddAmount] = useState('');
   const [sendAmount, setSendAmount] = useState('');
-  const [deductAmount, setDeductAmount] = useState('');
-  const [email, setEmail] = useState('');
+  const [sendEmail, setSendEmail] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,35 +38,22 @@ const WalletManager = () => {
   };
 
   const handleSendBalance = async () => {
-    if (!sendAmount || !email) return;
+    if (!sendAmount || !sendEmail) return;
 
     try {
-      const response = await axios.post('/api/wallet/send', { amount: sendAmount, email });
+      const response = await axios.post('/api/wallet/send', { amount: sendAmount, email: sendEmail });
       setBalance(response.data.newBalance);
       setSendAmount('');
-      setEmail('');
+      setSendEmail('');
     } catch (error) {
       console.error("Error sending balance:", error);
     }
   };
 
-  const handleDeductBalance = async () => {
-    if (!deductAmount || !email) return;
-
-    try {
-      const response = await axios.post('/api/wallet/deductBalance', { amount: deductAmount, email });
-      setBalance(response.data.newBalance);
-      setDeductAmount('');
-      setEmail('');
-    } catch (error) {
-      console.error("Error deducting balance:", error);
-    }
-  };
-
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-100  w-full  ">
       <motion.div
-        className="mb-6 p-6 bg-white rounded-lg shadow-md text-center"
+        className="mb-6 p-6 bg-white rounded-lg shadow-md text-center "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -77,7 +64,7 @@ const WalletManager = () => {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div className="flex gap-5 mb-6 justify-center bg-gradient-to-r from-yellow-400 via-gray-500 to-blue-700 p-4 ">
         <motion.div
           className="p-6 bg-white rounded-lg shadow-md"
           initial={{ opacity: 0 }}
@@ -116,8 +103,8 @@ const WalletManager = () => {
           />
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={sendEmail}
+            onChange={(e) => setSendEmail(e.target.value)}
             className="w-full px-4 py-2 border rounded-md mb-4"
             placeholder="Enter Email Id"
           />
@@ -128,35 +115,10 @@ const WalletManager = () => {
             Send Balance
           </button>
         </motion.div>
-
-        <motion.div
-          className="p-6 bg-white rounded-lg shadow-md"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Deduct Balance</h2>
-          <input
-            type="number"
-            value={deductAmount}
-            onChange={(e) => setDeductAmount(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md mb-4"
-            placeholder="Enter amount"
-          />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md mb-4"
-            placeholder="Enter Email Id"
-          />
-          <button
-            onClick={handleDeductBalance}
-            className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition"
-          >
-            Deduct Balance
-          </button>
-        </motion.div>
+        <DeductBalanceForm/>
+      </div>
+      <div>
+        
       </div>
     </div>
   );

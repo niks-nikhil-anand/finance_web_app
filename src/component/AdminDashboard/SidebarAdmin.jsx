@@ -62,7 +62,7 @@ export function SidebarAdmin() {
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/partner/microLoan"}
+                href={"/dashboard/partner/microLoan "}
               >
                 <MdSpaceDashboard className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Jonojivan Loan Lead</span>
@@ -184,6 +184,25 @@ export function SidebarAdmin() {
                 <CiShop  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">CSP</span>
               </Link>
+              
+            </div>
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Accounts</label>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/createBranch"}
+              >
+                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Profile</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/user/branch"}
+              >
+                 <RiAdminFill className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">LogOut</span>
+              </Link>
+              
               
             </div>
           </nav>
