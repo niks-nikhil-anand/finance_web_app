@@ -48,7 +48,7 @@ const cardData = [
     link: "wallet",
   },
   {
-    title: "Profile",
+    title: "Id Card",
     icon: ImProfile,
     bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
     link: "profile",

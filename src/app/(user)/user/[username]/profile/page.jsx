@@ -1,16 +1,14 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'; // Import axios for API requests
 import { motion } from 'framer-motion';
+import logo from '../../../../../../public/logo2.png';
+import legalqr from '../../../../../../public/logo/legalqr.png';
+import Image from 'next/image';
+import { FaArrowLeft } from 'react-icons/fa'; // Import React Icon for back button
 
-const ProfilePage = () => {
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    services: '',
-    role: ''
-  });
+const IdCard = () => {
+  const [user, setUser] = useState(null); // Initialize user state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,50 +18,90 @@ const ProfilePage = () => {
         setUser({
           name: userData.name,
           email: userData.email,
-          mobile: userData. mobileNumber,
+          mobile: userData.mobileNumber, // Fixed typo here
           services: userData.services,
-          role: userData.role
+          role: userData.role,
+          city: userData.city,
+          state: userData.state,
+          username: userData.username,
+          id: userData._id,
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchData(); // Call fetchData function
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <motion.div 
-        className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md frame"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className=" font-semibold mb-4 text-center text-gradient_yellow base-bold underline ">Profile Page</h1>
-        <div className="mb-4 flex gap-2 justify-center items-center">
-          <label className=" text-gradient-black base-bold">Username:</label>
-          <p className="text-gray-900">{user.name}</p>
+    return () => {
+      // Cleanup function (optional)
+    };
+  }, []); // Empty dependency array to run only once
+
+  // Check if user data is fetched, render the card if user exists
+  return user ? (
+    <div className='flex flex-col'>
+      <div className=" mb-4 m-[2rem] border-2  ">
+        <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
+          <FaArrowLeft />
+        </button>
+      </div>
+    <div className="bg-transparent font-verdana mt-5 mb-5">
+      
+      <div className="w-11 h-10 bg-red-700 mx-auto rounded relative border border-red-800">
+        <div className="absolute top-2.5 w-full h-px bg-red-800"></div>
+      </div>
+      <div className="bg-black w-16 mx-auto h-4 rounded-t ">
+        <div className="bg-white w-12 h-1.5 mx-auto rounded"></div>
+      </div>
+      <div className="relative w-56 p-1 mx-auto bg-gray-900 rounded-lg">
+        <div className="absolute top-[105px] left-[222px] w-2 bg-gray-800 h-24 rounded-l"></div>
+        <div className="absolute top-[105px] w-2 bg-gray-800 h-24 rounded-r"></div>
+        <div className="p-2 bg-white rounded-lg text-center shadow-md">
+          <div className="header">
+            <h3 className="text-sm my-1 font-light text-left">
+              <span className="font-semibold">{user.role}</span>
+            </h3>
+            <Image
+              src={logo}
+              height={34}
+              width={80}
+              alt="Logo"
+              className="w-24 mt-4 mx-auto"
+            />
+          </div>
+          <div className="photo mt-4">
+            <Image
+              src={legalqr}
+              alt="Profile"
+              className="w-20 mx-auto  border border-gray-300"
+              height={50}
+              width={50}
+            />
+          </div>
+          <h2 className="text-lg my-1">
+            <span className="font-semibold">{user.name}</span>
+          </h2>
+          <div className="flex justify-end flex-col ">
+            <h3 className="text-sm my-1 font-light">
+              <span className="font-semibold">Email Id:-</span> {user.email}
+            </h3>
+            <h3 className="text-sm my-1 font-light">
+              <span className="font-semibold">Username:- </span>{user.username}
+            </h3>
+            <p className="text-xs my-1">
+              <span className="font-semibold mr-[1rem]">Services:- </span>{user.services}
+            </p>
+          </div>
+          <hr />
+          <p className="text-xs my-1">{user.city}, {user.state}</p>
+          <p className="text-xs my-1">{user.mobile}</p>
         </div>
-        <div className="mb-4 flex gap-2 justify-center items-center">
-          <label className="text-gradient-black block  base-bold">Email:</label>
-          <p className="text-gray-900">{user.email}</p>
-        </div>
-        <div className="mb-4 flex gap-2 justify-center items-center">
-          <label className="text-gradient-black block  base-bold">Mobile Number:</label>
-          <p className="text-gray-900">{user.mobile}</p>
-        </div>
-        <div className="mb-4 flex gap-2 justify-center items-center">
-          <label className="text-gradient-black block  base-bold">Services:</label>
-          <p className="text-gray-900">{user.services}</p>
-        </div>
-        <div className="mb-4 flex gap-2 justify-center items-center">
-          <label className="text-gradient-black block  base-bold">Role:</label>
-          <p className="text-gray-900">{user.role}</p>
-        </div>
-      </motion.div>
+      </div>
     </div>
-  );
+    </div>
+    
+  ) : null; // Render nothing if user data is not fetched yet
 };
 
-export default ProfilePage;
+export default IdCard;
