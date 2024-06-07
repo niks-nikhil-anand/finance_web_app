@@ -4,39 +4,35 @@ import { cookies } from "next/headers";
 import jwt from 'jsonwebtoken';
 import microLoanUserModel from "@/models/microLoanUserModel";
 
-
-
-
-
 // GET request handler
 export const GET = async (req) => {
   try {
     await connectDB();
-
-    // Retrieve all GST registration records
-
     const cookieStore = cookies();
     const authToken = cookieStore.get("authBranchToken");
-
+    console.log(authToken)
     if (!authToken) {
       throw new Error("User authentication token is missing.");
     }
 
-    const id = jwt.decode(authToken.value)?.id;
+    const decodedToken = jwt.decode(authToken.value);
+    if (!decodedToken || !decodedToken.id) {
+      throw new Error("Invalid token.");
+    }
+    console.log(decodedToken)
+    const email = decodedToken.email;
+    console.log(email)
 
-    const MicroLoanUser = await microLoanUserModel.find({partner: id});
+    const microLoanUsers = await microLoanUserModel.find();
 
-
-    // Respond with the retrieved data
-    return NextResponse.json(MicroLoanUser, {
+    return NextResponse.json(microLoanUsers, {
       status: 200
     });
   } catch (error) {
     // Handle errors
-    console.error("Error retrieving GST registrations:", error);
-    return NextResponse.json({ msg: "Error retrieving GST registrations", error: error.message }, {
+    console.error("Error retrieving micro loan users:", error);
+    return NextResponse.json({ msg: "Error retrieving micro loan users", error: error.message }, {
       status: 500
     });
   }
 };
-

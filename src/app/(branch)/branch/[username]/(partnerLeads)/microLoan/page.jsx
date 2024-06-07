@@ -10,6 +10,7 @@ const LoanApplicationsTable = () => {
     const fetchApplications = async () => {
       try {
         const response = await axios.get('/api/branch/microLoan');
+        console.log('Fetched applications:', response.data); // Debugging log
         setApplications(response.data);
       } catch (error) {
         console.error('Error fetching loan applications:', error);
@@ -25,10 +26,42 @@ const LoanApplicationsTable = () => {
 
   const renderDocument = (document) => {
     return document ? (
-      <a href="#" onClick={() => handleImageClick(document)}>
+      <a href="#" onClick={(e) => { e.preventDefault(); handleImageClick(document); }}>
         View Document
       </a>
     ) : 'Not Available';
+  };
+
+  const renderNomineeDetails = (nominee) => {
+    if (!nominee) return 'Not Available';
+    return (
+      <>
+        <div>{`Name: ${nominee.name}`}</div>
+        <div>{`Email: ${nominee.email}`}</div>
+        <div>{`Mobile: ${nominee.mobile}`}</div>
+        <div>{`Village: ${nominee.village}`}</div>
+        <div>{`Relation: ${nominee.relation}`}</div>
+        <div>{`DOB: ${nominee.dob ? new Date(nominee.dob).toLocaleDateString() : 'N/A'}`}</div>
+        <div>{`PAN Card: ${nominee.panCardNumber}`}</div>
+        <div>{`Aadhaar Card: ${nominee.aadhaarCardNumber}`}</div>
+      </>
+    );
+  };
+
+  const renderGuarantorDetails = (guarantor) => {
+    if (!guarantor) return 'Not Available';
+    return (
+      <>
+        <div>{`Name: ${guarantor.name}`}</div>
+        <div>{`Email: ${guarantor.email}`}</div>
+        <div>{`Mobile: ${guarantor.mobile}`}</div>
+        <div>{`Village: ${guarantor.village}`}</div>
+        <div>{`Relation: ${guarantor.relation}`}</div>
+        <div>{`DOB: ${guarantor.dob ? new Date(guarantor.dob).toLocaleDateString() : 'N/A'}`}</div>
+        <div>{`PAN Card: ${guarantor.panCardNumber}`}</div>
+        <div>{`Aadhaar Card: ${guarantor.aadhaarCardNumber}`}</div>
+      </>
+    );
   };
 
   return (
@@ -38,7 +71,7 @@ const LoanApplicationsTable = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto w-[80%] bg-gray-100"
     >
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Jonojivan Loan Lead</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Loan Applications</h2>
       <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -54,33 +87,15 @@ const LoanApplicationsTable = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {applications.map((application) => (
-              <tr key={application._id}>
+            {applications.map((application, index) => (
+              <tr key={index}>
                 <td className="px-6 py-4 whitespace-nowrap">{renderDocument(application.aadhaarCard)}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{renderDocument(application.panCard)}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{renderDocument(application.bankPassbook)}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{renderDocument(application.bankStatements)}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{renderDocument(application.photoCopy)}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div>{`Name: ${application.nominee.name}`}</div>
-                  <div>{`Email: ${application.nominee.email}`}</div>
-                  <div>{`Mobile: ${application.nominee.mobile}`}</div>
-                  <div>{`Village: ${application.nominee.village}`}</div>
-                  <div>{`Relation: ${application.nominee.relation}`}</div>
-                  <div>{`DOB: ${new Date(application.nominee.dob).toLocaleDateString()}`}</div>
-                  <div>{`PAN Card: ${application.nominee.panCardNumber}`}</div>
-                  <div>{`Aadhaar Card: ${application.nominee.aadhaarCardNumber}`}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div>{`Name: ${application.guarantor.name}`}</div>
-                  <div>{`Email: ${application.guarantor.email}`}</div>
-                  <div>{`Mobile: ${application.guarantor.mobile}`}</div>
-                  <div>{`Village: ${application.guarantor.village}`}</div>
-                  <div>{`Relation: ${application.guarantor.relation}`}</div>
-                  <div>{`DOB: ${new Date(application.guarantor.dob).toLocaleDateString()}`}</div>
-                  <div>{`PAN Card: ${application.guarantor.panCardNumber}`}</div>
-                  <div>{`Aadhaar Card: ${application.guarantor.aadhaarCardNumber}`}</div>
-                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{renderNomineeDetails(application.nominee)}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{renderGuarantorDetails(application.guarantor)}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{application.partner}</td>
               </tr>
             ))}
