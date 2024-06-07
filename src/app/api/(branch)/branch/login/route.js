@@ -67,3 +67,5 @@ export const POST = async (req) => {
 function generateToken(user) {
     return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1w' });
 }
+
+
