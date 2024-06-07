@@ -51,9 +51,9 @@ const WalletManager = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100  w-full  ">
+    <div className="p-6 bg-gray-100  w-full   ">
       <motion.div
-        className="mb-6 p-6 bg-white rounded-lg shadow-md text-center "
+        className="mb-6 p-6 bg-white rounded-lg shadow-md text-center frame "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
