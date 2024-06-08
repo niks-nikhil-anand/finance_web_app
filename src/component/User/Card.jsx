@@ -5,11 +5,9 @@ import {
   FaFileInvoiceDollar,
   FaMoneyCheckAlt,
   FaBuilding,
-  FaRegFileAlt,
-  FaWallet,
 } from "react-icons/fa";
 import { SiGoogledocs } from "react-icons/si";
-
+import { MdConnectWithoutContact } from "react-icons/md";
 import { FaIndianRupeeSign, FaIdCard } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
 import { GiPayMoney } from "react-icons/gi";
@@ -42,6 +40,12 @@ const cardData = [
     icon: FaBuilding,
     bgColor: "bg-gradient-to-r from-purple-400 via-pink-400 to-red-400",
     link: "fintech",
+  },
+  {
+    title: "Complaint",
+    icon: MdConnectWithoutContact,
+    bgColor: "bg-gradient-to-r from-yellow-400 via-red-400 to-pink-500",
+    link: "complaint",
   },
   {
     title: "Rozana Pay",
