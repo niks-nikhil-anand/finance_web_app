@@ -20,14 +20,16 @@ export const GET = async (req) => {
     if (!decodedToken || !decodedToken.id) {
       throw new Error("Invalid token.");
     }
-    console.log(decodedToken)
     const email = decodedToken.email;
-    console.log(email)
+    const Partner = await partnerApplication.findOne({ email });
+    if (!Partner) {
+      throw new Error('Partner not found.');
+    }
 
-    const Partner = await partnerApplication.find({ email });
-    
-    console.log(Partner)
-    return NextResponse.json(Partner, {
+    const wallet = await branchModel.find({ partner: Partner._id });
+   
+
+    return NextResponse.json({ Partner, wallet }, {
       status: 200,
     });
   } catch (error) {
