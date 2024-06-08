@@ -26,10 +26,10 @@ export const GET = async (req) => {
       throw new Error('Partner not found.');
     }
 
-    const wallet = await branchModel.find({ partner: Partner._id });
+    const branch = await branchModel.find({ partner: Partner._id });
    
 
-    return NextResponse.json({ Partner, wallet }, {
+    return NextResponse.json({ Partner, branch }, {
       status: 200,
     });
   } catch (error) {

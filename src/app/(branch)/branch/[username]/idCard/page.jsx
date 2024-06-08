@@ -16,7 +16,7 @@ const IdCard = () => {
       try {
         const response = await axios.get('/api/branch/profile');
         const userData = response.data.Partner;
-        const walletData = response.data.wallet[0];
+        const walletData = response.data.branch[0];
         setPartner(userData);
         setWallet(walletData);
 
