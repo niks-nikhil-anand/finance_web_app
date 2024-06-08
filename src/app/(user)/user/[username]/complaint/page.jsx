@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ComplaintForm = () => {
   const [formData, setFormData] = useState({
@@ -15,23 +17,43 @@ const ComplaintForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    notifyLoading();
     try {
       const response = await axios.post('/api/user/complaint', formData);
       if (response.status === 200) {
-        alert('Complaint submitted successfully!');
+        notifySuccess();
       } else {
-        alert('Failed to submit complaint.');
+        notifyError('Failed to submit complaint.');
       }
     } catch (error) {
-      alert('An error occurred. Please try again.');
+      notifyError('An error occurred. Please try again.');
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <ToastContainer />
         <h1 className="text-2xl font-bold mb-4">Submit Your Complaint</h1>
         <p className="mb-4">We value your feedback. Please fill out the form below to submit your complaint.</p>
         <form onSubmit={handleSubmit}>

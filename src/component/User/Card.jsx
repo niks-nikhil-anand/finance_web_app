@@ -6,7 +6,7 @@ import {
   FaMoneyCheckAlt,
   FaBuilding,
 } from "react-icons/fa";
-import { SiGoogledocs } from "react-icons/si";
+import { PiCertificateBold } from "react-icons/pi";
 import { MdConnectWithoutContact } from "react-icons/md";
 import { FaIndianRupeeSign, FaIdCard } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
@@ -55,7 +55,7 @@ const cardData = [
   },
   {
     title: "Certificate",
-    icon: SiGoogledocs,
+    icon: PiCertificateBold,
     bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
     link: "certificateLegal257",
   },

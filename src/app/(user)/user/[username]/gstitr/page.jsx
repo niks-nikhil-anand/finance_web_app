@@ -1,58 +1,20 @@
-"use client";
+"use client"
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import paymentqr from '../../../../../../public/paymentqr.jpeg'
-import Image from 'next/image';
 
-const GlassmorphismForm = () => {
-  const [step, setStep] = useState(1);
-  const [registrationType, setRegistrationType] = useState('');
-  const [error, setError] = useState('');
+const ComplaintForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    mobileNumber: '',
+    phone: '',
+    message: '',
   });
 
-  const [aadhaarCard, setAadhaarCard] = useState(null);
-  const [panCard, setPanCard] = useState(null);
-  const [bankPassbook, setBankPassbook] = useState(null);
-  const [bankStatements, setBankStatements] = useState(null);
-  const [electricityBill, setElectricityBill] = useState(null);
-  const [photocopy, setPhotocopy] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleFileChange = (e, setFile) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
-  };
-
-  const handleNextStep = () => {
-    if (!registrationType) {
-      setError('Please select a registration type.');
-    } else {
-      setError('');
-      setStep(step + 1);
-    }
-  };
-
-  const handlePreviousStep = () => setStep(step - 1);
-
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Check if the input is for the mobile number and contains only digits
-    if (name === 'mobileNumber' && !/^\d*$/.test(value)) {
-      return; // Skip update if the value contains non-numeric characters
-    }
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [name]: value });
   };
 
   const notifyLoading = () => {
@@ -75,214 +37,83 @@ const GlassmorphismForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     notifyLoading();
-
-    const data = new FormData();
-    data.append('name', formData.name);
-    data.append('email', formData.email);
-    data.append('mobileNumber', formData.mobileNumber);
-    data.append('registrationType', registrationType);
-
-    if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
-    if (panCard) data.append('panCard', panCard);
-    if (bankPassbook) data.append('bankPassbook', bankPassbook);
-    if (bankStatements) data.append('bankStatements', bankStatements);
-    if (electricityBill) data.append('electricityBill', electricityBill);
-    if (photocopy) data.append('photocopy', photocopy);
-
     try {
-      const response = await fetch('/api/partner/gstUser', {
-        method: 'POST',
-        body: data,
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        setAadhaarCard(null);
-        setPanCard(null);
-        setBankPassbook(null);
-        setBankStatements(null);
-        setElectricityBill(null);
-        setPhotocopy(null);
-        setFormData({
-          name: '',
-          email: '',
-          mobileNumber: '',
-        });
-        setRegistrationType('');
+      const response = await axios.post('/api/user/complaint', formData);
+      if (response.status === 200) {
         notifySuccess();
       } else {
-        const errorData = await response.json();
-        console.error('Error:', errorData);
-        notifyError(errorData.message);
+        notifyError('Failed to submit complaint.');
       }
     } catch (error) {
-      console.error('Error:', error);
-      notifyError('Something went wrong.');
-    } finally {
-      setLoading(false);
+      notifyError('An error occurred. Please try again.');
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 gap-5">
-      
-      <div>
-      <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full  ">
-        <h2 className="text-2xl font-bold text-white mb-6">GST/ITR Agent Form</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <ToastContainer />
+        <h1 className="text-2xl font-bold mb-4">Submit Your Complaint</h1>
+        <p className="mb-4">We value your feedback. Please fill out the form below to submit your complaint.</p>
         <form onSubmit={handleSubmit}>
-          {step === 1 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              <div className="mb-4">
-                <label className="block text-white"> Customer Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Customer Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Customer Mobile Number</label>
-                <input
-                  type="tel"
-                  name="mobileNumber"
-                  value={formData.mobileNumber}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                  pattern="\d*"
-                  maxLength="10"
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label className="block text-white">Customer Registration Type</label>
-                <select
-                  name="registrationType"
-                  value={registrationType}
-                  onChange={(e) => setRegistrationType(e.target.value)}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                >
-                  <option disabled value="">
-                    Select Registration Type
-                  </option>
-                  <option value="ITR File New Registration">ITR File New Registration</option>
-                  <option value="GST Registration">GST Registration</option>
-                  <option value="ITR RETURN">ITR RETURN</option>
-                  <option value="GST RETURN">GST RETURN</option>
-                  <option value="BUSINESS REGISTRATION">BUSINESS REGISTRATION</option>
-                  <option value="MSME REGISTRATION">MSME REGISTRATION</option>
-                  <option value="LEGAL ISSUES LEGAL NOTICE">LEGAL ISSUES LEGAL NOTICE</option>
-                  <option value="LOAN NOC CERTIFICATE">LOAN NOC CERTIFICATE</option>
-                  <option value="BUSINESS LICENSE">BUSINESS LICENSE</option>
-                  <option value="FOOD LICENSE">FOOD LICENSE</option>
-                  <option value="TRADE LICENSE">TRADE LICENSE</option>
-                </select>
-                {error && (
-                  <p className="text-red-500 mt-2">{error}</p>
-                )}
-              </div>
-              <button
-                type="button"
-                className="w-full p-2 bg-blue-500 rounded text-white"
-                onClick={handleNextStep}
-              >
-                Next
-              </button>
-            </motion.div>
-          )}
-
-          {step === 2 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              <div className="mb-4">
-                <label className="block text-white">Customer AADHAAR CARD</label>
-                <input
-                  type="file"
-                  name="aadhaarCard"
-                  onChange={(e) => handleFileChange(e, setAadhaarCard)}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Customer PAN CARD</label>
-                <input
-                  type="file"
-                  name="panCard"
-                  onChange={(e) => handleFileChange(e, setPanCard)}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Customer BANK STATEMENTS</label>
-                <input
-                  type="file"
-                  name="bankStatements"
-                  onChange={(e) => handleFileChange(e, setBankStatements)}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Customer ELECTRICITY BILL OR RENT AGREEMENT</label>
-                <input
-                  type="file"
-                  name="electricityBill"
-                  onChange={(e) => handleFileChange(e, setElectricityBill)}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-white">Customer PHOTO COPY</label>
-                <input
-                  type="file"
-                  name="photocopy"
-                  onChange={(e) => handleFileChange(e, setPhotocopy)}
-                  className="w-full p-2 rounded bg-white bg-opacity-50"
-                />
-              </div>
-              <div className="flex justify-between">
-  <motion.button
-    type="button"
-    onClick={handlePreviousStep}
-    className="w-1/3 p-2 bg-gray-400 rounded text-white"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    Previous
-  </motion.button>
-  <motion.button
-    type="submit"
-    className="w-1/3 p-2 bg-blue-500 rounded text-white"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    {loading ? 'Uploading...' : 'Submit'}
-  </motion.button>
-</div>
-
-             
-            </motion.div>
-          )}
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
+            <input
+              className="w-full p-2 border border-gray-300 rounded"
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="email">Email Address</label>
+            <input
+              className="w-full p-2 border border-gray-300 rounded"
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="phone">Phone Number</label>
+            <input
+              className="w-full p-2 border border-gray-300 rounded"
+              type="text"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="message">Message</label>
+            <textarea
+              className="w-full p-2 border border-gray-300 rounded"
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button
+            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors"
+            type="submit"
+          >
+            Submit
+          </button>
         </form>
-        <ToastContainer position="bottom-right" />
       </div>
-      </div>
-      
     </div>
   );
 };
 
-export default GlassmorphismForm;
-
-                
+export default ComplaintForm;
