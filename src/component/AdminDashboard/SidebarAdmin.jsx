@@ -9,6 +9,9 @@ import {  FaHireAHelper , FaMoneyBillTransfer , FaCreditCard , FaMoneyBillTrendU
 import { IoShareSocialSharp } from "react-icons/io5";
 import { CiShop , CiBank } from "react-icons/ci";
 import { RiAdminFill } from "react-icons/ri";
+import { useRouter } from 'next/navigation';
+import { MdOutlineLogout } from "react-icons/md";
+
 
 
 
@@ -16,6 +19,25 @@ import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
 
 export function SidebarAdmin() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/admin/logout', {
+        method: 'POST',
+      });
+      const data = await response.json();
+      if (response.ok) {
+        router.push('/');
+      } else {
+        alert(`Logout failed: ${data.message}`);
+      }
+    } catch (error) {
+      alert(`Logout failed: ${error.message}`);
+    }
+  };
+
 
   return (
     <div>
@@ -187,7 +209,14 @@ export function SidebarAdmin() {
               
             </div>
             <div className="space-y-3">
-              <label className="px-3 text-xs font-semibold uppercase text-white">Accounts</label>
+              <label className="px-3 text-xs font-semibold uppercase text-white">Information</label>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/profile "}
+              >
+                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Wallet-Transaction</span>
+              </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href={"/dashboard/profile "}
@@ -197,15 +226,34 @@ export function SidebarAdmin() {
               </Link>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/user/branch"}
+                href={"/dashboard/profile "}
               >
-                 <RiAdminFill className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">LogOut</span>
+                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Id Card</span>
               </Link>
-              
-              
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/profile "}
+              >
+                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Certificate</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/profile "}
+              >
+                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Status of Application</span>
+              </Link>
             </div>
           </nav>
+          <button
+            className="mt-6 flex items-center justify-between rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-50"
+            onClick={handleLogout}
+          >
+            <span>Logout</span>
+            <MdOutlineLogout className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
       </aside>
     </div>
