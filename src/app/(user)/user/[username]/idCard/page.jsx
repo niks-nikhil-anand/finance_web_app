@@ -55,7 +55,7 @@ const IdCard = () => {
 
   return user ? (
     <div className='flex flex-col'>
-      <div className="mb-4 m-[2rem] border-2">
+      <div className="mb-4 m-[2rem] border-2 inline-block">
         <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
           <FaArrowLeft />
         </button>

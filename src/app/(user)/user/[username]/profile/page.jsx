@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -38,6 +40,11 @@ const Profile = () => {
         transition={{ duration: 0.5 }}
         className="bg-white rounded-md shadow-md p-6 mt-10 w-full h-full  "
       >
+         <div className="mb-4  border-2 inline-block">
+        <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
+          <FaArrowLeft />
+        </button>
+      </div>
         <h1 className="text-2xl font-bold mb-4">Profile Details</h1>
         {user ? (
           <div className="flex flex-col w-full gap-4 ">
