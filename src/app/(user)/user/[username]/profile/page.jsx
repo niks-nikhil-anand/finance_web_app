@@ -1,16 +1,10 @@
 "use client";
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import logo from '../../../../../../public/logo2.png';
-import legalqr from '../../../../../../public/logo/legalqr.png';
-import Image from 'next/image';
-import { FaArrowLeft } from 'react-icons/fa';
-import { toPng } from 'html-to-image';
+import axios from 'axios';
 
-const IdCard = () => {
+const Profile = () => {
   const [user, setUser] = useState(null);
-  const cardRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,89 +28,51 @@ const IdCard = () => {
     };
 
     fetchData();
-
-    return () => {};
   }, []);
 
-  const downloadIdCard = () => {
-    if (cardRef.current) {
-      toPng(cardRef.current)
-        .then((dataUrl) => {
-          const link = document.createElement('a');
-          link.href = dataUrl;
-          link.download = 'id-card.png';
-          link.click();
-        })
-        .catch((error) => {
-          console.error('Error generating image:', error);
-        });
-    }
-  };
-
-  return user ? (
-    <div className='flex flex-col'>
-      <div className="mb-4 m-[2rem] border-2">
-        <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
-          <FaArrowLeft />
-        </button>
-      </div>
-      <div ref={cardRef} className="bg-transparent font-verdana mt-5 mb-5">
-        <div className="w-11 h-10 bg-red-700 mx-auto rounded relative border border-red-800">
-          <div className="absolute top-2.5 w-full h-px bg-red-800"></div>
-        </div>
-        <div className="bg-black w-16 mx-auto h-4 rounded-t">
-          <div className="bg-white w-12 h-1.5 mx-auto rounded"></div>
-        </div>
-        <div className="relative w-56 p-1 mx-auto bg-gray-900 rounded-lg">
-          <div className="absolute top-[105px] left-[222px] w-2 bg-gray-800 h-24 rounded-l"></div>
-          <div className="absolute top-[105px] w-2 bg-gray-800 h-24 rounded-r"></div>
-          <div className="p-2 bg-white rounded-lg text-center shadow-md">
-            <div className="header">
-              <h3 className="text-sm my-1 font-light text-left">
-                <span className="font-semibold">{user.role}</span>
-              </h3>
-              <Image
-                src={logo}
-                height={34}
-                width={80}
-                alt="Logo"
-                className="w-24 mt-4 mx-auto"
-              />
+  return (
+    <div className="container w-full">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white rounded-md shadow-md p-6 mt-10 w-full h-full  "
+      >
+        <h1 className="text-2xl font-bold mb-4">Profile Details</h1>
+        {user ? (
+          <div className="flex flex-col w-full gap-4 ">
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+              <p className=""><span className='text-lg font-semibold'>Name:-</span> {user.name}</p>
             </div>
-            <div className="photo mt-4">
-              <Image
-                src={legalqr}
-                alt="Profile"
-                className="w-20 mx-auto border border-gray-300"
-                height={50}
-                width={50}
-              />
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>Username:-</span>  {user.username}</p>
             </div>
-            <h2 className="text-lg my-1">
-              <span className="font-semibold">{user.name}</span>
-            </h2>
-            <div className="flex justify-end flex-col">
-              <h3 className="text-sm my-1 font-light">
-                <span className="font-semibold">Email Id:-</span> {user.email}
-              </h3>
-              <h3 className="text-sm my-1 font-light">
-                <span className="font-semibold">Username:- </span>{user.username}
-              </h3>
-              <p className="text-xs my-1">
-                <span className="font-bold mr-[1rem]">Services:- </span>{user.services}
-              </p>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>Email:-</span>  {user.email}</p>
             </div>
-            <hr />
-            <p className="text-xs my-1">{user.city}, {user.state}</p>
-            <p className="text-xs my-1">{user.mobile}</p>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>Mobile No.:-</span>  {user.mobile}</p>
+            </div>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>Services:-</span>  {user.services}</p>
+            </div>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>Role:-</span>  {user.role}</p>
+            </div>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>City:-</span>  {user.city}</p>
+              <p><span className='text-lg font-semibold'>State:-</span>  {user.state}</p>
+            </div>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <p><span className='text-lg font-semibold'>Legal257 Id:-</span>  {user.id}</p>
+            </div>
           </div>
-        </div>
-      </div>
-      <button onClick={downloadIdCard} className="text-white bg-blue-500 p-2 rounded m-5">
-        Download ID Card
-      </button>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </motion.div>
     </div>
-  ) : null;
+  );
 };
 
-export default IdCard;
+export default Profile;

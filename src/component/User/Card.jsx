@@ -59,12 +59,18 @@ const cardData = [
     title: "Id Card",
     icon: FaIdCard,
     bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
+    link: "idCard",
+  },
+  {
+    title: "Profile",
+    icon: ImProfile,
+    bgColor: "bg-gradient-to-r from-yellow-400 via-red-400 to-pink-500",
     link: "profile",
   },
   {
     title: "LogOut",
     icon: LuLogOut,
-    bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
+    bgColor: "bg-gradient-to-r from-purple-400 via-pink-400 to-red-400",
     link: "logout",
   },
 ];
