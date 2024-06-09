@@ -13,6 +13,13 @@ const jobApplicationSchema = new mongoose.Schema({
     trim: true,
     match: [/.+\@.+\..+/, 'Please fill a valid email address'], // Email validation
   },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+  },
   mobile: {
     type: String,
     required: true,

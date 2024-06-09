@@ -15,6 +15,9 @@ export const POST = async (req) => {
     const name = formData.get("name");
     const email = formData.get("email");
     const mobile = formData.get("mobile");
+    const city = formData.get("city");
+    const state = formData.get("state");
+
     const resume = formData.get("resume");
     const aadhaarCard = formData.get("aadhaarCard");
     const panCard = formData.get("panCard");
@@ -40,6 +43,8 @@ export const POST = async (req) => {
       name,
       email,
       mobile,
+      city,
+      state,
       resume: resumeUploadResult ? resumeUploadResult.secure_url : null,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
       panCard: panUploadResult ? panUploadResult.secure_url : null,

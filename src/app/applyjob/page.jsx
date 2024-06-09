@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+
 const UploadResumeForm = () => {
   const [resume, setResume] = useState(null);
   const [aadhaarCard, setAadhaarCard] = useState(null);
@@ -12,8 +14,19 @@ const UploadResumeForm = () => {
   const [computerCertificate, setComputerCertificate] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [mobile, setMobile] = useState('');
   const [loading, setLoading] = useState(false);
+
+
+  const statesOfIndia = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
+    "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+  ];
 
   const handleFileChange = (e, setFile) => {
     if (e.target.files) {
@@ -66,7 +79,12 @@ const UploadResumeForm = () => {
     formData.append('name', name);
     formData.append('email', email);
     formData.append('mobile', mobile);
+    formData.append('city', city);
+    formData.append('state', state);
 
+
+
+    
     
 
     try {
@@ -141,6 +159,32 @@ const UploadResumeForm = () => {
           required
         />
       </div>
+
+      <div>
+              <label className="block text-gray-700 font-bold mb-2">City</label>
+              <input
+                type="text"
+                name="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="w-full p-2 rounded bg-white bg-opacity-50"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-bold mb-2">State</label>
+              <select
+                name="state"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                className="w-full p-2 rounded bg-white bg-opacity-50"
+              >
+                <option value="" disabled>Select State</option>
+                {statesOfIndia.map((state, index) => (
+                  <option key={index} value={state}>{state}</option>
+                ))}
+              </select>
+            </div>
       <div className="mb-4">
         <label htmlFor="resume" className="block text-gray-700 font-bold mb-2">Upload Resume:</label>
         <input
