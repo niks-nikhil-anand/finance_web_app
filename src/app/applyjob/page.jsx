@@ -14,9 +14,11 @@ const UploadResumeForm = () => {
   const [computerCertificate, setComputerCertificate] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-  const [mobile, setMobile] = useState('');
+  const [pinCode, setPinCode] = useState('');
+  const [jobTitle, setJobTitle] = useState('');
   const [loading, setLoading] = useState(false);
 
 
@@ -26,6 +28,31 @@ const UploadResumeForm = () => {
     "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
     "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
     "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+  ];
+
+  const jobTitles = [
+    { title: 'Chartered Accountant', code: 'CA', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'State Manager', code: 'SM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Area Sales Manager', code: 'ASM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Distributor Team Manager', code: 'DTM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Distributor Sales Manager', code: 'DSM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Zonal Branch Manager', code: 'ZBM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Zonal Manager', code: 'ZM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Team Service Manager', code: 'TSM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Team Manager', code: 'TM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Branch Manager', code: 'BM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Area Manager', code: 'AM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Retailer Team Leader', code: 'RTL', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Field Officer', code: 'FO', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Assistant Manager', code: 'AM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Relationship Manager', code: 'RM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Accountant', code: 'AC', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Cashier', code: 'CR', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'District Distributor Manager', code: 'DDM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Loan Manager', code: 'LM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Direct Selling Agent', code: 'DSA', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Royal Branch Manager', code: 'RBM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Area Branch Manager', code: 'ABM', type: 'Fulltime', salary: '₹96k - 540k/year' },
   ];
 
   const handleFileChange = (e, setFile) => {
@@ -81,12 +108,8 @@ const UploadResumeForm = () => {
     formData.append('mobile', mobile);
     formData.append('city', city);
     formData.append('state', state);
-
-
-
-    
-    
-
+    formData.append('pinCode', pinCode);
+    formData.append('jobTitle', jobTitle);
     try {
       const response = await fetch('/api/jobApplication', {
         method: 'POST',
@@ -106,6 +129,8 @@ const UploadResumeForm = () => {
         setMobile('');
         setCity('');
         setState('');
+        setPinCode('');
+        setJobTitle('');
         notifySuccess();
       } else {
         console.error('Error:', await response.json());
@@ -187,6 +212,32 @@ const UploadResumeForm = () => {
                 ))}
               </select>
             </div>
+            <div className="mb-4">
+            <label htmlFor="pinCode" className="block text-gray-700 font-bold mb-2">Pin Code:</label>
+            <input
+              type="text"
+              id="pinCode"
+              value={pinCode}
+              onChange={(e) => setPinCode(e.target.value)}
+              className="w-full p-2 rounded bg-white bg-opacity-50"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="jobTitle" className="block text-gray-700 font-bold mb-2">Job Title:</label>
+            <select
+              id="jobTitle"
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
+              className="w-full p-2 rounded bg-white bg-opacity-50"
+              required
+            >
+              <option value="">Select Job Title</option>
+              {jobTitles.map((job) => (
+                <option key={job.code} value={job.title}>{job.title}</option>
+              ))}
+            </select>
+          </div>
       <div className="mb-4">
         <label htmlFor="resume" className="block text-gray-700 font-bold mb-2">Upload Resume:</label>
         <input

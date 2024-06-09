@@ -24,7 +24,6 @@ export async function middleware(req) {
     }
     return NextResponse.next();
   }
-
   if (req.nextUrl.pathname.startsWith('/dashboard')) {
     if (!authToken) {
       const url = new URL('/admin', req.nextUrl.origin);
