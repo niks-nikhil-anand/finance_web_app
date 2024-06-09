@@ -1,9 +1,9 @@
 import connectDB from "@/lib/dbConnect";
 import partnerApplication from "@/models/partnerApplication";
 import { NextResponse } from "next/server";
-import { ForgotPasswordEmail } from "@/lib/emailTemplates"; // Assuming ForgotPasswordEmail is a function that generates the email HTML
 import { Resend } from "resend";
 import { generateRandomToken, generateResetLink } from "@/lib/forgotPasswordToken";
+import ForgotPasswordEmail from "../../../../emails/forgotPasswordEmail";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const POST = async (req) => {
