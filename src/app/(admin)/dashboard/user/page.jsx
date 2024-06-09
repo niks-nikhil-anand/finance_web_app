@@ -1,7 +1,7 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { motion } from 'framer-motion';
+"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { motion } from "framer-motion";
 
 const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
@@ -9,32 +9,39 @@ const JobApplicationsTable = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('/api/user');
+        const response = await axios.get("/api/user");
         setApplications(response.data);
       } catch (error) {
-        console.error('Error fetching job applications:', error);
+        console.error("Error fetching job applications:", error);
       }
     };
 
     fetchApplications();
   }, []);
 
-  const handleRoleChange = async (id, role, isApproved, services) => {
+  const handleRoleChange = async (id, role, status, services) => {
     try {
-      const response = await axios.post('/api/updateRole', { userId: id, role, isApproved, services });
+      const response = await axios.post("/api/updateRole", {
+        userId: id,
+        role,
+        status,
+        services,
+      });
       setApplications((prevApplications) =>
         prevApplications.map((application) =>
-          application._id === id ? { ...application, role, isApproved: isApproved === 'Yes', services } : application
+          application._id === id
+            ? { ...application, role, status, services }
+            : application
         )
       );
       console.log(response.data);
     } catch (error) {
-      console.error('Error updating role and services:', error);
+      console.error("Error updating role and services:", error);
     }
   };
 
   const handleImageClick = (imageUrl) => {
-    window.open(imageUrl, '_blank');
+    window.open(imageUrl, "_blank");
   };
 
   return (
@@ -44,7 +51,9 @@ const JobApplicationsTable = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto w-[80%] bg-gray-100"
     >
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">ALL Users - Legal 257</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">
+        ALL Users - Legal 257
+      </h2>
       <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-purple-100">
@@ -53,11 +62,11 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Email</th>
               <th className="py-2 px-4 border border-gray-300">Role</th>
               <th className="py-2 px-4 border border-gray-300">Services</th>
-              <th className="py-2 px-4 border border-gray-300">KYC Approved</th>
+              <th className="py-2 px-4 border border-gray-300">Status</th>
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-300">City</th>
               <th className="py-2 px-4 border border-gray-300">State</th>
-              <th className="py-2 px-4 border border-gray-300">Partner Type</th>
+              <th className="py-2 px-4 border border-gray-300">Want Partner Type</th>
               <th className="py-2 px-4 border border-gray-300">Interest</th>
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
               <th className="py-2 px-4 border border-gray-300">PAN Card</th>
@@ -75,11 +84,18 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.role}
-                    onChange={(e) => handleRoleChange(application._id, e.target.value, application.isApproved, application.services)}
+                    onChange={(e) =>
+                      handleRoleChange(
+                        application._id,
+                        e.target.value,
+                        application.status,
+                        application.services
+                      )
+                    }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {['CSP', 'Branch', 'DSA', 'User', 'Admin'].map((role) => (
-                      <option key={role} value={role} disabled={role === 'Branch' || role === 'Admin'}>
+                    {["CSP", "DSA", "User"].map((role) => (
+                      <option key={role} value={role}>
                         {role}
                       </option>
                     ))}
@@ -88,10 +104,23 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.services}
-                    onChange={(e) => handleRoleChange(application._id, application.role, application.isApproved, e.target.value)}
+                    onChange={(e) =>
+                      handleRoleChange(
+                        application._id,
+                        application.role,
+                        application.status,
+                        e.target.value
+                      )
+                    }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan', 'All Services', 'None'].map((service) => (
+                    {[
+                      "GST/ITR Services",
+                      "Fintech Services",
+                      "Finance Services-Loan",
+                      "All Services",
+                      "JonoJivan Micro Loan",
+                    ].map((service) => (
                       <option key={service} value={service}>
                         {service}
                       </option>
@@ -100,18 +129,28 @@ const JobApplicationsTable = () => {
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   <select
-                    value={application.isApproved ? 'Yes' : 'No'}
-                    onChange={(e) => handleRoleChange(application._id, application.role, e.target.value, application.services)}
+                    value={application.status}
+                    onChange={(e) =>
+                      handleRoleChange(
+                        application._id,
+                        application.role,
+                        e.target.value,
+                        application.services
+                      )
+                    }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    {["Blocked", "Active", "Pending", "inReview"].map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
                   </select>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.city}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.state}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.partnerType}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.wantPartnerType}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.interest}</td>
                 <td className="py-2 px-4 border border-gray-300">
                   {application.aadhaarCard ? (
@@ -123,7 +162,7 @@ const JobApplicationsTable = () => {
                       View Aadhaar Card
                     </a>
                   ) : (
-                    'Not Available'
+                    "Not Available"
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -136,7 +175,7 @@ const JobApplicationsTable = () => {
                       View PAN Card
                     </a>
                   ) : (
-                    'Not Available'
+                    "Not Available"
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -149,7 +188,7 @@ const JobApplicationsTable = () => {
                       View Bank Passbook
                     </a>
                   ) : (
-                    'Not Available'
+                    "Not Available"
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -162,7 +201,7 @@ const JobApplicationsTable = () => {
                       View Shop Photo Copy
                     </a>
                   ) : (
-                    'Not Available'
+                    "Not Available"
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -175,7 +214,7 @@ const JobApplicationsTable = () => {
                       View MSME Certificate
                     </a>
                   ) : (
-                    'Not Available'
+                    "Not Available"
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">{application.username}</td>

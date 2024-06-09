@@ -76,7 +76,7 @@ const partnerApplicationSchema = new mongoose.Schema({
     },
     default: 'User'
   },
-  Status: { 
+  status: { 
     type: String,
     enum: {
       values: ['Blocked', 'Active', 'Pending' , 'inReview'],
