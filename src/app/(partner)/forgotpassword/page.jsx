@@ -10,6 +10,7 @@ export default function ForgotPassword() {
   const [formData, setFormData] = useState({
     email: ''
   });
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -18,9 +19,25 @@ export default function ForgotPassword() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle forgot password logic here
+    setMessage('');
+    try {
+      const response = await fetch('/api/forgotPassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        setMessage('If the email is registered, you will receive a reset link.');
+      } else {
+        setMessage('An error occurred. Please try again.');
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again.');
+    }
   };
 
   return (
@@ -58,12 +75,14 @@ export default function ForgotPassword() {
               value={formData.email}
               onChange={handleChange}
               className="w-full border border-gray-300 p-2 rounded"
+              required
             />
           </div>
           <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded">
             Reset Password
           </button>
         </form>
+        {message && <p className="mt-4 text-red-500">{message}</p>}
         <p className="mt-4">
           Remembered your password?{' '}
           <Link href="/partnersignin" className="text-blue-500">

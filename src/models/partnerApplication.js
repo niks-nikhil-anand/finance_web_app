@@ -92,6 +92,12 @@ const partnerApplicationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Branch',
     required: false
+  },
+  resetPasswordToken:{
+    type:String
+  },
+  resetPasswordExpires:{
+    type : Date
   }
 });
 
