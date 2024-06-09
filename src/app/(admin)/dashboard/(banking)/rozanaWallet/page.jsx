@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import DeductBalanceForm from '@/component/AdminDashboard/DeductBalance';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WalletManager = () => {
   const [balance, setBalance] = useState(0);
@@ -10,11 +12,24 @@ const WalletManager = () => {
   const [sendAmount, setSendAmount] = useState('');
   const [sendEmail, setSendEmail] = useState('');
 
+
+
+  const notifySuccess = () => {
+    toast.success("Done", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         await axios.post('/api/wallet/initialize'); 
-
         const balanceResponse = await axios.get('/api/wallet/balance');
         setBalance(balanceResponse.data.balance);
       } catch (error) {
@@ -32,8 +47,10 @@ const WalletManager = () => {
       const response = await axios.post('/api/wallet/addBalance', { amount: addAmount });
       setBalance(response.data.newBalance);
       setAddAmount('');
+      notifySuccess();
     } catch (error) {
       console.error("Error adding balance:", error);
+      notifyError();
     }
   };
 
@@ -45,8 +62,10 @@ const WalletManager = () => {
       setBalance(response.data.newBalance);
       setSendAmount('');
       setSendEmail('');
+      notifySuccess();
     } catch (error) {
       console.error("Error sending balance:", error);
+      notifyError();
     }
   };
 

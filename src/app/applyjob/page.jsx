@@ -104,6 +104,8 @@ const UploadResumeForm = () => {
         setName('');
         setEmail('');
         setMobile('');
+        setCity('');
+        setState('');
         notifySuccess();
       } else {
         console.error('Error:', await response.json());
