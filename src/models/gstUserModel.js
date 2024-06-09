@@ -10,7 +10,6 @@ const gstUserSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true,
     },
     mobileNumber: {
@@ -43,7 +42,7 @@ const gstUserSchema = new mongoose.Schema({
     },
     status: {
       type : String,
-      enum: ['Pending', 'Processing', 'Completed' , 'Reject'],
+      enum: ['Details Pending', 'Under Processing', 'Approved' , 'Reject'],
       default: 'Pending'
     },
     partner: {

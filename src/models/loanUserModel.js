@@ -91,8 +91,8 @@ const loanUserSchema = mongoose.Schema({
       },
       status: {
         type : String,
-      enum: ['Pending', 'Processing', 'Completed' , 'Reject'],
-      default: 'Pending'
+        enum: ['Details Pending', 'Under Processing', 'Approved' , 'Reject'],
+        default: 'Pending'
       },
       partner: {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,81 +1,98 @@
-  import mongoose from "mongoose";
+import mongoose from "mongoose";
 
-  // Define Schema
-  const partnerApplicationSchema = new mongoose.Schema({
-    name: { 
-      type: String, 
-      required: true 
-  },
-    email: { 
-      type: String, 
-      required: true,
-      unique : true,
-      match: [/.+\@.+\..+/, 'Please fill a valid email address']
-  },
-  username:{
+// Define Schema
+const partnerApplicationSchema = new mongoose.Schema({
+  name: { 
     type: String, 
-    required: true,
-    unique : true
+    required: [true, 'Name is required']
   },
-    mobileNumber: { 
-      type: String, 
-      required: true 
+  email: { 
+    type: String, 
+    required: [true, 'Email is required'],
+    unique: [true, 'Email already exists'],
+    match: [/.+\@.+\..+/, 'Please fill a valid email address']
   },
-    password: { 
-      type: String, 
-      required: true 
+  username: {
+    type: String, 
+    required: [true, 'Username is required'],
+    unique: [true, 'Username already exists']
   },
-    services: { 
-      type: String, 
-      enum: ['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan' , 'All Services' , ],
-      default: 'GST/ITR Services'
+  mobileNumber: { 
+    type: String, 
+    unique: [true, 'Mobile number already exists'], 
+    required: [true, 'Mobile number is required']
   },
-    city: { 
-      type: String
+  password: { 
+    type: String, 
+    required: [true, 'Password is required']
   },
-    state: { 
-      type: String
+  services: { 
+    type: String, 
+    enum: {
+      values: ['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan' , 'All Services' , 'JonoJivan Micro Loan'],
+      message: 'Service must be one of GST/ITR Services, Fintech Services, Finance Services-Loan, All Services, JonoJivan Micro Loan'
+    },
+    default: 'GST/ITR Services'
   },
-    partnerType: { 
-      type: String,
-      enum: ['CSP', 'Branch', 'DSA'],
+  city: { 
+    type: String
   },
-    interest: { 
-      type: String 
+  state: { 
+    type: String
   },
-    message: { 
-      type: String 
+  wantPartnerType: { 
+    type: String,
+    enum: {
+      values: ['CSP', 'Branch', 'DSA'],
+      message: 'Partner type must be one of CSP, Branch, DSA'
+    }
   },
-    aadhaarCard: { 
-      type: String 
+  interest: { 
+    type: String 
   },
-    panCard: { 
-      type: String 
+  message: { 
+    type: String 
   },
-    bankPassbook: { 
-      type: String 
+  aadhaarCard: { 
+    type: String 
   },
-    shopPhotoCopy: { 
-      type: String 
+  panCard: { 
+    type: String 
   },
-    msmeCertificate: { 
-      type: String 
+  bankPassbook: { 
+    type: String 
   },
-  role:{
-      type : String,
-      enum: ['CSP', 'Branch', 'DSA' , 'User' , 'Admin'],
-      default: 'User'
+  shopPhotoCopy: { 
+    type: String 
   },
-   isApproved: { 
-      type: Boolean, 
-      default: false 
+  msmeCertificate: { 
+    type: String 
+  },
+  role: {
+    type: String,
+    enum: {
+      values: ['CSP', 'Branch', 'DSA' , 'User' , 'Admin'],
+      message: 'Role must be one of CSP, Branch, DSA, User, Admin'
+    },
+    default: 'User'
+  },
+  Status: { 
+    type: String,
+    enum: {
+      values: ['Blocked', 'Active', 'Pending' , 'inReview'],
+      message: 'Approval status must be one of Blocked, Active, Pending, inReview'
+    },
+    default: 'Pending'
   }, 
-  branch :{
-    type : mongoose.Schema.Types.ObjectId,
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  branch: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Branch',
     required: false
   }
-  });
+});
 
-  export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication' , partnerApplicationSchema )
-
+export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication', partnerApplicationSchema);

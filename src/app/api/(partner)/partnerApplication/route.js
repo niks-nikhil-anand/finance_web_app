@@ -17,7 +17,7 @@ export const POST = async (req) => {
     const plainPassword = formData.get("password");
     const city = formData.get("city");
     const state = formData.get("state");
-    const partnerType = formData.get("partnerType");
+    const wantPartnerType = formData.get("partnerType");
     const interest = formData.get("interest");
     const message = formData.get("message");
 
@@ -51,7 +51,7 @@ export const POST = async (req) => {
      password: hashedPassword,
       city,
       state,
-      partnerType,
+      wantPartnerType,
       interest,
       message,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
