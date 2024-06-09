@@ -318,6 +318,7 @@ export default function Signup() {
                   <option value="Personal Loan">GST/ITR Services</option>
                   <option value="Home Loan">Fintech Services</option>
                   <option value="Business Loan">Finance Services-Loan</option>
+                  <option value="Business Loan">JonoJivan Loan Services</option>
                   <option value="Business Loan">All Services</option>
                 </select>
               </div>
