@@ -42,7 +42,7 @@ const gstUserSchema = new mongoose.Schema({
     },
     status: {
       type : String,
-      enum: ['Details Pending', 'Under Processing', 'Approved' , 'Reject'],
+      enum: ['Details Pending', 'Under Processing', 'Approved' , 'Rejected'],
       default: 'Pending'
     },
     partner: {

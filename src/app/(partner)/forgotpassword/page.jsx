@@ -5,38 +5,58 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import forgot from '../../../../public/accounts/forgot.png';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ForgotPassword() {
-  const [formData, setFormData] = useState({
-    email: ''
-  });
-  const [message, setMessage] = useState('');
+ 
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+
+  const notifyLoading = () => {
+    toast.info("Sending email...", {
+      position: "bottom-right"
     });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Email is sent to reset Password", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
+
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage('');
+    const formData = new FormData();
+    formData.append('email', email);
+    setLoading(true);
+    notifyLoading();
     try {
       const response = await fetch('/api/forgotPassword', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        body: formData,
       });
       if (response.ok) {
-        setMessage('If the email is registered, you will receive a reset link.');
+        setEmail('');
+        notifySuccess();
       } else {
-        setMessage('An error occurred. Please try again.');
+        notifyError('Something went wrong.');
       }
     } catch (error) {
-      setMessage('An error occurred. Please try again.');
+      console.log(formData)
+      setLoading(false);
     }
   };
 
@@ -70,19 +90,20 @@ export default function ForgotPassword() {
           <div className="mb-4">
             <label className="block mb-1">Email</label>
             <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
-              required
-            />
+          type="email"
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
+          className="w-full p-2 rounded bg-white bg-opacity-50 border-2	"
+          required
+        />
           </div>
-          <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded">
-            Reset Password
+          <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded"
+            disabled={loading}
+          >
+          {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
         </form>
-        {message && <p className="mt-4 text-red-500">{message}</p>}
         <p className="mt-4">
           Remembered your password?{' '}
           <Link href="/partnersignin" className="text-blue-500">

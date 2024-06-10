@@ -98,6 +98,12 @@ const partnerApplicationSchema = new mongoose.Schema({
   },
   resetPasswordExpires:{
     type : Date
+  },
+  isVerifiedToken:{
+    type:String
+  },
+  isVerifiedExpires:{
+    type : Date
   }
 });
 
