@@ -2,10 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const ChangePassword = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const [newPassword, setNewPassword] = useState('');
