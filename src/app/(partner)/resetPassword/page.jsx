@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, Suspense } from 'react';
 import { toast } from 'react-toastify';
 import { useSearchParams } from 'next/navigation';
 
@@ -101,4 +100,10 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+const ChangePasswordWrapper = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <ChangePassword />
+  </Suspense>
+);
+
+export default ChangePasswordWrapper;
