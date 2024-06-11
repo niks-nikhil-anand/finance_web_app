@@ -197,7 +197,7 @@ export default function Signup() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Unique Id(7 digits only)</label>
+                <label className="block mb-1">Unique Id(15 digits only)</label>
                 <div className="flex">
                   <span className="bg-gray-200 p-2 rounded-l">Legal257</span>
                   <input
@@ -206,7 +206,7 @@ export default function Signup() {
                     value={formData.username.replace('Legal257', '')}
                     onChange={handleUsernameChange}
                     className="w-full border border-gray-300 p-2 rounded-r"
-                    maxLength={7}
+                    maxLength={15}
                     required
                   />
                 </div>
@@ -320,6 +320,7 @@ export default function Signup() {
                   <option value="Finance Services-Loan">Finance Services-Loan</option>
                   <option value="JonoJivan Loan Services">JonoJivan Loan Services</option>
                   <option value="All Services">All Services</option>
+                  
                 </select>
               </div>
               <div className="mb-4">
