@@ -2,10 +2,35 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
   const [editingApplication, setEditingApplication] = useState(null);
+
+  const notifyLoading = () => {
+    toast.info("Submitting...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyDelete = () => {
+    toast.success("Deleted  successfully!", {
+      position: "bottom-right"
+    });
+  };
+  const notifySuccess = () => {
+    toast.success("Updated  successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
+  };
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -30,7 +55,9 @@ const JobApplicationsTable = () => {
       setApplications((prevApplications) =>
         prevApplications.filter((application) => application._id !== id)
       );
+      notifyDelete();
     } catch (error) {
+      notifyError("Error deleting application");
       console.error("Error deleting application:", error);
     }
   };
@@ -39,15 +66,16 @@ const JobApplicationsTable = () => {
     try {
       console.log("Editing Application:", editingApplication);
       const response = await axios.put(`/api/utils/${editingApplication._id}`, editingApplication);
-      console.log("API Response:", response.data); // Assuming response.data contains the updated application
       setApplications((prevApplications) =>
         prevApplications.map((application) =>
           application._id === editingApplication._id ? editingApplication : application
         )
       );
       setEditingApplication(null);
+      notifySuccess();
     } catch (error) {
       console.error("Error updating application:", error);
+      notifyError("Error updating application");
     }
   };
   
