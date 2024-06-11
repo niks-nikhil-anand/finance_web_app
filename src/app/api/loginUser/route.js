@@ -26,9 +26,10 @@ export const POST = async (req) => {
             });
         }
 
-        // const validRoles = ['DSA', 'CSP'];
-        if (partner.isApproved === false ) {
-            return NextResponse.json({ msg: "Not Authorised " }, {
+        const invalidStatuses = ['Blocked', 'Pending', 'inReview'];
+
+        if (invalidStatuses.includes(partner.status)) {
+            return NextResponse.json({ msg: "Not Authorised" }, {
                 status: 408
             });
         }
