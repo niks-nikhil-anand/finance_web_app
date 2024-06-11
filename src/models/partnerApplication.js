@@ -105,6 +105,8 @@ const partnerApplicationSchema = new mongoose.Schema({
   isVerifiedExpires:{
     type : Date
   }
+} ,{
+  timestamps:true
 });
 
 export default mongoose.models.PartnerApplication || mongoose.model('PartnerApplication', partnerApplicationSchema);

@@ -212,40 +212,14 @@ export function SidebarAdmin() {
               <label className="px-3 text-xs font-semibold uppercase text-white">Information</label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/profile "}
+                href={"/dashboard/complaint"}
               >
-                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Wallet-Transaction</span>
+                 <FcBusinessman  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Complaint</span>
               </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/profile "}
-              >
-                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Profile</span>
-              </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/profile "}
-              >
-                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Id Card</span>
-              </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/profile "}
-              >
-                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Certificate</span>
-              </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/profile "}
-              >
-                 <FaCodeBranch  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Status of Application</span>
-              </Link>
+              
             </div>
+           
           </nav>
           <button
             className="mt-6 flex items-center justify-between rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-50"

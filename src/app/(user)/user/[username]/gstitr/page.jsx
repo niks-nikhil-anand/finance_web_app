@@ -42,9 +42,8 @@ const userGSTItrForm = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Check if the input is for the mobile number and contains only digits
     if (name === 'mobileNumber' && !/^\d*$/.test(value)) {
-      return; // Skip update if the value contains non-numeric characters
+      return; 
     }
 
     setFormData((prevFormData) => ({

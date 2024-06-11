@@ -1,6 +1,5 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,7 +8,7 @@ const ComplaintForm = () => {
     name: '',
     email: '',
     phone: '',
-    message: '',
+    message: ''
   });
 
   const handleChange = (e) => {
@@ -38,8 +37,19 @@ const ComplaintForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     notifyLoading();
+
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('phone', formData.phone);
+    data.append('message', formData.message);
+
     try {
-      const response = await axios.post('/api/user/complaint', formData);
+      const response = await fetch('/api/user/complaint', {
+        method: 'POST',
+        body: data,
+      });
+
       if (response.status === 200) {
         notifySuccess();
       } else {
