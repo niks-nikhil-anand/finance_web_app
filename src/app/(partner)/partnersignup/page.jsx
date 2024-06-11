@@ -315,11 +315,11 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="">Select an interest</option>
-                  <option value="Personal Loan">GST/ITR Services</option>
-                  <option value="Home Loan">Fintech Services</option>
-                  <option value="Business Loan">Finance Services-Loan</option>
-                  <option value="Business Loan">JonoJivan Loan Services</option>
-                  <option value="Business Loan">All Services</option>
+                  <option value="GST/ITR Services">GST/ITR Services</option>
+                  <option value="Fintech Services">Fintech Services</option>
+                  <option value="Finance Services-Loan">Finance Services-Loan</option>
+                  <option value="JonoJivan Loan Services">JonoJivan Loan Services</option>
+                  <option value="All Services">All Services</option>
                 </select>
               </div>
               <div className="mb-4">
