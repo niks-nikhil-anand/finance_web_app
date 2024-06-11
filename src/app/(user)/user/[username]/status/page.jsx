@@ -19,13 +19,18 @@ const ApplicationStatus = () => {
     const fetchStatus = async () => {
       try {
         const response = await axios.get('/api/user/status');
+        console.log(response)
         const data = response.data;
+        
+        console.log(data)
         const allApplications = [
           ...data.gstApplications,
           ...data.loanApplications,
           ...data.microLoanApplications,
         ];
         setApplications(allApplications);
+        console.log(` allApplication test ${allApplications}`)
+        console.log(applications)
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -45,12 +50,13 @@ const ApplicationStatus = () => {
         applications.map((application) => (
           <motion.div
             key={application._id}
-            className="my-4 p-4 rounded-lg shadow-lg flex flex-col items-center"
+            className="my-4 p-4 rounded-lg shadow-lg flex flex-col items-center frame m-5"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <h1 className="text-2xl font-bold mb-2">{application.name}</h1>
+            <h1 className='text-sm  mb-2'>Application Id </h1>
+            <h1 className="text-sm font-bold mb-2">{application._id}</h1>
             <motion.div
               className={`w-full text-center text-white py-2 rounded ${statusColors[application.status]}`}
               initial={{ opacity: 0, y: 50 }}

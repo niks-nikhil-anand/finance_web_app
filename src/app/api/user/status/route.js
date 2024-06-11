@@ -22,15 +22,20 @@ export const GET = async (req) => {
       throw new Error("Invalid token.");
     }
 
-    const gstApplications = await gstUserModel.find({ _id: decodedToken.id });
-    const loanApplications = await loanUserModel.find({ _id: decodedToken.id });
-    const microLoanApplications = await microLoanUserModel.find({ _id: decodedToken.id });
+    const gstApplications = await gstUserModel.find({ partner: decodedToken.id });
+    const loanApplications = await loanUserModel.find({ partner: decodedToken.id });
+    const microLoanApplications = await microLoanUserModel.find({ partner: decodedToken.id });
+    console.log(gstApplications)
+    console.log(loanApplications)
+    console.log(microLoanApplications)
 
     const data = {
       gstApplications,
       loanApplications,
       microLoanApplications
     };
+
+    console.log(data)
 
     
 
