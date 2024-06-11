@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import paymentqr from '../../../public/paymentqr.jpeg'
-import Image from 'next/image';
 
 const userGSTItrForm = () => {
   const [step, setStep] = useState(1);
@@ -93,7 +91,7 @@ const userGSTItrForm = () => {
     if (photocopy) data.append('photocopy', photocopy);
 
     try {
-      const response = await fetch('/api/gstUser', {
+      const response = await fetch('/api/partner/gstUser', {
         method: 'POST',
         body: data,
       });

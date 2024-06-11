@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const userSchema = new mongoose.Schema({
+const complaintSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -45,4 +45,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model('User', userSchema);
+
+export default mongoose.model.Complaint || mongoose.model('Complaint' , "complaintSchema")
+

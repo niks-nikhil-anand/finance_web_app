@@ -17,7 +17,7 @@ export const POST = async (req) => {
       throw new Error("User authentication token is missing.");
     }
 
-    const username = jwt.decode(authToken.value)?.username;
+    const id = jwt.decode(authToken.value)?.id;
     const name = formData.get("name");
     const email = formData.get("email");
     const mobileNumber = formData.get("mobileNumber");
@@ -50,7 +50,6 @@ export const POST = async (req) => {
     const applicationData = {
       name,
       email,
-      username,
       mobileNumber,
       registrationType,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
@@ -59,6 +58,7 @@ export const POST = async (req) => {
       electricityBill: electricityBillUploadResult ? electricityBillUploadResult.secure_url : null,
       photoCopy: photoUploadResult ? photoUploadResult.secure_url : null,
       bankStatement: uploadbankStatement ? uploadbankStatement.secure_url : null,
+      partner : id
     };
 
     await gstUserModel.create(applicationData);

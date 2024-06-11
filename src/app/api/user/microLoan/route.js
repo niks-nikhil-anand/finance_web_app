@@ -22,7 +22,7 @@ export const POST = async (req) => {
       throw new Error("Invalid token.");
     }
 
-    const username = decodedToken.id;
+    const id = decodedToken.id;
     const formData = await req.formData(); // Ensures formData is awaited
 
     // Applicant data
@@ -128,7 +128,7 @@ export const POST = async (req) => {
       requiredLoanAmount,
       maritalStatus,
       loanYear,
-      partner: username
+      partner: id
     };
 
     console.log(applicationData)

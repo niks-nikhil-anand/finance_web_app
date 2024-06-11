@@ -5,10 +5,6 @@ const loanUserSchema = mongoose.Schema({
         type: String,
         required: true
       },
-      username:{
-        type:String,
-        required:true
-      },
       email: {
         type: String,
         required: true,
@@ -92,7 +88,7 @@ const loanUserSchema = mongoose.Schema({
       status: {
         type : String,
         enum: ['Details Pending', 'Under Processing', 'Approved' , 'Reject'],
-        default: 'Pending'
+        default: 'Details Pending'
       },
       partner: {
         type: mongoose.Schema.Types.ObjectId,

@@ -9,7 +9,7 @@ const PartnerLoanTable = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('/api/gstUser');
+        const response = await axios.get('/api/partner/gstUser');
         setApplications(response.data);
       } catch (error) {
         console.error('Error fetching loan applications:', error);

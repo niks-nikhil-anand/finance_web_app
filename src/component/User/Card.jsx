@@ -13,6 +13,7 @@ import { ImProfile } from "react-icons/im";
 import { GiPayMoney } from "react-icons/gi";
 import Link from "next/link";
 import { LuLogOut } from "react-icons/lu";
+import { TbTruckDelivery } from "react-icons/tb";
 
 import LogoutButton from "./LogoutButton.jsx";
 
@@ -60,6 +61,12 @@ const cardData = [
     link: "certificateLegal257",
   },
   {
+    title: "Status",
+    icon: TbTruckDelivery,
+    bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
+    link: "status",
+  },
+  {
     title: "Id Card",
     icon: FaIdCard,
     bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
@@ -104,9 +111,9 @@ const ColorfulCard = () => {
 
   const filteredCardData = cardData.filter((card) => {
     if (services === "GST/ITR Services") {
-      return ["gstitr" ,  "wallet" , "profile" , "logout"].includes(card.link);
+      return ["gstitr" ,  "wallet" , "profile" , "logout" , "Status"].includes(card.link);
     } else if (services === "Finance Services-Loan") {
-      return ["loan", "microLoan" , "wallet" , "profile" , "logout"].includes(card.link);
+      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "Status"].includes(card.link);
     } else if (services === "All Services") {
       return true; // Include all services
     }

@@ -19,7 +19,7 @@ export const POST = async (req) => {
       throw new Error("User authentication token is missing.");
     }
 
-    const username = jwt.decode(authToken.value)?.username;
+    const partner = jwt.decode(authToken.value)?.id ;
     const name = formData.get("name");
     const email = formData.get("email");
     const mobileNumber = formData.get("mobileNumber");
@@ -58,9 +58,9 @@ export const POST = async (req) => {
     const applicationData = {
       name,
       email,
-      username,
       mobileNumber,
       gender,
+      partner,
       city,
       employmentType,
       monthlyIncome,

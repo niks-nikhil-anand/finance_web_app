@@ -73,7 +73,7 @@ const microLoanUserSchema = new mongoose.Schema(
     status: {
       type : String,
       enum: ['Details Pending', 'Under Processing', 'Approved' , 'Reject'],
-      default: 'Pending'
+      default: 'Details Pending'
     },
     partner: {
         type: mongoose.Schema.Types.ObjectId,
