@@ -10,10 +10,6 @@ export const POST = async (req) => {
         const formData = await req.formData();
         const email = formData.get("email");
         const password = formData.get("password");
-        const applicationData = {
-            email,
-            password
-        };
 
         const partner = await partnerApplication.findOne({ email });
 
