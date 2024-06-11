@@ -267,8 +267,6 @@ const userGSTItrForm = () => {
     {loading ? 'Uploading...' : 'Submit'}
   </motion.button>
 </div>
-
-             
             </motion.div>
           )}
         </form>
