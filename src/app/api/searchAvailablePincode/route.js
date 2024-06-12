@@ -1,23 +1,27 @@
-// /pages/api/searchAvailablePincode.js
 import connectDB from "@/lib/dbConnect";
-import { NextResponse } from "next/server";
+import availablePincode from "@/models/availablePincode";
+import { NextResponse } from 'next/server';
 
-export const POST = async (req) => {
+export const GET = async (req) => {
   try {
     await connectDB();
-    const { pinCode } = req.body;
-    console.log(pinCode)
+    const url = new URL(req.url);
+    const pinCode = url.searchParams.get('pinCode');
+    console.log(pinCode);
 
-    // Simulate serviceability check based on pin code
-    const isServiceable = pinCode === '123456'; // Change this to your actual logic
+    if (!pinCode) {
+      return NextResponse.json({ msg: "Pin code is required" }, { status: 400 });
+    }
 
-    return NextResponse.json({ serviceable: isServiceable }, {
-      status: 200,
-    });
+    const PincodeDetails = await availablePincode.findOne({ pinCode: pinCode });
+
+    if (!PincodeDetails) {
+      return NextResponse.json({ msg: "Pin code not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ status: 200, data: PincodeDetails });
   } catch (error) {
     console.error("Error checking service availability:", error);
-    return NextResponse.json({ msg: "Error checking service availability", error: error.message }, {
-      status: 500,
-    });
+    return NextResponse.json({ msg: "Error checking service availability", error: error.message }, { status: 500 });
   }
 };
