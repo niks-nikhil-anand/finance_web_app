@@ -8,7 +8,7 @@ export const GET = async (req, res) => {
       await connectDB();
   
       const applications = await partnerApplication.find();
-  
+      console.log(applications)
       return NextResponse.json(applications, {
         status: 200
       });
