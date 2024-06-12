@@ -74,9 +74,6 @@ const partnerApplicationSchema = new mongoose.Schema({
   TradeLicense: { 
     type: String 
   },
-  msmeCertificate: { 
-    type: String 
-  },
   role: {
     type: String,
     enum: {
