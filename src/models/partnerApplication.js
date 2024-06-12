@@ -71,7 +71,7 @@ const partnerApplicationSchema = new mongoose.Schema({
   photoCopy: { 
     type: String 
   },
-  TradeLicense: { 
+  tradeLicense: { 
     type: String 
   },
   role: {

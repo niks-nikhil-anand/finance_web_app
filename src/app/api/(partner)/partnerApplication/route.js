@@ -64,7 +64,7 @@ export const POST = async (req) => {
       shopPhotoCopy: photoUploadResult ? photoUploadResult.secure_url : null,
       msmeCertificate: msmeCertificateUploadResult ? msmeCertificateUploadResult.secure_url : null,
       photoCopy: photoCopyUploadResult ? photoCopyUploadResult.secure_url : null,
-      TradeLicense: tradeLicenceUploadResult ? tradeLicenceUploadResult.secure_url : null,
+      tradeLicense: tradeLicenceUploadResult ? tradeLicenceUploadResult.secure_url : null,
     };
 
     await partnerApplication.create(applicationData);
