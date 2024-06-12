@@ -52,6 +52,8 @@ const BranchTable = () => {
               <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
               <th className="py-2 px-4 border border-gray-300">Shop Photo Copy</th>
               <th className="py-2 px-4 border border-gray-300">MSME Certificate</th>
+              <th className="py-2 px-4 border border-gray-300">photoCopy</th>
+              <th className="py-2 px-4 border border-gray-300">tradeLicense</th>
               <th className="py-2 px-4 border border-gray-300">User Legal257 ID</th>
             </tr>
           </thead>
@@ -127,6 +129,32 @@ const BranchTable = () => {
                       className="text-blue-500 hover:underline"
                     >
                       View MSME Certificate
+                    </a>
+                  ) : (
+                    'Not Available'
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {application.photoCopy ? (
+                    <a
+                      href="#"
+                      onClick={() => handleImageClick(application.photoCopy)}
+                      className="text-blue-500 hover:underline"
+                    >
+                      View photoCopy
+                    </a>
+                  ) : (
+                    'Not Available'
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {application.tradeLicense ? (
+                    <a
+                      href="#"
+                      onClick={() => handleImageClick(application.tradeLicense)}
+                      className="text-blue-500 hover:underline"
+                    >
+                      View tradeLicense
                     </a>
                   ) : (
                     'Not Available'
