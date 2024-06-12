@@ -35,7 +35,7 @@ const JobApplicationsTable = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get("/api/anad");
+        const response = await axios.get("/api/user");
         setApplications(response.data);
       } catch (error) {
         console.error("Error fetching job applications:", error);
