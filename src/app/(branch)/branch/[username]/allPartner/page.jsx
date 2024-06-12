@@ -115,6 +115,8 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
               <th className="py-2 px-4 border border-gray-300">Shop Photo Copy</th>
               <th className="py-2 px-4 border border-gray-300">MSME Certificate</th>
+              <th className="py-2 px-4 border border-gray-300">photoCopy</th>
+              <th className="py-2 px-4 border border-gray-300">tradeLicense</th>
               <th className="py-2 px-4 border border-gray-300">User Legal257 ID</th>
               <th className="py-2 px-4 border border-gray-300">Branch</th>
               <th className="py-2 px-4 border border-gray-300">Actions</th>
@@ -319,6 +321,32 @@ const JobApplicationsTable = () => {
                     </a>
                   ) : (
                     "No MSME Certificate"
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {application.photoCopy ? (
+                    <a
+                      href="#"
+                      onClick={() => window.open(application.photoCopy, "_blank")}
+                      className="text-blue-500 underline"
+                    >
+                      View photoCopy
+                    </a>
+                  ) : (
+                    "No photoCopy"
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {application.tradeLicense ? (
+                    <a
+                      href="#"
+                      onClick={() => window.open(application.tradeLicense, "_blank")}
+                      className="text-blue-500 underline"
+                    >
+                      View tradeLicense
+                    </a>
+                  ) : (
+                    "No tradeLicense"
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">{application._id}</td>
