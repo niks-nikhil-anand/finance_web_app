@@ -85,6 +85,22 @@ const JobApplicationsTable = () => {
     setEditingApplication((prevApplication) => ({ ...prevApplication, [name]: value }));
   };
 
+  const handleRoleChange = async (userId, role, status, services) => {
+    try {
+      notifyLoading();
+      await axios.post('/api/updateRole', { userId, role, status, services });
+      setApplications((prevApplications) =>
+        prevApplications.map((application) =>
+          application._id === userId ? { ...application, role, status, services } : application
+        )
+      );
+      notifySuccess();
+    } catch (error) {
+      notifyError("Error updating role and services");
+      console.error("Error updating role and services:", error);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
