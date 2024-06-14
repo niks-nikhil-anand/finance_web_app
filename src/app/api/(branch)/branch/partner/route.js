@@ -24,6 +24,7 @@ export const POST = async (req) => {
     const partnerType = formData.get("partnerType");
     const interest = formData.get("interest");
     const message = formData.get("message");
+    
 
     const cookieStore = cookies();
     const authToken = cookieStore.get("authBranchToken");
@@ -53,6 +54,8 @@ export const POST = async (req) => {
     const photo = formData.get("shopPhotoCopy");
     const bankPassbook = formData.get("bankPassbook");
     const bankStatement = formData.get("msmeCertificate");
+    const photoCopy = formData.get("photoCopy");
+    const tradeLicence = formData.get("tradeLicence");
 
     
 
@@ -61,6 +64,9 @@ export const POST = async (req) => {
     const passbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
     const photoUploadResult = photo ? await uploadImage(photo, "shopPhotoCopy") : null;
     const bankStatementUploadResult = bankStatement ? await uploadImage(bankStatement, "msmeCertificate") : null;
+
+    const photoCopyUploadResult = msmeCertificate ? await uploadImage(photoCopy, "photoCopy") : null;
+    const tradeLicenceUploadResult = tradeLicence ? await uploadImage(tradeLicence, "tradeLicence") : null;
 
     // Prepare application data for database insertion
     const applicationData = {
@@ -80,6 +86,8 @@ export const POST = async (req) => {
       bankPassbook: passbookUploadResult ? passbookUploadResult.secure_url : null,
       shopPhotoCopy: photoUploadResult ? photoUploadResult.secure_url : null,
       msmeCertificate: bankStatementUploadResult ? bankStatementUploadResult.secure_url : null,
+      photoCopy: photoCopyUploadResult ? photoCopyUploadResult.secure_url : null,
+      tradeLicense: tradeLicenceUploadResult ? tradeLicenceUploadResult.secure_url : null,
     };
 
     await partnerApplication.create(applicationData);

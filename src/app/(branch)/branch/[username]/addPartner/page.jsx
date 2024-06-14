@@ -25,6 +25,8 @@ export default function Signup() {
   const [bankPassbook, setBankPassbook] = useState(null);
   const [shopPhotoCopy, setShopPhotoCopy] = useState(null);
   const [msmeCertificate, setMsmeCertificate] = useState(null);
+  const [photoCopy, setPhotoCopy] = useState(null);
+  const [tradeLicence, setTradeLicence] = useState(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
 
@@ -93,6 +95,8 @@ export default function Signup() {
     if (bankPassbook) data.append('bankPassbook', bankPassbook);
     if (shopPhotoCopy) data.append('shopPhotoCopy', shopPhotoCopy);
     if (msmeCertificate) data.append('msmeCertificate', msmeCertificate);
+    if (photoCopy) data.append('photoCopy', photoCopy);
+    if (tradeLicence) data.append('tradeLicence', tradeLicence);
 
     try {
       const response = await fetch('/api/branch/partner', {
@@ -108,6 +112,8 @@ export default function Signup() {
         setBankPassbook(null);
         setShopPhotoCopy(null);
         setMsmeCertificate(null);
+        setPhotoCopy(null);
+        setTradeLicence(null);
         setFormData({
           name: '',
           email: '',
@@ -367,6 +373,22 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
+              <div className="w-full px-2 mb-4">
+                  <label className="block mb-1">Photo Copy</label>
+                  <input
+                    type="file"
+                    onChange={(e) => handleFileChange(e, setPhotoCopy)}
+                    className="w-full border border-gray-300 p-2 rounded"
+                  />
+                </div>
+                <div className="w-full px-2 mb-4">
+                  <label className="block mb-1">Trade Licence</label>
+                  <input
+                    type="file"
+                    onChange={(e) => handleFileChange(e, setTradeLicence)}
+                    className="w-full border border-gray-300 p-2 rounded"
+                  />
+                </div>
               <div className="flex justify-between">
                 <button
                   type="button"
