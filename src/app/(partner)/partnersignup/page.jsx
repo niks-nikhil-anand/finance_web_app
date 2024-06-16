@@ -280,7 +280,7 @@ export default function Signup() {
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="">Select a state</option>
+                  <option value="" disabled>Select a state</option>
                   {indianStates.map((state) => (
                     <option key={state} value={state}>
                       {state}

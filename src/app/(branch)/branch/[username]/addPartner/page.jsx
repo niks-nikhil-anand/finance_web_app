@@ -42,8 +42,17 @@ export default function Signup() {
   };
 
   const handleUsernameChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '').slice(0, 7);
+    const value = e.target.value.replace(/\D/g, '').slice(0, 15);
     setFormData({ ...formData, username: 'Legal257' + value });
+  };
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 13);
+    setFormData({ ...formData, phone: '+91' + value });
+  };
+  
+  const handlePincodeChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 6);
+    setFormData({ ...formData, pincode: value });
   };
 
   const handleNextStep = (e) => {
@@ -160,8 +169,8 @@ export default function Signup() {
         <form onSubmit={handleSubmit}>
           {step === 1 && (
             <>
-              <div className="flex flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 px-2 mb-4">
+              <div className="flex flex-wrap mx-2">
+                <div className="w-full md:w-1/2  mb-4">
                   <label className="block mb-1">Full Name</label>
                   <input
                     type="text"
@@ -184,7 +193,7 @@ export default function Signup() {
               </div>
               <div className="flex flex-wrap -mx-2">
                 <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Unique Id (7 digits only)</label>
+                  <label className="block mb-1">Unique Id(15 digits only)</label>
                   <div className="flex">
                     <span className="bg-gray-200 p-2 rounded-l">Legal257</span>
                     <input
@@ -193,21 +202,26 @@ export default function Signup() {
                       value={formData.username.replace('Legal257', '')}
                       onChange={handleUsernameChange}
                       className="w-full border border-gray-300 p-2 rounded-r"
-                      maxLength={7}
+                      maxLength={10}
                       required
                     />
                   </div>
                 </div>
+             
                 <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Phone Number</label>
+                <label className="block mb-1">Phone Number</label>
+                <div className="flex">
+                    <span className="bg-gray-200 p-2 rounded-l">+91</span>
                   <input
                     type="tel"
                     name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
+                    value={formData.phone.replace('+91', '')}
+                    maxLength={10}
+                    onChange={handlePhoneChange}
                     className="w-full border border-gray-300 p-2 rounded"
                     required
                   />
+                  </div>
                 </div>
               </div>
               <div className="flex flex-wrap -mx-2">
@@ -240,8 +254,9 @@ export default function Signup() {
                     type="text"
                     name="pincode"
                     value={formData.pincode}
-                    onChange={handleInputChange}
+                    onChange={handlePincodeChange}
                     className="w-full border border-gray-300 p-2 rounded"
+                    maxLength={6}
                   />
                 </div>
                 <div className="w-full md:w-1/2 px-2 mb-4">
@@ -252,7 +267,7 @@ export default function Signup() {
                     onChange={handleInputChange}
                     className="w-full border border-gray-300 p-2 rounded"
                   >
-                    <option value="">Select State</option>
+                    <option value="" disabled>Select State</option>
                     {indianStates.map((state) => (
                       <option key={state} value={state}>
                         {state}
@@ -333,7 +348,8 @@ export default function Signup() {
           )}
           {step === 3 && (
             <>
-              <div className="mb-4">
+            <div className='flex flex-wrap mx-2 gap-5'>
+            <div className="mb-4">
                 <label className="block mb-1">Aadhaar Card</label>
                 <input
                   type="file"
@@ -349,7 +365,9 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-              <div className="mb-4">
+            </div>
+             <div className='flex flex-wrap mx-2 gap-5'>
+             <div className="mb-4">
                 <label className="block mb-1">Bank Passbook</label>
                 <input
                   type="file"
@@ -365,7 +383,9 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-              <div className="mb-4">
+             </div>
+             <div className='flex flex-wrap mx-2 gap-5'>
+             <div className="mb-4">
                 <label className="block mb-1">MSME Certificate</label>
                 <input
                   type="file"
@@ -373,7 +393,7 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-              <div className="w-full px-2 mb-4">
+              <div className="mb-4">
                   <label className="block mb-1">Photo Copy</label>
                   <input
                     type="file"
@@ -381,6 +401,8 @@ export default function Signup() {
                     className="w-full border border-gray-300 p-2 rounded"
                   />
                 </div>
+             </div>
+              
                 <div className="w-full px-2 mb-4">
                   <label className="block mb-1">Trade Licence</label>
                   <input
