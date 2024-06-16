@@ -48,6 +48,10 @@ export default function Signup() {
     const value = e.target.value.replace(/\D/g, '').slice(0, 15);
     setFormData({ ...formData, username: 'Legal257' + value });
   };
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 15);
+    setFormData({ ...formData, phone: '+91' + value });
+  };
 
   const handleNextStep = (e) => {
     e.preventDefault();
@@ -219,15 +223,18 @@ export default function Signup() {
               </div>
               <div className="mb-4">
                 <label className="block mb-1">Phone Number</label>
+                <div className="flex">
+                <span className="bg-gray-200 p-2 rounded-l">+91</span>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone.replace('+91', '')}
-                  onChange={handleInputChange}
+                  onChange={handlePhoneChange}
                   maxLength={10}
                   className="w-full border border-gray-300 p-2 rounded"
                   required
                 />
+              </div>
               </div>
               <div className="mb-4">
                 <label className="block mb-1">Password</label>
@@ -284,7 +291,7 @@ export default function Signup() {
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="">Select a type</option>
+                  <option value="" disabled>Select a type</option>
                   <option value="DSA">CSP</option>
                   <option value="CSP">Branch</option>
                   <option value="BRANCH">DSA</option>
@@ -321,7 +328,7 @@ export default function Signup() {
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="">Select an interest</option>
+                  <option value="" disabled>Select an interest</option>
                   <option value="GST/ITR Services">GST/ITR Services</option>
                   <option value="Fintech Services">Fintech Services</option>
                   <option value="Finance Services-Loan">Finance Services-Loan</option>
