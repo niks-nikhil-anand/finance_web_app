@@ -49,8 +49,8 @@ export default function Signup() {
     setFormData({ ...formData, username: 'Legal257' + value });
   };
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '').slice(0, 15);
-    setFormData({ ...formData, username: 'Legal257' + value });
+    const value = e.target.value.replace(/\D/g, '').slice(0, 13);
+    setFormData({ ...formData, phone: '+91' + value });
   };
   
   const handlePincodeChange = (e) => {
