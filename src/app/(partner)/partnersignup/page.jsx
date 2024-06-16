@@ -49,7 +49,7 @@ export default function Signup() {
     setFormData({ ...formData, username: 'Legal257' + value });
   };
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '').slice(0, 15);
+    const value = e.target.value.replace(/\D/g, '').slice(0, 13);
     setFormData({ ...formData, phone: '+91' + value });
   };
 
@@ -265,6 +265,7 @@ export default function Signup() {
                   value={formData.pincode}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
+                  maxLength={6}
                 />
               </div>
               <div className="mb-4">
