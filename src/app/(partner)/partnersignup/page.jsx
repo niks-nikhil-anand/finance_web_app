@@ -222,8 +222,9 @@ export default function Signup() {
                 <input
                   type="tel"
                   name="phone"
-                  value={formData.phone}
+                  value={formData.phone.replace('+91', '')}
                   onChange={handleInputChange}
+                  maxLength={10}
                   className="w-full border border-gray-300 p-2 rounded"
                   required
                 />
