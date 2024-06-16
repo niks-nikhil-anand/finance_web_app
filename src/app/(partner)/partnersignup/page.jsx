@@ -45,7 +45,7 @@ export default function Signup() {
   };
 
   const handleUsernameChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '').slice(0, 7);
+    const value = e.target.value.replace(/\D/g, '').slice(0, 15);
     setFormData({ ...formData, username: 'Legal257' + value });
   };
 
