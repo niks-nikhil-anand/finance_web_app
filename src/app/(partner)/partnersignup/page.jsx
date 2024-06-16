@@ -49,10 +49,14 @@ export default function Signup() {
     setFormData({ ...formData, username: 'Legal257' + value });
   };
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '').slice(0, 13);
-    setFormData({ ...formData, phone: '+91' + value });
+    const value = e.target.value.replace(/\D/g, '').slice(0, 15);
+    setFormData({ ...formData, username: 'Legal257' + value });
   };
-
+  
+  const handlePincodeChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 6);
+    setFormData({ ...formData, pincode: value });
+  };
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -263,7 +267,7 @@ export default function Signup() {
                   type="text"
                   name="pincode"
                   value={formData.pincode}
-                  onChange={handleInputChange}
+                  onChange={handlePincodeChange}
                   className="w-full border border-gray-300 p-2 rounded"
                   maxLength={6}
                 />
