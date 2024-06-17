@@ -111,9 +111,11 @@ const ColorfulCard = () => {
 
   const filteredCardData = cardData.filter((card) => {
     if (services === "GST/ITR Services") {
-      return ["gstitr" ,  "wallet" , "profile" , "logout" , "Status"].includes(card.link);
+      return ["gstitr" ,  "wallet" , "profile" , "logout" , "Status" , "complaint" , "idCard" , "certificateLegal257" ].includes(card.link);
     } else if (services === "Finance Services-Loan") {
-      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "Status"].includes(card.link);
+      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "Status" , "complaint" , "idCard" , "certificateLegal257"].includes(card.link);
+    } else if (services === "JonoJivan Micro Loan") {
+      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "Status" , "complaint" , "idCard" , "certificateLegal257"].includes(card.link);
     } else if (services === "All Services") {
       return true; // Include all services
     }
