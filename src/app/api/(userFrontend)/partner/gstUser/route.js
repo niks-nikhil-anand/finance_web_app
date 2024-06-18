@@ -39,14 +39,13 @@ export const POST = async (req) => {
 
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
     const panUploadResult = panCard ? await uploadImage(panCard, "panCard") : null;
-    const passbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
+    const bankPassbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
+    const bankStatementUploadResult = bankStatement ? await uploadImage(bankStatement, "bankStatement") : null;
     const electricityBillUploadResult = electricityBill ? await uploadImage(electricityBill, "electricityBill") : null;
     const photoUploadResult = photo ? await uploadImage(photo, "photo") : null;
-    const uploadbankStatement = bankStatement ? await uploadImage(bankStatement, "bankStatement") : null;
 
    
 
-    // Prepare application data for database insertion
     const applicationData = {
       name,
       email,
@@ -54,10 +53,10 @@ export const POST = async (req) => {
       registrationType,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
       panCard: panUploadResult ? panUploadResult.secure_url : null,
-      bankPassbook: passbookUploadResult ? passbookUploadResult.secure_url : null,
       electricityBill: electricityBillUploadResult ? electricityBillUploadResult.secure_url : null,
       photoCopy: photoUploadResult ? photoUploadResult.secure_url : null,
-      bankStatement: uploadbankStatement ? uploadbankStatement.secure_url : null,
+      bankStatement: bankStatementUploadResult ? bankStatementUploadResult.secure_url : null,
+      bankPassbook: bankPassbookUploadResult ? bankPassbookUploadResult.secure_url : null,
       partner : id
     };
 

@@ -1,5 +1,5 @@
 import connectDB from "@/lib/dbConnect";
-import availablePincode from "@/models/availablePincode";
+import partnerApplication from "@/models/partnerApplication";
 import { NextResponse } from 'next/server';
 
 export const GET = async (req) => {
@@ -13,12 +13,13 @@ export const GET = async (req) => {
       return NextResponse.json({ msg: "Pin code is required" }, { status: 400 });
     }
 
-    const PincodeDetails = await availablePincode.findOne({ pinCode: pinCode });
+    const PincodeDetails = await partnerApplication.findOne({ pinCode: pinCode });
 
     if (!PincodeDetails) {
       return NextResponse.json({ msg: "Pin code not found" }, { status: 404 });
     }
 
+    console.log(PincodeDetails)
     return NextResponse.json({ status: 200, data: PincodeDetails });
   } catch (error) {
     console.error("Error checking service availability:", error);

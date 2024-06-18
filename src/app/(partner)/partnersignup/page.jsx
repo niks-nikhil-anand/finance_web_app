@@ -14,7 +14,7 @@ export default function Signup() {
     email: '',
     phone: '',
     city: '',
-    pincode: '',
+    pinCode: '',
     state: '',
     partnerType: '',
     interest: '',
@@ -55,8 +55,10 @@ export default function Signup() {
   
   const handlePincodeChange = (e) => {
     const value = e.target.value.replace(/\D/g, '').slice(0, 6);
-    setFormData({ ...formData, pincode: value });
+    setFormData({ ...formData, pinCode: value });
   };
+
+
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -97,9 +99,11 @@ export default function Signup() {
     data.append('password', formData.password);
     data.append('city', formData.city);
     data.append('state', formData.state);
+    data.append('pinCode', formData.pinCode);
     data.append('partnerType', formData.partnerType);
     data.append('interest', formData.interest);
     data.append('message', formData.message);
+    
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
     if (panCard) data.append('panCard', panCard);
@@ -130,7 +134,7 @@ export default function Signup() {
           email: '',
           phone: '',
           city: '',
-          pincode: '',
+          pinCode: '',
           state: '',
           partnerType: '',
           interest: '',
@@ -262,14 +266,15 @@ export default function Signup() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Pincode</label>
+                <label className="block mb-1">Pin Code</label>
                 <input
                   type="text"
-                  name="pincode"
-                  value={formData.pincode}
+                  name="pinCode"
+                  value={formData.pinCode}
                   onChange={handlePincodeChange}
                   className="w-full border border-gray-300 p-2 rounded"
                   maxLength={6}
+                  required
                 />
               </div>
               <div className="mb-4">

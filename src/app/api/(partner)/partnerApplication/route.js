@@ -15,6 +15,7 @@ export const POST = async (req) => {
     const username = formData.get("username");
     const mobileNumber = formData.get("phone");
     const plainPassword = formData.get("password");
+    const pinCode = formData.get("pinCode");
     const city = formData.get("city");
     const state = formData.get("state");
     const wantPartnerType = formData.get("partnerType");
@@ -55,6 +56,7 @@ export const POST = async (req) => {
      password: hashedPassword,
       city,
       state,
+      pinCode,
       wantPartnerType,
       interest,
       message,
@@ -66,6 +68,8 @@ export const POST = async (req) => {
       photoCopy: photoCopyUploadResult ? photoCopyUploadResult.secure_url : null,
       tradeLicense: tradeLicenceUploadResult ? tradeLicenceUploadResult.secure_url : null,
     };
+
+    console.log(applicationData)
 
     await partnerApplication.create(applicationData);
     return NextResponse.json({ msg: "Application submitted successfully" }, {

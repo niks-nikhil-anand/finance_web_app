@@ -40,6 +40,9 @@ const partnerApplicationSchema = new mongoose.Schema({
   state: { 
     type: String
   },
+  pinCode:{
+    type:String
+  },
   wantPartnerType: { 
     type: String,
     enum: {

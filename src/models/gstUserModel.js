@@ -28,8 +28,10 @@ const gstUserSchema = new mongoose.Schema({
        
     },
     bankPassbook: {
-        type: String,
-       
+        type: String,  
+    },
+    bankStatement: {
+        type: String,  
     },
     electricityBill: {
         type: String,

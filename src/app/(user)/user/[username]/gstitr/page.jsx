@@ -244,6 +244,15 @@ const GlassmorphismForm = () => {
                 />
               </div>
               <div className="mb-4">
+                <label className="block text-white">BANK PASSBOOK</label>
+                <input
+                  type="file"
+                  name="bankPassbook"
+                  onChange={(e) => handleFileChange(e, setBankPassbook)}
+                  className="w-full p-2 rounded bg-white bg-opacity-50"
+                />
+              </div>
+              <div className="mb-4">
                 <label className="block text-white">ELECTRICITY BILL OR RENT AGREEMENT</label>
                 <input
                   type="file"
