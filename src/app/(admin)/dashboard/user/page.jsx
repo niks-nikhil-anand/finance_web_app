@@ -123,6 +123,7 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-300">City</th>
               <th className="py-2 px-4 border border-gray-300">State</th>
+              <th className="py-2 px-4 border border-gray-300">PinCode</th>
               <th className="py-2 px-4 border border-gray-300">Want Partner Type</th>
               <th className="py-2 px-4 border border-gray-300">Interest</th>
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
@@ -269,6 +270,19 @@ const JobApplicationsTable = () => {
                     />
                   ) : (
                     application.state
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="pinCode"
+                      value={editingApplication.pinCode}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.pinCode
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">{application.wantPartnerType}</td>

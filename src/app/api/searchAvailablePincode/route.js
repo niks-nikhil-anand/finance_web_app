@@ -7,19 +7,17 @@ export const GET = async (req) => {
     await connectDB();
     const url = new URL(req.url);
     const pinCode = url.searchParams.get('pinCode');
-    console.log(pinCode);
 
     if (!pinCode) {
       return NextResponse.json({ msg: "Pin code is required" }, { status: 400 });
     }
 
-    const PincodeDetails = await partnerApplication.findOne({ pinCode: pinCode });
+    const PincodeDetails = await partnerApplication.find({ pinCode: pinCode, role: { $in: ['CSP', 'Branch', 'DSA'] }, status: 'Active' });
 
-    if (!PincodeDetails) {
-      return NextResponse.json({ msg: "Pin code not found" }, { status: 404 });
+    if (!PincodeDetails || PincodeDetails.length === 0) {
+      return NextResponse.json({ msg: "No active partners found for this pin code" }, { status: 404 });
     }
 
-    console.log(PincodeDetails)
     return NextResponse.json({ status: 200, data: PincodeDetails });
   } catch (error) {
     console.error("Error checking service availability:", error);
