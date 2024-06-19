@@ -17,9 +17,9 @@ export function FooterUser() {
           <div className="w-auto p-8">
             <ul className="-m-5 flex flex-wrap items-center">
               <li className="p-5">
-                <a className="font-medium text-white hover:text-gray-400" href="#">
+                <Link className="font-medium text-white hover:text-gray-400" href={"/privacyPolicy"} >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li className="p-5">
                 <a className="font-medium text-white hover:text-gray-400" href="#">

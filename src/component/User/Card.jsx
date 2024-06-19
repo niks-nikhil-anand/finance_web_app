@@ -117,9 +117,9 @@ const ColorfulCard = () => {
     } else if (services === "JonoJivan Micro Loan") {
       return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257"].includes(card.link);
     } else if (services === "All Services") {
-      return true; // Include all services
+      return true; 
     }
-    return false; // Exclude all services if no condition matches
+    return false; 
   });
 
   return (
