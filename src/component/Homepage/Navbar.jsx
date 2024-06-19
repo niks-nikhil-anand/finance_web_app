@@ -74,7 +74,7 @@ const Navbar = () => {
                   <Link href="/homeloan" onClick={handleLinkClick} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home Loan</Link>
                 </motion.div>
               </div>
-              <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium">Blog</Link>
+              <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium">Carreer</Link>
               <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
               
               <Link href="/gallery" className="px-3 py-2 rounded-md text-sm font-medium">Media Gallery</Link>

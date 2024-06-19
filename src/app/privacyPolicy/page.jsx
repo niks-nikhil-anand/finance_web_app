@@ -5,12 +5,12 @@ import { motion } from 'framer-motion';
 const PrivacyPolicy = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} 
-     className='px-[12rem] py-[6rem]'
+     className='md:px-[12rem] md:py-[6rem] px-5 py-5'
     >
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
       <p>Last updated: June 19, 2024</p>
       <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
-      <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank" rel="noopener noreferrer">Privacy Policy Generator</a>.</p>
+      <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
       <h2 className="text-2xl font-bold mt-8">Interpretation and Definitions</h2>
       <h3 className="text-xl font-bold mt-4">Interpretation</h3>
       <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>

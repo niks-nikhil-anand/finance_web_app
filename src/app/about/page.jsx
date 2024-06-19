@@ -7,7 +7,7 @@ import { MapPin } from 'lucide-react'
 const locations = [
   {
     title: 'ASSAM ',
-    timings: 'Mon-Sat 9am to 5pm.',
+    ISO: ' 9001:2015 R 24/7',
     address: 'UTTAR KHATOWAL NAGAON 782124',
   },
  
@@ -48,38 +48,44 @@ export default function AboutPageOne() {
         </div>
         {/* locations */}
         <div className="my-8 flex flex-col gap-y-6 md:flex-row lg:justify-start">
-          {locations.map((location) => (
-            <div key={location.title} className="flex flex-col space-y-3 md:w-2/4 lg:w-1/5">
+         
+            <div key={location.title} className="flex flex-col mt-5 w-full  gap-3">
               <MapPin className="h-5 w-5" />
-              <p className="w-full text-xl font-semibold  text-gray-900">{location.title}</p>
-              <p className="w-full text-base text-gray-700">{location.timings}</p>
-              <p className="text-sm font-medium">{location.address}</p>
+              <p className="w-full text-xl font-semibold  text-gray-900">ISO 9001:2015 R 24/7</p>
+              <p className="w-full text-base text-gray-700">Uttar Khatowal Nagaon , Assam , 782124 </p>
+              <p className="text-sm font-medium"> Email :- csprozana@gmail.com</p>
             </div>
-          ))}
+          
         </div>
         <hr className="mt-20" />
       
         {/* TEAM */}
        
         {/* Hiring Banner */}
-        <div className="flex flex-col items-center gap-x-4 gap-y-4 py-16 md:flex-row">
-          <div className="space-y-6">
-            <p className="text-sm font-semibold md:text-base">Join our team &rarr;</p>
-            <p className="text-3xl font-bold md:text-4xl">We&apos;re just getting started</p>
-            <p className="text-base text-gray-600 md:text-lg">
-              Our philosophy is simple — hire a team of diverse, passionate people and foster a
-              culture that empowers you to do your best work.
-            </p>
-            <button
-              type="button"
-              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-             Apply Now
-            </button>
-          </div>
-          <div className="md:mt-o mt-10 w-full">
+        <div className="flex flex-col items-center py-16 md:flex-row justify-between md:gap-[6rem] ">
+  <div className="">
+    <p className="text-sm font-semibold md:text-base my-5">Contact Us  &rarr;</p>
+    
+    <p className="text-base text-gray-600 md:text-lg">
+    If you have any queries or concerns, please feel free to contact us. We believe in prioritizing our customers and are dedicated to addressing your needs and questions promptly. Your satisfaction is our top priority, and we are here to assist you in any way we can.
+    </p>
+    <p className="text-base text-gray-600 md:text-lg">
+    Our dedicated customer support team is always ready to assist you. Whether you have questions about our services, need help with an order, or require technical support, we are here to help. We strive to provide timely and effective solutions to ensure your experience with us is seamless and satisfactory.
+  </p>
+    <button
+      type="button"
+      className="rounded-md bg-black my-5 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+      onClick={() => window.location.href = 'mailto:csprozana@gmail.com'}
+    >
+      Email Us
+    </button>
+    
+  </div>
+
+
+          <div className="md:mt-o mt-10 w-full ">
             <img
-              src="https://images.unsplash.com/photo-1605165566807-508fb529cf3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
+              src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29udGFjdCUyMHVzfGVufDB8fDB8fHww"
               alt="Getting Started"
               className="rounded-lg"
             />
@@ -87,7 +93,7 @@ export default function AboutPageOne() {
         </div>
       </div>
       <hr className="mt-6" />
-      {/* footer */}
+    
       
     </div>
   )

@@ -19,33 +19,36 @@ const Footer = () => {
           <div>
             <h4 class="text-lg font-semibold mb-8 text-white">Navigation</h4>
             <ul class="space-y-4">
-              <li><Link href={"/about"} class="text-gray-300 hover:text-white text-sm">About Us</Link></li>
-              <li><Link href={"/contact"} class="text-gray-300 hover:text-white text-sm">Contact Us</Link></li>
-              <li><Link href={"/partnersignup"} class="text-gray-300 hover:text-white text-sm">Become Our Partner</Link></li>
+              <li><Link href={"/availablePincode"} class="text-gray-300 hover:text-white text-sm">Check for Available PinCode</Link></li>
+              <li><Link href={"/partnersignup"} class="text-gray-300 hover:text-white text-sm">Loan Calculator</Link></li>
+              <li><Link href={"/refer"} class="text-gray-300 hover:text-white text-sm">Refer & Earn</Link></li>
               <li><Link href={"/career"} class="text-gray-300 hover:text-white text-sm">Career</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-lg font-semibold mb-8 text-white">Loan Type</h4>
+            <h4 class="text-lg font-semibold mb-8 text-white">Quick Links</h4>
             <ul class="space-y-4">
-              <li><Link href="/personalloan"  class="text-gray-300 hover:text-white text-sm">Personal Loan</Link></li>
-              <li><Link href="/businessloan" class="text-gray-300 hover:text-white text-sm">Business Loan</Link></li>
-              <li><Link href="/loanproperty" class="text-gray-300 hover:text-white text-sm">Loan Against Property</Link></li>
-              <li><Link href="//homeloan" class="text-gray-300 hover:text-white text-sm">Home Loan</Link></li>
+              <li><Link href="/microloan"  class="text-gray-300 hover:text-white text-sm">Micro Finance Group Loan</Link></li>
+              <li><Link href="/applynow" class="text-gray-300 hover:text-white text-sm">GST/ITR - Apply Now</Link></li>
+              <li><Link href="/partnersignup" class="text-gray-300 hover:text-white text-sm">Become Our Partner</Link></li>
+              <li><Link href="/applyloan" class="text-gray-300 hover:text-white text-sm">Loan </Link></li>
             </ul>
             
 
           </div>
 
           <div>
-            <h4 class="text-lg font-semibold mb-8 text-white">Contact Us</h4>
-            <div class="space-y-4">
-              <p class="text-gray-300 text-sm">Uttar Khatowal Nagaon Assam</p>
-              <p class="text-gray-300 text-sm">ISO 9001:2015 R 24/7</p>
-              <p class="text-gray-300 text-sm">csprozana@gmail.com</p>
-              <p class="text-gray-300 text-sm">+91 94352 66783</p>
-            </div>
+            <h4 class="text-lg font-semibold mb-8 text-white">Customer Support </h4>
+            <ul class="space-y-4">
+            <li><Link href="/terms&conditions" class="text-gray-300 hover:text-white text-sm">Terms and Conditions</Link></li>
+              <li><Link href="/privacyPolicy"  class="text-gray-300 hover:text-white text-sm">Privacy Policy</Link></li>
+             
+              <li><Link href="/contact" class="text-gray-300 hover:text-white text-sm">Contact Us</Link></li>
+              <li><Link href="/about" class="text-gray-300 hover:text-white text-sm">About Us</Link></li>
+            </ul>
+            
+
           </div>
 
         </div>
