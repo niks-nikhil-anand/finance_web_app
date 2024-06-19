@@ -20,7 +20,8 @@ export default function Signup() {
     interest: '',
     message: '',
     password: '',
-    username: '', 
+    username: '',
+    shopAddress:'' 
   });
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
@@ -102,7 +103,8 @@ export default function Signup() {
     data.append('pinCode', formData.pinCode);
     data.append('partnerType', formData.partnerType);
     data.append('interest', formData.interest);
-    data.append('message', formData.message);
+    data.append('message', formData.message); 
+    data.append('shopAddress', formData.shopAddress); 
     
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
@@ -141,6 +143,7 @@ export default function Signup() {
           message: '',
           password: '',
           username: '',
+          shopAddress:''
         });
         notifySuccess();
       } else {
@@ -256,6 +259,15 @@ export default function Signup() {
                 />
               </div>
               <div className="mb-4">
+                <label className="block mb-1">Shop Address</label>
+                <textarea
+                  name="shopAddress"
+                  value={formData.shopAddress}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
                 <label className="block mb-1">City</label>
                 <input
                   type="text"
@@ -293,6 +305,7 @@ export default function Signup() {
                   ))}
                 </select>
               </div>
+
               <div className="mb-4">
                 <label className="block mb-1">Type of Partner</label>
                 <select

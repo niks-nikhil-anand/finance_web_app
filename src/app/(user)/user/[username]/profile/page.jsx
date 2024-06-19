@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FaArrowLeft } from 'react-icons/fa';
 
-
 const Profile = () => {
   const [user, setUser] = useState(null);
 
@@ -17,6 +16,7 @@ const Profile = () => {
           name: userData.name,
           email: userData.email,
           mobile: userData.mobileNumber,
+          isVerified: userData.isVerified,
           services: userData.services,
           role: userData.role,
           city: userData.city,
@@ -38,40 +38,46 @@ const Profile = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white rounded-md shadow-md p-6 mt-10 w-full h-full  "
+        className="bg-white rounded-md shadow-md p-6 mt-10 w-full h-full"
       >
-         <div className="mb-4  border-2 inline-block">
-        <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
-          <FaArrowLeft />
-        </button>
-      </div>
+        <div className="mb-4 border-2 inline-block">
+          <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
+            <FaArrowLeft />
+          </button>
+        </div>
         <h1 className="text-2xl font-bold mb-4">Profile Details</h1>
         {user ? (
-          <div className="flex flex-col w-full gap-4 ">
+          <div className="flex flex-col w-full gap-4">
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-              <p className=""><span className='text-lg font-semibold'>Name:-</span> {user.name}</p>
+              <p><span className='text-lg font-semibold'>Name:</span> {user.name}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>Username:-</span>  {user.username}</p>
+              <p><span className='text-lg font-semibold'>Username:</span> {user.username}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>Email:-</span>  {user.email}</p>
+              <p><span className='text-lg font-semibold'>Verified:</span> {user.isVerified}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>Mobile No.:-</span>  {user.mobile}</p>
+              <p><span className='text-lg font-semibold'>Email:</span> {user.email}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>Services:-</span>  {user.services}</p>
+              <p><span className='text-lg font-semibold'>Mobile No.:</span> {user.mobile}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>Role:-</span>  {user.role}</p>
+              <p><span className='text-lg font-semibold'>Services:</span> {user.services}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>City:-</span>  {user.city}</p>
-              <p><span className='text-lg font-semibold'>State:-</span>  {user.state}</p>
+              <p><span className='text-lg font-semibold'>Role:</span> {user.role}</p>
             </div>
             <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-            <p><span className='text-lg font-semibold'>Legal257 Id:-</span>  {user.id}</p>
+              <p><span className='text-lg font-semibold'>City:</span> {user.city}</p>
+              <p><span className='text-lg font-semibold'>State:</span> {user.state}</p>
+            </div>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+              <p><span className='text-lg font-semibold'>Legal257 Id:</span> {user.id}</p>
+            </div>
+            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+              <p><span className='text-lg font-semibold'>Verified:</span> {user.isVerified ? 'Yes' : 'No'}</p>
             </div>
           </div>
         ) : (

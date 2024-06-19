@@ -21,6 +21,7 @@ export const POST = async (req) => {
     const wantPartnerType = formData.get("partnerType");
     const interest = formData.get("interest");
     const message = formData.get("message");
+    const shopAddress = formData.get("shopAddress");
 
     // Check if required fields are present in the form data
     if (!name || !email || !mobileNumber || !plainPassword) {
@@ -57,6 +58,7 @@ export const POST = async (req) => {
       city,
       state,
       pinCode,
+      shopAddress,
       wantPartnerType,
       interest,
       message,

@@ -81,10 +81,8 @@ const SearchService = () => {
               <div key={detail._id} className="mb-4 p-4 bg-white rounded shadow">
                 <p><strong className='font-bold'>Name:</strong> {detail.name}</p>
                 <p><strong className='font-bold'>Services:</strong> {detail.services}</p>
-                <p><strong className='font-bold'>Address:</strong> {detail.city}, {detail.state}, {detail.pinCode}</p>
+                <p><strong className='font-bold'>Address:</strong>{detail.shopAddress}</p>
                 <p><strong className='font-bold'>Partner Type:</strong> {detail.role}</p>
-                <p><strong className='font-bold'>Mobile Number:</strong> {detail.mobileNumber}</p>
-                <p><strong className='font-bold'>Email Address:</strong> {detail.email}</p>
               </div>
             ))}
           </motion.div>
