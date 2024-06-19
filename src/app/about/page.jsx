@@ -4,30 +4,11 @@ import React from 'react'
 import { MapPin } from 'lucide-react'
 
 
-const locations = [
-  {
-    title: 'ASSAM ',
-    ISO: ' 9001:2015 R 24/7',
-    address: 'UTTAR KHATOWAL NAGAON 782124',
-  },
- 
-]
-
-
 
 export default function AboutPageOne() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   return (
     <div>
-      
-
       <div className="mx-auto max-w-7xl px-4">
-        {/* Hero Map */}
         <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
           <div className="max-w-max rounded-full border bg-gray-50 p-1 px-3">
             <p className="text-xs font-semibold leading-normal md:text-sm">About the company</p>
@@ -46,10 +27,9 @@ export default function AboutPageOne() {
             alt=""
           />
         </div>
-        {/* locations */}
         <div className="my-8 flex flex-col gap-y-6 md:flex-row lg:justify-start">
          
-            <div key={location.title} className="flex flex-col mt-5 w-full  gap-3">
+            <div  className="flex flex-col mt-5 w-full  gap-3">
               <MapPin className="h-5 w-5" />
               <p className="w-full text-xl font-semibold  text-gray-900">ISO 9001:2015 R 24/7</p>
               <p className="w-full text-base text-gray-700">Uttar Khatowal Nagaon , Assam , 782124 </p>
@@ -58,10 +38,6 @@ export default function AboutPageOne() {
           
         </div>
         <hr className="mt-20" />
-      
-        {/* TEAM */}
-       
-        {/* Hiring Banner */}
         <div className="flex flex-col items-center py-16 md:flex-row justify-between md:gap-[6rem] ">
   <div className="">
     <p className="text-sm font-semibold md:text-base my-5">Contact Us  &rarr;</p>
@@ -75,9 +51,8 @@ export default function AboutPageOne() {
     <button
       type="button"
       className="rounded-md bg-black my-5 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-      onClick={() => window.location.href = 'mailto:csprozana@gmail.com'}
     >
-      Email Us
+      csprozana@gmail.com
     </button>
     
   </div>
