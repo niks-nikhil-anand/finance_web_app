@@ -134,6 +134,7 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Trade Licence</th>
               <th className="py-2 px-4 border border-gray-300">Photo Copy</th>
               <th className="py-2 px-4 border border-gray-300">User Legal257 ID</th>
+              <th className="py-2 px-4 border border-gray-300">Username</th>
               <th className="py-2 px-4 border border-gray-300">Branch</th>
               <th className="py-2 px-4 border border-gray-300">Actions</th>
             </tr>
@@ -379,6 +380,7 @@ const JobApplicationsTable = () => {
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">{application._id}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.username}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.branch}</td>
                 <td className="py-2 px-4 border border-gray-300 flex flex-col space-y-2">
   {editingApplication && editingApplication._id === application._id ? (
