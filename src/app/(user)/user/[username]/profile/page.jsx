@@ -21,6 +21,7 @@ const Profile = () => {
           role: userData.role,
           city: userData.city,
           state: userData.state,
+          shopAddress: userData.shopAddress,
           username: userData.username,
           id: userData._id,
         });
@@ -31,6 +32,16 @@ const Profile = () => {
 
     fetchData();
   }, []);
+
+  const handleVerification = async () => {
+    try {
+      // Assuming there's an API endpoint for verifying the user
+      await axios.post(`/api/verify/${user.id}`);
+      setUser({ ...user, isVerified: true });
+    } catch (error) {
+      console.error('Error verifying user:', error);
+    }
+  };
 
   return (
     <div className="container w-full">
@@ -48,36 +59,41 @@ const Profile = () => {
         <h1 className="text-2xl font-bold mb-4">Profile Details</h1>
         {user ? (
           <div className="flex flex-col w-full gap-4">
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>Name:</span> {user.name}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>Username:</span> {user.username}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-              <p><span className='text-lg font-semibold'>Verified:</span> {user.isVerified}</p>
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
+              <p><span className='text-lg font-semibold'>Verified:</span> {user.isVerified ? 'Already Verified' : 'Not Verified'}</p>
+              {!user.isVerified && (
+                <button onClick={handleVerification} className="text-blue-500 hover:underline focus:outline-none">
+                  Click here to verify
+                </button>
+              )}
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>Email:</span> {user.email}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>Mobile No.:</span> {user.mobile}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>Services:</span> {user.services}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>Role:</span> {user.role}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
               <p><span className='text-lg font-semibold'>City:</span> {user.city}</p>
               <p><span className='text-lg font-semibold'>State:</span> {user.state}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-              <p><span className='text-lg font-semibold'>Legal257 Id:</span> {user.id}</p>
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
+              <p><span className='text-lg font-semibold'>Shop Address:</span> {user.shopAddress}</p>
             </div>
-            <div key={user.id} className="bg-gray-100 rounded-md shadow-md p-4">
-              <p><span className='text-lg font-semibold'>Verified:</span> {user.isVerified ? 'Yes' : 'No'}</p>
+            <div className="bg-gray-100 rounded-md shadow-md p-4">
+              <p><span className='text-lg font-semibold'>Legal257 Id:</span> {user.id}</p>
             </div>
           </div>
         ) : (
