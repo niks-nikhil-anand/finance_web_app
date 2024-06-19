@@ -27,14 +27,9 @@ export function FooterUser() {
                 </a>
               </li>
               <li className="p-5">
-                <a className="font-medium text-white hover:text-gray-400" href="#">
-                  Return Policy
-                </a>
-              </li>
-              <li className="p-5">
-                <a className="font-medium text-white hover:text-gray-400" href="#">
+                <Link className="font-medium text-white hover:text-gray-400" href={"/contact"} >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
