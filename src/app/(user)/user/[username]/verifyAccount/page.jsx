@@ -1,11 +1,17 @@
 "use client"
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+
+
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [isVerified, setIsVerified] = useState(false);
   const inputRefs = useRef([]);
+  const router = useRouter();
+
 
   const handleChange = (value, index) => {
     if (/^\d*$/.test(value)) {
@@ -13,17 +19,41 @@ const OTPVerification = () => {
       newOtp[index] = value;
       setOtp(newOtp);
 
-      // Automatically focus the next input field
       if (value && index < otp.length - 1) {
         inputRefs.current[index + 1].focus();
       }
     }
   };
 
-  const handleVerify = () => {
-    // Add verification logic here
+  const handleVerify = async () => {
     if (otp.join('').length === 6) {
-      setIsVerified(true);
+      try {
+        const response = await fetch('/api/verifiedUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ otp: otp.join('') }),
+        });
+        if (response.ok) {
+          setIsVerified(true);
+          const response = await axios.get('/api/cookies');
+          const userData = response.data[0];
+          const username = userData.username;
+          router.push(`/user/${username}/profile`);
+
+
+
+
+        } else {
+          throw new Error('Verification failed');
+        }
+      } catch (error) {
+        console.error('Error verifying OTP:', error);
+        // Handle error
+      }finally{
+        console.log( otp.join(''))
+      }
     }
   };
 

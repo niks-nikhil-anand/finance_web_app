@@ -10,11 +10,11 @@ import {
   Button,
 } from '@react-email/components';
 
-function ForgotPasswordEmail({ username, resetLink }) {
+function OTPEmail({ username, otp }) {
   return (
     <Html lang="en" dir="ltr">
       <Head>
-        <title>Password Reset</title>
+        <title>Your OTP Code</title>
         <Font
           fontFamily="Roboto"
           fallbackFontFamily="Verdana"
@@ -26,19 +26,25 @@ function ForgotPasswordEmail({ username, resetLink }) {
           fontStyle="normal"
         />
       </Head>
-      <Preview>Password Reset Request from Legal257</Preview>
+      <Preview>Your OTP Code from Legal257</Preview>
       <Section style={{ padding: '20px', backgroundColor: '#f4f4f4' }}>
         <Row style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px' }}>
           <Heading as="h2" style={{ color: '#333' }}>Hello {username},</Heading>
           <Text style={{ fontSize: '16px', color: '#555' }}>
-            We hope you're doing well! At Legal257, your security is our priority.
+            At Legal257, we are committed to providing top-notch financial and tax services to our valued clients.
           </Text>
           <Text style={{ fontSize: '16px', color: '#555' }}>
-            We received a request to reset your password. Click the button below to reset it:
+            To continue enjoying our services, please use the OTP code below to verify your account.
           </Text>
-          <Section style={{ textAlign: 'center', margin: '20px 0' }}>
+          <Text style={{ fontSize: '20px', fontWeight: 'bold', color: '#333' }}>
+            Your OTP code is: <strong>{otp}</strong>
+          </Text>
+          <Text style={{ fontSize: '16px', color: '#555' }}>
+            If you did not request this code, please ignore this email. For any concerns, feel free to contact our support team.
+          </Text>
+          <Section style={{ textAlign: 'center', marginTop: '20px' }}>
             <Button
-              href={resetLink}
+              href="https://www.legal257.in/contact"
               style={{
                 backgroundColor: '#007bff',
                 color: '#fff',
@@ -47,17 +53,11 @@ function ForgotPasswordEmail({ username, resetLink }) {
                 textDecoration: 'none',
               }}
             >
-              Reset Password
+              Contact Support
             </Button>
           </Section>
-          <Text style={{ fontSize: '16px', color: '#555' }}>
-            If you did not request a password reset, please ignore this email or contact our support team if you have any questions.
-          </Text>
-          <Text style={{ fontSize: '16px', color: '#555' }}>
-            Please note that this password reset link is valid for the next 24 hours.
-          </Text>
           <Text style={{ fontSize: '16px', color: '#555', marginTop: '20px' }}>
-            Thank you for trusting Legal257 with your financial and tax services. We are here to assist you with GST and ITR filing services, as well as competitive loan options tailored to meet your financial needs.
+            Thank you for choosing Legal257. We are here to assist you with GST and ITR filing services, as well as competitive loan options tailored to meet your financial needs.
           </Text>
           <Text style={{ fontSize: '16px', color: '#555' }}>
             Best regards,
@@ -70,4 +70,4 @@ function ForgotPasswordEmail({ username, resetLink }) {
   );
 }
 
-export default ForgotPasswordEmail;
+export default OTPEmail;

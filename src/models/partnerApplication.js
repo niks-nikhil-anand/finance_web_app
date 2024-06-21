@@ -111,7 +111,7 @@ const partnerApplicationSchema = new mongoose.Schema({
   resetPasswordExpires:{
     type : Date
   },
-  isVerifiedToken:{
+  isVerifiedOTP:{
     type:String
   },
   isVerifiedExpires:{

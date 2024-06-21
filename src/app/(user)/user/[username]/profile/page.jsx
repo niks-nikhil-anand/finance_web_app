@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +37,7 @@ const Profile = () => {
 
   const handleVerification = async () => {
     try {
-      await axios.post(`/api/verify/${user.id}`);
+      await axios.post(`/api/sendVerificationOTP`);
       setUser({ ...user, isVerified: true });
     } catch (error) {
       console.error('Error verifying user:', error);
