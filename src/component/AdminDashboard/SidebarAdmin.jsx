@@ -11,9 +11,9 @@ import { CiShop , CiBank } from "react-icons/ci";
 import { RiAdminFill } from "react-icons/ri";
 import { useRouter } from 'next/navigation';
 import { MdOutlineLogout } from "react-icons/md";
-
-
-
+import { SiGoogledocs } from "react-icons/si";
+import { FaAddressCard } from "react-icons/fa";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 
 import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
 
@@ -235,6 +235,32 @@ export function SidebarAdmin() {
               >
                  <FcBusinessman  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Complaint</span>
+              </Link>
+
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/certificate"}
+              >
+                 <SiGoogledocs  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Certificate</span>
+              </Link>
+
+
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/complaint"}
+              >
+                 <FaAddressCard  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Id Card</span>
+              </Link>
+
+
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/complaint"}
+              >
+                 <FaMoneyCheckAlt  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Transactions</span>
               </Link>
               
             </div>

@@ -71,7 +71,6 @@ export const POST = async (req) => {
       tradeLicense: tradeLicenceUploadResult ? tradeLicenceUploadResult.secure_url : null,
     };
 
-    console.log(applicationData)
 
     await partnerApplication.create(applicationData);
     return NextResponse.json({ msg: "Application submitted successfully" }, {
