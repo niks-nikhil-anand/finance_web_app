@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FaArrowLeft } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -35,7 +36,6 @@ const Profile = () => {
 
   const handleVerification = async () => {
     try {
-      // Assuming there's an API endpoint for verifying the user
       await axios.post(`/api/verify/${user.id}`);
       setUser({ ...user, isVerified: true });
     } catch (error) {
@@ -69,7 +69,10 @@ const Profile = () => {
               <p><span className='text-lg font-semibold'>Verified:</span> {user.isVerified ? 'Already Verified' : 'Not Verified'}</p>
               {!user.isVerified && (
                 <button onClick={handleVerification} className="text-blue-500 hover:underline focus:outline-none">
+                  <Link  href={`/user/${user.username}/verifyAccount`}>
                   Click here to verify
+                  </Link>
+                 
                 </button>
               )}
             </div>
