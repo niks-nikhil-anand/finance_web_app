@@ -51,6 +51,7 @@ export default function ForgotPassword() {
       if (response.ok) {
         setEmail('');
         notifySuccess();
+        setLoading(false);
       } else {
         notifyError('Something went wrong.');
       }
