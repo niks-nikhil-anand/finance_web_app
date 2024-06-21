@@ -26,7 +26,7 @@ const PrivacyPolicy = () => {
       <p className='mt-4'>To be eligible for a return, please ensure that:</p>
       <ul className="list-disc ml-8">
         <li>The Goods were purchased within the last 7 days </li>
-        <li>The Goods are in their original packaging.        </li>
+        <li>The Goods are in their original packaging.       </li>
       </ul>
       <h3 className="text-xl font-bold mt-4">Non-Returnable Goods</h3>
       <p className='mt-4'>The following Goods cannot be returned:</p>
@@ -42,10 +42,12 @@ const PrivacyPolicy = () => {
       <p className='mt-4'>We reserve the right to refuse returns of any merchandise that does not meet the above return conditions in our sole discretion.</p>
       <h3 className="text-xl font-bold mt-4">Refund Policy      </h3>
       <p className='mt-4'>Only regular-priced Goods may be refunded. Unfortunately, Goods on sale cannot be refunded. This exclusion may not apply to you if it is not permitted by applicable law.</p>
+      <p className='mt-4'>Refunds will be processed, and the amount will be added to your Rozana Pay wallet.</p>
+      <p className='mt-4'>Goods eligible for return must be returned within 14 days.</p>
 
 
 
-      <p className='mt-4'>If you have any questions about our return policy or need further assistance, please contact our customer service team.</p>
+      <p className='mt-4'>If you request a refund within the application and cancel the application, the amount will be refunded to the original payment method within 14 days.</p>
       <h3 className="text-xl font-bold mt-4">Our Services</h3>
       <p className='mt-4'>At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include:</p>
       <ul className="list-disc ml-8">
@@ -54,8 +56,12 @@ const PrivacyPolicy = () => {
       </ul>
       <p className='mt-4'>If you have any questions about our return policy or need further assistance, please contact our customer service team.</p>
 
-
-
+      <h3 className="text-xl font-bold mt-4">Commission Policy</h3>
+      <p className='mt-4'>Please note that any commission will be voided if the user does not complete the application process.</p>
+    
+      <h3 className="text-xl font-bold mt-4">Shipping Policy      </h3>
+      <p className='mt-4'>If shipping is required, the Goods will be shipped to your address within 14 days.</p>
+    
 
 
 

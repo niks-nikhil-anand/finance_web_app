@@ -1,12 +1,12 @@
 "use client";
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import forgot from '../../../../public/accounts/forgot.png';
 import Link from 'next/link';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from 'framer-motion';
 
 export default function ForgotPassword() {
  
@@ -98,11 +98,13 @@ export default function ForgotPassword() {
           required
         />
           </div>
-          <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded"
+          <motion.button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded"
             disabled={loading}
+            
+            whileTap={{ scale: 0.95 }}
           >
           {loading ? 'Sending...' : 'Send Reset Link'}
-          </button>
+          </motion.button>
         </form>
         <p className="mt-4">
           Remembered your password?{' '}
