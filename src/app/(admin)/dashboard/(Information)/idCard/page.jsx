@@ -61,9 +61,9 @@ const IdCard = () => {
   };
 
   return (
-    <div className='flex flex-col items-center'>
-      <div className="py-5">
-        <div className="text-center m-5 bg-gray-500 p-8 shadow-xl">
+    <div className='flex flex-col items-center  bg-gray-300 w-full'>
+      <div className="py-5 w-[80%] flex flex-col ">
+        <div className="text-center m-5 bg-gray-500 p-8 shadow-xl w-full">
           <input
             type="text"
             value={email}
@@ -82,16 +82,8 @@ const IdCard = () => {
         </div>
         {user && (
           <div className="w-full flex flex-col items-center">
-            <div className="mb-4 m-[2rem] border-2 inline-block">
-              <button
-                onClick={() => window.history.back()}
-                className="text-xl text-red-700 border-black rounded-full p-3"
-                aria-label="Go back"
-              >
-                <FaArrowLeft />
-              </button>
-            </div>
-            <div ref={cardRef} className="bg-transparent font-verdana mt-5 mb-5">
+           
+            <div ref={cardRef} className="bg-transparent font-verdana  mb-5">
               <div className="w-11 h-10 bg-red-700 mx-auto rounded relative border border-red-800">
                 <div className="absolute top-2.5 w-full h-px bg-red-800"></div>
               </div>
@@ -127,7 +119,7 @@ const IdCard = () => {
                     <span className="font-semibold">{user.name}</span>
                   </h2>
                   <div className="flex justify-end flex-col">
-                    <h3 className="text-sm my-1 font-light">
+                    <h3 className="text-[12px] my-1 font-light">
                       <span className="font-semibold">Email Id:-</span> {user.email}
                     </h3>
                     <h3 className="text-sm my-1 font-light">
