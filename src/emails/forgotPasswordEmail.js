@@ -31,7 +31,7 @@ function ForgotPasswordEmail({ username, resetLink }) {
         <Row style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px' }}>
           <Heading as="h2" style={{ color: '#333' }}>Hello {username},</Heading>
           <Text style={{ fontSize: '16px', color: '#555' }}>
-            We hope you're doing well! At Legal257, your security is our priority.
+            We hope you&apos;re doing well! At Legal257, your security is our priority.
           </Text>
           <Text style={{ fontSize: '16px', color: '#555' }}>
             We received a request to reset your password. Click the button below to reset it:
