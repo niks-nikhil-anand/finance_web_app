@@ -1,37 +1,10 @@
 import CardDataStats from '@/component/AdminComp/CardDataStats'
-import PartnerApplicationStatus from '@/component/AdminDashboard/UserApplicationStatus';
-import UserApplicationStatus from '@/component/AdminDashboard/UserApplicationStatus';
-import UserStatus from '@/component/AdminDashboard/UserStatus';
+import UserStatusOverview from '@/component/AdminDashboard/UserStatus'
 import React from 'react'
 import { FaBox, FaChartLine, FaEye, FaMoneyBillWave } from 'react-icons/fa'
 
 const page = () => {
-  const userStatuses = [
-    { status: 'Blocked', count: 10 },
-    { status: 'Active', count: 50 },
-    { status: 'Pending', count: 20 },
-    { status: 'inReview', count: 5 }
-  ];
-  const userApplicationStatuses = {
-    'GST/ITR': [
-      { status: 'Details Pending', count: 10 },
-      { status: 'Under Processing', count: 5 },
-      { status: 'Approved', count: 8 },
-      { status: 'Rejected', count: 2 },
-    ],
-    'Loan User': [
-      { status: 'Details Pending', count: 7 },
-      { status: 'Under Processing', count: 4 },
-      { status: 'Approved', count: 12 },
-      { status: 'Rejected', count: 3 },
-    ],
-    'Jono Jivan Micro Loan': [
-      { status: 'Details Pending', count: 6 },
-      { status: 'Under Processing', count: 3 },
-      { status: 'Approved', count: 10 },
-      { status: 'Rejected', count: 1 },
-    ],
-  };
+ 
   return (
     <div className=''>
        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
@@ -49,7 +22,7 @@ const page = () => {
         </CardDataStats>
       </div>
       <div>
-      <UserStatus userStatuses={userStatuses} />
+        <UserStatusOverview/>
     </div>
       <div>
       {/* <PartnerApplicationStatus userStatuses={userApplicationStatuses} /> */}
