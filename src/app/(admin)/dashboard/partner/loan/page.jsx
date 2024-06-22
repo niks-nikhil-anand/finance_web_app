@@ -23,6 +23,26 @@ const PartnerLoanTable = () => {
     window.open(imageUrl, '_blank');
   };
 
+  const handleStatusChange = async (id, status) => {
+    try {
+      const response = await axios.post("/api/updateRole", {
+        userId: id,
+        status,
+      });
+      setApplications((prevApplications) =>
+        prevApplications.map((application) =>
+          application._id === id
+            ? { ...application, status }
+            : application
+        )
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error updating role and services:", error);
+    }
+  };
+
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -37,6 +57,7 @@ const PartnerLoanTable = () => {
             <tr className="bg-purple-100">
               <th className="py-2 px-4 border border-gray-400">Name</th>
               <th className="py-2 px-4 border border-gray-400">Email</th>
+              <th className="py-2 px-4 border border-gray-400">Status</th>
               <th className="py-2 px-4 border border-gray-400">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-400">Gender</th>
               <th className="py-2 px-4 border border-gray-400">City</th>
@@ -63,6 +84,24 @@ const PartnerLoanTable = () => {
               <tr key={index} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border border-gray-300">{application.name || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.email || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
+                    value={application.status}
+                    onChange={(e) =>
+                      handleStatusChange(
+                        application._id,
+                        e.target.value,
+                      )
+                    }
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    {["Details Pending", "Under Processing", "Approved", "Rejected"].map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.gender || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.city || 'Not Available'}</td>
