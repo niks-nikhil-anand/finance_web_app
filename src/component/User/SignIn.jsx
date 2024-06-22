@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
-import { ArrowRight } from 'lucide-react';
-import { Eye, EyeOff } from 'lucide-react'; // Import Eye and EyeOff icons
+import { ArrowRight, Eye, EyeOff, Mail, Lock } from 'lucide-react'; // Import additional icons
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -84,9 +83,10 @@ const SignInUser = () => {
             <label htmlFor="email" className="text-base font-medium text-gray-900">
               Email address
             </label>
-            <div className="mt-2">
+            <div className="mt-2 relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
-                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent pl-10 pr-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="email"
                 id="email"
                 value={email}
@@ -109,8 +109,9 @@ const SignInUser = () => {
               </Link>
             </div>
             <div className="mt-2 relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
-                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent pl-10 pr-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type={showPassword ? "text" : "password"} // Toggle password visibility
                 id="password"
                 value={password}

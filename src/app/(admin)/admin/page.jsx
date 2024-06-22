@@ -1,16 +1,18 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
+import { ArrowRight, Eye, EyeOff, Mail, Lock } from 'lucide-react'; // Import additional icons
 
 const LoginForm = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('Super Admin'); // Default value is 'Super Admin'
+  const [userType, setUserType] = useState(''); // Default value is 'Super Admin'
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
   const notifyLoading = () => {
     toast.info("Submitting form...", {
@@ -19,7 +21,7 @@ const LoginForm = () => {
   };
 
   const notifySuccess = () => {
-    toast.success("Form submitted successfully!", {
+    toast.success("Logging in....", {
       position: "bottom-right"
     });
   };
@@ -97,7 +99,7 @@ const LoginForm = () => {
               id="userType"
               value={userType}
               onChange={(e) => setUserType(e.target.value)}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
               <option value="" disabled>Select Account Type</option>
               <option value="Super Admin">Super Admin</option>
@@ -108,28 +110,43 @@ const LoginForm = () => {
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
             </label>
+            <div className="mt-2 relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            />
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent pl-10 pr-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
           </div>
-          <div className="mb-4">
+          </div>
+          <div className="mb-4 relative">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
             </label>
+            <div className="mt-2 relative">
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+
             <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            />
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent pl-10 pr-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type={showPassword ? "text" : "password"} // Toggle password visibility
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+               <div
+                className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)} // Toggle showPassword state
+              >
+                {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+              </div>
+            </div>
           </div>
+          
          
           <motion.button
             type="submit"
@@ -147,4 +164,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-  
