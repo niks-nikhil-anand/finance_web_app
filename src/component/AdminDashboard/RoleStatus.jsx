@@ -1,39 +1,45 @@
-// UserStatusOverview.js
-"use client";
+"use client"
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { BsFillPersonFill } from 'react-icons/bs'; // Assuming you have installed react-icons
-import { FaUserShield, FaUserCheck, FaUserClock, FaUserEdit } from 'react-icons/fa'; // Import other icons as needed
+
+import { FaReact, FaUser, FaUserCircle, FaUserSecret, FaUserTie } from 'react-icons/fa';
+import { FaCodeBranch , FaUsersGear} from "react-icons/fa6";
+import { GiChessKing } from "react-icons/gi";
+
+
 
 const UserStatusCard = ({ status, count }) => {
-  // Define colors and icons based on status
   let bgColor = '';
   let icon = null;
+
   switch (status) {
-    case 'Blocked':
+    case 'CSP':
       bgColor = 'bg-gradient-to-r from-red-500 to-red-700';
-      icon = <FaUserShield className="text-3xl text-white mr-2" />;
+      icon = <FaUserTie className="text-white text-4xl" />;
       break;
-    case 'Active':
+    case 'Branch':
       bgColor = 'bg-gradient-to-r from-green-500 to-green-700';
-      icon = <FaUserCheck className="text-3xl text-white mr-2" />;
+      icon = <FaCodeBranch className="text-white text-4xl" />;
       break;
-    case 'Pending':
+    case 'DSA':
       bgColor = 'bg-gradient-to-r from-yellow-500 to-yellow-700';
-      icon = <FaUserClock className="text-3xl text-white mr-2" />;
+      icon = <FaUserTie className="text-white text-4xl" />;
       break;
-    case 'inReview':
+    case 'User':
       bgColor = 'bg-gradient-to-r from-blue-500 to-blue-700';
-      icon = <FaUserEdit className="text-3xl text-white mr-2" />;
+      icon = <FaUsersGear className="text-white text-4xl" />;
+      break;
+    case 'Admin':
+      bgColor = 'bg-gradient-to-r from-purple-500 to-purple-700';
+      icon = <GiChessKing className="text-white text-4xl" />;
       break;
     default:
       bgColor = 'bg-gray-500';
-      icon = <BsFillPersonFill className="text-3xl text-white mr-2" />;
   }
 
   return (
     <motion.div
-      className={`flex items-center px-[4rem] py-[1rem] border rounded-lg shadow-md ${bgColor}`}
+      className={`p-4 border rounded-lg shadow-md flex items-center justify-between ${bgColor}`}
       whileHover={{ scale: 1.05, boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.1)' }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
@@ -45,9 +51,6 @@ const UserStatusCard = ({ status, count }) => {
     </motion.div>
   );
 };
-
-
-
 
 const UserStatusOverview = () => {
   const [userStatuses, setUserStatuses] = useState([]);
@@ -62,7 +65,7 @@ const UserStatusOverview = () => {
         
         // Count occurrences of each status
         const statusCounts = data.reduce((acc, user) => {
-          const status = user.status;
+          const status = user.role;
           if (!acc[status]) {
             acc[status] = 0;
           }
@@ -96,9 +99,10 @@ const UserStatusOverview = () => {
   }
 
   return (
-    <div className="p-8 w-full">
-      <div className="flex gap-9 justify-center items-center">
-        {['Blocked', 'Active', 'Pending', 'inReview'].map(status => (
+    <div className="p-8">
+              <h1 className="text-3xl font-bold mb-8">Partner Stats</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {['Admin', 'DSA', 'CSP', 'User', 'Branch'].map(status => (
           <UserStatusCard
             key={status}
             status={status}
