@@ -1,4 +1,5 @@
 import RoleStatusOverview from '@/component/AdminDashboard/RoleStatus'
+import UserChart from '@/component/AdminDashboard/UserChart'
 import UserStatusOverview from '@/component/AdminDashboard/UserStatus'
 import React from 'react'
 
@@ -10,9 +11,10 @@ const page = () => {
       <div className=''>
         <RoleStatusOverview/>
         <UserStatusOverview/>
+        
     </div>
       <div>
-      {/* <PartnerApplicationStatus userStatuses={userApplicationStatuses} /> */}
+        {/* <UserChart/> */}
     </div>
 
       </div>
