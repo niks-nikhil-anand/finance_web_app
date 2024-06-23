@@ -113,4 +113,4 @@ const UserChart = () => {
   );
 };
 
-export default UserChart;
+export default UserChart ;
