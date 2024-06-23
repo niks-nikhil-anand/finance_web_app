@@ -1,51 +1,155 @@
-"use client"
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
+import { Bar, Pie } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 
-const statusColors = {
-  'Details Pending': 'from-yellow-400 via-yellow-500 to-yellow-600',
-  'Under Processing': 'from-blue-400 via-blue-500 to-blue-600',
-  Approved: 'from-green-400 via-green-500 to-green-600',
-  Rejected: 'from-red-400 via-red-500 to-red-600',
-};
+ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-const categories = ['GST/ITR', 'Loan User', 'Jono Jivan Micro Loan'];
+const roles = ['CSP', 'Branch', 'DSA', 'User', 'Admin'];
+const statuses = ['Blocked', 'Active', 'Pending', 'inReview'];
 
-const StatusCard = ({ category, status, count }) => {
+const BarChart = ({ userRoles }) => {
+  const data = {
+    labels: roles,
+    datasets: [
+      {
+        label: '# of Users',
+        data: roles.map(role => userRoles[role] || 0),
+        backgroundColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      x: {
+        ticks: {
+          color: 'rgba(0, 0, 0, 1)',
+        },
+      },
+      y: {
+        ticks: {
+          color: 'rgba(0, 0, 0, 1)',
+        },
+      },
+    },
+  };
+
   return (
     <motion.div
-      className={`p-4 bg-gradient-to-r ${statusColors[status]} rounded-lg shadow-md`}
+      className="p-4 bg-white rounded-lg shadow-2xl"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
+      style={{ width: '550px', height: '350px' }}
     >
-      <div className="flex flex-col items-center">
-        <h2 className="text-white text-lg font-bold mb-1">{category}</h2>
-        <h3 className="text-white text-md mb-1">{status}</h3>
-        <p className="text-white text-sm">Users: {count}</p>
-      </div>
+      <Bar data={data} options={options} />
     </motion.div>
   );
 };
 
-const PartnerApplicationStatus = ({ userStatuses }) => {
+const PieChart = ({ userStatuses }) => {
+  const data = {
+    labels: statuses,
+    datasets: [
+      {
+        label: '# of Users',
+        data: statuses.map(status => userStatuses[status] || 0),
+        backgroundColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <motion.div
+      className="p-4 bg-white rounded-lg shadow-2xl"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      style={{ width: '350px', height: '350px' }}
+    >
+      <Pie data={data} />
+    </motion.div>
+  );
+};
+
+const PartnerApplicationChart = () => {
+  const [userRoles, setUserRoles] = useState({});
+  const [userStatuses, setUserStatuses] = useState({});
+  const [dataFetched, setDataFetched] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/user'); // Update the endpoint as needed
+        const users = response.data;
+
+        const rolesCount = roles.reduce((acc, role) => {
+          acc[role] = users.filter(user => user.role === role).length;
+          return acc;
+        }, {});
+
+        const statusesCount = statuses.reduce((acc, status) => {
+          acc[status] = users.filter(user => user.status === status).length;
+          return acc;
+        }, {});
+
+        setUserRoles(rolesCount);
+        setUserStatuses(statusesCount);
+        setDataFetched(true);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-6 text-center">User Status Overview</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {categories.map((category) =>
-          userStatuses[category].map((statusInfo, index) => (
-            <StatusCard
-              key={index}
-              category={category}
-              status={statusInfo.status}
-              count={statusInfo.count}
-            />
-          ))
-        )}
-      </div>
+      {dataFetched ? (
+        <div className="flex justify-around gap-9">
+          <BarChart userRoles={userRoles} />
+          <PieChart userStatuses={userStatuses} />
+        </div>
+      ) : (
+        <p className="text-center">Loading data...</p>
+      )}
     </div>
   );
 };
 
-export default PartnerApplicationStatus;
+export default PartnerApplicationChart;

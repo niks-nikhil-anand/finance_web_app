@@ -1,21 +1,18 @@
+"use client"
 import PartnerApplicationStatusOverview from '@/component/AdminDashboard/RoleStatus'
-import RoleStatusOverview from '@/component/AdminDashboard/RoleStatus'
-import UserChart from '@/component/AdminDashboard/UserChart'
-import UserStatusOverview from '@/component/AdminDashboard/UserStatus'
+import PartnerApplicationChart from '@/component/AdminDashboard/UserApplicationStatus'
 import React from 'react'
 
 const page = () => {
  
   return (
-    <div className=' mx-auto  w-[80%]'>
-      <div classname = 'overflow-auto max-h-[30rem] '>
+    <div className=' overflow-auto w-full h-[90vh] no-scrollbar'>
+      <div classname = ' '>
       <div className=''>
-        {/* <RoleStatusOverview/> */}
         <PartnerApplicationStatusOverview/>
-        
     </div>
       <div>
-        {/* <UserChart/> */}
+        <PartnerApplicationChart/>
     </div>
 
       </div>
