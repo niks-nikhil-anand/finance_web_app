@@ -1,6 +1,6 @@
 "use client"
 import PartnerApplicationStatusOverview from '@/component/AdminDashboard/RoleStatus'
-import PartnerApplicationChart from '@/component/AdminDashboard/UserApplicationStatus'
+import PartnerApplicationChart from '@/component/AdminDashboard/UserApplicationChart'
 import React from 'react'
 
 const page = () => {
