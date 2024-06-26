@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import { motion } from "framer-motion";
-import "./tailwind.css"; // Ensure Tailwind CSS is imported
 
 const IDCard = () => {
   return (
@@ -9,19 +8,19 @@ const IDCard = () => {
       <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
         {/* Front Side of the Card */}
         <motion.div
-          className="w-64 h-96 bg-white rounded-lg shadow-lg overflow-hidden"
+          className="w-full md:w-64 h-96 bg-white rounded-lg shadow-lg overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="bg-purple-600 h-24 flex justify-center items-center">
+          <div className="bg-purple-600 h-24 flex justify-center items-center relative">
             <img
               src="https://via.placeholder.com/100"
               alt="Profile"
-              className="w-24 h-24 rounded-full border-4 border-white -mt-12"
+              className="w-24 h-24 rounded-full border-4 border-white absolute bottom-[-50%] transform translate-y-[-50%]"
             />
           </div>
-          <div className="p-4 text-center">
+          <div className="p-4 text-center mt-12">
             <h2 className="text-xl font-bold">Zadafiya Brothers</h2>
             <p className="text-gray-600">UX/UI Designer</p>
             <div className="mt-4">
@@ -39,7 +38,7 @@ const IDCard = () => {
         
         {/* Back Side of the Card */}
         <motion.div
-          className="w-64 h-96 bg-purple-600 rounded-lg shadow-lg overflow-hidden"
+          className="w-full md:w-64 h-96 bg-purple-600 rounded-lg shadow-lg overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
