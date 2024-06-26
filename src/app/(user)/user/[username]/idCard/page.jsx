@@ -4,6 +4,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import logo from '../../../../../../public/logo2.png';
 import legalqr from '../../../../../../public/logo/legalqr.png';
+import barcode from '../../../../../../public/barcode.gif';
 import Image from 'next/image';
 import { FaArrowLeft } from 'react-icons/fa';
 import { toPng } from 'html-to-image';
@@ -27,6 +28,7 @@ const IdCard = () => {
           state: userData.state,
           username: userData.username,
           id: userData._id,
+          shop: userData.shopAddress,
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -54,11 +56,11 @@ const IdCard = () => {
   };
 
   return user ? (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 ">
+      <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 ">
         {/* Front Side of the Card */}
         <motion.div
-          className="w-full md:w-64 h-[30rem] bg-white rounded-lg shadow-lg overflow-hidden"
+          className="w-full md:w-64 h-[30rem] bg-white rounded-lg shadow-2xl overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -71,18 +73,20 @@ const IdCard = () => {
             />
           </div>
           <div className="p-4 text-center mt-12">
-            <h2 className="text-xl font-bold">{user.name}</h2>
+            <h2 className="text-xl  text-gradient-blue font-extrabold">{user.name}</h2>
             <p className="text-gray-600">{user.role}</p>
             <div className="mt-4">
-              <img
-                src="https://via.placeholder.com/100x100?text=QR"
+              <Image
+               src={legalqr}
+               height={100}
+               width={100}
                 alt="QR Code"
                 className="mx-auto"
               />
             </div>
             <p className="text-sm">{user.mobile}</p>
             <p className="text-sm">{user.username}</p>
-            <p className="mt-4 text-sm">{user.city}, {user.state}</p>
+            <p className="mt-4 text-sm ">{user.city}, {user.state}</p>
           </div>
         </motion.div>
         
@@ -94,30 +98,33 @@ const IdCard = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="p-4">
-            <h2 className="text-xl font-bold text-white text-center">Information</h2>
+            <h2 className="text-xl font-bold text-white text-center underline">Information</h2>
             <div className="mt-4 text-white">
               <p className="font-bold">Email:</p>
               <p>{user.email}</p>
               <p className="font-bold mt-2">Mobile No:</p>
               <p>{user.mobile}</p>
               <p className="font-bold mt-2">Legal257 Id:-</p>
-              <p>{user._id}</p>
+              <p>{user.id}</p>
               <p className="font-bold mt-2">Legal257 Services:-</p>
               <p>{user.services}</p>
               <p className="font-bold mt-2">Office Address:</p>
-              <p>{user.shopAddress}</p>
+              <p>{user.shop}</p>
               <p>d...sdv..sdf..sfd..sd.road,india</p>
-              <div className=" flex justify-center mt-[4rem] ">
-                <img
-                  src="https://via.placeholder.com/100x30?text=Barcode"
+             
+            </div>
+            <div className=" flex justify-center mt-[4rem]  ">
+                <Image
+                  src={barcode}
                   alt="Barcode"
-                  className="w-32"
+                  height={800}
+                  width={800}
+                  className=""
                 />
               </div>
-              <p className="mt-4 text-center">Legal257  </p>
-            </div>
           </div>
         </motion.div>
+       
       </div>
     </div>
   ) : null;
