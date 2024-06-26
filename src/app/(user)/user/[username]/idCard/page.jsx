@@ -54,67 +54,71 @@ const IdCard = () => {
   };
 
   return user ? (
-    <div className='flex flex-col'>
-      <div className="mb-4 m-[2rem] border-2 inline-block">
-        <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
-          <FaArrowLeft />
-        </button>
-      </div>
-      <div ref={cardRef} className="bg-transparent font-verdana mt-5 mb-5">
-        <div className="w-11 h-10 bg-red-700 mx-auto rounded relative border border-red-800">
-          <div className="absolute top-2.5 w-full h-px bg-red-800"></div>
-        </div>
-        <div className="bg-black w-16 mx-auto h-4 rounded-t">
-          <div className="bg-white w-12 h-1.5 mx-auto rounded"></div>
-        </div>
-        <div className="relative w-56 p-1 mx-auto bg-gray-900 rounded-lg">
-          <div className="absolute top-[105px] left-[222px] w-2 bg-gray-800 h-24 rounded-l"></div>
-          <div className="absolute top-[105px] w-2 bg-gray-800 h-24 rounded-r"></div>
-          <div className="p-2 bg-white rounded-lg text-center shadow-md">
-            <div className="header">
-              <h3 className="text-sm my-1 font-light text-left">
-                <span className="font-semibold">{user.role}</span>
-              </h3>
-              <Image
-                src={logo}
-                height={34}
-                width={80}
-                alt="Logo"
-                className="w-24 mt-4 mx-auto"
-              />
-            </div>
-            <div className="photo mt-4">
-              <Image
-                src={legalqr}
-                alt="Profile"
-                className="w-20 mx-auto border border-gray-300"
-                height={50}
-                width={50}
-              />
-            </div>
-            <h2 className="text-lg my-1">
-              <span className="font-semibold">{user.name}</span>
-            </h2>
-            <div className="flex justify-end flex-col">
-              <h3 className="text-sm my-1 font-light">
-                <span className="font-semibold">Email Id:-</span> {user.email}
-              </h3>
-              <h3 className="text-sm my-1 font-light">
-                <span className="font-semibold">Username:- </span>{user.username}
-              </h3>
-              <p className="text-xs my-1">
-                <span className="font-bold mr-[1rem]">Services:- </span>{user.services}
-              </p>
-            </div>
-            <hr />
-            <p className="text-xs my-1">{user.city}, {user.state}</p>
-            <p className="text-xs my-1">{user.mobile}</p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+        {/* Front Side of the Card */}
+        <motion.div
+          className="w-full md:w-64 h-[30rem] bg-white rounded-lg shadow-lg overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="bg-purple-600 h-[8rem] flex justify-center items-center relative">
+            <img
+              src="https://via.placeholder.com/100"
+              alt="Profile"
+              className="w-24 h-24 rounded-full border-4 border-white absolute bottom-[-50%] transform translate-y-[-50%]"
+            />
           </div>
-        </div>
+          <div className="p-4 text-center mt-12">
+            <h2 className="text-xl font-bold">{user.name}</h2>
+            <p className="text-gray-600">{user.role}</p>
+            <div className="mt-4">
+              <img
+                src="https://via.placeholder.com/100x100?text=QR"
+                alt="QR Code"
+                className="mx-auto"
+              />
+            </div>
+            <p className="text-sm">{user.mobile}</p>
+            <p className="text-sm">{user.username}</p>
+            <p className="mt-4 text-sm">{user.city}, {user.state}</p>
+          </div>
+        </motion.div>
+        
+        {/* Back Side of the Card */}
+        <motion.div
+          className="w-full md:w-64 h-[30rem] bg-purple-600 rounded-lg shadow-lg overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="p-4">
+            <h2 className="text-xl font-bold text-white text-center">Information</h2>
+            <div className="mt-4 text-white">
+              <p className="font-bold">Email:</p>
+              <p>{user.email}</p>
+              <p className="font-bold mt-2">Mobile No:</p>
+              <p>{user.mobile}</p>
+              <p className="font-bold mt-2">Legal257 Id:-</p>
+              <p>{user._id}</p>
+              <p className="font-bold mt-2">Legal257 Services:-</p>
+              <p>{user.services}</p>
+              <p className="font-bold mt-2">Office Address:</p>
+              <p>{user.shopAddress}</p>
+              <p>d...sdv..sdf..sfd..sd.road,india</p>
+              <div className=" flex justify-center mt-[4rem] ">
+                <img
+                  src="https://via.placeholder.com/100x30?text=Barcode"
+                  alt="Barcode"
+                  className="w-32"
+                />
+              </div>
+              <p className="mt-4 text-center">Legal257  </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
-      <button onClick={downloadIdCard} className="text-white bg-blue-500 p-2 rounded mx-auto block my-5 ">
-        Download ID Card
-      </button>
     </div>
   ) : null;
 };
