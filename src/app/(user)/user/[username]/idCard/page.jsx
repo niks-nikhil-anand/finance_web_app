@@ -60,7 +60,7 @@ const IdCard = () => {
       <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 ">
         {/* Front Side of the Card */}
         <motion.div
-          className="w-full md:w-64 h-[30rem] bg-white rounded-lg shadow-2xl overflow-hidden"
+          className="w-full md:w-64 h-[30rem] bg-white rounded-lg shadow-2xl overflow-hidden relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -87,12 +87,22 @@ const IdCard = () => {
             <p className="text-sm">{user.mobile}</p>
             <p className="text-sm">{user.username}</p>
             <p className="mt-4 text-sm ">{user.city}, {user.state}</p>
+           
           </div>
+          <div className=" absolute left-0">
+              <Image
+               src={logo}
+               height={100}
+               width={100}
+                alt="QR Code"
+                className="mx-auto"
+              />
+            </div>
         </motion.div>
         
         {/* Back Side of the Card */}
         <motion.div
-          className="w-full md:w-64 h-[30rem] bg-purple-600 rounded-lg shadow-lg overflow-hidden"
+          className="w-full md:w-64 h-[30rem] bg-purple-600 rounded-lg shadow-lg overflow-hidden relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -122,6 +132,15 @@ const IdCard = () => {
                 />
               </div>
           </div>
+          <div className=" absolute left-0 bottom-2">
+              <Image
+               src={logo}
+               height={100}
+               width={100}
+                alt="QR Code"
+                className="mx-auto"
+              />
+            </div>
         </motion.div>
        
       </div>
