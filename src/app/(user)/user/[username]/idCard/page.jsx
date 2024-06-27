@@ -110,7 +110,6 @@ const IdCard = () => {
               <p>{user.services}</p>
               <p className="font-bold mt-2">Office Address:</p>
               <p>{user.shop}</p>
-              <p>d...sdv..sdf..sfd..sd.road,india</p>
              
             </div>
             <div className=" flex justify-center mt-[4rem]  ">
