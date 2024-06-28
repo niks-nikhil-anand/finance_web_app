@@ -116,6 +116,9 @@ const partnerApplicationSchema = new mongoose.Schema({
   },
   isVerifiedExpires:{
     type : Date
+  },
+  profilePic:{
+    type: String
   }
 } ,{
   timestamps:true

@@ -29,6 +29,7 @@ const IdCard = () => {
           username: userData.username,
           id: userData._id,
           shop: userData.shopAddress,
+          profilePic : userData.profilePic
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -66,13 +67,15 @@ const IdCard = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="bg-purple-600 h-[8rem] flex justify-center items-center relative">
-            <img
-              src="https://via.placeholder.com/100"
+            <Image
+              src={"https://via.placeholder.com/100"}
               alt="Profile"
+              height={100}
+              width={100}
               className="w-24 h-24 rounded-full border-4 border-white absolute bottom-[-50%] transform translate-y-[-50%]"
             />
           </div>
-          <div className="p-4 text-center mt-12">
+          <div className="p-4 text-center mt-8">
             <h2 className="text-xl  text-gradient-blue font-extrabold">{user.name}</h2>
             <p className="text-gray-600">{user.role}</p>
             <div className="mt-4">
