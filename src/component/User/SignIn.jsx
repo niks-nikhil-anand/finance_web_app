@@ -12,7 +12,8 @@ const SignInUser = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false); // State for "Remember Me" checkbox
 
   const notifyLoading = () => {
     toast.info("Submitting form...", {
@@ -125,6 +126,18 @@ const SignInUser = () => {
                 {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
               </div>
             </div>
+          </div>
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="h-4 w-4 text-black border-gray-300 rounded focus:ring-gray-400"
+            />
+            <label htmlFor="rememberMe" className="ml-2 text-sm font-medium text-gray-900">
+              Remember Me
+            </label>
           </div>
           <div>
             <motion.button
