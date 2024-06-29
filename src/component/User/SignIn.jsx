@@ -13,7 +13,7 @@ const SignInUser = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false); // State for "Remember Me" checkbox
+  const [rememberMe, setRememberMe] = useState(false); 
 
   const notifyLoading = () => {
     toast.info("Submitting form...", {
