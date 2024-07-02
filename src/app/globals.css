@@ -4,6 +4,7 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Pinyon+Script|Rochester');
 
 
@@ -43,6 +44,9 @@ body {
     background-clip: text;
     text-fill-color: transparent;
   }
+  .cursivefont {
+    font-family: "Dancing Script", cursive;
+}
 
   .heading1 {
     @apply text-[64px] leading-[67.2px] font-bold;
