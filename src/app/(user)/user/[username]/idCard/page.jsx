@@ -8,6 +8,8 @@ import { toPng } from 'html-to-image';
 import logo from '../../../../../../public/logo2.png';
 import legalqr from '../../../../../../public/logo/legalqr.png';
 import barcode from '../../../../../../public/barcode.gif';
+import blank_profile from '../../../../../../public/blank_profile_pic.png';
+
 
 const IdCard = () => {
   const [user, setUser] = useState(null);
@@ -73,13 +75,13 @@ const IdCard = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="bg-purple-600 h-[8rem] flex justify-center items-center relative">
-              <Image
-                src={user.profilePic || "https://via.placeholder.com/100"}
-                alt="Profile"
-                height={100}
-                width={100}
-                className="w-24 h-24 rounded-full border-4 border-white absolute bottom-[-50%] transform translate-y-[-50%]"
-              />
+            <Image
+                  src={user.profilePic || blank_profile}
+                  alt="Profile"
+                  height={100}
+                  width={100}
+                  className="w-22 h-22 border-4 border-white shadow-lg mb-5 mt-3 "
+                />
             </div>
             <div className="p-4 text-center mt-8">
               <h2 className="text-xl text-gradient-blue font-extrabold">{user.name}</h2>

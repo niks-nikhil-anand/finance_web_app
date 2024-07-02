@@ -1,14 +1,14 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import blank_profile from '../../../../../../public/blank_profile_pic.png';
+import Image from 'next/image';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
-  const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +29,6 @@ const Profile = () => {
           id: userData._id,
           profilePic: userData.profilePic,
         });
-        setProfilePic(userData.profilePic);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -44,32 +43,6 @@ const Profile = () => {
       setUser({ ...user, isVerified: true });
     } catch (error) {
       console.error('Error verifying user:', error);
-    }
-  };
-
-  const handleProfilePicUpload = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('profilePic', file);
-
-    try {
-      const response = await axios.post('/api/uploadProfilePic', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setProfilePic(response.data.profilePicUrl);
-    } catch (error) {
-      console.error('Error uploading profile picture:', error);
-    }
-  };
-
-  const handleProfilePicRemove = async () => {
-    try {
-      await axios.post('/api/removeProfilePic');
-      setProfilePic(null);
-    } catch (error) {
-      console.error('Error removing profile picture:', error);
     }
   };
 
@@ -91,21 +64,13 @@ const Profile = () => {
           <div className="flex flex-col w-full gap-4">
             <div className="flex flex-col items-center mb-4">
               <div className="relative">
-                <img
-                  src={profilePic || blank_profile}
+                <Image
+                  src={user.profilePic || blank_profile}
                   alt="Profile"
-                  className="w-32 h-32 rounded-full mb-4 border-4 border-gray-200 shadow-md"
+                  height={100}
+                  width={100}
+                  className="w-32 h-32 border-4 border-white shadow-lg mb-5"
                 />
-                {profilePic && (
-                  <div className="absolute top-0 right-0">
-                    <button
-                      onClick={handleProfilePicRemove}
-                      className="text-red-500 hover:underline focus:outline-none"
-                    >
-                      Remove Image
-                    </button>
-                  </div>
-                )}
               </div>
               <div className="bg-gray-100 rounded-md shadow-md p-4 w-full">
                 <p><span className='text-lg font-semibold'>Name:</span> {user.name}</p>
