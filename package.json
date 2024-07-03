@@ -20,6 +20,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@react-email/components": "0.0.19",
     "@react-icons/all-files": "^4.1.0",
+    "@react-pdf/renderer": "^3.4.4",
     "aws-sdk": "^2.1640.0",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
