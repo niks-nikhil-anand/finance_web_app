@@ -23,22 +23,18 @@ const PartnerLoanTable = () => {
     window.open(imageUrl, '_blank');
   };
 
-  const handleStatusChange = async (id, status) => {
+  const handleStatusChange = async (userId, status) => {
     try {
-      const response = await axios.post("/api/updateRole", {
-        userId: id,
-        status,
-      });
+      await axios.post('/api/partner/updateStatusGstItr', { userId,  status });
       setApplications((prevApplications) =>
         prevApplications.map((application) =>
-          application._id === id
-            ? { ...application, status }
-            : application
+          application._id === userId ? { ...application,  status} : application
         )
       );
-      console.log(response.data);
+      
     } catch (error) {
-      console.error("Error updating role and services:", error);
+     
+      console.error("Error updating status:", error);
     }
   };
 
