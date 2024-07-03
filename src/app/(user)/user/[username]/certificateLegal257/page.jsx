@@ -1,14 +1,14 @@
 "use client"
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from "framer-motion";
-import { FaArrowLeft, FaCertificate, FaReact } from 'react-icons/fa'; 
-import { MdVerified } from "react-icons/md";
-
-import { GrCertificate } from 'react-icons/gr'; // Import GrCertificate icon
+import { FaArrowLeft, FaCertificate } from 'react-icons/fa';
+import { GrCertificate } from 'react-icons/gr';
 import axios from 'axios';
 import Image from 'next/image';
 import logo from '../../../../../../public/logo2.png';
+import hammer from '../../../../../../public/hammere.png';
 import { toPng } from 'html-to-image';
+import { MdVerified } from "react-icons/md";
 
 const Certificate = () => {
     const [user, setUser] = useState(null);
@@ -63,23 +63,25 @@ const Certificate = () => {
 
             <div className="py-5 w-full max-w-6xl">
                 <motion.div
-                    className="relative bg-white p-10 shadow-lg rounded-lg mx-auto mt-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    className="relative bg-white p-10 shadow-lg rounded-lg mx-auto mt-10 blur-sm"
+                    initial={{ opacity: 0, rotateY: 180 }}
+                    animate={{ opacity: 1, rotateY: 0 }}
                     transition={{ duration: 1 }}
                     ref={certificateRef}
+                    style={{
+                        backgroundImage: `url(${hammer.src})`, // Accessing hammer's src property
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        
+                    }}
                 >
-                    {/* Certificate content */}
-                    <div className="relative w-full h-full p-8 border-4 border-dashed border-gray-400">
-                        {user && (
+                    {user && (
+                        <div className="relative w-full h-full p-8 border-4 border-dashed border-blue-500 rounded-lg">
                             <div className="p-4 md:p-8">
                                 <div className="flex justify-between">
-                                    {/* GrCertificate icon */}
                                     <div className="absolute top-0 left-0 mt-2 ml-2">
                                         <GrCertificate className="text-blue-500 text-4xl" />
                                     </div>
-
-                                    {/* FaCertificate icon */}
                                     <div className="absolute top-0 right-0 mt-2 mr-2">
                                         <FaCertificate className="text-green-500 text-6xl" />
                                     </div>
@@ -122,23 +124,18 @@ const Certificate = () => {
                                     </div>
                                 </div>
 
-                                {/* React icon */}
                                 <div className="absolute bottom-6 left-4">
-                                    <MdVerified  className="text-blue-500 text-4xl" />
+                                    <MdVerified className="text-blue-500 text-4xl" />
                                 </div>
 
-                                {/* Verified by Legal257 text */}
                                 <div className="absolute bottom-2 left-2">
                                     <p className="text-sm font-bold text-gray-700">Verified by Legal257</p>
                                 </div>
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
 
-                    {/* Decorative border design */}
-                    <div className="absolute top-0 left-0 right-0 bottom-0 border-4 border-gray-500 z-0"></div>
-                    <div className="absolute top-4 left-4 right-4 bottom-4 border-4 border-gray-500 z-0"></div>
-                    <div className="absolute top-8 left-8 right-8 bottom-8 border-4 border-gray-500 z-0"></div>
+                    <div className="absolute top-0 left-0 right-0 bottom-0 border-8 border-blue-500 border-solid rounded-lg"></div>
                 </motion.div>
                 <button onClick={downloadCertificate} className="text-white bg-blue-500 p-2 rounded mx-auto block mt-5">
                     Download Certificate
