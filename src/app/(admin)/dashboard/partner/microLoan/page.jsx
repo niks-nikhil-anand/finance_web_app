@@ -34,7 +34,7 @@ const LoanApplicationsTable = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      const response = await axios.post("/api/updateRole", {
+      const response = await axios.post("/api/partner/updateStatusMicroLoan", {
         userId: id,
         status,
       });
