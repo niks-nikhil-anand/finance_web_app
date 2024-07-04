@@ -1,6 +1,9 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
+import axios from 'axios'; 
+import { motion } from "framer-motion";
+
 
 // Register font
 Font.register({
@@ -61,11 +64,8 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const MyDocument = () => (
+const MyDocument = ({ agreementData }) => (
   <Document>
-    
-
-    {/* Duplicate the first page */}
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text style={styles.header}>AGREEMENT</Text>
@@ -75,7 +75,7 @@ const MyDocument = () => (
         <Text style={styles.content}>
           This agreement signed on <Text style={styles.bold}>18.03.2022</Text> and is for
         </Text>
-        <Text style={[styles.content, styles.bold, {textAlign: 'center'}]}>PARTNER</Text>
+        <Text style={[styles.content, styles.bold, { textAlign: 'center' }]}>PARTNER</Text>
         <View style={styles.table}>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
@@ -93,7 +93,7 @@ const MyDocument = () => (
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>NAZRUL ISLAM</Text>
+              <Text style={styles.tableCell}>{agreementData?.name}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>#DSA-2592</Text>
@@ -148,7 +148,6 @@ const MyDocument = () => (
         </Text>
       </View>
     </Page>
-    
 
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -197,22 +196,50 @@ const MyDocument = () => (
   </Document>
 );
 
-const App = () => (
-  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-    <PDFDownloadLink document={<MyDocument />} fileName="agreement.pdf" className="mt-4">
-      {({ blob, url, loading, error }) =>
-        loading ? (
-          <button className="px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-700">
-            Loading document...
-          </button>
-        ) : (
-          <button className="px-4 py-2 bg-green-500 text-white rounded shadow hover:bg-green-700">
-            Download PDF
-          </button>
-        )
-      }
-    </PDFDownloadLink>
-  </div>
-);
+const AgreementComponent = () => {
+  const [agreementData, setAgreementData] = useState(null);
+  const [error, setError] = useState(null);
 
-export default App;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/cookies'); // Replace with your API endpoint
+        setAgreementData(response.data[0]);
+      } catch (error) {
+        setError('Error fetching agreement data.');
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+      <h1 className="text-2xl font-bold mb-4">Agreement Document</h1>
+      {agreementData ? (
+        <div className="flex flex-col items-center">
+          <PDFDownloadLink
+            document={<MyDocument agreementData={agreementData} />}
+            fileName="agreement.pdf"
+            className="mb-4 downloadButton bg-blue-500 text-white py-2 px-4 rounded shadow-lg transform transition-transform duration-300 hover:bg-blue-600 active:shadow-inner active:translate-y-1"
+          >
+            {({ loading }) =>
+              loading ? 'Loading document...' : 'Download Agreement PDF'
+            }
+          </PDFDownloadLink>
+          
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+};
+
+
+
+export default AgreementComponent;
