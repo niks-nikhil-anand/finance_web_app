@@ -1,119 +1,108 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
+import { Page, Text, View, Document, PDFDownloadLink , StyleSheet } from '@react-pdf/renderer';
 import axios from 'axios'; 
-import { FaArrowLeft, FaCertificate } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 
 
-// Register font
-Font.register({
-    family: 'Times-Roman',
-    fonts: [
-      { src: 'https://fonts.gstatic.com/s/timesnewroman/v11/4vNZF4UuGpXBzaxqDJ1guQ.ttf' },
-      { src: 'https://fonts.gstatic.com/s/timesnewroman/v11/bMczVy5hV1AtpyFwsnuE-Q.ttf', fontWeight: 'bold' }
-    ]
-  });
+
   
-  // Create styles
-  const styles = StyleSheet.create({
-    page: {
-      padding: 30,
-    },
-    section: {
-      marginBottom: 10,
-    },
-    header: {
-      fontSize: 12,
-      textAlign: 'center',
-      marginBottom: 10,
-    },
-    subHeader: {
-      fontSize: 10,
-      textAlign: 'center',
-      marginBottom: 10,
-    },
-    content: {
-      fontSize: 11,
-      marginBottom: 10,
-    },
-    bold: {
-      fontFamily: 'Times-Roman',
-      fontWeight: 'bold',
-    },
-    underline: {
-      textDecoration: 'underline',
-    },
-    footer: {
-      fontSize: 10,
-      marginTop: 20,
-    },
-    table: {
-      display: 'table',
-      width: 'auto',
-      marginBottom: 10,
-    },
-    tableRow: {
-      flexDirection: 'row',
-    },
-    tableCol: {
-      width: '25%',
-      borderStyle: 'solid',
-      borderWidth: 1,
-    },
-    tableCell: {
-      margin: 5,
-      fontSize: 10,
-    }
-  });
+const styles = StyleSheet.create({
+  page: {
+    padding: 30,
+    backgroundColor: '#E4E4E4',
+  },
+  section: {
+    marginBottom: 10,
+  },
+  header: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subHeader: {
+    fontSize: 10,
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  content: {
+    fontSize: 11,
+    marginBottom: 10,
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  underline: {
+    textDecoration: 'underline',
+  },
+  footer: {
+    fontSize: 10,
+    marginTop: 20,
+  },
+  table: {
+    display: 'table',
+    width: 'auto',
+    marginBottom: 10,
+  },
+  tableRow: {
+    flexDirection: 'row',
+  },
+  tableCol: {
+    width: '25%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+  },
+  tableCell: {
+    margin: 5,
+    fontSize: 10,
+  }
+});
 
 // Create Document Component
 const MyDocument = ({ agreementData }) => (
   <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text style={styles.header}>AGREEMENT</Text>
-        <Text style={styles.subHeader}>
+    <Page size="A4" style={{ padding: 30, backgroundColor: '#E4E4E4' , textAlign: 'center' }}>
+      <View style={{ marginBottom: 10 }}>
+        <Text style={{ fontWeight: 'bold' }}>AGREEMENT</Text>
+        <Text style={{ fontSize: 10, textAlign: 'center', marginBottom: 10 }}>
           COMPANY NAME: LEGAL257 PRIVATE LIMITED
         </Text>
-        <Text style={styles.content}>
-          This agreement signed on <Text style={styles.bold}>18.03.2022</Text> and is for
-        </Text>
-        <Text style={[styles.content, styles.bold, { textAlign: 'center' }]}>PARTNER</Text>
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={[styles.tableCell, styles.bold]}>Partner Name</Text>
+        <Text style={{ textAlign: 'center' }}>PARTNER</Text>
+        <View style={{ display: 'table', width: 'auto', marginBottom: 10 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Partner Name</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={[styles.tableCell, styles.bold]}>ID No.</Text>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>ID No.</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={[styles.tableCell, styles.bold]}>Aadhar Number</Text>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Services</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={[styles.tableCell, styles.bold]}>PAN Number</Text>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Mobile Number</Text>
             </View>
           </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{agreementData?.name}</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.name}</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>#DSA-2592</Text>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10 }}>#{agreementData?.role}-{agreementData?.username}</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>766039762079</Text>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.services}</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>ACJPI0815Q</Text>
+            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+              <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.mobileNumber}</Text>
             </View>
           </View>
         </View>
-        <Text style={[styles.header, styles.bold, styles.underline]}>BETWEEN</Text>
-        <Text style={styles.content}>
-          <Text style={styles.bold}>HOOGMATIC ADVISORY PRIVATE LIMITED</Text> (from this point will be known as
-          <Text style={styles.bold}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
-          its corporate office at <Text style={styles.bold}>H.NO-9&10 S/F, C-1 BLK RAMA PARK UTTAM NAGAR NEAR METRO STATION DELHI New Delhi DL 110059 IN</Text>, hereinafter referred to as the “Franchiser” which expression shall unless repugnant to the context or meaning thereof include its successors and assigns of <Text style={styles.bold}>ONE PART</Text>.
+        <Text style={{ fontSize: 12, textAlign: 'center', marginBottom: 10, fontWeight: 'bold', textDecoration: 'underline' }}>BETWEEN</Text>
+        <Text style={{ fontSize: 11, marginBottom: 10 }}>
+          <Text style={{ fontWeight: 'bold' }}>Legal257 PRIVATE LIMITED</Text> (from this point will be known as
+          <Text style={{ fontWeight: 'bold' }}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
+          its corporate office at <Text style={{ fontWeight: 'bold' }}>Uttar Khatowal Nagaon - Assam , 782124</Text>, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
         </Text>
       </View>
 
@@ -125,9 +114,9 @@ const MyDocument = ({ agreementData }) => (
 
       <View style={styles.section}>
         <Text style={styles.content}>
-          <Text style={styles.bold}>NAZRUL ISLAM</Text> is a proprietor and having his/her office at <Text style={styles.bold}>UTTAR KHATOWAL PO UTTAR KHATOWAL PS RUPAHIHAT NAGAON ASSAM PIN 782125, NAGAON, Assam: 782125, India</Text> and residence address at <Text style={styles.bold}>Juria Road Rupahi Near L.P School Kali Dinga Pam, NAGAON, Assam: 782124, India</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>BCP</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
+          <Text style={styles.bold}>{agreementData?.name}</Text> is a proprietor and having his/her office at <Text style={styles.bold}>{agreementData?.shopAddress}</Text> and residence address at <Text style={styles.bold}>{agreementData?.city} {agreementData?.state} , {agreementData?.pinCode}</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>BCP</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
         </Text>
-      </View>
+      </View> 
 
       <View style={styles.section}>
         <Text style={[styles.header, styles.bold]}>1. Definitions</Text>
@@ -140,62 +129,126 @@ const MyDocument = ({ agreementData }) => (
         <Text style={styles.content}>
           2. <Text style={styles.bold}>Territory</Text> shall be allocated during the time of engagement by the Company in writing to the Partner. Any change in “Territory” shall be communicated by the Company in writing to the Partner from time to time.
         </Text>
+        <Text style={styles.content}>
+          2. <Text style={styles.bold}>Partner</Text> will have the title of Partner.
+        </Text>
       </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>2. Appointment</Text>
+        <Text style={styles.content}>
+        Company hereby appoints Partner as its non-exclusive selling agent for the services in the
+        territory, and Partner hereby accepts such appointment. Partner&quot;s sole authority shall be to
+        solicit customers for the services in the territory in accordance with the terms of this
+        agreement. Partner shall not have the authority to make any commitments whatsoever on
+        behalf of Company.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>3. General Duties</Text>
+        <Text style={styles.content}>
+        Partner shall use his best efforts to promote the services and maximize the sale of the services
+        in the territory. Partner shall also provide reasonable assistance to Company in promotional
+        activities in the territory. Partner will assist the company by taking part in all promotional
+        events, use the marketing inputs judiciously for maximizing orders for the company.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>4. Reserved Rights</Text>
+        <Text style={styles.content}>
+        Company reserves the right to solicit/engage other Agents, Partners directly from businesses
+      within the territory. Partner&quot;s task is to solicit customers from all potential businesses in the
+      territory.
+        </Text>
+      </View>
+     
 
-      <View style={styles.footer}>
-        <Text style={styles.content}>
-          Address: H.NO-9&10 S/F, C-1 BLK RAMA PARK UTTAM NAGAR NEAR METRO STATION DELHI New Delhi DL 110059 IN
-        </Text>
-        <Text style={styles.content}>
-          Email: partner@loanlenders.in Website: www.loanlenders.in Official No. +91-7669914776
-        </Text>
-      </View>
+     
     </Page>
 
     <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text style={[styles.header, styles.bold, styles.underline]}>BETWEEN</Text>
+    <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>5. Conflict of Interest</Text>
         <Text style={styles.content}>
-          <Text style={styles.bold}>Legal257 PRIVATE LIMITED</Text> (from this point will be known as
-          <Text style={styles.bold}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
-          its corporate office at <Text style={styles.bold}>H.NO-9&10 S/F, C-1 BLK RAMA PARK UTTAM NAGAR NEAR METRO STATION DELHI New Delhi DL 110059 IN</Text>, hereinafter referred to as the “Franchiser” which expression shall unless repugnant to the context or meaning thereof include its successors and assigns of <Text style={styles.bold}>ONE PART</Text>.
+        Partner warrants to Company that it does not currently represent or promote any Services that
+        compete with the Company&quot;s Services. During the term of this Agreement, Partner shall not
+        represent, promote or otherwise try to sell within the Territory any Services that, in Company&quot;s
+        judgment, compete with the Services covered by this Agreement.
+        </Text>
+      </View>
+    <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>6. Independent Contractor</Text>
+        <Text style={styles.content}>
+        Partner is an independent contractor, and nothing contained in this Agreement shall be
+        construed to give either party the power to direct and control the day-to-day activities of the other, (ii)
+        constitute the parties as partners, joint ventures, co-owners or otherwise, or (iii) allow Partner
+        to create or assume any obligation on behalf of Company for any purpose whatsoever. Partner
+        is not an employee of Company and is not entitled to any employee benefits. Partner shall be
+        responsible for paying all income taxes and other taxes charged to Partner on amounts earned
+        hereunder. All financial and other obligations associated with Partner&quot;s business are the sole
+        responsibility of Partner.
+
         </Text>
       </View>
 
       <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>7. Indemnification by Partner</Text>
         <Text style={styles.content}>
-          And
+        Partner shall indemnify and hold Company free and harmless from any and all claims, damages
+        or lawsuits (including reasonable attorney&quot;s fees) arising out of negligence or malfeasant acts
+        of Partner or misrepresentation or breach of any obligations under this agreement.
         </Text>
       </View>
+
 
       <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>8. Commission</Text>
         <Text style={styles.content}>
-          <Text style={styles.bold}>NAZRUL ISLAM</Text> is a proprietor and having his/her office at <Text style={styles.bold}>UTTAR KHATOWAL PO UTTAR KHATOWAL PS RUPAHIHAT NAGAON ASSAM PIN 782125, NAGAON, Assam: 782125, India</Text> and residence address at <Text style={styles.bold}>Juria Road Rupahi Near L.P School Kali Dinga Pam, NAGAON, Assam: 782124, India</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>BCP</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
+        A. Sole Compensation
+        </Text>
+        <Text style={styles.content}>
+        The Company shall pay the Partner a commission at such rate as may be communicated by the
+        Company in writing to the Partner, for whole or part of the services hereto, based on the
+        Maximum Retailing Price of the product as fixed by the company on every new order. This
+        commission will be subjected to the relevant taxes as applicable. The Company reserves its
+        right to revise the rate of commission from time to time and the same shall be intimated to the
+        Partner in writing by the Company. (Through any mode verbal or written)
+        </Text>
+
+
+        <Text style={styles.content}>
+       B. Basis of Commission
+        </Text>
+        <Text style={styles.content}>
+        The Commission shall apply to all sales orders from customers solicited by Partner. (Customers
+        defined as an individual or a company who have bought the product/services from the Partner
+        for their own use.) No commissions shall be paid on (i) orders solicited directly by Company
+        within the Territory; (ii) orders received from outside the Territory unless otherwise agreed in
+        writing by Company. (iii) No commission will be paid to the Partner until 100% payment
+        pertaining to the order is received. The company reserves the right to change the commission /
+        prices on products as and when required.
+        </Text>
+
+
+        <Text style={styles.content}>
+        C.Time of Payment        </Text>
+        <Text style={styles.content}>
+        The commission on all PAID ORDERS shall be due and payable within ten (10) working
+        days after the Partner raises invoice.
+        </Text>
+
+
+        <Text style={styles.content}>
+        D. Monthly Statements       </Text>
+        <Text style={styles.content}>
+        The Partner shall submit to the company the monthly statements of commissions due and
+      payable to Partner under the terms of this Agreement.
+
         </Text>
       </View>
 
-      <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>1. Definitions</Text>
-        <Text style={styles.content}>
-          As used herein, the following terms shall have the meanings set forth below:
-        </Text>
-        <Text style={styles.content}>
-          1. <Text style={styles.bold}>Services</Text> shall mean the Company’s services to be sold by Partner and such services as may be communicated by the Company in writing to the Partner from time to time.
-        </Text>
-        <Text style={styles.content}>
-          2. <Text style={styles.bold}>Territory</Text> shall be allocated during the time of engagement by the Company in writing to the Partner. Any change in “Territory” shall be communicated by the Company in writing to the Partner from time to time.
-        </Text>
-      </View>
+      </Page>
 
-      <View style={styles.footer}>
-        <Text style={styles.content}>
-          Address: H.NO-9&10 S/F, C-1 BLK RAMA PARK UTTAM NAGAR NEAR METRO STATION DELHI New Delhi DL 110059 IN
-        </Text>
-        <Text style={styles.content}>
-          Email: partner@loanlenders.in Website: www.loanlenders.in Official No. +91-7669914776
-        </Text>
-      </View>
-    </Page>
+      
 
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -253,17 +306,23 @@ const MyDocument = ({ agreementData }) => (
 
       <View style={styles.footer}>
         <Text style={styles.content}>
-          Address: H.NO-9&10 S/F, C-1 BLK RAMA PARK UTTAM NAGAR NEAR METRO STATION DELHI New Delhi DL 110059 IN
+          Address: Uttar Khatowal Nagaon , Assam , 782124 IN
         </Text>
         <Text style={styles.content}>
-          Email: partner@loanlenders.in Website: www.loanlenders.in Official No. +91-7669914776
+          Email: partner@legal257.in 
+        </Text>
+        <Text style={styles.content}>
+        Website: www.legal257.in Official No. +91 94352 66783 
+        </Text>
+        <Text style={styles.content}>
+        Official No. +91 94352 66783 
         </Text>
       </View>
     </Page>
   </Document>
 );
 
-const AgreementComponent = () => {
+const AgreementComponent = () =>  {
   const [agreementData, setAgreementData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -287,7 +346,7 @@ const AgreementComponent = () => {
   return (
     <div>
       <div className="w-full max-w-6xl mt-5 flex items-center">
-                <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
+                <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full ">
                     <FaArrowLeft />
                 </button>
             </div>
