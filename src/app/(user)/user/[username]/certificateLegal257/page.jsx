@@ -6,7 +6,6 @@ import { GrCertificate } from 'react-icons/gr';
 import axios from 'axios';
 import Image from 'next/image';
 import logo from '../../../../../../public/logo2.png';
-import hammer from '../../../../../../public/hammere.png';
 import { toPng } from 'html-to-image';
 import { MdVerified } from "react-icons/md";
 

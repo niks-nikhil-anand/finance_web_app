@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
 import axios from 'axios'; 
-import { motion } from "framer-motion";
+import { FaArrowLeft, FaCertificate } from 'react-icons/fa';
 
 
 // Register font
@@ -285,7 +285,15 @@ const AgreementComponent = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+    <div>
+      <div className="w-full max-w-6xl mt-5 flex items-center">
+                <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
+                    <FaArrowLeft />
+                </button>
+            </div>
+
+<div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+      
       <h1 className="text-2xl font-bold mb-4">Agreement Document</h1>
       {agreementData ? (
         <div className="flex flex-col items-center">
@@ -304,6 +312,9 @@ const AgreementComponent = () => {
         <p>Loading...</p>
       )}
     </div>
+
+    </div>
+    
   );
 };
 
