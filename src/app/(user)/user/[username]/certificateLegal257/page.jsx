@@ -63,17 +63,11 @@ const Certificate = () => {
 
             <div className="py-5 w-full max-w-6xl">
                 <motion.div
-                    className="relative bg-white p-10 shadow-lg rounded-lg mx-auto mt-10 blur-sm"
+                    className="relative bg-white p-10 shadow-lg rounded-lg mx-auto mt-10 "
                     initial={{ opacity: 0, rotateY: 180 }}
                     animate={{ opacity: 1, rotateY: 0 }}
                     transition={{ duration: 1 }}
                     ref={certificateRef}
-                    style={{
-                        backgroundImage: `url(${hammer.src})`, // Accessing hammer's src property
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        
-                    }}
                 >
                     {user && (
                         <div className="relative w-full h-full p-8 border-4 border-dashed border-blue-500 rounded-lg">
