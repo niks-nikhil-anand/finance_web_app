@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, PDFDownloadLink , StyleSheet } from '@react-pdf/renderer';
 import axios from 'axios'; 
 import { FaArrowLeft } from 'react-icons/fa';
-
-
-
-  
 const styles = StyleSheet.create({
   page: {
     padding: 30,
@@ -61,14 +57,14 @@ const styles = StyleSheet.create({
 // Create Document Component
 const MyDocument = ({ agreementData }) => (
   <Document>
-    <Page size="A4" style={{ padding: 30, backgroundColor: '#E4E4E4' , textAlign: 'center' }}>
-      <View style={{ marginBottom: 10 }}>
-        <Text style={{ fontWeight: 'bold' }}>AGREEMENT</Text>
+    <Page size="A4" style={{ padding: 30, backgroundColor: '#E4E4E4'    }}>
+      <View style={{  }}>
+        <Text style={{ fontWeight: 'bold'  , marginBottom: 10 , textAlign: 'center' , marginBottom: 10 ,   borderBottomColor: 'black', borderBottomWidth: 1, borderStyle: 'double'   }}>AGREEMENT - LEGAL257 PRIVATE LIMITED</Text>
         <Text style={{ fontSize: 10, textAlign: 'center', marginBottom: 10 }}>
-          COMPANY NAME: LEGAL257 PRIVATE LIMITED
+          COMPANY NAME:- LEGAL257 PRIVATE LIMITED - ISO 9001:2015 R 24/7
         </Text>
-        <Text style={{ textAlign: 'center' }}>PARTNER</Text>
-        <View style={{ display: 'table', width: 'auto', marginBottom: 10 }}>
+        <Text style={{ textAlign: 'center' , marginBottom: 10 }}>PARTNER</Text>
+        <View style={{ display: 'table', width: 'auto', margin: 20 }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
               <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Partner Name</Text>
@@ -119,7 +115,7 @@ const MyDocument = ({ agreementData }) => (
       </View> 
 
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>1. Definitions</Text>
+        <Text style={[styles.header, styles.bold]}> Definitions</Text>
         <Text style={styles.content}>
           As used herein, the following terms shall have the meanings set forth below:
         </Text>
@@ -134,7 +130,7 @@ const MyDocument = ({ agreementData }) => (
         </Text>
       </View>
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>2. Appointment</Text>
+        <Text style={[styles.header, styles.bold]}> Appointment</Text>
         <Text style={styles.content}>
         Company hereby appoints Partner as its non-exclusive selling agent for the services in the
         territory, and Partner hereby accepts such appointment. Partner&quot;s sole authority shall be to
@@ -144,7 +140,7 @@ const MyDocument = ({ agreementData }) => (
         </Text>
       </View>
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>3. General Duties</Text>
+        <Text style={[styles.header, styles.bold]}> General Duties</Text>
         <Text style={styles.content}>
         Partner shall use his best efforts to promote the services and maximize the sale of the services
         in the territory. Partner shall also provide reasonable assistance to Company in promotional
@@ -153,21 +149,18 @@ const MyDocument = ({ agreementData }) => (
         </Text>
       </View>
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>4. Reserved Rights</Text>
+        <Text style={[styles.header, styles.bold]}> Reserved Rights</Text>
         <Text style={styles.content}>
         Company reserves the right to solicit/engage other Agents, Partners directly from businesses
       within the territory. Partner&quot;s task is to solicit customers from all potential businesses in the
       territory.
         </Text>
       </View>
-     
-
-     
     </Page>
 
     <Page size="A4" style={styles.page}>
     <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>5. Conflict of Interest</Text>
+        <Text style={[styles.header, styles.bold]}> Conflict of Interest</Text>
         <Text style={styles.content}>
         Partner warrants to Company that it does not currently represent or promote any Services that
         compete with the Company&quot;s Services. During the term of this Agreement, Partner shall not
@@ -176,7 +169,7 @@ const MyDocument = ({ agreementData }) => (
         </Text>
       </View>
     <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>6. Independent Contractor</Text>
+        <Text style={[styles.header, styles.bold]}> Independent Contractor</Text>
         <Text style={styles.content}>
         Partner is an independent contractor, and nothing contained in this Agreement shall be
         construed to give either party the power to direct and control the day-to-day activities of the other, (ii)
@@ -191,7 +184,7 @@ const MyDocument = ({ agreementData }) => (
       </View>
 
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>7. Indemnification by Partner</Text>
+        <Text style={[styles.header, styles.bold]}> Indemnification by Partner</Text>
         <Text style={styles.content}>
         Partner shall indemnify and hold Company free and harmless from any and all claims, damages
         or lawsuits (including reasonable attorney&quot;s fees) arising out of negligence or malfeasant acts
@@ -201,7 +194,7 @@ const MyDocument = ({ agreementData }) => (
 
 
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}>8. Commission</Text>
+        <Text style={[styles.header, styles.bold]}> Commission</Text>
         <Text style={styles.content}>
         A. Sole Compensation
         </Text>
@@ -238,40 +231,128 @@ const MyDocument = ({ agreementData }) => (
 
 
         <Text style={styles.content}>
-        D. Monthly Statements       </Text>
+        D. Monthly Statements</Text>
         <Text style={styles.content}>
         The Partner shall submit to the company the monthly statements of commissions due and
-      payable to Partner under the terms of this Agreement.
+        payable to Partner under the terms of this Agreement.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Trademarks and Tradenames</Text>
+        <Text style={styles.content}>
+        During the term of this Agreement, Partner shall have the right to indicate to the public that it
+      is an authorized Partner of Company&apos;s Services. Nothing herein shall grant Partner any right,
+      title, or interest in Company&apos;s Trademarks. At no time during or after the term of this
+      Agreement shall Partner challenge or assist others to challenge Company&apos;s Trademarks or the registration thereof or attempt to register any trademarks, marks or trade names confusingly
+      similar to those of Company.
+        </Text>
+      </View>
+      </Page>
+    <Page size="A4" style={styles.page}>
+    <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}> Non-Compete</Text>
+        <Text style={styles.content}>
+        For a period of refer page 1 Table after the Partner is no longer in agreement with the
+      Company, the Partner will not, directly or indirectly, either as proprietor, stockholder, partner,
+      officer, employee or otherwise, distribute, sell, offer to sell, or solicit any orders for the
+      purchase or distribution of any products or services which are similar to those distributed, sold
+      or provided by the Company.
+
+        </Text>
+      </View>
+    <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Limitation on Liability</Text>
+        <Text style={styles.content}>
+        . In the event of termination by either party in accordance with any of the provisions of this
+      Agreement, neither party shall be liable to the other, because of the termination for
+      compensation, reimbursement or damages on account of the loss of prospective profits or
+      anticipated sales or on account of expenditures or commitments in connection with the
+      business or goodwill of Company or Partner.
+
 
         </Text>
       </View>
 
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Confidentiality</Text>
+        <Text style={styles.content}>
+        Partner acknowledges that by reason of its relationship to Company hereunder it will have access to certain information and materials concerning Company&apos;s business plans, customers,
+        technology, and products/services that is confidential and of substantial value to Company,
+        which value would be impaired if such information were disclosed to third parties. Partner
+        agrees that it shall not use in any way for its own account or the account of any third party, nor
+        disclose to any third party, any such confidential information revealed to it by the Company.
+        Company shall advise Partner whether or not it considers any particular information or
+        materials to be confidential. Partner shall not publish any description of the Products/Services
+        beyond the description published by Company and without the prior written consent of the
+        Company. In the event of termination of this Agreement, there shall be no use or disclosure by
+        Partner of any confidential information of Company
+        </Text>
+      </View>
+
+
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Governing Law and Jurisdiction</Text>
+        <Text style={styles.content}>
+        This Agreement will be governed by and construed in accordance with the laws of Republic of
+        India. Each Party irrevocably and unconditionally submits to the exclusive jurisdiction of the
+        [High Court]
+        </Text>
+        
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Entire Agreement</Text>
+        <Text style={styles.content}>
+        This Agreement sets forth the entire agreement and understanding of the parties relating to
+      the subject matter herein and supersedes any prior discussions or agreements between them.
+      No modification of or amendment to neither this Agreement, nor any waiver of any rights
+      under this Agreement to be done unilaterally and it shall be effective unless in writing signed
+      by the party to be charged.
+
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Notices</Text>
+        <Text style={styles.content}>
+        Any notices required or permitted by this Agreement shall be deemed given if sent by certified
+        mail, postage prepaid, return receipt requested or by recognized overnight delivery service:
+        </Text>
+        <Text style={styles.content}>
+        Uttar Khatowal Nagaon , Assam , 782124 IN
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Non-Assignability and Binding Effect</Text>
+        <Text style={styles.content}>
+        A mutually agreed consideration for Company&apos;s entering into this Agreement is the reputation,
+      business standing, and goodwill already honoured and enjoyed by Company under its present
+      ownership, and, accordingly, Partner agrees that its rights and obligations under this
+      Agreement may not be transferred or assigned directly or indirectly. Subject to the foregoing,
+      this Agreement shall be binding upon and insure to the benefit of the parties hereto, their
+      successors and assigns.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Severability</Text>
+        <Text style={styles.content}>
+        If any provision of this Agreement is held to be invalid by a court of competent jurisdiction,
+        then the remaining provisions shall nevertheless remain in full force and effect.
+        </Text>
+      </View>
       </Page>
 
       
 
     <Page size="A4" style={styles.page}>
+      
+
+     
       <View style={styles.section}>
-        <Text style={[styles.header, styles.bold, styles.underline]}>BETWEEN</Text>
+        <Text style={[styles.header, styles.bold]}> Applicable Law</Text>
         <Text style={styles.content}>
-          <Text style={styles.bold}>Legal257 PRIVATE LIMITED</Text> (from this point will be known as
-          <Text style={styles.bold}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
-          its corporate office at <Text style={styles.bold}>H.NO-9&10 S/F, C-1 BLK RAMA PARK UTTAM NAGAR NEAR METRO STATION DELHI New Delhi DL 110059 IN</Text>, hereinafter referred to as the “Franchiser” which expression shall unless repugnant to the context or meaning thereof include its successors and assigns of <Text style={styles.bold}>ONE PART</Text>.
+        This agreement is governed by and constructed in accordance with the laws of India.
+
         </Text>
       </View>
-
-      <View style={styles.section}>
-        <Text style={styles.content}>
-          And
-        </Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.content}>
-          <Text style={styles.bold}>NAZRUL ISLAM</Text> is a proprietor and having his/her office at <Text style={styles.bold}>UTTAR KHATOWAL PO UTTAR KHATOWAL PS RUPAHIHAT NAGAON ASSAM PIN 782125, NAGAON, Assam: 782125, India</Text> and residence address at <Text style={styles.bold}>Juria Road Rupahi Near L.P School Kali Dinga Pam, NAGAON, Assam: 782124, India</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>BCP</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
-        </Text>
-      </View>
-
       <View style={styles.section}>
         <Text style={[styles.header, styles.bold]}> Dispute Resolution and Jurisdiction</Text>
         <Text style={styles.content}>
@@ -304,6 +385,43 @@ const MyDocument = ({ agreementData }) => (
         </Text>
       </View>
 
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}> Dispute Resolution and Jurisdiction</Text>
+        <Text style={styles.content}>
+        1. Any dispute, controversy or claims arising out of or relating to this Agreement or the
+        breach, termination or invalidity thereof, shall be settled by arbitration in accordance
+        with the provisions of the [Indian] Arbitration and Conciliation Act,
+
+        </Text>
+        <Text style={styles.content}>
+        2. The arbitral tribunal shall be composed of three arbitrators, one arbitrator appointed by
+        Loan Lenders a second arbitrator appointed by “Franchisee” and a third arbitrator to be
+        appointed by such arbitrators. This Agreement has been executed on the date set forth
+        herein in two (2) copies of which the Parties have taken one
+        </Text>
+        <Text style={styles.content}>
+        3. The place of arbitration shall be at Delhi for any award whether interim or
+        </Text>
+        <Text style={styles.content}>
+        4. The arbitral procedure shall be conducted in the English language, and any award or
+        awards shall be rendered in English. The procedural law of the arbitration shall be
+        Indian
+        </Text>
+        <Text style={styles.content}>
+        5. The award of the arbitral tribunal shall be final, conclusive and binding upon the Parties,
+        and the provisions of the [Indian] Arbitration and Conciliation Act, 1996 shall
+
+        </Text>
+        <Text style={styles.content}>
+        6. The rights and obligations of the Parties under, or under, this Clause, including the
+        arbitration agreement in this Clause, shall be governed by and be subject to Indian law,
+        and the agreement shall be subject to the exclusive jurisdiction of the courts at
+        </Text>
+      </View>
+
+
+      
+
       <View style={styles.footer}>
         <Text style={styles.content}>
           Address: Uttar Khatowal Nagaon , Assam , 782124 IN
@@ -318,6 +436,19 @@ const MyDocument = ({ agreementData }) => (
         Official No. +91 94352 66783 
         </Text>
       </View>
+
+
+      <View style={styles.section}>
+        <Text style={styles.content}>
+        This Agreement has been executed on the date set forth herein in two (2) copies of
+        which the Parties have taken one each.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.content}>
+        Legal257 ADVISORY PRIVATE LIMITED - {agreementData?.name}
+        </Text>
+      </View>
     </Page>
   </Document>
 );
@@ -329,7 +460,7 @@ const AgreementComponent = () =>  {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/cookies'); // Replace with your API endpoint
+        const response = await axios.get('/api/cookies'); 
         setAgreementData(response.data[0]);
       } catch (error) {
         setError('Error fetching agreement data.');

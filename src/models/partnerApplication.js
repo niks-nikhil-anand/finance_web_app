@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// Define Schema
 const partnerApplicationSchema = new mongoose.Schema({
   name: { 
     type: String, 
