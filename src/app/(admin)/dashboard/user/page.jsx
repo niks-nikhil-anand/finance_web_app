@@ -248,9 +248,15 @@ const JobApplicationsTable = () => {
                     }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {["Inactive", "Active"].map((services) => (
-                      <option key={services} value={services}>
-                        {services}
+                    {[
+                      "GST/ITR Services",
+                      "Fintech Services",
+                      "Finance Services-Loan",
+                      "All Services",
+                      "JonoJivan Micro Loan",
+                    ].map((service) => (
+                      <option key={service} value={service}>
+                        {service}
                       </option>
                     ))}
                   </select>
