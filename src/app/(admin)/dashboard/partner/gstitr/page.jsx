@@ -51,7 +51,6 @@ const PartnerLoanTable = () => {
           <thead>
             <tr className="bg-purple-100">
               <th className="py-2 px-4 border border-gray-400">Name</th>
-              <th className="py-2 px-4 border border-gray-400">Username</th>
               <th className="py-2 px-4 border border-gray-400">Status</th>
               <th className="py-2 px-4 border border-gray-400">Email</th>
               <th className="py-2 px-4 border border-gray-400">Mobile Number</th>
@@ -67,7 +66,6 @@ const PartnerLoanTable = () => {
             {applications.map((application, index) => (
               <tr key={index} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border border-gray-300">{application.name || 'Not Available'}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.username || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.status}
