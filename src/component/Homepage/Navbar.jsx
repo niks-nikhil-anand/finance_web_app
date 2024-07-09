@@ -190,7 +190,7 @@ const Navbar = () => {
           <Link href="/refer" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Refer & Earn</Link>
           <Link href="/applyjob" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Job - Apply Now</Link>
           <Link href="/manualPayment" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Manual Payment</Link>
-          <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Fintech Banking</Link>
+          <Link href="/commingSoon" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Fintech Banking</Link>
           <div className="relative">
             <button
               onClick={toggleSubMenu(setMicroLoanOpen, microLoanOpen)}
