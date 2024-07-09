@@ -110,7 +110,7 @@ const MyDocument = ({ agreementData }) => (
 
       <View style={styles.section}>
         <Text style={styles.content}>
-          <Text style={styles.bold}>{agreementData?.name}</Text> is a proprietor and having his/her office at <Text style={styles.bold}>{agreementData?.shopAddress}</Text> and residence address at <Text style={styles.bold}>{agreementData?.city} {agreementData?.state} , {agreementData?.pinCode}</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>BCP</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
+          <Text style={styles.bold}>{agreementData?.name}</Text> is a proprietor and having his/her office at <Text style={styles.bold}>{agreementData?.shopAddress}</Text> and residence address at <Text style={styles.bold}>{agreementData?.city} {agreementData?.state} , {agreementData?.pinCode}</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>{agreementData?.role}</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
         </Text>
       </View> 
 
