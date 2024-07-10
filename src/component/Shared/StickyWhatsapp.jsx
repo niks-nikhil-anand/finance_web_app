@@ -11,7 +11,7 @@ export default function WhatsappIcon() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Link href="https://wa.link/248lpp" target="_blank"
+      <Link href="https://wa.link/u95toi" target="_blank"
           className="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 focus:outline-none"
           aria-label="WhatsApp"
         >

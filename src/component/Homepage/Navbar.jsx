@@ -183,6 +183,7 @@ const Navbar = () => {
                 <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Photo Gallery</Link>
                 <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Video Gallery</Link>
                 <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Partner Testimonial</Link>
+                <Link href="/qrCodeCollections" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">QR Code </Link>
               </div>
             </motion.div>
           </div>
