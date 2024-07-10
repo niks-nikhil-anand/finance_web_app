@@ -57,144 +57,148 @@ const styles = StyleSheet.create({
 // Create Document Component
 const MyDocument = ({ agreementData }) => (
   <Document>
-    <Page size="A4" style={{ padding: 30, backgroundColor: '#FFFFFF'    }}>
-      <View style={{  }}>
-        <Text style={{ fontWeight: 'bold'  , marginBottom: 10 , textAlign: 'center' , marginBottom: 10 ,   borderBottomColor: 'black', borderBottomWidth: 1, borderStyle: 'double'   }}>AGREEMENT - LEGAL257 PRIVATE LIMITED</Text>
-        <Text style={{ fontSize: 10, textAlign: 'center', marginBottom: 10 }}>
-          COMPANY NAME:- LEGAL257 PRIVATE LIMITED - ISO 9001:2015 R 24/7
-        </Text>
-        <Text style={{ textAlign: 'center' , marginBottom: 10 }}>PARTNER</Text>
-        <View style={{ display: 'table', width: 'auto', margin: 20 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Partner Name</Text>
+      <Page size="A4" style={{ padding: 30, backgroundColor: '#FFFFFF'    }}>
+        <View style={{  }}>
+          <Text style={{ fontWeight: 'bold'  , marginBottom: 10 , textAlign: 'center' , marginBottom: 10 ,   borderBottomColor: 'black', borderBottomWidth: 1, borderStyle: 'double'   }}>AGREEMENT - LEGAL257 PRIVATE LIMITED</Text>
+          <Text style={{ fontSize: 10, textAlign: 'center', marginBottom: 10 }}>
+            COMPANY NAME:- LEGAL257 PRIVATE LIMITED - ISO 9001:2015 R 24/7
+          </Text>
+          <Text style={{ textAlign: 'center' , marginBottom: 10 }}>PARTNER</Text>
+          <View style={{ display: 'table', width: 'auto', margin: 20 }}>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Partner Name</Text>
+              </View>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>ID No.</Text>
+              </View>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Services</Text>
+              </View>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Mobile Number</Text>
+              </View>
             </View>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>ID No.</Text>
-            </View>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Services</Text>
-            </View>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10, fontWeight: 'bold' }}>Mobile Number</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.name}</Text>
+              </View>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10 }}>#{agreementData?.role}-{agreementData?.username}</Text>
+              </View>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.services}</Text>
+              </View>
+              <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
+                <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.mobileNumber}</Text>
+              </View>
             </View>
           </View>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.name}</Text>
-            </View>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10 }}>#{agreementData?.role}-{agreementData?.username}</Text>
-            </View>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.services}</Text>
-            </View>
-            <View style={{ width: '25%', borderStyle: 'solid', borderWidth: 1 }}>
-              <Text style={{ margin: 5, fontSize: 10 }}>{agreementData?.mobileNumber}</Text>
-            </View>
-          </View>
+          <Text style={{ fontSize: 12, textAlign: 'center', marginBottom: 10, fontWeight: 'bold', textDecoration: 'underline' }}>BETWEEN</Text>
+          <Text style={{ fontSize: 11, marginBottom: 10 }}>
+            <Text style={{ fontWeight: 'bold' }}>Legal257 PRIVATE LIMITED</Text> (from this point will be known as
+            <Text style={{ fontWeight: 'bold' }}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
+            its corporate office at <Text style={{ fontWeight: 'bold' }}>BISWANATH CHARIALI ,SONITPUR ASSAM - 784176</Text>, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
+          </Text>
         </View>
-        <Text style={{ fontSize: 12, textAlign: 'center', marginBottom: 10, fontWeight: 'bold', textDecoration: 'underline' }}>BETWEEN</Text>
-        <Text style={{ fontSize: 11, marginBottom: 10 }}>
-          <Text style={{ fontWeight: 'bold' }}>Legal257 PRIVATE LIMITED</Text> (from this point will be known as
-          <Text style={{ fontWeight: 'bold' }}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
-          its corporate office at <Text style={{ fontWeight: 'bold' }}>BISWANATH CHARIALI ,SONITPUR ASSAM - 784176</Text>, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
-        </Text>
-      </View>
 
-      <View style={styles.section}>
-        <Text style={styles.content}>
-          And
-        </Text>
-      </View>
+        <View style={styles.section}>
+          <Text style={styles.content}>
+            And
+          </Text>
+        </View>
 
-      <View style={styles.section}>
-        <Text style={styles.content}>
-          <Text style={styles.bold}>{agreementData?.name}</Text> is a proprietor and having his/her office at <Text style={styles.bold}>{agreementData?.shopAddress}</Text> and residence address at <Text style={styles.bold}>{agreementData?.city} {agreementData?.state} , {agreementData?.pinCode}</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>{agreementData?.role}</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
-        </Text>
-      </View> 
+        <View style={styles.section}>
+          <Text style={styles.content}>
+            <Text style={styles.bold}>{agreementData?.name}</Text> is a proprietor and having his/her office at <Text style={styles.bold}>{agreementData?.shopAddress}</Text> and residence address at <Text style={styles.bold}>{agreementData?.city} {agreementData?.state} , {agreementData?.pinCode}</Text> from now on referred to as the “<Text style={styles.bold}>Partner</Text>” and “<Text style={styles.bold}>{agreementData?.role}</Text>” which expression unless repugnant to the context or meaning thereof be deemed to include, legal representative, executors, administrators, successors and permitted assigns of the other PART, each a party and collectively referred to as parties.
+          </Text>
+        </View> 
 
-      <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}> Definitions</Text>
-        <Text style={styles.content}>
-          As used herein, the following terms shall have the meanings set forth below:
-        </Text>
-        <Text style={styles.content}>
-          1. <Text style={styles.bold}>Services</Text> shall mean the Company&quot;s services to be sold by Partner and such services as may be communicated by the Company in writing to the Partner from time to time.
-        </Text>
-        <Text style={styles.content}>
-          2. <Text style={styles.bold}>Territory</Text> shall be allocated during the time of engagement by the Company in writing to the Partner. Any change in “Territory” shall be communicated by the Company in writing to the Partner from time to time.
-        </Text>
-        <Text style={styles.content}>
-          2. <Text style={styles.bold}>Partner</Text> will have the title of Partner.
-        </Text>
-      </View>
-      <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}> Appointment</Text>
-        <Text style={styles.content}>
-        Company hereby appoints Partner as its non-exclusive selling agent for the services in the
-        territory, and Partner hereby accepts such appointment. Partner&quot;s sole authority shall be to
-        solicit customers for the services in the territory in accordance with the terms of this
-        agreement. Partner shall not have the authority to make any commitments whatsoever on
-        behalf of Company.
-        </Text>
-      </View>
-      <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}> General Duties</Text>
-        <Text style={styles.content}>
-        Partner shall use his best efforts to promote the services and maximize the sale of the services
-        in the territory. Partner shall also provide reasonable assistance to Company in promotional
-        activities in the territory. Partner will assist the company by taking part in all promotional
-        events, use the marketing inputs judiciously for maximizing orders for the company.
-        </Text>
-      </View>
-      <View style={styles.section}>
-        <Text style={[styles.header, styles.bold]}> Reserved Rights</Text>
-        <Text style={styles.content}>
-        Company reserves the right to solicit/engage other Agents, Partners directly from businesses
-      within the territory. Partner&quot;s task is to solicit customers from all potential businesses in the
-      territory.
-        </Text>
-      </View>
-    </Page>
+        <View style={styles.section}>
+          <Text style={[styles.header, styles.bold]}> Definitions</Text>
+          <Text style={styles.content}>
+            As used herein, the following terms shall have the meanings set forth below:
+          </Text>
+          <Text style={styles.content}>
+            1. <Text style={styles.bold}>Services</Text> shall mean the Company&quot;s services to be sold by Partner and such services as may be communicated by the Company in writing to the Partner from time to time.
+          </Text>
+          <Text style={styles.content}>
+            2. <Text style={styles.bold}>Territory</Text> shall be allocated during the time of engagement by the Company in writing to the Partner. Any change in “Territory” shall be communicated by the Company in writing to the Partner from time to time.
+          </Text>
+          <Text style={styles.content}>
+            2. <Text style={styles.bold}>Partner</Text> will have the title of Partner.
+          </Text>
+        </View>
+        <View style={styles.section}>
+          <Text style={[styles.header, styles.bold]}> Appointment</Text>
+          <Text style={styles.content}>
+          Company hereby appoints Partner as its non-exclusive selling agent for the services in the
+          territory, and Partner hereby accepts such appointment. Partner&quot;s sole authority shall be to
+          solicit customers for the services in the territory in accordance with the terms of this
+          agreement. Partner shall not have the authority to make any commitments whatsoever on
+          behalf of Company.
+          </Text>
+        </View>
+        <View style={styles.section}>
+          <Text style={[styles.header, styles.bold]}> General Duties</Text>
+          <Text style={styles.content}>
+          Partner shall use his best efforts to promote the services and maximize the sale of the services
+          in the territory. Partner shall also provide reasonable assistance to Company in promotional
+          activities in the territory. Partner will assist the company by taking part in all promotional
+          events, use the marketing inputs judiciously for maximizing orders for the company.
+          </Text>
+        </View>
+        <View style={styles.section}>
+          <Text style={[styles.header, styles.bold]}> Reserved Rights</Text>
+          <Text style={styles.content}>
+          Company reserves the right to solicit/engage other Agents, Partners directly from businesses
+        within the territory. Partner&quot;s task is to solicit customers from all potential businesses in the
+        territory.
+          </Text>
+        </View>
+      </Page>
 
-    <Page size="A4" style={{ pageSize: "A4" }}>
-    <View style={{ marginBottom: "20px" }}>
-        <Text style={{ fontWeight: "bold", fontSize: "16px" }}> Conflict of Interest</Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+    <Page size="A4" style={{ padding: 30, backgroundColor: '#FFFFFF'    }}>
+    <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}> Conflict of Interest</Text>
+        <Text style={styles.content}>
         Partner warrants to Company that it does not currently represent or promote any Services that
-        compete with the Company&apos;s Services. During the term of this Agreement, Partner shall not
-        represent, promote or otherwise try to sell within the Territory any Services that, in Company&apos;s
+        compete with the Company&quot;s Services. During the term of this Agreement, Partner shall not
+        represent, promote or otherwise try to sell within the Territory any Services that, in Company&quot;s
         judgment, compete with the Services covered by this Agreement.
         </Text>
       </View>
-    <View style={{ marginBottom: "20px" }}>
-        <Text style={{ fontWeight: "bold", fontSize: "16px" }}> Independent Contractor</Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+    <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}> Independent Contractor</Text>
+        <Text style={styles.content}>
         Partner is an independent contractor, and nothing contained in this Agreement shall be
         construed to give either party the power to direct and control the day-to-day activities of the other, (ii)
         constitute the parties as partners, joint ventures, co-owners or otherwise, or (iii) allow Partner
         to create or assume any obligation on behalf of Company for any purpose whatsoever. Partner
         is not an employee of Company and is not entitled to any employee benefits. Partner shall be
         responsible for paying all income taxes and other taxes charged to Partner on amounts earned
-        hereunder. All financial and other obligations associated with Partner&apos;s business are the sole
+        hereunder. All financial and other obligations associated with Partner&quot;s business are the sole
         responsibility of Partner.
+
         </Text>
       </View>
-    <View style={{ marginBottom: "20px" }}>
-        <Text style={{ fontWeight: "bold", fontSize: "16px" }}> Indemnification by Partner</Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}> Indemnification by Partner</Text>
+        <Text style={styles.content}>
         Partner shall indemnify and hold Company free and harmless from any and all claims, damages
-        or lawsuits (including reasonable attorney&apos;s fees) arising out of negligence or malfeasant acts
+        or lawsuits (including reasonable attorney&quot;s fees) arising out of negligence or malfeasant acts
         of Partner or misrepresentation or breach of any obligations under this agreement.
         </Text>
       </View>
-    <View style={{ marginBottom: "20px" }}>
-        <Text style={{ fontWeight: "bold", fontSize: "16px" }}> Commission</Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+
+
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}> Commission</Text>
+        <Text style={styles.content}>
         A. Sole Compensation
         </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+        <Text style={styles.content}>
         The Company shall pay the Partner a commission at such rate as may be communicated by the
         Company in writing to the Partner, for whole or part of the services hereto, based on the
         Maximum Retailing Price of the product as fixed by the company on every new order. This
@@ -202,10 +206,12 @@ const MyDocument = ({ agreementData }) => (
         right to revise the rate of commission from time to time and the same shall be intimated to the
         Partner in writing by the Company. (Through any mode verbal or written)
         </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+
+
+        <Text style={styles.content}>
        B. Basis of Commission
         </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+        <Text style={styles.content}>
         The Commission shall apply to all sales orders from customers solicited by Partner. (Customers
         defined as an individual or a company who have bought the product/services from the Partner
         for their own use.) No commissions shall be paid on (i) orders solicited directly by Company
@@ -214,24 +220,26 @@ const MyDocument = ({ agreementData }) => (
         pertaining to the order is received. The company reserves the right to change the commission /
         prices on products as and when required.
         </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
-        C. Time of Payment
-        </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+
+
+        <Text style={styles.content}>
+        C.Time of Payment        </Text>
+        <Text style={styles.content}>
         The commission on all PAID ORDERS shall be due and payable within ten (10) working
         days after the Partner raises invoice.
         </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
-        D. Monthly Statements
-        </Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+
+
+        <Text style={styles.content}>
+        D. Monthly Statements</Text>
+        <Text style={styles.content}>
         The Partner shall submit to the company the monthly statements of commissions due and
         payable to Partner under the terms of this Agreement.
         </Text>
       </View>
-      <View style={{ marginBottom: "20px" }}>
-        <Text style={{ fontWeight: "bold", fontSize: "16px" }}>Trademarks and Tradenames</Text>
-        <Text style={{ fontFamily: "Arial, sans-serif", fontSize: "14px" }}>
+      <View style={styles.section}>
+        <Text style={[styles.header, styles.bold]}>Trademarks and Tradenames</Text>
+        <Text style={styles.content}>
         During the term of this Agreement, Partner shall have the right to indicate to the public that it
       is an authorized Partner of Company&apos;s Services. Nothing herein shall grant Partner any right,
       title, or interest in Company&apos;s Trademarks. At no time during or after the term of this
@@ -239,12 +247,8 @@ const MyDocument = ({ agreementData }) => (
       similar to those of Company.
         </Text>
       </View>
-</Page>
-
-
-
-
-    <Page size="A4" style={styles.page}>
+      </Page>
+      <Page size="A4" style={{ padding: 30, backgroundColor: '#FFFFFF'    }}>
     <View style={styles.section}>
         <Text style={[styles.header, styles.bold]}> Non-Compete</Text>
         <Text style={styles.content}>
@@ -338,8 +342,8 @@ const MyDocument = ({ agreementData }) => (
 
       
 
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
+      <Page size="A4" style={{ padding: 30, backgroundColor: '#FFFFFF'    }}>
+       <View style={styles.section}>
         <Text style={[styles.header, styles.bold]}> Applicable Law</Text>
         <Text style={styles.content}>
         This agreement is governed by and constructed in accordance with the laws of India.
@@ -443,8 +447,6 @@ const MyDocument = ({ agreementData }) => (
         </Text>
       </View>
     </Page>
-
-
   </Document>
 );
 

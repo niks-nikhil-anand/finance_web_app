@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
@@ -12,25 +12,25 @@ const JobApplicationsTable = () => {
 
   const notifyLoading = () => {
     toast.info("Submitting...", {
-      position: "bottom-right"
+      position: "bottom-right",
     });
   };
 
   const notifyDelete = () => {
     toast.success("Deleted successfully!", {
-      position: "bottom-right"
+      position: "bottom-right",
     });
   };
 
   const notifySuccess = () => {
     toast.success("Updated successfully!", {
-      position: "bottom-right"
+      position: "bottom-right",
     });
   };
 
   const notifyError = (message) => {
     toast.error(`Error: ${message}`, {
-      position: "bottom-right"
+      position: "bottom-right",
     });
   };
 
@@ -94,7 +94,7 @@ const JobApplicationsTable = () => {
   const handleRoleChange = async (userId, role, status, services) => {
     try {
       notifyLoading();
-      await axios.post('/api/updateRole', { userId, role, status, services });
+      await axios.post("/api/updateRole", { userId, role, status, services });
       setApplications((prevApplications) =>
         prevApplications.map((application) =>
           application._id === userId ? { ...application, role, status, services } : application
@@ -115,14 +115,14 @@ const JobApplicationsTable = () => {
     formData.append("userId", editingApplication._id);
 
     try {
-      const response = await axios.post("/api/uploadFile", formData, {
+      const response = await axios.post("/api/admin/uploadFile", formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       setEditingApplication((prevApplication) => ({
         ...prevApplication,
-        [fieldName]: response.data.fileUrl
+        [fieldName]: response.data.fileUrl,
       }));
       notifySuccess();
     } catch (error) {
@@ -132,14 +132,19 @@ const JobApplicationsTable = () => {
   };
 
   const handleFileDelete = async (fieldName) => {
+    
+    const formData = new FormData();
+    formData.append("fieldName", fieldName);
+    formData.append("userId", editingApplication._id);
     try {
-      await axios.post("/api/deleteFile", {
-        userId: editingApplication._id,
-        field: fieldName
+      const response = await axios.post("/api/admin/deleteFile", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       setEditingApplication((prevApplication) => ({
         ...prevApplication,
-        [fieldName]: null
+        [fieldName]: null,
       }));
       notifySuccess();
     } catch (error) {
@@ -235,182 +240,189 @@ const JobApplicationsTable = () => {
                     ))}
                   </select>
                 </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <select
-                    value={application.services}
-                    onChange={(e) =>
-                      handleRoleChange(
-                        application._id,
-                        application.role,
-                        application.status,
-                        e.target.value
-                      )
-                    }
-                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                  >
-                    {[
-                      "GST/ITR Services",
-                      "Fintech Services",
-                      "Finance Services-Loan",
-                      "All Services",
-                      "JonoJivan Micro Loan",
-                    ].map((service) => (
-                      <option key={service} value={service}>
-                        {service}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <select
-                    value={application.status}
-                    onChange={(e) =>
-                      handleRoleChange(
-                        application._id,
-                        application.role,
-                        e.target.value,
-                        application.services
-                      )
-                    }
-                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                  >
-                    {["Active", "Inactive"].map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.city}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.state}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.pinCode}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.wantPartnerType}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.interest}</td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {editingApplication && editingApplication._id === application._id ? (
-                    <div>
-                      {editingApplication.aadhaarCard ? (
-                        <div className="flex flex-col items-center">
-                          <button
-                            onClick={() => window.open(editingApplication.aadhaarCard, "_blank")}
-                            className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
-                          >
-                            View Document
-                          </button>
-                          <button
-                            onClick={() => handleFileDelete("aadhaarCard")}
-                            className="py-1 px-2 bg-red-500 text-white rounded-md mb-2"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ) : (
-                        <input
-                          type="file"
-                          onChange={(e) => handleFileUpload(e, "aadhaarCard")}
-                          className="py-1 px-2 border border-gray-300 rounded-md"
-                        />
-                      )}
-                    </div>
-                  ) : (
-                    application.aadhaarCard ? (
-                      <button
-                        onClick={() => window.open(application.aadhaarCard, "_blank")}
-                        className="py-1 px-2 bg-blue-500 text-white rounded-md"
-                      >
-                        View Document
-                      </button>
-                    ) : (
-                      "No Document Available"
-                    )
-                  )}
-                </td>
-                {["panCard", "bankPassbook", "shopPhotoCopy", "msmeCertificate", "tradeLicense", "photoCopy"].map((doc) => (
-                  <td key={doc} className="py-2 px-4 border border-gray-300">
-                    {editingApplication && editingApplication._id === application._id ? (
-                      <div>
-                        {editingApplication[doc] ? (
-                          <div className="flex flex-col items-center">
-                            <button
-                              onClick={() => window.open(editingApplication[doc], "_blank")}
-                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
-                            >
-                              View Document
-                            </button>
-                            <button
-                              onClick={() => handleFileDelete(doc)}
-                              className="py-1 px-2 bg-red-500 text-white rounded-md mb-2"
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        ) : (
-                          <input
-                            type="file"
-                            onChange={(e) => handleFileUpload(e, doc)}
-                            className="py-1 px-2 border border-gray-300 rounded-md"
-                          />
-                        )}
-                      </div>
-                    ) : (
-                      application[doc] ? (
-                        <button
-                          onClick={() => window.open(application[doc], "_blank")}
-                          className="py-1 px-2 bg-blue-500 text-white rounded-md"
+<td className="py-2 px-4 border border-gray-300">
+<select
+  value={application.services}
+  onChange={(e
+  ) =>
+    handleRoleChange(
+    application._id,
+    application.role,
+    application.status,
+    e.target.value
+    )
+    }
+    className="py-1 px-2 border border-gray-300 rounded-md focus
+    focus
+    focus
+    "
+    >
+    {[
+    "GST/ITR Services",
+    "Fintech Services",
+    "Finance Services-Loan",
+    "All Services",
+    "JonoJivan Micro Loan",
+    ].map((service) => (
+    <option key={service} value={service}>
+    {service}
+    </option>
+    ))}
+    </select>
+    </td>
+    <td className="py-2 px-4 border border-gray-300">
+    <select
+    value={application.status}
+    onChange={(e) =>
+    handleRoleChange(
+    application._id,
+    application.role,
+    e.target.value,
+    application.services
+    )
+    }
+    className="py-1 px-2 border border-gray-300 rounded-md focus
+    focus
+    focus
+    "
+    >
+    {["Active", "Inactive"].map((status) => (
+    <option key={status} value={status}>
+    {status}
+    </option>
+    ))}
+    </select>
+    </td>
+    <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
+    <td className="py-2 px-4 border border-gray-300">{application.city}</td>
+    <td className="py-2 px-4 border border-gray-300">{application.state}</td>
+    <td className="py-2 px-4 border border-gray-300">{application.pinCode}</td>
+    <td className="py-2 px-4 border border-gray-300">{application.wantPartnerType}</td>
+    <td className="py-2 px-4 border border-gray-300">{application.interest}</td>
+    <td className="py-2 px-4 border border-gray-300">
+    {editingApplication && editingApplication._id === application._id ? (
+    <div>
+    {editingApplication.aadhaarCard ? (
+    <div className="flex flex-col items-center">
+    <button
+    onClick={() => window.open(editingApplication.aadhaarCard, "_blank")}
+    className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+    >
+    View Document
+    </button>
+    <button
+    onClick={() => handleFileDelete("aadhaarCard")}
+    className="py-1 px-2 bg-red-500 text-white rounded-md mb-2"
+    >
+    Delete
+    </button>
+    </div>
+    ) : (
+    <input
+    type="file"
+    onChange={(e) => handleFileUpload(e, "aadhaarCard")}
+    className="py-1 px-2 border border-gray-300 rounded-md"
+    />
+    )}
+    </div>
+    ) : (
+    application.aadhaarCard ? (
+    <button
+    onClick={() => window.open(application.aadhaarCard, "_blank")}
+    className="py-1 px-2 bg-blue-500 text-white rounded-md"
+    >
+    View Document
+    </button>
+    ) : (
+    "No Document Available"
+    )
+    )}
+    </td>
+    {["panCard", "bankPassbook", "shopPhotoCopy", "msmeCertificate", "tradeLicense", "photoCopy"].map((doc) => (
+    <td key={doc} className="py-2 px-4 border border-gray-300">
+    {editingApplication && editingApplication._id === application._id ? (
+    <div>
+    {editingApplication[doc] ? (
+    <div className="flex flex-col items-center">
+    <button
+    onClick={() => window.open(editingApplication[doc], "_blank")}
+    className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+    >
+    View Document
+    </button>
+    <button
+    onClick={() => handleFileDelete(doc)}
+    className="py-1 px-2 bg-red-500 text-white rounded-md mb-2"
+    >
+    Delete
+    </button>
+    </div>
+    ) : (
+    <input
+    type="file"
+    onChange={(e) => handleFileUpload(e, doc)}
+    className="py-1 px-2 border border-gray-300 rounded-md"
+    />
+    )}
+    </div>
+    ) : (
+    application[doc] ? (
+    <button
+    onClick={() => window.open(application[doc], "_blank")}
+    className="py-1 px-2 bg-blue-500 text-white rounded-md"
+    >
+    View Document
+    </button>
+    ) : (
+    "No Document Available"
+    )
+    )}
+    </td>
+    ))}
+    <td className="py-2 px-4 border border-gray-300">{application._id }</td>
+    <td className="py-2 px-4 border border-gray-300">{application.username}</td>
+    <td className="py-2 px-4 border border-gray-300">{application.branch}</td>
+    <td className="py-2 px-4 border border-gray-300">
+    {editingApplication && editingApplication._id === application._id ? (
+    <div className="flex space-x-2">
+    <button
+                          onClick={handleEditSave}
+                          className="py-1 px-2 bg-green-500 text-white rounded-md"
                         >
-                          View Document
-                        </button>
-                      ) : (
-                        "No Document Available"
-                      )
-                    )}
-                  </td>
-                ))}
-                <td className="py-2 px-4 border border-gray-300">{application.userLegal257Id}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.username}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.branch}</td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {editingApplication && editingApplication._id === application._id ? (
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={handleEditSave}
-                        className="py-1 px-2 bg-green-500 text-white rounded-md"
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={handleCancelClick}
-                        className="py-1 px-2 bg-gray-500 text-white rounded-md"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => handleEditClick(application)}
-                        className="py-1 px-2 bg-blue-500 text-white rounded-md"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteClick(application._id)}
-                        className="py-1 px-2 bg-red-500 text-white rounded-md"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <ToastContainer />
+    Save
+    </button>
+    <button
+                          onClick={handleCancelClick}
+                          className="py-1 px-2 bg-gray-500 text-white rounded-md"
+                        >
+    Cancel
+    </button>
+    </div>
+    ) : (
+    <div className="flex space-x-2">
+    <button
+    onClick={() => handleEditClick(application)}
+    className="py-1 px-2 bg-blue-500 text-white rounded-md"
+    >
+    Edit
+    </button>
+    <button
+    onClick={() => handleDeleteClick(application._id)}
+    className="py-1 px-2 bg-red-500 text-white rounded-md"
+    >
+    Delete
+    </button>
+    </div>
+    )}
+    </td>
+    </tr>
+    ))}
+    </tbody>
+    </table>
+    </div>
+    <ToastContainer />
     </motion.div>
-  );
-};
-
-export default JobApplicationsTable;
+    );
+    };
+    
+    export default JobApplicationsTable;
