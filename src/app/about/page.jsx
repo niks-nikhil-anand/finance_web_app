@@ -32,8 +32,9 @@ export default function AboutPageOne() {
             <div  className="flex flex-col mt-5 w-full  gap-3">
               <MapPin className="h-5 w-5" />
               <p className="w-full text-xl font-semibold  text-gray-900">ISO 9001:2015 R 24/7</p>
-              <p className="w-full text-base text-gray-700">Uttar Khatowal Nagaon , Assam , 782124 </p>
-              <p className="text-sm font-medium"> Email :- csprozana@gmail.com</p>
+              <p className="w-full text-base text-gray-700">BISWANATH CHARIALI , SONITPUR ASSAM , 784176</p>
+              <p className="text-sm font-medium"> Contact No. :- 8761873802</p>
+              <p className="text-sm font-medium"> Email :- legal257rgvf@gmail.com</p>
             </div>
           
         </div>
@@ -52,7 +53,7 @@ export default function AboutPageOne() {
       type="button"
       className="rounded-md bg-black my-5 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
     >
-      csprozana@gmail.com
+       legal257rgvf@gmail.com
     </button>
     
   </div>
