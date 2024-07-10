@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaDownload } from "react-icons/fa";
-import "tailwindcss/tailwind.css";
 
 // Import the local image
 const applyLoan = "/qrCodeCollection/applyLoan.jpeg";
