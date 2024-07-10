@@ -22,7 +22,7 @@ const locations = [
   {
     title: 'ASSAM  office',
     timings: 'Mon-Sat 9am to 5pm.',
-    address: 'UTTAR KHATOWAL NAGAON , 782124',
+    address: 'BISWANATH CHARIALI , SONITPUR ASSAM , 784176',
   },
  
 ]
