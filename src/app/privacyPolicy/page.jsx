@@ -62,7 +62,7 @@ const PrivacyPolicy = () => {
       <h2 className="text-2xl font-bold mt-8">Contact Us</h2>
       <ul className="list-disc ml-8">
         <li className="mb-2"><p>By visiting this page on our website: <a href="https://www.legal257.in/contact" rel="external nofollow noopener" target="_blank">https://www.legal257.in/contact</a></p></li>
-        <li className="mb-2"><p>By phone number: +91 94352 66783</p></li>
+        <li className="mb-2"><p>By phone number: +91 8761873802</p></li>
       </ul>
     </motion.div>
   );

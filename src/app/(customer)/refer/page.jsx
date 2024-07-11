@@ -224,7 +224,7 @@ const ReferForm = () => {
           <p className="mt-2 text-sm text-gray-600 ">
             Already Applied?{' '}
             <Link
-              href={"https://wa.link/248lpp"}
+              href={"https://wa.link/ubs0p7"}
               title=""
               className="font-semibold text-black transition-all duration-200 hover:underline"
             >

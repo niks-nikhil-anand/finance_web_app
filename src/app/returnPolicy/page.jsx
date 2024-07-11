@@ -69,8 +69,8 @@ const PrivacyPolicy = () => {
       <h3 className="text-xl font-bold mt-4">Contact Us </h3>
       <p className='mt-4'>If you have any questions about our Returns and Refunds Policy, please contact us:</p>
       <ul className="list-disc ml-8">
-        <li>By email: csprozana@gmail.com</li>
-        <li>By phone number: +91 94352 66783</li>
+        <li>By email: Legal257rgvf@gmail.com</li>
+        <li>By phone number: +91 8761873802</li>
       </ul>
       <p className='mt-4'>Thank you for choosing Legal257.</p>
 
