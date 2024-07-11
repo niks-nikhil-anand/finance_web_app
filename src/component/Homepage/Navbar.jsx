@@ -183,7 +183,6 @@ const Navbar = () => {
                 <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Photo Gallery</Link>
                 <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Video Gallery</Link>
                 <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Partner Testimonial</Link>
-                <Link href="/qrCodeCollections" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">QR Code </Link>
               </div>
             </motion.div>
           </div>
@@ -216,6 +215,7 @@ const Navbar = () => {
           </div>
           <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Become Our Partner</Link>
           <Link href="/availablePincode"  className="block px-3 py-2 rounded-md text-base font-medium text-black">Check for Available Pincode</Link>
+          <Link href="/qrCodeCollections"  className="block px-3 py-2 rounded-md text-base font-medium text-black">QR Code</Link>
           <Link href="/partnersignin" onClick={handleLinkClick}>
             <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ">
               Sign In
