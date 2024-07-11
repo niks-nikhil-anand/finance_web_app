@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, PDFDownloadLink , StyleSheet , Image } from '@react-pdf/renderer';
 import axios from 'axios'; 
 import { FaArrowLeft } from 'react-icons/fa';
-import logo from '../../../../../../public/logo2.png'
 const styles = StyleSheet.create({
   page: {
     padding: 30,
@@ -659,8 +658,8 @@ const AgreementComponent = () =>  {
 
   return (
     <div>
-      <div className="w-full max-w-6xl mt-5 flex items-center">
-                <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full ">
+      <div className="w-full max-w-6xl  flex items-center">
+                <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-5">
                     <FaArrowLeft />
                 </button>
             </div>
