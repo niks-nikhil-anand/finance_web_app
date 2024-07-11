@@ -8,6 +8,8 @@ const applyLoan = "/qrCodeCollection/applyLoan.jpeg";
 const gstitr = "/qrCodeCollection/gstItr.jpeg";
 const hiring = "/qrCodeCollection/hiring.jpeg";
 const becomePartner = "/qrCodeCollection/becomePartner.jpeg";
+const manualPayment = "/qrCodeCollection/manualPayment.jpeg";
+const referAndEarn = "/qrCodeCollection/referAndEarn.jpeg";
 
 const ImageDownload = () => {
   const images = [
@@ -15,6 +17,8 @@ const ImageDownload = () => {
     { url: gstitr, name: "Legal257-GSTITR.jpg", title: "GST/ITR Services" },
     { url: hiring, name: "Legal257-Hiring.jpg", title: "Hiring-Work with Us" },
     { url: becomePartner, name: "Legal257-BecomePartner.jpg", title: "Become Our Partner" },
+    { url: manualPayment, name: "Legal257-manualPayment.jpg", title: "Manual Payemnt" },
+    { url: referAndEarn, name: "Legal257-referAndEarn.jpg", title: "Refer & Earn" },
   ];
 
   const handleDownload = (url, name) => {
