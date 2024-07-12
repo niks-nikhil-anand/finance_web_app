@@ -61,19 +61,19 @@ const IdCard = () => {
   };
 
   return (
-    <div className='flex flex-col items-center  bg-gray-300 w-full'>
-      <div className="py-5 w-[80%] flex flex-col ">
-        <div className="text-center m-5 bg-gray-500 p-8 shadow-xl w-full">
+    <div className='flex flex-col items-center  #f5f6fa w-full'>
+      <div className="py-5 w-[80%] flex flex-col">
+        <div className="text-center bg-[#ecd6d6] m-5  p-8 shadow-3xl w-full">
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter email ID"
-            className="p-2 border rounded w-[50%]"
+            className="inline-block bg-[#fff] text-[#a3a3a3] shadow-md border-0 outline-0 p-5 w-[80%]"
           />
           <button
             onClick={handleSearch}
-            className="ml-2 p-2 bg-blue-500 text-white rounded"
+            className="inline-block bg-[#7f8ff4] text-white shadow-md rounded p-3 px-9 transition-all duration-200 ease-in cursor-pointer ml-[-86px] hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
           >
             Search
           </button>
@@ -82,8 +82,7 @@ const IdCard = () => {
         </div>
         {user && (
           <div className="w-full flex flex-col items-center">
-           
-            <div ref={cardRef} className="bg-transparent font-verdana  mb-5">
+            <div ref={cardRef} className="bg-transparent font-verdana mb-5">
               <div className="w-11 h-10 bg-red-700 mx-auto rounded relative border border-red-800">
                 <div className="absolute top-2.5 w-full h-px bg-red-800"></div>
               </div>
@@ -137,7 +136,7 @@ const IdCard = () => {
             </div>
             <button
               onClick={downloadIdCard}
-              className="text-white bg-blue-500 p-2 rounded mx-auto block my-5"
+              className="inline-block bg-blue-500 text-white shadow-md rounded p-3 px-9 transition-all duration-200 ease-in cursor-pointer mx-auto  my-5 hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
             >
               Download ID Card
             </button>
