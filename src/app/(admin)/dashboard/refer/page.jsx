@@ -19,6 +19,19 @@ const ReferApplicationsTable = () => {
     fetchApplications();
   }, []);
 
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await axios.post('/api/referandearn/updateStatus', { id, newStatus });
+      setApplications((prevApplications) =>
+        prevApplications.map((app) =>
+          app._id === id ? { ...app, status: newStatus } : app
+        )
+      );
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
@@ -33,10 +46,12 @@ const ReferApplicationsTable = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto  w-[80%] bg-gray-100"
+      className="container mx-auto w-[80%] bg-gray-100 my-auto"
     >
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue ">Refer Applications</h2>
-      <div className="overflow-auto max-h-[30rem]">
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">
+        Refer Applications
+      </h2>
+      <div className="overflow-x-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-purple-100">
             <tr>
@@ -64,13 +79,24 @@ const ReferApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">{application.service}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.referMobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{formatDate(application.createdAt)}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.status}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
+                    value={application.status}
+                    onChange={(e) => handleStatusChange(application._id, e.target.value)}
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    {["Pending", "Approved", "Rejected"].map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </td>
               </motion.tr>
             ))}
           </tbody>
         </table>
       </div>
-      
     </motion.div>
   );
 };
