@@ -19,6 +19,15 @@ const ReferApplicationsTable = () => {
     fetchApplications();
   }, []);
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedDate = date.toLocaleDateString(undefined, options);
+    const formattedTime = date.toLocaleTimeString(undefined, timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -36,7 +45,7 @@ const ReferApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
               <th className="py-2 px-4 border border-gray-300">Service</th>
               <th className="py-2 px-4 border border-gray-300">Refer Mobile Number</th>
-              <th className="py-2 px-4 border border-gray-300">contactNumber</th>
+              <th className="py-2 px-4 border border-gray-300">Date</th>
               <th className="py-2 px-4 border border-gray-300">Status</th>
             </tr>
           </thead>
@@ -54,7 +63,7 @@ const ReferApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.service}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.referMobileNumber}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.contactNumber}</td>
+                <td className="py-2 px-4 border border-gray-300">{formatDate(application.createdAt)}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.status}</td>
               </motion.tr>
             ))}

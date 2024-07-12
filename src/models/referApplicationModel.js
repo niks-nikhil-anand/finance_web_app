@@ -21,9 +21,6 @@ const referApplicationSchema = new mongoose.Schema({
   referMobileNumber: {
     type: String,
   },
-  contactNumber: {
-    type: String,
-  },
   status: {
     type: String,
     enum: ['Pending', 'Approved', 'Rejected'],
@@ -31,7 +28,7 @@ const referApplicationSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now,  
   },
 });
 

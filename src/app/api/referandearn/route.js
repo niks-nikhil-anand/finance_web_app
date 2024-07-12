@@ -23,7 +23,6 @@ export const POST =  async (req, res) => {
       service,
       referMobileNumber,
       contactNumber
-      
     };
     await referApplicationModel.create(applicationData);
     console.log(applicationData)
