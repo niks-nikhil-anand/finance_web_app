@@ -671,7 +671,7 @@ const AgreementComponent = () =>  {
         <div className="flex flex-col items-center">
           <PDFDownloadLink
             document={<MyDocument agreementData={agreementData} />}
-            fileName="agreement.pdf"
+            fileName="Legal257Agreement.pdf"
             className="mb-4 downloadButton bg-blue-500 text-white py-2 px-4 rounded shadow-lg transform transition-transform duration-300 hover:bg-blue-600 active:shadow-inner active:translate-y-1"
           >
             {({ loading }) =>
