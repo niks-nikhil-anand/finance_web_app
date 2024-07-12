@@ -39,20 +39,6 @@ const IdCard = () => {
     }
   };
 
-  const downloadIdCard = () => {
-    if (cardRef.current) {
-      toPng(cardRef.current)
-        .then((dataUrl) => {
-          const link = document.createElement('a');
-          link.href = dataUrl;
-          link.download = 'id-card.png';
-          link.click();
-        })
-        .catch((error) => {
-          console.error('Error generating image:', error);
-        });
-    }
-  };
 
   const handleSearch = () => {
     if (email) {
@@ -134,12 +120,7 @@ const IdCard = () => {
                 </div>
               </div>
             </div>
-            <button
-              onClick={downloadIdCard}
-              className="inline-block bg-blue-500 text-white shadow-md rounded p-3 px-9 transition-all duration-200 ease-in cursor-pointer mx-auto  my-5 hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
-            >
-              Download ID Card
-            </button>
+           
           </div>
         )}
       </div>
