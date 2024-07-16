@@ -277,6 +277,7 @@ const RationCardForm = () => {
                 name="aadhaarNumber"
                 value={formDataStep2.aadhaarNumber}
                 onChange={handleChangeStep2}
+                maxLength="12" // Limit Aadhaar number to 12 digits
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -319,6 +320,7 @@ const RationCardForm = () => {
                 name="bankAccountNumber"
                 value={formDataStep2.bankAccountNumber}
                 onChange={handleChangeStep2}
+                maxLength="14" // Limit bank account number to 14 digits
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
