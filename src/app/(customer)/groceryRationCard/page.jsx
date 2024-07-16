@@ -2,51 +2,51 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BsChevronDown } from 'react-icons/bs'; // Importing down arrow icon
+
 
 const RationCardForm = () => {
-  const [step, setStep] = useState(1); // Step state to control form steps
+  const [step, setStep] = useState(1);
   const [formDataStep1, setFormDataStep1] = useState({
     name: '',
     fatherName: '',
     address: '',
-    panchayatName: '',
     district: '',
     pin: '',
     whatNumber: '',
-    mobileNumber: ''
+    mobileNumber: '',
+    state: '', // Added state field
   });
   const [formDataStep2, setFormDataStep2] = useState({
     aadhaarNumber: '',
     panNumber: '',
-    photoCopy: null, // Updated to hold file object
+    photoCopy: null,
     bankAccountNumber: '',
     ifscCode: '',
-    bankName: ''
+    bankName: '',
   });
   const [loading, setLoading] = useState(false);
 
   const handleChangeStep1 = (e) => {
     const { name, value } = e.target;
     if (name === 'pin') {
-      // Limit to 6 digits only
       const trimmedValue = value.slice(0, 6);
       setFormDataStep1({
         ...formDataStep1,
-        [name]: trimmedValue.replace(/\D/, '') // Only allow numbers
+        [name]: trimmedValue.replace(/\D/, ''),
       });
     } else if (name === 'mobileNumber' || name === 'whatNumber') {
-      // Limit to +91 followed by 10 digits
-      const formattedValue = value.replace(/\D/g, ''); // Remove non-digit characters
+      const formattedValue = value.replace(/\D/g, '');
       if (formattedValue.length <= 10) {
         setFormDataStep1({
           ...formDataStep1,
-          [name]: formattedValue
+          [name]: formattedValue,
         });
       }
     } else {
       setFormDataStep1({
         ...formDataStep1,
-        [name]: value
+        [name]: value,
       });
     }
   };
@@ -56,24 +56,24 @@ const RationCardForm = () => {
     if (name === 'photoCopy') {
       setFormDataStep2({
         ...formDataStep2,
-        photoCopy: e.target.files[0] // Set file object for upload
+        photoCopy: e.target.files[0],
       });
     } else {
       setFormDataStep2({
         ...formDataStep2,
-        [name]: value
+        [name]: value,
       });
     }
   };
 
   const handleSubmitStep1 = (e) => {
     e.preventDefault();
-    setStep(2); // Move to step 2
+    setStep(2);
   };
 
   const handleBackStep2 = (e) => {
     e.preventDefault();
-    setStep(1); // Move back to step 1
+    setStep(1);
   };
 
   const handleSubmitStep2 = async (e) => {
@@ -83,7 +83,7 @@ const RationCardForm = () => {
     Object.entries(formDataStep1).forEach(([key, value]) => {
       data.append(key, value);
     });
-    data.append('photoCopy', formDataStep2.photoCopy); // Append file to FormData
+    data.append('photoCopy', formDataStep2.photoCopy);
 
     try {
       const response = await fetch('/api/rationCard', {
@@ -102,7 +102,8 @@ const RationCardForm = () => {
           district: '',
           pin: '',
           whatNumber: '',
-          mobileNumber: ''
+          mobileNumber: '',
+          state: '', // Clear state field
         });
         setFormDataStep2({
           aadhaarNumber: '',
@@ -110,9 +111,9 @@ const RationCardForm = () => {
           photoCopy: null,
           bankAccountNumber: '',
           ifscCode: '',
-          bankName: ''
+          bankName: '',
         });
-        setStep(1); // Reset to step 1 after successful submission
+        setStep(1);
       } else {
         const errorData = await response.json();
         console.error('Error:', errorData);
@@ -126,6 +127,14 @@ const RationCardForm = () => {
     }
   };
 
+  const indianStates = [
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana',
+    'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
+    'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana',
+    'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh',
+    'Dadra and Nagar Haveli and Daman and Diu', 'Delhi', 'Lakshadweep', 'Puducherry'
+  ];
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 md:mb-[0rem] flex-col">
       <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md">
@@ -135,10 +144,9 @@ const RationCardForm = () => {
         </p>
         {step === 1 && (
           <form onSubmit={handleSubmitStep1}>
-            {/* Step 1 fields */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                Name
+                Full Name
               </label>
               <input
                 type="text"
@@ -166,7 +174,7 @@ const RationCardForm = () => {
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-                Address with Block Name
+                Address (Block Name + Panchayat Name)
               </label>
               <input
                 type="text"
@@ -178,19 +186,30 @@ const RationCardForm = () => {
                 required
               />
             </div>
+            
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="panchayatName">
-                Panchayat Name
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
+                State
               </label>
-              <input
-                type="text"
-                id="panchayatName"
-                name="panchayatName"
-                value={formDataStep1.panchayatName}
-                onChange={handleChangeStep1}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
+              <div className="relative">
+                <select
+                  name="state"
+                  value={formDataStep1.state}
+                  onChange={handleChangeStep1}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  required
+                >
+                  <option value="" disabled>Select a state</option>
+                  {indianStates.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <BsChevronDown />
+                </div>
+              </div>
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="district">
@@ -216,7 +235,7 @@ const RationCardForm = () => {
                 name="pin"
                 value={formDataStep1.pin}
                 onChange={handleChangeStep1}
-                maxLength="6" // Limit to 6 digits
+                maxLength="6"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -231,7 +250,7 @@ const RationCardForm = () => {
                 name="whatNumber"
                 value={formDataStep1.whatNumber}
                 onChange={handleChangeStep1}
-                maxLength="12" // Limit to +91 followed by 10 digits
+                maxLength="12"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -246,12 +265,11 @@ const RationCardForm = () => {
                 name="mobileNumber"
                 value={formDataStep1.mobileNumber}
                 onChange={handleChangeStep1}
-                maxLength="12" // Limit to +91 followed by 10 digits
+                maxLength="12"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
-            {/* End of Step 1 fields */}
 
             <div className="flex items-center justify-between">
               <button
@@ -266,7 +284,6 @@ const RationCardForm = () => {
 
         {step === 2 && (
           <form onSubmit={handleSubmitStep2}>
-            {/* Step 2 fields */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aadhaarNumber">
                 Aadhaar Number
@@ -277,7 +294,7 @@ const RationCardForm = () => {
                 name="aadhaarNumber"
                 value={formDataStep2.aadhaarNumber}
                 onChange={handleChangeStep2}
-                maxLength="12" // Limit Aadhaar number to 12 digits
+                maxLength="12"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -301,10 +318,10 @@ const RationCardForm = () => {
                 Upload Photo Copy
               </label>
               <input
-                type="file" // Changed input type to file for uploading files
+                type="file"
                 id="photoCopy"
                 name="photoCopy"
-                accept=".jpg,.jpeg,.png,.pdf" // Specify accepted file types
+                accept=".jpg,.jpeg,.png,.pdf"
                 onChange={handleChangeStep2}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
@@ -320,7 +337,7 @@ const RationCardForm = () => {
                 name="bankAccountNumber"
                 value={formDataStep2.bankAccountNumber}
                 onChange={handleChangeStep2}
-                maxLength="14" // Limit bank account number to 14 digits
+                maxLength="14"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -353,9 +370,7 @@ const RationCardForm = () => {
                 required
               />
             </div>
-            {/* End of Step 2 fields */}
 
-            {/* Back button */}
             <div className="flex items-center justify-between">
               <button
                 onClick={handleBackStep2}
