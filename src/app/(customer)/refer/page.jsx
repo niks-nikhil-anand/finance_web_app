@@ -105,7 +105,7 @@ const ReferForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 mb-[6rem] md:mb-[0rem] flex-col">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6  md:mb-[0rem] flex-col">
       <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4">Refer and Earn</h1>
         <p className="text-gray-700 text-center mb-6">
