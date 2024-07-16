@@ -26,14 +26,34 @@ const RationCardForm = () => {
   const [loading, setLoading] = useState(false);
 
   const handleChangeStep1 = (e) => {
-    setFormDataStep1({
-      ...formDataStep1,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    if (name === 'pin') {
+      // Limit to 6 digits only
+      const trimmedValue = value.slice(0, 6);
+      setFormDataStep1({
+        ...formDataStep1,
+        [name]: trimmedValue.replace(/\D/, '') // Only allow numbers
+      });
+    } else if (name === 'mobileNumber' || name === 'whatNumber') {
+      // Limit to +91 followed by 10 digits
+      const formattedValue = value.replace(/\D/g, ''); // Remove non-digit characters
+      if (formattedValue.length <= 10) {
+        setFormDataStep1({
+          ...formDataStep1,
+          [name]: formattedValue
+        });
+      }
+    } else {
+      setFormDataStep1({
+        ...formDataStep1,
+        [name]: value
+      });
+    }
   };
 
   const handleChangeStep2 = (e) => {
-    if (e.target.name === 'photoCopy') {
+    const { name, value } = e.target;
+    if (name === 'photoCopy') {
       setFormDataStep2({
         ...formDataStep2,
         photoCopy: e.target.files[0] // Set file object for upload
@@ -41,7 +61,7 @@ const RationCardForm = () => {
     } else {
       setFormDataStep2({
         ...formDataStep2,
-        [e.target.name]: e.target.value
+        [name]: value
       });
     }
   };
@@ -49,6 +69,11 @@ const RationCardForm = () => {
   const handleSubmitStep1 = (e) => {
     e.preventDefault();
     setStep(2); // Move to step 2
+  };
+
+  const handleBackStep2 = (e) => {
+    e.preventDefault();
+    setStep(1); // Move back to step 1
   };
 
   const handleSubmitStep2 = async (e) => {
@@ -191,20 +216,22 @@ const RationCardForm = () => {
                 name="pin"
                 value={formDataStep1.pin}
                 onChange={handleChangeStep1}
+                maxLength="6" // Limit to 6 digits
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatNumber">
-                What Number
+                WhatsApp Number
               </label>
               <input
-                type="text"
+                type="tel"
                 id="whatNumber"
                 name="whatNumber"
                 value={formDataStep1.whatNumber}
                 onChange={handleChangeStep1}
+                maxLength="12" // Limit to +91 followed by 10 digits
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -219,6 +246,7 @@ const RationCardForm = () => {
                 name="mobileNumber"
                 value={formDataStep1.mobileNumber}
                 onChange={handleChangeStep1}
+                maxLength="12" // Limit to +91 followed by 10 digits
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -230,7 +258,7 @@ const RationCardForm = () => {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Next
+                Continue to Step 2
               </button>
             </div>
           </form>
@@ -325,10 +353,17 @@ const RationCardForm = () => {
             </div>
             {/* End of Step 2 fields */}
 
+            {/* Back button */}
             <div className="flex items-center justify-between">
               <button
+                onClick={handleBackStep2}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Back to Step 1
+              </button>
+              <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 {loading ? 'Submitting...' : 'Submit'}
               </button>
