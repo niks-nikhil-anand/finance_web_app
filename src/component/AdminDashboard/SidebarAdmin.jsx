@@ -14,7 +14,7 @@ import { MdOutlineLogout } from "react-icons/md";
 import { SiGoogledocs } from "react-icons/si";
 import { FaAddressCard } from "react-icons/fa";
 import { FaMoneyCheckAlt } from "react-icons/fa";
-
+import { LuVegan } from "react-icons/lu";
 import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
 
 export function SidebarAdmin() {
@@ -252,6 +252,13 @@ export function SidebarAdmin() {
               >
                  <FaAddressCard  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Id Card</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/groceryIdCard"}
+              >
+                 <LuVegan  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Grocery Id Card</span>
               </Link>
 
 
