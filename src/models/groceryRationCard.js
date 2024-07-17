@@ -5,6 +5,10 @@ const rationCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
   fatherName: {
     type: String,
     required: true,
@@ -54,7 +58,10 @@ const rationCardSchema = new mongoose.Schema({
     required: true,
   },
   photoCopy: {
-    // Assuming you handle file storage separately, this could be a file path or other reference
+    type: String,
+    required: true,
+  },
+  profilePhoto: {
     type: String,
     required: true,
   },

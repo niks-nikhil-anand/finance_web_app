@@ -1,127 +1,127 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BsChevronDown } from 'react-icons/bs'; // Importing down arrow icon
-
+import { BsChevronDown } from 'react-icons/bs';
 
 const RationCardForm = () => {
   const [step, setStep] = useState(1);
-  const [formDataStep1, setFormDataStep1] = useState({
+  const [formData, setFormData] = useState({
     name: '',
+    email:'',
     fatherName: '',
     address: '',
     district: '',
     pin: '',
     whatNumber: '',
     mobileNumber: '',
-    state: '', // Added state field
-  });
-  const [formDataStep2, setFormDataStep2] = useState({
+    state: '', 
     aadhaarNumber: '',
     panNumber: '',
-    photoCopy: null,
     bankAccountNumber: '',
     ifscCode: '',
     bankName: '',
   });
+  const [photoCopy, setPhotoCopy] = useState(null);
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleChangeStep1 = (e) => {
-    const { name, value } = e.target;
-    if (name === 'pin') {
-      const trimmedValue = value.slice(0, 6);
-      setFormDataStep1({
-        ...formDataStep1,
-        [name]: trimmedValue.replace(/\D/, ''),
-      });
-    } else if (name === 'mobileNumber' || name === 'whatNumber') {
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === 'photoCopy' || name === 'profilePhoto') {
+      if (name === 'photoCopy') {
+        setPhotoCopy(files[0]);
+      } else {
+        setProfilePhoto(files[0]);
+      }
+    } else if (['pin', 'mobileNumber', 'whatNumber'].includes(name)) {
       const formattedValue = value.replace(/\D/g, '');
-      if (formattedValue.length <= 10) {
-        setFormDataStep1({
-          ...formDataStep1,
-          [name]: formattedValue,
-        });
+      if (name === 'pin' && formattedValue.length <= 6) {
+        setFormData({ ...formData, [name]: formattedValue });
+      } else if ((name === 'mobileNumber' || name === 'whatNumber') && formattedValue.length <= 10) {
+        setFormData({ ...formData, [name]: formattedValue });
       }
     } else {
-      setFormDataStep1({
-        ...formDataStep1,
-        [name]: value,
-      });
-    }
-  };
-
-  const handleChangeStep2 = (e) => {
-    const { name, value } = e.target;
-    if (name === 'photoCopy') {
-      setFormDataStep2({
-        ...formDataStep2,
-        photoCopy: e.target.files[0],
-      });
-    } else {
-      setFormDataStep2({
-        ...formDataStep2,
-        [name]: value,
-      });
+      setFormData({ ...formData, [name]: value });
     }
   };
 
   const handleSubmitStep1 = (e) => {
     e.preventDefault();
+    console.log('handleSubmitStep1 called:', formData);
     setStep(2);
   };
 
   const handleBackStep2 = (e) => {
     e.preventDefault();
+    console.log('handleBackStep2 called');
     setStep(1);
+  };
+
+  const notifyLoading = () => {
+    toast.info("Submitting form...", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Form submitted successfully!", {
+      position: "bottom-right"
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right"
+    });
   };
 
   const handleSubmitStep2 = async (e) => {
     e.preventDefault();
     setLoading(true);
+    notifyLoading(); 
+
     const data = new FormData();
-    Object.entries(formDataStep1).forEach(([key, value]) => {
-      data.append(key, value);
-    });
-    data.append('photoCopy', formDataStep2.photoCopy);
+    Object.keys(formData).forEach((key) => data.append(key, formData[key]));
+    if (photoCopy) data.append('photoCopy', photoCopy);
+    if (profilePhoto) data.append('profilePhoto', profilePhoto);
 
     try {
-      const response = await fetch('/api/rationCard', {
+      const response = await fetch('/api/groceryRationCard/form', {
         method: 'POST',
         body: data,
       });
+
+      console.log('handleSubmitStep2 response:', response);
       if (response.ok) {
-        const result = await response.json();
-        console.log('Success:', result);
-        toast.success('Form submitted successfully!');
-        setFormDataStep1({
+        setFormData({
           name: '',
+          email:'',
           fatherName: '',
           address: '',
-          panchayatName: '',
           district: '',
           pin: '',
           whatNumber: '',
           mobileNumber: '',
-          state: '', // Clear state field
-        });
-        setFormDataStep2({
+          state: '', 
           aadhaarNumber: '',
           panNumber: '',
-          photoCopy: null,
           bankAccountNumber: '',
           ifscCode: '',
           bankName: '',
         });
+        setPhotoCopy(null);
+        setProfilePhoto(null);
         setStep(1);
+        notifySuccess();
       } else {
         const errorData = await response.json();
-        console.error('Error:', errorData);
-        toast.error(`Error: ${errorData.message}`);
+        console.log('handleSubmitStep2 error response:', errorData);
+        notifyError(errorData.message);
       }
     } catch (error) {
-      console.error('Error:', error);
-      toast.error('Something went wrong.');
+      console.log('handleSubmitStep2 catch error:', error);
+      notifyError('Something went wrong.');
     } finally {
       setLoading(false);
     }
@@ -138,7 +138,7 @@ const RationCardForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 md:mb-[0rem] flex-col">
       <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md">
-        <h1 className="text-2xl  font-bold text-center mb-4">JONOJIVAN GROCERY RATION CARD</h1>
+        <h1 className="text-2xl font-bold text-center mb-4">JONOJIVAN GROCERY RATION CARD</h1>
         <p className="text-gray-700 text-center mb-6">
           To download the grocery ration card, please fill out the form below.
         </p>
@@ -152,8 +152,22 @@ const RationCardForm = () => {
                 type="text"
                 id="name"
                 name="name"
-                value={formDataStep1.name}
-                onChange={handleChangeStep1}
+                value={formData.name}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -166,8 +180,8 @@ const RationCardForm = () => {
                 type="text"
                 id="fatherName"
                 name="fatherName"
-                value={formDataStep1.fatherName}
-                onChange={handleChangeStep1}
+                value={formData.fatherName}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -180,13 +194,12 @@ const RationCardForm = () => {
                 type="text"
                 id="address"
                 name="address"
-                value={formDataStep1.address}
-                onChange={handleChangeStep1}
+                value={formData.address}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
-            
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
                 State
@@ -194,8 +207,8 @@ const RationCardForm = () => {
               <div className="relative">
                 <select
                   name="state"
-                  value={formDataStep1.state}
-                  onChange={handleChangeStep1}
+                  value={formData.state}
+                  onChange={handleChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   required
                 >
@@ -219,8 +232,8 @@ const RationCardForm = () => {
                 type="text"
                 id="district"
                 name="district"
-                value={formDataStep1.district}
-                onChange={handleChangeStep1}
+                value={formData.district}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -233,24 +246,9 @@ const RationCardForm = () => {
                 type="text"
                 id="pin"
                 name="pin"
-                value={formDataStep1.pin}
-                onChange={handleChangeStep1}
+                value={formData.pin}
+                onChange={handleChange}
                 maxLength="6"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatNumber">
-                WhatsApp Number
-              </label>
-              <input
-                type="tel"
-                id="whatNumber"
-                name="whatNumber"
-                value={formDataStep1.whatNumber}
-                onChange={handleChangeStep1}
-                maxLength="12"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -263,25 +261,40 @@ const RationCardForm = () => {
                 type="tel"
                 id="mobileNumber"
                 name="mobileNumber"
-                value={formDataStep1.mobileNumber}
-                onChange={handleChangeStep1}
-                maxLength="12"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                maxLength="10"
+                pattern="[0-9]{10}"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
-
-            <div className="flex items-center justify-between">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatNumber">
+                WhatsApp Number
+              </label>
+              <input
+                type="tel"
+                id="whatNumber"
+                name="whatNumber"
+                value={formData.whatNumber}
+                onChange={handleChange}
+                maxLength="10"
+                pattern="[0-9]{10}"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="flex justify-between">
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Continue to Step 2
+                Next
               </button>
             </div>
           </form>
         )}
-
         {step === 2 && (
           <form onSubmit={handleSubmitStep2}>
             <div className="mb-4">
@@ -292,9 +305,8 @@ const RationCardForm = () => {
                 type="text"
                 id="aadhaarNumber"
                 name="aadhaarNumber"
-                value={formDataStep2.aadhaarNumber}
-                onChange={handleChangeStep2}
-                maxLength="12"
+                value={formData.aadhaarNumber}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -307,22 +319,8 @@ const RationCardForm = () => {
                 type="text"
                 id="panNumber"
                 name="panNumber"
-                value={formDataStep2.panNumber}
-                onChange={handleChangeStep2}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photoCopy">
-                Upload Photo Copy
-              </label>
-              <input
-                type="file"
-                id="photoCopy"
-                name="photoCopy"
-                accept=".jpg,.jpeg,.png,.pdf"
-                onChange={handleChangeStep2}
+                value={formData.panNumber}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -335,9 +333,8 @@ const RationCardForm = () => {
                 type="text"
                 id="bankAccountNumber"
                 name="bankAccountNumber"
-                value={formDataStep2.bankAccountNumber}
-                onChange={handleChangeStep2}
-                maxLength="14"
+                value={formData.bankAccountNumber}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -350,8 +347,8 @@ const RationCardForm = () => {
                 type="text"
                 id="ifscCode"
                 name="ifscCode"
-                value={formDataStep2.ifscCode}
-                onChange={handleChangeStep2}
+                value={formData.ifscCode}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -364,31 +361,59 @@ const RationCardForm = () => {
                 type="text"
                 id="bankName"
                 name="bankName"
-                value={formDataStep2.bankName}
-                onChange={handleChangeStep2}
+                value={formData.bankName}
+                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
-
-            <div className="flex items-center justify-between">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photoCopy">
+                Photo Copy
+              </label>
+              <input
+                type="file"
+                id="photoCopy"
+                name="photoCopy"
+                accept=".jpg,.jpeg,.png"
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profilePhoto">
+                Profile Photo
+              </label>
+              <input
+                type="file"
+                id="profilePhoto"
+                name="profilePhoto"
+                accept=".jpg,.jpeg,.png"
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="flex justify-between">
               <button
                 onClick={handleBackStep2}
                 className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Back to Step 1
+                Back
               </button>
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                disabled={loading}
               >
                 {loading ? 'Submitting...' : 'Submit'}
               </button>
             </div>
           </form>
         )}
+        <ToastContainer />
       </div>
-      <ToastContainer position="bottom-right" />
     </div>
   );
 };
