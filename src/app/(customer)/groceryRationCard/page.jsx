@@ -12,8 +12,8 @@ const RationCardForm = () => {
     fatherName: '',
     address: '',
     district: '',
-    pin: '',
-    whatNumber: '',
+    pinCode: '',
+    whatsAppNumber: '',
     mobileNumber: '',
     state: '', 
     aadhaarNumber: '',
@@ -34,11 +34,11 @@ const RationCardForm = () => {
       } else {
         setProfilePhoto(files[0]);
       }
-    } else if (['pin', 'mobileNumber', 'whatNumber'].includes(name)) {
+    } else if (['pinCode', 'mobileNumber', 'whatsAppNumber'].includes(name)) {
       const formattedValue = value.replace(/\D/g, '');
-      if (name === 'pin' && formattedValue.length <= 6) {
+      if (name === 'pinCode' && formattedValue.length <= 6) {
         setFormData({ ...formData, [name]: formattedValue });
-      } else if ((name === 'mobileNumber' || name === 'whatNumber') && formattedValue.length <= 10) {
+      } else if ((name === 'mobileNumber' || name === 'whatsAppNumber') && formattedValue.length <= 10) {
         setFormData({ ...formData, [name]: formattedValue });
       }
     } else {
@@ -100,8 +100,8 @@ const RationCardForm = () => {
           fatherName: '',
           address: '',
           district: '',
-          pin: '',
-          whatNumber: '',
+          pinCode: '',
+          whatsAppNumber: '',
           mobileNumber: '',
           state: '', 
           aadhaarNumber: '',
@@ -239,14 +239,14 @@ const RationCardForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pin">
-                PIN
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pinCode">
+                Pin Code
               </label>
               <input
                 type="text"
-                id="pin"
-                name="pin"
-                value={formData.pin}
+                id="pinCode"
+                name="pinCode"
+                value={formData.pinCode}
                 onChange={handleChange}
                 maxLength="6"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -270,14 +270,14 @@ const RationCardForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatNumber">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatsAppNumber">
                 WhatsApp Number
               </label>
               <input
                 type="tel"
-                id="whatNumber"
-                name="whatNumber"
-                value={formData.whatNumber}
+                id="whatsAppNumber"
+                name="whatsAppNumber"
+                value={formData.whatsAppNumber}
                 onChange={handleChange}
                 maxLength="10"
                 pattern="[0-9]{10}"

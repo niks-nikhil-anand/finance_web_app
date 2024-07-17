@@ -21,11 +21,11 @@ const rationCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pin: {
+  pinCode: {
     type: String,
     required: true,
   },
-  whatNumber: {
+  whatsAppNumber: {
     type: String,
     required: true,
   },

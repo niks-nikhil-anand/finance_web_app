@@ -1,8 +1,6 @@
-// pages/api/rationCard.js
-
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/dbConnect'; // Ensure to replace with your database connection setup
-import uploadImage from '@/lib/uploadImages'; // Make sure this utility function is properly defined
+import connectDB from '@/lib/dbConnect'; 
+import uploadImage from '@/lib/uploadImages'; 
 import groceryRationCard from '@/models/groceryRationCard';
 
 export const POST = async (req) => {
@@ -16,8 +14,7 @@ export const POST = async (req) => {
     const photoCopy = formData.get("photoCopy");
     const profilePhoto = formData.get("profilePhoto");
 
-    console.log(profilePhoto)
-    console.log(photoCopy)
+   
 
     
     const formValues = {};
@@ -25,11 +22,29 @@ export const POST = async (req) => {
       formValues[key] = value;
     }
 
-    console.log(formValues)
+    const photoCopyUploadResult = photoCopy ? await uploadImage(photoCopy, "photoCopy") : null;
+    const profilePhotoUploadResult = profilePhoto ? await uploadImage(profilePhoto, "profilePhoto") : null;
 
-
-   
-    
+    const applicationData = {
+      name: formValues.name,
+      email: formValues.email,
+      fatherName: formValues.fatherName,
+      address: formValues.address,
+      district: formValues.district,
+      pinCode: formValues.pinCode,
+      whatsAppNumber: formValues.whatsAppNumber,
+      mobileNumber: formValues.mobileNumber,
+      state: formValues.state,
+      aadhaarNumber: formValues.aadhaarNumber,
+      panNumber: formValues.panNumber,
+      bankAccountNumber: formValues.bankAccountNumber,
+      ifscCode: formValues.ifscCode,
+      bankName: formValues.bankName,
+      photoCopy: photoCopyUploadResult ? photoCopyUploadResult.secure_url : null,
+      profilePhoto: profilePhotoUploadResult ? profilePhotoUploadResult.secure_url : null,
+    };
+    await groceryRationCard.create(applicationData);    
+    console.log(applicationData)
     return NextResponse.json({ message: 'Form submitted successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error processing form:', error);
