@@ -41,27 +41,65 @@ const GroceryRationCard = () => {
     }
   };
 
+
+
   const handleDownload = () => {
     if (!data) return;
-
+  
     const doc = new jsPDF();
-
-    // Add title
-    doc.setFontSize(22);
-    doc.text('Grocery Ration Card', 20, 20);
-
-    // Add email
-    doc.setFontSize(16);
-    doc.text(`Email: ${data.email}`, 20, 30);
-
-    // Add additional data as needed
-    // Assuming data has fields like name, rationCardNumber, etc.
-    if (data.name) doc.text(`Name: ${data.name}`, 20, 40);
-    if (data.rationCardNumber) doc.text(`Ration Card Number: ${data.rationCardNumber}`, 20, 50);
-
+  
+    // Front Side
+    doc.setFillColor(51, 122, 183); 
+    doc.rect(15, 15, 180, 100, 'F'); 
+  
+    // Title
+    doc.setTextColor(255, 255, 255); // Text color
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Grocery Ration Card', 105, 30, { align: 'center' });
+  
+    // Card Details on Front Side
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Name: ${data.name}`, 70, 40);
+    doc.text(`Father's Name: ${data.fatherName}`, 70, 50);
+    doc.text(`Address: ${data.address}`, 70, 60);
+    doc.text(`District: ${data.district}`, 70, 70);
+    doc.text(`State: ${data.state}`, 70, 80);
+  
+    // Add a new page for back side
+    doc.addPage();
+  
+    // Back Side
+    doc.setFillColor(240); // Background color
+    doc.rect(15, 15, 180, 100, 'F'); // Background rectangle
+  
+    // Title on Back Side
+    doc.setTextColor(0); // Text color
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Additional Information', 105, 30, { align: 'center' });
+  
+    // Additional Details on Back Side
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Aadhaar Number: ${data.aadhaarNumber}`, 25, 50);
+    doc.text(`PAN Number: ${data.panNumber}`, 25, 60);
+  
+    // Date and Signature lines (example)
+    doc.setLineWidth(0.5);
+    doc.line(25, 80, 90, 80); // Horizontal line
+    doc.text('Date:', 25, 85);
+    doc.line(100, 80, 165, 80); // Horizontal line
+    doc.text('Signature:', 100, 85);
+  
     // Download the PDF
     doc.save('rationCard.pdf');
-  };
+};
+
+  
+  
+  
 
   return (
     <div className="flex flex-col items-center justify-center h-screen p-4">
