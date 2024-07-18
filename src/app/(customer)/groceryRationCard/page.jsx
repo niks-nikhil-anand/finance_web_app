@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsChevronDown } from 'react-icons/bs';
+import { useRouter } from 'next/navigation';
+
 
 const RationCardForm = () => {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -114,6 +117,9 @@ const RationCardForm = () => {
         setProfilePhoto(null);
         setStep(1);
         notifySuccess();
+        const email = formData.email;
+        router.push(`/groceryRationCard/${email}`);
+        
       } else {
         const errorData = await response.json();
         console.log('handleSubmitStep2 error response:', errorData);

@@ -13,10 +13,6 @@ export const POST = async (req) => {
     const formData = await req.formData();
     const photoCopy = formData.get("photoCopy");
     const profilePhoto = formData.get("profilePhoto");
-
-   
-
-    
     const formValues = {};
     for (const [key, value] of formData.entries()) {
       formValues[key] = value;

@@ -23,14 +23,11 @@ export const POST = async (req) => {
     const message = formData.get("message");
     const shopAddress = formData.get("shopAddress");
 
-    // Check if required fields are present in the form data
     if (!name || !email || !mobileNumber || !plainPassword) {
       throw new Error("Please provide name, email, mobile number, and password.");
     }
 
      const hashedPassword = await bcrypt.hash(plainPassword, 10);
-
-
 
     const aadhaarCard = formData.get("aadhaarCard");
     const panCard = formData.get("panCard");
