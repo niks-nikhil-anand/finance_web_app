@@ -15,7 +15,7 @@ const Page = () => {
         className="flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white rounded-lg shadow-lg"
       >
         <FaDownload className="mr-2" />
-        Download
+        Download Grocery Ration Card
       </motion.button>
     </div>
   );
