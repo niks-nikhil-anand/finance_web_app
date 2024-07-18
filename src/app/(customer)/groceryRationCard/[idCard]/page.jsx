@@ -2,25 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaDownload } from 'react-icons/fa';
-import { useRouter } from 'next/navigation'; 
+import { useSearchParams } from 'next/navigation';
 
 const GroceryRationCard = () => {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const token = searchParams.get('email');
 
   useEffect(() => {
-    console.log('router.query changed:', router.query);
-    if (router.query && router.query.email) {
-      console.log('Setting email:', router.query.email);
-      setEmail(router.query.email);
-    }
-  }, [router.query]);
+    console.log('Initial useEffect triggered');
+    const emailFromURL = window.location.pathname.split('/')[2];
+    setEmail(emailFromURL);
+    console.log('Extracted email from URL:', emailFromURL);
+  }, []);
 
   useEffect(() => {
-    console.log('email changed:', email);
     if (email) {
+      console.log('Email state updated:', email);
       fetchData();
     }
   }, [email]);
@@ -28,7 +28,7 @@ const GroceryRationCard = () => {
   const fetchData = async () => {
     try {
       console.log('Fetching data for email:', email);
-      const response = await fetch(`/api/rationCard/${email}`);
+      const response = await fetch(`/api/groceryRationCard/${email}`);
       if (response.ok) {
         const result = await response.json();
         console.log('Data fetched:', result);
@@ -44,6 +44,7 @@ const GroceryRationCard = () => {
   };
 
   const handleDownload = () => {
+    console.log('Downloading data:', data);
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -64,10 +65,10 @@ const GroceryRationCard = () => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white rounded-lg shadow-lg"
+          className="flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white rounded-lg shadow-lg text-sm"
           onClick={handleDownload}
         >
-          <FaDownload className="mr-2" />
+          <FaDownload className="mr-2 " />
           Download Grocery Ration Card
         </motion.button>
       )}

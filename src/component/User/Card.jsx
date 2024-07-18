@@ -114,7 +114,6 @@ const ColorfulCard = () => {
 
   const handleButtonClick = (title) => {
     console.log("Clicked:", title);
-    // Add logic for handling button clicks here
   };
 
   const filteredCardData = cardData.filter((card) => {
