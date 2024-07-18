@@ -3,8 +3,8 @@ import partnerApplication from "@/models/partnerApplication";
 import { NextResponse } from 'next/server';
 
 export const GET = async (request, { params }) => {
-  const { username: email } = params; // Adjusted destructuring to match 'username'
-  console.log('email:', email); // Should log the email parameter
+  const { username: email } = params; 
+  console.log('email:', email);
 
   try {
     await connectDB();
