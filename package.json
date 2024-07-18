@@ -39,6 +39,7 @@
     "html-to-image": "^1.11.11",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
+    "jspdf": "^2.5.1",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.378.0",
     "mdb-react-ui-kit": "^8.0.0",

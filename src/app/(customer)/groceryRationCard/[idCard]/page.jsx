@@ -2,13 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaDownload } from 'react-icons/fa';
+import jsPDF from 'jspdf';
 
 const GroceryRationCard = () => {
   const [email, setEmail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-
-
 
   useEffect(() => {
     console.log('Initial useEffect triggered');
@@ -31,7 +30,7 @@ const GroceryRationCard = () => {
       if (response.ok) {
         const result = await response.json();
         console.log('Data fetched:', result);
-        setData(result);
+        setData(result[0]);
       } else {
         console.error('Failed to fetch data');
       }
@@ -43,14 +42,25 @@ const GroceryRationCard = () => {
   };
 
   const handleDownload = () => {
-    console.log('Downloading data:', data);
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'rationCard.json';
-    a.click();
-    URL.revokeObjectURL(url);
+    if (!data) return;
+
+    const doc = new jsPDF();
+
+    // Add title
+    doc.setFontSize(22);
+    doc.text('Grocery Ration Card', 20, 20);
+
+    // Add email
+    doc.setFontSize(16);
+    doc.text(`Email: ${data.email}`, 20, 30);
+
+    // Add additional data as needed
+    // Assuming data has fields like name, rationCardNumber, etc.
+    if (data.name) doc.text(`Name: ${data.name}`, 20, 40);
+    if (data.rationCardNumber) doc.text(`Ration Card Number: ${data.rationCardNumber}`, 20, 50);
+
+    // Download the PDF
+    doc.save('rationCard.pdf');
   };
 
   return (
