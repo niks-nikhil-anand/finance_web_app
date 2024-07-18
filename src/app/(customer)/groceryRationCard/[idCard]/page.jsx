@@ -2,14 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaDownload } from 'react-icons/fa';
-import { useSearchParams } from 'next/navigation';
 
 const GroceryRationCard = () => {
-  const searchParams = useSearchParams();
   const [email, setEmail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  const token = searchParams.get('email');
+
+
 
   useEffect(() => {
     console.log('Initial useEffect triggered');
