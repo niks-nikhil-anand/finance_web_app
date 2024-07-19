@@ -78,7 +78,7 @@ const GroceryRationCard = () => {
               </div>
               <div className="p-4 text-center mt-8 flex justify-start flex-col mb-[5rem]">
                 <h2 className="text-xl text-blue-700 font-extrabold">{rationCard.name}</h2>
-                <p className="text-gray-600">Father's Name: {rationCard.fatherName}</p>
+                <p className="text-gray-600">Father&apos;s Name: {rationCard.fatherName}</p>
                 <div className="mt-4">
                   <p className="text-sm">WhatsApp No: {rationCard.whatsAppNumber}</p>
                   <p className="text-sm">Mobile: {rationCard.mobileNumber}</p>
