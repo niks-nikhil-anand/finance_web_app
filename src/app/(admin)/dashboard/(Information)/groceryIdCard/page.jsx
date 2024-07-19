@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { Dialog } from '@headlessui/react';
 
 const GroceryIdCardTable = () => {
   const [applications, setApplications] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentApplication, setCurrentApplication] = useState(null);
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -26,16 +29,14 @@ const GroceryIdCardTable = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       await axios.put(`/api/groceryRationCard/form/${id}`, { status: newStatus });
-      // Optionally update state or handle success message
     } catch (error) {
       console.error('Error updating status:', error);
-      // Handle error gracefully
     }
   };
 
-  const handleEdit = (id) => {
-    // Implement the edit functionality
-    console.log(`Edit application with id: ${id}`);
+  const handleEdit = (application) => {
+    setCurrentApplication(application);
+    setIsOpen(true);
   };
 
   const handleDelete = async (id) => {
@@ -44,7 +45,16 @@ const GroceryIdCardTable = () => {
       setApplications(applications.filter(application => application._id !== id));
     } catch (error) {
       console.error('Error deleting application:', error);
-      // Handle error gracefully
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      await axios.put(`/api/groceryRationCard/form/${currentApplication._id}`, currentApplication);
+      setApplications(applications.map(app => app._id === currentApplication._id ? currentApplication : app));
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Error saving application:', error);
     }
   };
 
@@ -53,7 +63,7 @@ const GroceryIdCardTable = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto w-[80%] bg-gray-100"
+      className="container mx-auto w-[80%] bg-gray-100 p-4"
     >
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Grocery Id Card Applications</h2>
       <div className="overflow-auto max-h-[30rem]">
@@ -114,10 +124,10 @@ const GroceryIdCardTable = () => {
                     {application.profilePhoto ? 'Profile Photo' : 'Not Available'}
                   </a>
                 </td>
-                <td className="py-2 px-4 border border-gray-300">
+                <td className="py-2 px-4 border border-gray-300 flex space-x-2">
                   <button
-                    onClick={() => handleEdit(application._id)}
-                    className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+                    onClick={() => handleEdit(application)}
+                    className="bg-blue-500 text-white px-2 py-1 rounded"
                   >
                     Edit
                   </button>
@@ -133,6 +143,47 @@ const GroceryIdCardTable = () => {
           </tbody>
         </table>
       </div>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-lg p-6 z-10 max-w-md w-full"
+          >
+            <Dialog.Title className="text-lg font-bold mb-4">Edit Application</Dialog.Title>
+            {currentApplication && (
+              <>
+                <label className="block mb-2">
+                  Name:
+                  <input
+                    type="text"
+                    value={currentApplication.name}
+                    onChange={(e) => setCurrentApplication({ ...currentApplication, name: e.target.value })}
+                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                  />
+                </label>
+                {/* Add more fields as needed */}
+                <div className="flex justify-end space-x-2 mt-2">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="bg-gray-500 text-white px-4 py-2 rounded"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSave}
+                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                  >
+                    Save
+                  </button>
+                </div>
+              </>
+            )}
+          </motion.div>
+        </div>
+      </Dialog>
     </motion.div>
   );
 };
