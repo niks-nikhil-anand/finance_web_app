@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
@@ -33,6 +33,21 @@ const GroceryIdCardTable = () => {
     }
   };
 
+  const handleEdit = (id) => {
+    // Implement the edit functionality
+    console.log(`Edit application with id: ${id}`);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/api/groceryRationCard/form/${id}`);
+      setApplications(applications.filter(application => application._id !== id));
+    } catch (error) {
+      console.error('Error deleting application:', error);
+      // Handle error gracefully
+    }
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -61,6 +76,7 @@ const GroceryIdCardTable = () => {
               <th className="py-2 px-4 border border-gray-400">Bank Name</th>
               <th className="py-2 px-4 border border-gray-400">Photo Copy</th>
               <th className="py-2 px-4 border border-gray-400">Profile Photo</th>
+              <th className="py-2 px-4 border border-gray-400">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -97,6 +113,20 @@ const GroceryIdCardTable = () => {
                   >
                     {application.profilePhoto ? 'Profile Photo' : 'Not Available'}
                   </a>
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <button
+                    onClick={() => handleEdit(application._id)}
+                    className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(application._id)}
+                    className="bg-red-500 text-white px-2 py-1 rounded"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
