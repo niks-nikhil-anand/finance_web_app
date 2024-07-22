@@ -38,7 +38,7 @@ const GroceryRationCard = () => {
         .then((dataUrl) => {
           const link = document.createElement('a');
           link.href = dataUrl;
-          link.download = 'id-card.png';
+          link.download = 'grocery-ration-card.png';
           link.click();
         })
         .catch((error) => {
