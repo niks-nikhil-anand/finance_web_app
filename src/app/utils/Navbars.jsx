@@ -10,7 +10,7 @@ const Navbars = () => {
   const isBranchPage = pathname.startsWith('/branch');
 
   if (isAdminPage || isUserPage || isBranchPage) {
-    return null; // Don't render navbar for admin and user pages
+    return null; 
   }
 
   return <Navbar />;

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaPhoneAlt, FaGlobe } from 'react-icons/fa';
 import { toPng } from 'html-to-image';
-import Image from 'next/image'; 
-import vegetablesImage from '../../../../../public/vegetables/vegetable.png';
+import Image from 'next/image';
+import stamp from '../../../../../public/vegetables/stamp.png'; // Ensure this path is correct
 
 const GroceryRationCard = () => {
   const [rationCard, setRationCard] = useState(null);
@@ -48,7 +48,7 @@ const GroceryRationCard = () => {
   };
 
   return (
-    <div className='bg-gray-100 min-h-screen p-5'>
+    <div className="bg-gray-100 min-h-screen p-5">
       <div className="mb-5">
         <button onClick={() => window.history.back()} className="text-xl text-red-700 border-black rounded-full p-3">
           <FaArrowLeft />
@@ -59,70 +59,96 @@ const GroceryRationCard = () => {
           <div id="id-card" className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
             {/* Front Side of the Card */}
             <motion.div
-              className="w-full md:w-64 h-auto md:max-h-[30rem] bg-white rounded-lg shadow-2xl overflow-hidden relative"
+              className="w-full md:w-64 h-auto bg-white rounded-lg shadow-2xl overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-green-600 h-[8rem] justify-center items-center relative rounded-t-lg flex flex-col">
-                <h1 className="text-sm text-black font-extrabold mt-5 underline">Jono Jivan Grocery Ration Card</h1>
-                <Image
-                  src={rationCard.profilePhoto}
-                  alt="Profile"
-                  height={100}
-                  width={100}
-                  className="w-22 h-22 border-4 border-white shadow-lg mb-5 mt-3 rounded-full"
-                />
-                {/* Colorful Vegetable Image */}
+              <div className="bg-green-500 h-[7rem] justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
+                <h1 className="text-sm text-black font-extrabold mt-[3rem] underline ">Jono Jivan Grocery Ration Card</h1>
+                {rationCard.profilePhoto && (
+                  <Image
+                    src={rationCard.profilePhoto}
+                    alt="Profile"
+                    height={100}
+                    width={100}
+                    className="w-22 h-22   border-4 border-white shadow-lg mt-3 rounded-full"
+                  />
+                )}
+                {/* <span className="absolute  bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">Active</span> */}
                
               </div>
-              <div className="p-4 text-center mt-8 flex justify-start flex-col mb-[5rem]">
-                <h2 className="text-xl text-blue-700 font-extrabold">{rationCard.name}</h2>
-                <p className="text-gray-600">Father&apos;s Name: {rationCard.fatherName}</p>
-                <div className="mt-4">
-                  <p className="text-sm">WhatsApp No: {rationCard.whatsAppNumber}</p>
-                  <p className="text-sm">Mobile: {rationCard.mobileNumber}</p>
-                  <p className="mt-4 text-sm">Address: {rationCard.address}, {rationCard.district}, {rationCard.state} - {rationCard.pinCode}</p>
+              <div className="absolute top-10 right-3  p-2">
+                  <Image
+                    src={stamp}
+                    alt="Stamp"
+                    height={100}
+                    width={100}
+                    className="opacity-70"
+                  />
                 </div>
-                <div>
-                <Image
-                  src={vegetablesImage}
-                  alt="Vegetables"
-                  width={60}
-                  height={60}
-                  className="absolute bottom-3 left-2 mt-2 mr-2"
-                />
+              <div className="text-center mt-10 flex justify-start flex-col  mb-3">
+                <h2 className="text-xl text-blue-700 font-extrabold m-5">{rationCard.name}</h2>
+                <div className="mt-4 text-sm flex flex-col flex-start px-2">
+                  <p className="text-gray-600"><span className="font-bold"> Father&apos;s Name:</span> {rationCard.fatherName}</p>
+                  <p><span className="font-bold">WhatsApp No:</span> {rationCard.whatsAppNumber}</p>
+                  <p><span className="font-bold">Mobile:</span> {rationCard.mobileNumber}</p>
+                  <p><span className="font-bold">Email: </span>{rationCard.email}</p>
+                  <p> <span className="font-bold">Aadhaar No: </span>{rationCard.aadhaarNumber}</p>
+                  <p><span className = "font-bold">PAN No:</span> {rationCard.panNumber}</p>
+                  <p className="font-bold mt-2">Address:</p>
+                  <p>Add: {rationCard.address}, {rationCard.district},</p>
+                  <p>State: {rationCard.state}</p>
+                  <p>Pin Code: {rationCard.pinCode}</p>
+                  <p className="font-bold mt-2">Bank Details:</p>
+                  <p>Account No: {rationCard.bankAccountNumber}</p>
+                  <p>IFSC: {rationCard.ifscCode}</p>
+                  <p>Bank Name: {rationCard.bankName}</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Back Side of the Card */}
             <motion.div
-              className="w-full md:w-64 h-auto md:max-h-[30rem] bg-green-600 rounded-lg shadow-lg overflow-hidden relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="p-4">
-                <h2 className="text-xl font-bold text-white text-center mb-4">Information</h2>
-                <div className="text-white">
-                  <p className="font-bold">Email:</p>
-                  <p>{rationCard.email}</p>
-                  <p className="font-bold mt-2">Aadhaar No:</p>
-                  <p>{rationCard.aadhaarNumber}</p>
-                  <p className="font-bold mt-2">PAN No:</p>
-                  <p>{rationCard.panNumber}</p>
-                  <p className="font-bold mt-2">Bank Details:</p>
-                  <p>Account No: {rationCard.bankAccountNumber}</p>
-                  <p>IFSC: {rationCard.ifscCode}</p>
-                  <p>Bank Name: {rationCard.bankName}</p>
-                  <p className="font-bold mt-2">Address Details:</p>
-                  <p>Address: {rationCard.address}</p>
-                  <p>State: {rationCard.state}</p>
-                  <p>District: {rationCard.district}</p>
-                </div>
-              </div>
-            </motion.div>
+  className="w-full md:w-64 h-auto bg-green-700 rounded-lg shadow-lg overflow-hidden relative"
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.5, delay: 0.2 }}
+>
+  <div className="p-4 text-white text-xs md:text-sm space-y-2">
+    <h2 className="text-lg md:text-xl font-bold text-center mb-3">Terms and Conditions</h2>
+    <ul className="list-disc list-inside space-y-2">
+      <li className="font-semibold text-base">Ration Card Details:</li>
+      <ul className="list-inside ml-7 space-y-1 text-sm">
+        <li>Ration Card Type: Free</li>
+        <li>Validity: 11 months</li>
+        <li>Insurance Coverage: ₹1 lakh</li>
+        <li>Eligibility: Age 18 to 45</li>
+        <li>Usage: For grocery use only; not for personal use</li>
+      </ul>
+      <li className="font-semibold text-base">Shop Details:</li>
+      <ul className="list-inside ml-7 space-y-1 text-sm">
+        <li>Opening Time: 7:00 AM</li>
+        <li>Closing Time: 9:00 PM</li>
+      </ul>
+      <li className="font-semibold text-base">Services Provided:</li>
+      <ul className="list-inside ml-7 space-y-1 text-sm">
+        <li>Grocery Home Delivery: Available</li>
+        <li>JonoJivan Grocery Ration Card</li>
+        <li>Digital Banking Service</li>
+        <li>Financial Services</li>
+        <li>All Types of Finance Loan Services</li>
+      </ul>
+    </ul>
+    <p className="flex items-center mt-3 my-5">
+      <FaPhoneAlt className="mr-2 text-2xl" />  8761873802
+    </p>
+    <p className="flex items-center">
+      <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
+    </p>
+  </div>
+</motion.div>
+
           </div>
         </div>
       ) : (
