@@ -140,6 +140,7 @@ const GroceryRationCard = () => {
         <li>All Types of Finance Loan Services</li>
       </ul>
     </ul>
+    <hr/>
     <p className="flex items-center mt-3 my-5">
       <FaPhoneAlt className="mr-2 text-2xl" />  8761873802
     </p>
