@@ -61,28 +61,12 @@ const RationCardForm = () => {
     setStep(1);
   };
 
-  const notifyLoading = () => {
-    toast.info("Submitting form...", {
-      position: "bottom-right"
-    });
-  };
-
-  const notifySuccess = () => {
-    toast.success("Form submitted successfully!", {
-      position: "bottom-right"
-    });
-  };
-
-  const notifyError = (message) => {
-    toast.error(`Error: ${message}`, {
-      position: "bottom-right"
-    });
-  };
+  
 
   const handleSubmitStep2 = async (e) => {
     e.preventDefault();
     setLoading(true);
-    notifyLoading(); 
+     
 
     const data = new FormData();
     Object.keys(formData).forEach((key) => data.append(key, formData[key]));
@@ -116,18 +100,18 @@ const RationCardForm = () => {
         setPhotoCopy(null);
         setProfilePhoto(null);
         setStep(1);
-        notifySuccess();
+       
         const email = formData.email;
         router.push(`/groceryRationCard/${email}`);
         
       } else {
         const errorData = await response.json();
         console.log('handleSubmitStep2 error response:', errorData);
-        notifyError(errorData.message);
+        
       }
     } catch (error) {
       console.log('handleSubmitStep2 catch error:', error);
-      notifyError('Something went wrong.');
+     
     } finally {
       setLoading(false);
     }

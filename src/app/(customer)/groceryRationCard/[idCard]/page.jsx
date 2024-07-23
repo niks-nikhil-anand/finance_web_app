@@ -4,12 +4,24 @@ import { motion } from 'framer-motion';
 import { FaArrowLeft, FaPhoneAlt, FaGlobe } from 'react-icons/fa';
 import { toPng } from 'html-to-image';
 import Image from 'next/image';
-import stamp from '../../../../../public/vegetables/stamp.png'; // Ensure this path is correct
+import stamp from '../../../../../public/vegetables/stamp.png'; 
+
+const formatDateTime = (dateString) => {
+  const date = new Date(dateString);
+  const options = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  };
+  return date.toLocaleString('en-US', options);
+};
 
 const GroceryRationCard = () => {
   const [rationCard, setRationCard] = useState(null);
   const [loading, setLoading] = useState(true);
+  
 
+  
   useEffect(() => {
     const fetchRationCard = async () => {
       try {
@@ -64,20 +76,21 @@ const GroceryRationCard = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-green-500 h-[7rem] justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
-                <h1 className="text-sm text-black font-extrabold mt-[3rem] underline ">Jono Jivan Grocery Ration Card</h1>
-                {rationCard.profilePhoto && (
-                  <Image
-                    src={rationCard.profilePhoto}
-                    alt="Profile"
-                    height={100}
-                    width={100}
-                    className="w-22 h-22   border-4 border-white shadow-lg mt-3 rounded-full"
-                  />
-                )}
-                {/* <span className="absolute  bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">Active</span> */}
-               
-              </div>
+            <div className="bg-green-500 h-28 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
+              <h1 className="text-sm text-black font-extrabold mt-12 underline">Jono Jivan Grocery Ration Card</h1>
+              {rationCard.profilePhoto && (
+                <Image
+                  src={rationCard.profilePhoto}
+                  alt="Profile"
+                  height={100}
+                  width={100}
+                  className="border-4 border-white shadow-lg mt-3 rounded-full object-cover"
+                  style={{ objectFit: 'cover', width: '100px', height: '100px' }}
+                />
+              )}
+            </div>
+
+
               <div className="absolute top-10 right-3  p-2">
                   <Image
                     src={stamp}
@@ -88,8 +101,13 @@ const GroceryRationCard = () => {
                   />
                 </div>
               <div className="text-center mt-10 flex justify-start flex-col  mb-3">
-                <h2 className="text-xl text-blue-700 font-extrabold m-5">{rationCard.name}</h2>
-                <div className="mt-4 text-sm flex flex-col flex-start px-2">
+
+                <p className="flex items-center font-light justify-end px-5">
+                 #{rationCard.uniqueNumber}
+                </p>
+                
+                <h2 className="text-xl text-blue-700 font-extrabold m-5 underline">{rationCard.name}</h2>
+                <div className=" text-sm flex flex-col flex-start px-2 ">
                   <p className="text-gray-600"><span className="font-bold"> Father&apos;s Name:</span> {rationCard.fatherName}</p>
                   <p><span className="font-bold">WhatsApp No:</span> {rationCard.whatsAppNumber}</p>
                   <p><span className="font-bold">Mobile:</span> {rationCard.mobileNumber}</p>
@@ -105,6 +123,13 @@ const GroceryRationCard = () => {
                   <p>IFSC: {rationCard.ifscCode}</p>
                   <p>Bank Name: {rationCard.bankName}</p>
                 </div>
+                
+                <hr/>
+                <div className='px-5 mt-5'>
+                <p className="flex items-center ">
+                <span className= "font-bold">Date of Issue: </span>   {formatDateTime(rationCard.dateOfIssue)}
+    </p>
+              </div>
               </div>
             </motion.div>
 
@@ -142,11 +167,11 @@ const GroceryRationCard = () => {
     </ul>
     <hr/>
     <p className="flex items-center mt-3 my-5">
-      <FaPhoneAlt className="mr-2 text-2xl" />  8761873802
+      <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
     </p>
     <p className="flex items-center">
-      <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
-    </p>
+                  <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
+                </p>
   </div>
 </motion.div>
 

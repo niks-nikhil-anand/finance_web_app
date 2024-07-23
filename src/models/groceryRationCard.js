@@ -65,6 +65,14 @@ const rationCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  dateOfIssue:{
+    type: String,
+    required: true,
+  },
+  uniqueNumber:{
+    type: String,
+    required: true,
+  }
 });
 
 
