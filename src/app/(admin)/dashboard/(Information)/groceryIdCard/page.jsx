@@ -1,3 +1,4 @@
+"use client"
 "use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -29,6 +30,7 @@ const GroceryIdCardTable = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       await axios.put(`/api/groceryRationCard/form/${id}`, { status: newStatus });
+      setApplications(applications.map(app => app._id === id ? { ...app, status: newStatus } : app));
     } catch (error) {
       console.error('Error updating status:', error);
     }
@@ -99,15 +101,11 @@ const GroceryIdCardTable = () => {
                   <select
                     value={application.status}
                     onChange={(e) =>
-                      handleStatusChange(
-                        application._id,
-                        e.target.value,
-                        application.status,
-                      )
+                      handleStatusChange(application._id, e.target.value)
                     }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {["Active", "Blocked"].map((role) => (
+                    {["Active", "Blocked"].map((status) => (
                       <option key={status} value={status} >
                         {status}
                       </option>
