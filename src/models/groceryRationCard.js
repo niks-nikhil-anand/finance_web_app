@@ -69,6 +69,14 @@ const rationCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  status: { 
+    type: String,
+    enum: {
+      values: ['Active', 'Blocked'],
+      message: 'Approval status must be one of Blocked, Active'
+    },
+    default: 'Active'
+  },
   uniqueNumber:{
     type: String,
     required: true,

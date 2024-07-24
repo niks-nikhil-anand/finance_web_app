@@ -72,6 +72,7 @@ const GroceryIdCardTable = () => {
             <tr className="bg-purple-100">
               <th className="py-2 px-4 border border-gray-400">Name</th>
               <th className="py-2 px-4 border border-gray-400">Email</th>
+              <th className="py-2 px-4 border border-gray-400">Status</th>
               <th className="py-2 px-4 border border-gray-400">Father&apos;s Name</th>
               <th className="py-2 px-4 border border-gray-400">Address</th>
               <th className="py-2 px-4 border border-gray-400">District</th>
@@ -94,6 +95,25 @@ const GroceryIdCardTable = () => {
               <tr key={index} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border border-gray-300">{application.name || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.email || 'Not Available'}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
+                    value={application.status}
+                    onChange={(e) =>
+                      handleStatusChange(
+                        application._id,
+                        e.target.value,
+                        application.status,
+                      )
+                    }
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    {["Active", "Blocked"].map((role) => (
+                      <option key={status} value={status} >
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </td>
                 <td className="py-2 px-4 border border-gray-300">{application.fatherName || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.address || 'Not Available'}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.district || 'Not Available'}</td>
