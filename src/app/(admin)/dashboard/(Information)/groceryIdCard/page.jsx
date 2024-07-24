@@ -18,7 +18,6 @@ const GroceryIdCardTable = () => {
         console.error('Error fetching loan applications:', error);
       }
     };
-
     fetchApplications();
   }, []);
 
