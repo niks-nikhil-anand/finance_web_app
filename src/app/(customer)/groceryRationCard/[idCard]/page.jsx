@@ -145,24 +145,30 @@ const GroceryRationCard = () => {
     <ul className="list-disc list-inside space-y-2">
       <li className="font-semibold text-base">Ration Card Details:</li>
       <ul className="list-inside ml-7 space-y-1 text-sm">
-        <li>Ration Card Type: Free</li>
-        <li>Validity: 11 months</li>
-        <li>Insurance Coverage: ₹1 lakh</li>
-        <li>Eligibility: Age 18 to 45</li>
-        <li>Usage: For grocery use only; not for personal use</li>
+        <li><span className = "font-medium">Ration Card Type:</span> Free</li>
+        <li><span className = "font-medium">Validity:</span>  11 months</li>
+        <li><span className = "font-medium">Insurance Coverage:</span> ₹1 lakh</li>
+        <li><span className = "font-medium">Eligibility:</span> Age 18 to 45</li>
+        <li><span className = "font-medium">Usage:</span> For grocery use only(not for personal use)</li>
+        <li> </li>
       </ul>
       <li className="font-semibold text-base">Shop Details:</li>
       <ul className="list-inside ml-7 space-y-1 text-sm">
-        <li>Opening Time: 7:00 AM</li>
-        <li>Closing Time: 9:00 PM</li>
+      <li><span className = "font-medium">Opening Time:</span>  7:00 AM</li>
+      <li><span className = "font-medium">Closing Time:</span>  9:00 PM</li>
       </ul>
       <li className="font-semibold text-base">Services Provided:</li>
       <ul className="list-inside ml-7 space-y-1 text-sm">
-        <li>Grocery Home Delivery: Available</li>
-        <li>JonoJivan Grocery Ration Card</li>
+      <li><span className = "font-medium">Grocery Home Delivery:</span>  Available</li>
+      <li><span className = "font-medium">Grocery Home Delivery:</span>  Available</li>
+
+       <div>
+       <li>JonoJivan Grocery Ration Card</li>
         <li>Digital Banking Service</li>
         <li>Financial Services</li>
         <li>All Types of Finance Loan Services</li>
+       </div>
+        
       </ul>
     </ul>
     <hr/>
