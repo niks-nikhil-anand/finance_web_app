@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { MdOutlineLogout } from "react-icons/md";
 import { SiGoogledocs } from "react-icons/si";
 import { FaAddressCard } from "react-icons/fa";
-import { FaMoneyCheckAlt } from "react-icons/fa";
+import { FaMoneyCheckAlt , FaDownload } from "react-icons/fa";
 import { LuVegan } from "react-icons/lu";
 import { FcAcceptDatabase , FcBusinessman   } from "react-icons/fc";
 
@@ -253,13 +253,7 @@ export function SidebarAdmin() {
                  <FaAddressCard  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Id Card</span>
               </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/groceryIdCard"}
-              >
-                 <LuVegan  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Grocery Id Card</span>
-              </Link>
+              
 
 
               <Link
@@ -268,6 +262,27 @@ export function SidebarAdmin() {
               >
                  <FaMoneyCheckAlt  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Transactions</span>
+              </Link>
+              
+            </div>
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Grocery</label>
+              
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/groceryIdCard"}
+              >
+                 <LuVegan  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Grocery Id Card(Deatils)</span>
+              </Link>
+
+
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/walletTransactions"}
+              >
+                 <FaDownload  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Download Id Card</span>
               </Link>
               
             </div>
