@@ -76,7 +76,7 @@ const IdCard = () => {
           {error && <p className="text-red-500 mt-2">{error}</p>}
         </div>
         {rationCard && (
-          <div className="flex flex-col items-center overflow-auto max-h-[25rem]">
+          <div className="flex flex-col items-center overflow-auto max-h-[30rem]">
             <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
               {/* Front Side of the Card */}
               <motion.div
