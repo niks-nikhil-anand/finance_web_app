@@ -22,7 +22,7 @@ const GroceryRationCard = () => {
   
 
   
-  useEffect(() => {
+useEffect(() => {
     const fetchRationCard = async () => {
       try {
         const emailFromURL = window.location.pathname.split('/')[2];
