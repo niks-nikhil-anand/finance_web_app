@@ -102,8 +102,8 @@ useEffect(() => {
                 </div>
               <div className="text-center mt-10 flex justify-start flex-col  mb-3">
 
-                <p className="flex items-center font-light justify-end px-5">
-                 #{rationCard.uniqueNumber}
+                <p className="flex items-center font-light justify-end px-2">
+                <span className = "underline">Grocery Ration Card:- </span> <span className=''>#{rationCard.uniqueNumber}</span>
                 </p>
                 
                 <h2 className="text-xl text-blue-700 font-extrabold m-5 underline">{rationCard.name}</h2>
