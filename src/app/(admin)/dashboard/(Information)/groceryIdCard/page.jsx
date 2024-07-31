@@ -10,31 +10,11 @@ const GroceryIdCardTable = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [editingApplication, setEditingApplication] = useState(null);
   const [originalApplication, setOriginalApplication] = useState(null);
-  const [error, setError] = useState(null);
 
-  const notifyLoading = () => {
-    toast.info("Submitting...", {
-      position: "bottom-right",
-    });
-  };
-
-  const notifyDelete = () => {
-    toast.success("Deleted successfully!", {
-      position: "bottom-right",
-    });
-  };
-
-  const notifySuccess = () => {
-    toast.success("Updated successfully!", {
-      position: "bottom-right",
-    });
-  };
-
-  const notifyError = (message) => {
-    toast.error(`Error: ${message}`, {
-      position: "bottom-right",
-    });
-  };
+  const notifyLoading = () => toast.info("Submitting...", { position: "bottom-right" });
+  const notifyDelete = () => toast.success("Deleted successfully!", { position: "bottom-right" });
+  const notifySuccess = () => toast.success("Updated successfully!", { position: "bottom-right" });
+  const notifyError = (message) => toast.error(`Error: ${message}`, { position: "bottom-right" });
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -48,9 +28,7 @@ const GroceryIdCardTable = () => {
     fetchApplications();
   }, []);
 
-  const handleImageClick = (imageUrl) => {
-    window.open(imageUrl, '_blank');
-  };
+  const handleImageClick = (imageUrl) => window.open(imageUrl, '_blank');
 
   const handleStatusChange = async (id, newStatus) => {
     try {
@@ -75,9 +53,7 @@ const GroceryIdCardTable = () => {
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`/api/groceryRationCard/form/${id}`);
-      setApplications(prevApplications =>
-        prevApplications.filter(application => application._id !== id)
-      );
+      setApplications(prevApplications => prevApplications.filter(application => application._id !== id));
       notifyDelete();
     } catch (error) {
       notifyError("Error deleting application");
@@ -87,12 +63,9 @@ const GroceryIdCardTable = () => {
 
   const handleEditSave = async () => {
     try {
-      const response = await axios.put(`/api/groceryRationCard/form/${editingApplication._id}`, editingApplication);
-      setApplications(prevApplications =>
-        prevApplications.map(application =>
-          application._id === editingApplication._id ? editingApplication : application
-        )
-      );
+      await axios.put(`/api/groceryRationCard/form/${editingApplication._id}`, editingApplication);
+      setApplications(prevApplications => prevApplications.map(application => 
+        application._id === editingApplication._id ? editingApplication : application));
       setEditingApplication(null);
       setIsOpen(false);
       notifySuccess();
@@ -116,14 +89,9 @@ const GroceryIdCardTable = () => {
 
     try {
       const response = await axios.post("/api/admin/uploadFile", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      setEditingApplication(prevApplication => ({
-        ...prevApplication,
-        [fieldName]: response.data.fileUrl,
-      }));
+      setEditingApplication(prevApplication => ({ ...prevApplication, [fieldName]: response.data.fileUrl }));
       notifySuccess();
     } catch (error) {
       notifyError("Error uploading file");
@@ -138,14 +106,9 @@ const GroceryIdCardTable = () => {
     
     try {
       await axios.post("/api/admin/deleteFile", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      setEditingApplication(prevApplication => ({
-        ...prevApplication,
-        [fieldName]: null,
-      }));
+      setEditingApplication(prevApplication => ({ ...prevApplication, [fieldName]: null }));
       notifySuccess();
     } catch (error) {
       notifyError("Error deleting file");
@@ -163,14 +126,13 @@ const GroceryIdCardTable = () => {
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Grocery Id Card Applications</h2>
       <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr className="bg-purple-100">
-
+          <thead className='bg-purple-100'>
+            <tr >
               <th className="py-2 px-4 border border-gray-400">Profile</th>
               <th className="py-2 px-4 border border-gray-400">Name</th>
               <th className="py-2 px-4 border border-gray-400">Email</th>
               <th className="py-2 px-4 border border-gray-400">Status</th>
-              <th className="py-2 px-4 border border-gray-400">Father&apos;s Name</th>
+              <th className="py-2 px-4 border border-gray-400">Father's Name</th>
               <th className="py-2 px-4 border border-gray-400">Address</th>
               <th className="py-2 px-4 border border-gray-400">District</th>
               <th className="py-2 px-4 border border-gray-400">Pin Code</th>
@@ -190,7 +152,7 @@ const GroceryIdCardTable = () => {
           <tbody>
             {applications.map((application, index) => (
               <tr key={index} className="hover:bg-gray-100">
-                 <td className="py-2 px-4 border border-gray-300">
+                <td className="py-2 px-4 border border-gray-300">
                   {editingApplication && editingApplication._id === application._id ? (
                     application.profilePhoto ? (
                       <img
@@ -244,31 +206,32 @@ const GroceryIdCardTable = () => {
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  <select
-                    value={application.status}
-                    onChange={(e) =>
-                      handleStatusChange(application._id, e.target.value)
-                    }
-                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                  >
-                    {["Active", "Blocked"].map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <select
+                      name="status"
+                      value={editingApplication.status}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="Pending">Pending</option>
+                      <option value="Approved">Approved</option>
+                      <option value="Rejected">Rejected</option>
+                    </select>
+                  ) : (
+                    application.status
+                  )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   {editingApplication && editingApplication._id === application._id ? (
                     <input
                       type="text"
-                      name="fatherName"
-                      value={editingApplication.fatherName}
+                      name="fathersName"
+                      value={editingApplication.fathersName}
                       onChange={handleInputChange}
                       className="py-1 px-2 border border-gray-300 rounded-md"
                     />
                   ) : (
-                    application.fatherName
+                    application.fathersName
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -314,13 +277,13 @@ const GroceryIdCardTable = () => {
                   {editingApplication && editingApplication._id === application._id ? (
                     <input
                       type="text"
-                      name="whatsAppNumber"
-                      value={editingApplication.whatsAppNumber}
+                      name="whatsappNumber"
+                      value={editingApplication.whatsappNumber}
                       onChange={handleInputChange}
                       className="py-1 px-2 border border-gray-300 rounded-md"
                     />
                   ) : (
-                    application.whatsAppNumber
+                    application.whatsappNumber
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -337,7 +300,17 @@ const GroceryIdCardTable = () => {
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  {application.state || 'Not Available'}
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="state"
+                      value={editingApplication.state}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.state
+                  )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   {editingApplication && editingApplication._id === application._id ? (
@@ -405,26 +378,78 @@ const GroceryIdCardTable = () => {
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.photoCopy || '#')}
-                    className="text-blue-500 hover:underline"
-                  >
-                    {application.photoCopy ? 'Photo Copy' : 'Not Available'}
-                  </a>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.profilePhoto || '#')}
-                    className="text-blue-500 hover:underline"
-                  >
-                    {application.profilePhoto ? 'Profile Photo' : 'Not Available'}
-                  </a>
+                  {editingApplication && editingApplication._id === application._id ? (
+                    application.photoCopy ? (
+                      <>
+                        <img
+                          src={application.photoCopy}
+                          alt="Photo Copy"
+                          className="h-16 w-16 cursor-pointer object-cover"
+                          onClick={() => handleImageClick(application.photoCopy)}
+                        />
+                        <button
+                          onClick={() => handleFileDelete("photoCopy")}
+                          className="mt-2 bg-red-500 text-white py-1 px-2 rounded"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    ) : (
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, "photoCopy")}
+                      />
+                    )
+                  ) : (
+                    application.photoCopy && (
+                      <img
+                        src={application.photoCopy}
+                        alt="Photo Copy"
+                        className="h-16 w-16 cursor-pointer object-cover"
+                        onClick={() => handleImageClick(application.photoCopy)}
+                      />
+                    )
+                  )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
                   {editingApplication && editingApplication._id === application._id ? (
-                    <div className="flex space-x-2">
+                    application.profilePhoto ? (
+                      <>
+                        <img
+                          src={application.profilePhoto}
+                          alt="Profile Photo"
+                          className="h-16 w-16 cursor-pointer object-cover"
+                          onClick={() => handleImageClick(application.profilePhoto)}
+                        />
+                        <button
+                          onClick={() => handleFileDelete("profilePhoto")}
+                          className="mt-2 bg-red-500 text-white py-1 px-2 rounded"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    ) : (
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, "profilePhoto")}
+                      />
+                    )
+                  ) : (
+                    application.profilePhoto && (
+                      <img
+                        src={application.profilePhoto}
+                        alt="Profile Photo"
+                        className="h-16 w-16 cursor-pointer object-cover"
+                        onClick={() => handleImageClick(application.profilePhoto)}
+                      />
+                    )
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <>
                       <button
                         onClick={handleEditSave}
                         className="py-1 px-2 bg-green-500 text-white rounded-md"
@@ -437,9 +462,9 @@ const GroceryIdCardTable = () => {
                       >
                         Cancel
                       </button>
-                    </div>
+                    </>
                   ) : (
-                    <div className="flex space-x-2">
+                    <>
                       <button
                         onClick={() => handleEditClick(application)}
                         className="py-1 px-2 bg-blue-500 text-white rounded-md"
@@ -448,11 +473,11 @@ const GroceryIdCardTable = () => {
                       </button>
                       <button
                         onClick={() => handleDeleteClick(application._id)}
-                        className="py-1 px-2 bg-red-500 text-white rounded-md"
+                        className="py-1 px-2 bg-red-500 text-white rounded-md mt-4"
                       >
                         Delete
                       </button>
-                    </div>
+                    </>
                   )}
                 </td>
               </tr>
@@ -460,6 +485,7 @@ const GroceryIdCardTable = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer />
     </motion.div>
   );
 };
