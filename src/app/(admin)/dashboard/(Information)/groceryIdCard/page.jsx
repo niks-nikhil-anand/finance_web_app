@@ -165,6 +165,8 @@ const GroceryIdCardTable = () => {
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
             <tr className="bg-purple-100">
+
+              <th className="py-2 px-4 border border-gray-400">Profile</th>
               <th className="py-2 px-4 border border-gray-400">Name</th>
               <th className="py-2 px-4 border border-gray-400">Email</th>
               <th className="py-2 px-4 border border-gray-400">Status</th>
@@ -188,6 +190,33 @@ const GroceryIdCardTable = () => {
           <tbody>
             {applications.map((application, index) => (
               <tr key={index} className="hover:bg-gray-100">
+                 <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    application.profilePhoto ? (
+                      <img
+                        src={application.profilePhoto}
+                        alt="Profile Photo"
+                        className="h-16 w-16 cursor-pointer object-cover"
+                        onClick={() => handleImageClick(application.profilePhoto)}
+                      />
+                    ) : (
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, "profilePhoto")}
+                      />
+                    )
+                  ) : (
+                    application.profilePhoto && (
+                      <img
+                        src={application.profilePhoto}
+                        alt="Profile Photo"
+                        className="h-16 w-16 cursor-pointer object-cover"
+                        onClick={() => handleImageClick(application.profilePhoto)}
+                      />
+                    )
+                  )}
+                </td>
                 <td className="py-2 px-4 border border-gray-300">
                   {editingApplication && editingApplication._id === application._id ? (
                     <input
