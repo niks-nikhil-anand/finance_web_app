@@ -12,7 +12,6 @@ export const POST = async (req) => {
 
     // Extract data from the request body
     const formData = await req.formData();
-
     const fieldName = formData.get("fieldName");
     const userId = formData.get("userId");
 

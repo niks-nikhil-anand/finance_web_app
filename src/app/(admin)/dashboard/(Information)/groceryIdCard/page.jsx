@@ -88,7 +88,7 @@ const GroceryIdCardTable = () => {
     formData.append("userId", editingApplication._id);
 
     try {
-      const response = await axios.post("/api/admin/uploadFile", formData, {
+      const response = await axios.post("/api/groceryRationCard/form/uploadFile", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setEditingApplication(prevApplication => ({ ...prevApplication, [fieldName]: response.data.fileUrl }));
@@ -105,7 +105,7 @@ const GroceryIdCardTable = () => {
     formData.append("userId", editingApplication._id);
     
     try {
-      await axios.post("/api/admin/deleteFile", formData, {
+      await axios.post("/api/groceryRationCard/form/deleteFile", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setEditingApplication(prevApplication => ({ ...prevApplication, [fieldName]: null }));
