@@ -226,12 +226,12 @@ const GroceryIdCardTable = () => {
                     <input
                       type="text"
                       name="fathersName"
-                      value={editingApplication.fathersName}
+                      value={editingApplication.fatherName}
                       onChange={handleInputChange}
                       className="py-1 px-2 border border-gray-300 rounded-md"
                     />
                   ) : (
-                    application.fathersName
+                    application.fatherName
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
@@ -283,7 +283,7 @@ const GroceryIdCardTable = () => {
                       className="py-1 px-2 border border-gray-300 rounded-md"
                     />
                   ) : (
-                    application.whatsappNumber
+                    application.whatsAppNumber
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
