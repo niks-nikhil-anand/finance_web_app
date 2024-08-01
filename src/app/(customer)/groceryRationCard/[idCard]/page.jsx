@@ -205,9 +205,6 @@ const GroceryRationCard = () => {
       ) : (
         <p>Loading...</p>
       )}
-      <button onClick={downloadIdCard} className="text-white bg-blue-500 p-2 rounded mx-auto block mt-5 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-        Download ID Card
-      </button>
     </div>
   );
 };
