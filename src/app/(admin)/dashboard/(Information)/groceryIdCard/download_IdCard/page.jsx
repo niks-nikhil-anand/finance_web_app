@@ -85,12 +85,12 @@ const IdCard = () => {
              
            {/* Front Side of the Card */}
            <motion.div
-              className="w-full md:w-64 h-auto bg-white rounded-lg shadow-2xl overflow-hidden relative"
+              className="w-full md:w-64 h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-green-500 h-28 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
+              <div className="bg-[#ff9934] h-28 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
                 <h1 className="text-sm text-black font-extrabold mt-12 underline">Jono Jivan Grocery Ration Card</h1>
                 {rationCard.profilePhoto && (
                   <Image
@@ -129,7 +129,7 @@ const IdCard = () => {
                   <span className="underline">Grocery Ration Card:- </span> <span>#{rationCard.uniqueNumber}</span>
                 </p>
                 
-                <h2 className="text-xl text-blue-700 font-extrabold m-5 underline">{rationCard.name}</h2>
+                <h2 className="text-xl text-[#118806] font-extrabold m-5 underline">{rationCard.name}</h2>
                 <div className="text-sm flex flex-col flex-start px-2">
                   
                   <p className="text-gray-600"><span className="font-bold">Father&apos;s Name:</span> {rationCard.fatherName}</p>
@@ -153,23 +153,23 @@ const IdCard = () => {
                 )}
                 </div>
                 
-                <hr />
-                <div className='px-5 mt-5'>
-                  <p className="flex items-center ">
+                
+              </div>
+              <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
+              <p className="flex items-center ">
                     <span className="font-bold">Date of Issue: </span> {formatDateTime(rationCard.dateOfIssue)}
                   </p>
-                </div>
               </div>
             </motion.div>
 
             {/* Back Side of the Card */}
             <motion.div
-              className="w-full md:w-64 h-auto bg-green-700 rounded-lg shadow-lg overflow-hidden relative"
+              className="w-full md:w-64 h-auto bg-[#ff9934] rounded-lg shadow-lg overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="p-4 text-white text-xs md:text-sm space-y-2">
+              <div className="p-4 text-black text-xs md:text-sm space-y-2">
                 <h2 className="text-lg md:text-xl font-bold text-center mb-3">Terms and Conditions</h2>
                 <ul className="list-disc list-inside space-y-2">
                   <li className="font-semibold text-base">Ration Card Details:</li>
@@ -199,23 +199,28 @@ const IdCard = () => {
                   <p>State: {rationCard.state}</p>
                   <p>Pin Code: {rationCard.pinCode}</p>
                  
-                  <hr/>
-                <p className="flex items-center mt-3 my-5">
+                 
+                 
+                
+                
+               
+               
+              </div>
+              <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
+                  <p className="flex items-center mt-3 my-5">
                   <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
                 </p>
                 <p className="flex items-center">
                   <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
                 </p>
-                {/* QR Code */}
-               
-              </div>
+                  </div>
             </motion.div>
             </div>
 
             {rationCard && (
               <button
                 onClick={handleDownload}
-                className="mt-4 bg-blue-500 text-white p-2 rounded shadow hover:bg-blue-600"
+                className="mt-4 bg-[#ff9934] text-white p-2 rounded shadow hover:bg-[#ff7f1f]"
               >
                 Download
               </button>
