@@ -132,7 +132,7 @@ const GroceryIdCardTable = () => {
               <th className="py-2 px-4 border border-gray-400">Name</th>
               <th className="py-2 px-4 border border-gray-400">Email</th>
               <th className="py-2 px-4 border border-gray-400">Status</th>
-              <th className="py-2 px-4 border border-gray-400">Father's Name</th>
+              <th className="py-2 px-4 border border-gray-400">Father&apos;s Name</th>
               <th className="py-2 px-4 border border-gray-400">Address</th>
               <th className="py-2 px-4 border border-gray-400">District</th>
               <th className="py-2 px-4 border border-gray-400">Pin Code</th>
