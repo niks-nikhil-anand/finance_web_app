@@ -352,6 +352,7 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 >
                   <option value="" disabled>Select an interest</option>
+                  <option value="GST/ITR Services">JonoJivan Grocery Ration Card</option>
                   <option value="GST/ITR Services">GST/ITR Services</option>
                   <option value="Fintech Services">Fintech Services</option>
                   <option value="Finance Services-Loan">Finance Services-Loan</option>
