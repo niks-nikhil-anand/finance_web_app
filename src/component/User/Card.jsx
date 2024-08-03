@@ -16,7 +16,7 @@ import { GiPayMoney } from "react-icons/gi";
 import Link from "next/link";
 import { LuLogOut } from "react-icons/lu";
 import { TbTruckDelivery } from "react-icons/tb";
-
+import { LuVegan } from "react-icons/lu";
 import LogoutButton from "./LogoutButton.jsx";
 
 const cardData = [
@@ -43,6 +43,12 @@ const cardData = [
     icon: FaBuilding,
     bgColor: "bg-gradient-to-r from-purple-400 via-pink-400 to-red-400",
     link: "fintech",
+  },
+  {
+    title: "Jono Jivan Grocery Card",
+    icon: LuVegan,
+    bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
+    link: "grocery",
   },
   {
     title: "Complaint",
@@ -118,11 +124,11 @@ const ColorfulCard = () => {
 
   const filteredCardData = cardData.filter((card) => {
     if (services === "GST/ITR Services") {
-      return ["gstitr" ,  "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement"].includes(card.link);
+      return ["gstitr" ,  "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement" , "grocery"].includes(card.link);
     } else if (services === "Finance Services-Loan") {
-      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement"].includes(card.link);
+      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement"  , "grocery"].includes(card.link);
     } else if (services === "JonoJivan Micro Loan") {
-      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement"].includes(card.link);
+      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement" , "grocery"].includes(card.link);
     } else if (services === "All Services") {
       return true; 
     }

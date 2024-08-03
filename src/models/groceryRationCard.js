@@ -87,7 +87,12 @@ const rationCardSchema = new mongoose.Schema({
   uniqueNumber:{
     type: String,
     required: true,
-  }
+  },
+  partner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PartnerApplication',
+    required: false
+},
 });
 
 
