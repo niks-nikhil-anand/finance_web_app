@@ -129,6 +129,10 @@ const GroceryRationCard = () => {
                   <p>Account No: {rationCard.bankAccountNumber}</p>
                   <p>IFSC: {rationCard.ifscCode}</p>
                   <p>Bank Name: {rationCard.bankName}</p>
+                  <p className="font-bold mt-2">Address:</p>
+                <p>Add: {rationCard.address}, {rationCard.district},</p>
+                <p>State: {rationCard.state}</p>
+                <p>Pin Code: {rationCard.pinCode}</p>
                 </div>
                 <div className='m-5'>
                   {email && (
@@ -178,9 +182,9 @@ const GroceryRationCard = () => {
                 </ul>
                 <hr />
                 <p className="font-bold mt-2">Address:</p>
-                <p>Add: {rationCard.address}, {rationCard.district},</p>
-                <p>State: {rationCard.state}</p>
-                <p>Pin Code: {rationCard.pinCode}</p>
+                <p>Add: Biswanath Chariali , Sonitpur </p>
+                <p>State: Assam </p>
+                <p>Pin Code: 784176</p>
               </div>
               <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
                 <p className="flex items-center mt-3 my-5">
