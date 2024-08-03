@@ -10,7 +10,6 @@ import { PiCertificateBold } from "react-icons/pi";
 import { MdConnectWithoutContact } from "react-icons/md";
 import { FaIndianRupeeSign, FaIdCard } from "react-icons/fa6";
 import { FaFilePdf } from "react-icons/fa6";
-
 import { ImProfile } from "react-icons/im";
 import { GiPayMoney } from "react-icons/gi";
 import Link from "next/link";
@@ -48,7 +47,7 @@ const cardData = [
     title: "Jono Jivan Grocery Card",
     icon: LuVegan,
     bgColor: "bg-gradient-to-r from-purple-500 via-blue-400 to-teal-400",
-    link: "grocery",
+    link: "groceryCardForm",
   },
   {
     title: "Complaint",
