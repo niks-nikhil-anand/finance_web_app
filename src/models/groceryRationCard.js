@@ -15,15 +15,22 @@ const rationCardSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
   },
   district: {
     type: String,
-    required: true,
   },
   pinCode: {
     type: String,
     required: true,
+  },
+  panchayatName: {
+    type: String    ,
+  },
+  blockName: {
+    type: String    ,
+  },
+  wardNumber: {
+    type: String    ,
   },
   whatsAppNumber: {
     type: String,
