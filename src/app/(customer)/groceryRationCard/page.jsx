@@ -5,13 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BsChevronDown } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
 
-
 const RationCardForm = () => {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
-    email:'',
+    email: '',
     fatherName: '',
     address: '',
     district: '',
@@ -24,13 +23,17 @@ const RationCardForm = () => {
     bankAccountNumber: '',
     ifscCode: '',
     bankName: '',
+    panchayatName: '',
+    blockName: '',
+    wardNumber: '',
+    termsAgreed: false,
   });
   const [photoCopy, setPhotoCopy] = useState(null);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value, files, type, checked } = e.target;
     if (name === 'photoCopy' || name === 'profilePhoto') {
       if (name === 'photoCopy') {
         setPhotoCopy(files[0]);
@@ -44,6 +47,8 @@ const RationCardForm = () => {
       } else if ((name === 'mobileNumber' || name === 'whatsAppNumber') && formattedValue.length <= 10) {
         setFormData({ ...formData, [name]: formattedValue });
       }
+    } else if (type === 'checkbox') {
+      setFormData({ ...formData, [name]: checked });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -61,12 +66,9 @@ const RationCardForm = () => {
     setStep(1);
   };
 
-  
-
   const handleSubmitStep2 = async (e) => {
     e.preventDefault();
     setLoading(true);
-     
 
     const data = new FormData();
     Object.keys(formData).forEach((key) => data.append(key, formData[key]));
@@ -83,7 +85,7 @@ const RationCardForm = () => {
       if (response.ok) {
         setFormData({
           name: '',
-          email:'',
+          email: '',
           fatherName: '',
           address: '',
           district: '',
@@ -96,22 +98,23 @@ const RationCardForm = () => {
           bankAccountNumber: '',
           ifscCode: '',
           bankName: '',
+          panchayatName: '',
+          blockName: '',
+          wardNumber: '',
+          termsAgreed: false,
         });
         setPhotoCopy(null);
         setProfilePhoto(null);
         setStep(1);
-       
+
         const email = formData.email;
         router.push(`/groceryRationCard/${email}`);
-        
       } else {
         const errorData = await response.json();
         console.log('handleSubmitStep2 error response:', errorData);
-        
       }
     } catch (error) {
       console.log('handleSubmitStep2 catch error:', error);
-     
     } finally {
       setLoading(false);
     }
@@ -178,7 +181,7 @@ const RationCardForm = () => {
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-                Address (Block Name + Panchayat Name)
+                Address
               </label>
               <input
                 type="text"
@@ -191,28 +194,46 @@ const RationCardForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
-                State
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="panchayatName">
+                Panchayat Name
               </label>
-              <div className="relative">
-                <select
-                  name="state"
-                  value={formData.state}
-                  onChange={handleChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  required
-                >
-                  <option value="" disabled>Select a state</option>
-                  {indianStates.map((state) => (
-                    <option key={state} value={state}>
-                      {state}
-                    </option>
-                  ))}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <BsChevronDown />
-                </div>
-              </div>
+              <input
+                type="text"
+                id="panchayatName"
+                name="panchayatName"
+                value={formData.panchayatName}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="blockName">
+                Block Name
+              </label>
+              <input
+                type="text"
+                id="blockName"
+                name="blockName"
+                value={formData.blockName}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="wardNumber">
+                Ward Number
+              </label>
+              <input
+                type="text"
+                id="wardNumber"
+                name="wardNumber"
+                value={formData.wardNumber}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="district">
@@ -238,23 +259,6 @@ const RationCardForm = () => {
                 name="pinCode"
                 value={formData.pinCode}
                 onChange={handleChange}
-                maxLength="6"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="mobileNumber">
-                Mobile Number
-              </label>
-              <input
-                type="tel"
-                id="mobileNumber"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-                maxLength="10"
-                pattern="[0-9]{10}"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
@@ -264,18 +268,55 @@ const RationCardForm = () => {
                 WhatsApp Number
               </label>
               <input
-                type="tel"
+                type="text"
                 id="whatsAppNumber"
                 name="whatsAppNumber"
                 value={formData.whatsAppNumber}
                 onChange={handleChange}
-                maxLength="10"
-                pattern="[0-9]{10}"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
-            <div className="flex justify-between">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="mobileNumber">
+                Mobile Number
+              </label>
+              <input
+                type="text"
+                id="mobileNumber"
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
+                State
+              </label>
+              <div className="relative">
+                <select
+                  id="state"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                  required
+                >
+                  <option value="">Select a state</option>
+                  {indianStates.map((state) => (
+                    <option key={state} value={state}>{state}</option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <BsChevronDown />
+                </div>
+              </div>
+            </div>
+           
+            
+            <div className="flex items-center justify-between">
               <button
                 type="submit"
                 className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -287,7 +328,7 @@ const RationCardForm = () => {
         )}
         {step === 2 && (
           <form onSubmit={handleSubmitStep2}>
-            <div className="mb-4">
+             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aadhaarNumber">
                 Aadhaar Number
               </label>
@@ -359,34 +400,49 @@ const RationCardForm = () => {
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photoCopy">
-                Photo Copy
+                Aadhaar Copy
               </label>
               <input
                 type="file"
                 id="photoCopy"
                 name="photoCopy"
-                accept=".jpg,.jpeg,.png"
-                onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profilePhoto">
-                Profile Photo
-              </label>
-              <input
-                type="file"
-                id="profilePhoto"
-                name="profilePhoto"
-                accept=".jpg,.jpeg,.png"
+                accept=".jpg, .jpeg, .png"
                 onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
-            <div className="flex justify-between">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profilePhoto">
+                Passport Size Photo
+              </label>
+              <input
+                type="file"
+                id="profilePhoto"
+                name="profilePhoto"
+                accept=".jpg, .jpeg, .png"
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="termsAgreed">
+                <input
+                  type="checkbox"
+                  id="termsAgreed"
+                  name="termsAgreed"
+                  checked={formData.termsAgreed}
+                  onChange={handleChange}
+                  className="mr-2 leading-tight"
+                  required
+                />
+                I agree to the terms and conditions
+              </label>
+            </div>
+            <div className="flex items-center justify-between">
               <button
+                type="button"
                 onClick={handleBackStep2}
                 className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
@@ -402,8 +458,8 @@ const RationCardForm = () => {
             </div>
           </form>
         )}
-        <ToastContainer />
       </div>
+      <ToastContainer />
     </div>
   );
 };
