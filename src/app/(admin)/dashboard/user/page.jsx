@@ -278,7 +278,7 @@ const JobApplicationsTable = () => {
                     }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {["Active", "Inactive"].map((status) => (
+                    {["Active", "Blocked" , "Pending" , "inReview"].map((status) => (
                       <option key={status} value={status}>
                         {status}
                       </option>

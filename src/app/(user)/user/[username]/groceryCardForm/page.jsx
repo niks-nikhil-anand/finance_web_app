@@ -76,7 +76,7 @@ const RationCardForm = () => {
     if (profilePhoto) data.append('profilePhoto', profilePhoto);
 
     try {
-      const response = await fetch('/api/groceryRationCard/form', {
+      const response = await fetch('/api/user/groceryRationCard', {
         method: 'POST',
         body: data,
       });
