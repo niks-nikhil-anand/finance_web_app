@@ -177,6 +177,24 @@ export function SidebarBranch() {
               </Link>
             </div>
             <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">JonoJivan Grocery </label>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={`/branch/${partner.username}/jonoJivan_grocery`}
+              >
+                <FcMoneyTransfer className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Grocery Card Application</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={`/branch/${partner.username}/loan`}
+              >
+                <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Grocery Id Card</span>
+              </Link>
+              
+            </div>
+            <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">Accounts</label>
              
               <Link
