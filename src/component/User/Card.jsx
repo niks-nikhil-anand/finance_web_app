@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Import axios for API requests
+import axios from "axios"; 
 import {
   FaFileInvoiceDollar,
   FaMoneyCheckAlt,
@@ -170,7 +170,7 @@ const ColorfulCard = () => {
   });
 
   return (
-    <div className="flex flex-wrap justify-center items-center p-4 gap-4">
+    <div className="flex flex-wrap justify-center items-center p-4 gap-4 md:mb-10">
       {filteredCardData.map((card, index) => (
         card.link === "logout" ? (
           <LogoutButton key={index} bgColor={card.bgColor} />
