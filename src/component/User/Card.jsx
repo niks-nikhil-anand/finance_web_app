@@ -123,26 +123,61 @@ const ColorfulCard = () => {
 
   const filteredCardData = cardData.filter((card) => {
     if (services === "GST/ITR Services") {
-      return ["gstitr" ,  "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement" , "grocery"].includes(card.link);
+      return [
+        "gstitr",
+        "wallet",
+        "profile",
+        "logout",
+        "status",
+        "complaint",
+        "idCard",
+        "certificateLegal257",
+        "agreement",
+        "grocery",
+      ].includes(card.link);
     } else if (services === "Finance Services-Loan") {
-      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement"  , "grocery"].includes(card.link);
+      return [
+        "loan",
+        "microLoan",
+        "wallet",
+        "profile",
+        "logout",
+        "status",
+        "complaint",
+        "idCard",
+        "certificateLegal257",
+        "agreement",
+        "grocery",
+      ].includes(card.link);
     } else if (services === "JonoJivan Micro Loan") {
-      return ["loan", "microLoan" , "wallet" , "profile" , "logout" , "status" , "complaint" , "idCard" , "certificateLegal257" , "agreement" , "grocery"].includes(card.link);
+      return [
+        "loan",
+        "microLoan",
+        "wallet",
+        "profile",
+        "logout",
+        "status",
+        "complaint",
+        "idCard",
+        "certificateLegal257",
+        "agreement",
+        "grocery",
+      ].includes(card.link);
     } else if (services === "All Services") {
-      return true; 
+      return true;
     }
-    return false; 
+    return false;
   });
 
   return (
-    <div className="flex flex-wrap justify-center items-center space-y-2 p-4 gap-4">
+    <div className="flex flex-wrap justify-center items-center p-4 gap-4">
       {filteredCardData.map((card, index) => (
         card.link === "logout" ? (
           <LogoutButton key={index} bgColor={card.bgColor} />
         ) : (
           <Link href={`/user/${username}/${card.link}`} key={index}>
             <div
-              className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full md:w-48 ${card.bgColor}`}
+              className={`flex flex-col items-center justify-center p-4 md:p-6 m-2 rounded-lg shadow-lg text-white w-full sm:w-48 ${card.bgColor} transition-transform transform hover:scale-105`}
               onClick={() => handleButtonClick(card.title)}
             >
               <card.icon className="text-4xl md:text-6xl mb-2 md:mb-4" />
