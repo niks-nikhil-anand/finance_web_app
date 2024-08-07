@@ -12,17 +12,17 @@ export const GET = async (req) => {
     const cookieStore = cookies();
     const authToken = cookieStore.get("authBranchToken");
 
-    if (!authToken) {
-      throw new Error("User authentication token is missing.");
-    }
+      if (!authToken) {
+        throw new Error("User authentication token is missing.");
+      }
 
-    const decodedToken = jwt.decode(authToken.value);
-    if (!decodedToken || !decodedToken.id) {
-      throw new Error("Invalid token.");
-    }
-    console.log(decodedToken)
-    const email = decodedToken.email;
-    console.log(email)
+      const decodedToken = jwt.decode(authToken.value);
+      if (!decodedToken || !decodedToken.id) {
+        throw new Error("Invalid token.");
+      }
+      console.log(decodedToken)
+      const email = decodedToken.email;
+      console.log(email)
 
     const Partner = await partnerApplication.find({ email });
     
