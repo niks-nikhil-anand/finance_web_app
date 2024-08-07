@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react'
 import ColorfulCard from '@/component/User/Card'
 
