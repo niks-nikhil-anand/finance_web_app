@@ -168,7 +168,7 @@ const RationCardForm = () => {
             </div>
             <div className="mb-4 col-span-1">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fatherName">
-                Father's Name
+                Father&apos;s Name
               </label>
               <input
                 type="text"
