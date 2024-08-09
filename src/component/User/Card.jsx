@@ -38,7 +38,7 @@ const cardData = [
     link: "microLoan",
   },
   {
-    title: "Fintech Services",
+    title: "Banking Services",
     icon: FaBuilding,
     bgColor: "bg-gradient-to-r from-purple-400 via-pink-400 to-red-400",
     link: "fintech",

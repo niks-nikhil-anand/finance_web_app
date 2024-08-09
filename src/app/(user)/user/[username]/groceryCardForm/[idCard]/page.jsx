@@ -169,8 +169,7 @@ const GroceryRationCard = () => {
                   </ul>
                   <li className="font-semibold text-base">Shop Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Opening Time:</span> 7:00 AM</li>
-                    <li><span className="font-medium">Closing Time:</span> 9:00 PM</li>
+                    <li><span className="font-medium">Opening Time:</span>21/01/2025</li>
                   </ul>
                   <li className="font-semibold text-base">Services Provided:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
