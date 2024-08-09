@@ -258,6 +258,7 @@ const JobApplicationsTable = () => {
                       "Finance Services-Loan",
                       "All Services",
                       "JonoJivan Micro Loan",
+                      "JonoJivan Grocery"
                     ].map((service) => (
                       <option key={service} value={service}>
                         {service}

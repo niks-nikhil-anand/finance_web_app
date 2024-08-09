@@ -28,7 +28,7 @@ const partnerApplicationSchema = new mongoose.Schema({
   services: { 
     type: String, 
     enum: {
-      values: ['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan' , 'All Services' , 'JonoJivan Micro Loan'],
+      values: ['GST/ITR Services', 'Fintech Services', 'Finance Services-Loan' , 'All Services' , 'JonoJivan Micro Loan' , 'JonoJivan Grocery'],
       message: 'Service must be one of GST/ITR Services, Fintech Services, Finance Services-Loan, All Services, JonoJivan Micro Loan'
     },
     default: 'GST/ITR Services'
