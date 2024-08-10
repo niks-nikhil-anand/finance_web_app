@@ -175,6 +175,7 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">City</th>
               <th className="py-2 px-4 border border-gray-300">State</th>
               <th className="py-2 px-4 border border-gray-300">PinCode</th>
+              <th className="py-2 px-4 border border-gray-300">Shop Address</th>
               <th className="py-2 px-4 border border-gray-300">Want Partner Type</th>
               <th className="py-2 px-4 border border-gray-300">Interest</th>
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
@@ -286,10 +287,71 @@ const JobApplicationsTable = () => {
                     ))}
                   </select>
                 </td>
-                <td className="py-2 px-4 border border-gray-300">{application.mobileNumber}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.city}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.state}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.pinCode}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="mobileNumber"
+                      value={editingApplication.mobileNumber}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.mobileNumber
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="city"
+                      value={editingApplication.city}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.city
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="state"
+                      value={editingApplication.state}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.state
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="pinCode"
+                      value={editingApplication.pinCode}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.pinCode
+                  )}
+                </td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {editingApplication && editingApplication._id === application._id ? (
+                    <input
+                      type="text"
+                      name="shopAddress"
+                      value={editingApplication.shopAddress}
+                      onChange={handleInputChange}
+                      className="py-1 px-2 border border-gray-300 rounded-md"
+                    />
+                  ) : (
+                    application.shopAddress
+                  )}
+                </td>
                 <td className="py-2 px-4 border border-gray-300">{application.wantPartnerType}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.interest}</td>
                 <td className="py-2 px-4 border border-gray-300">
