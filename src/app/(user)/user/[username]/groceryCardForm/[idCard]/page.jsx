@@ -174,6 +174,9 @@ const GroceryRationCard = () => {
                     <li><span className="font-medium">Insurance Coverage:</span> ₹1 lakh</li>
                     <li><span className="font-medium">Eligibility:</span> Age 18 to 45</li>
                     <li><span className="font-medium">Usage:</span> For grocery use only (not for personal use)</li>
+                    <li><span className="font-medium">Senior Citizen:</span> {rationCard.seniorCitizen}</li>
+                    <li><span className="font-medium">Widow Status:</span> {rationCard.widowStatus}</li>
+                    <li><span className="font-medium">HandiCap Status:</span> {rationCard.handicapStatus}</li>
                   </ul>
                   <li className="font-semibold text-base">Shop Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
