@@ -389,7 +389,7 @@ const RationCardForm = () => {
                     type="radio"
                     name="seniorCitizen"
                     value="yes"
-                    checked={formData.widowStatus === 'yes'}
+                    checked={formData.seniorCitizen === 'yes'}
                     onChange={handleChange}
                     className="form-radio text-blue-500"
                     required
@@ -401,7 +401,7 @@ const RationCardForm = () => {
                     type="radio"
                     name="seniorCitizen"
                     value="no"
-                    checked={formData.widowStatus === 'no'}
+                    checked={formData.seniorCitizen === 'no'}
                     onChange={handleChange}
                     className="form-radio text-blue-500"
                     required
