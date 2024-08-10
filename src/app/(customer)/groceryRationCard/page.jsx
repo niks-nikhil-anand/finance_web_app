@@ -17,7 +17,7 @@ const RationCardForm = () => {
     pinCode: '',
     whatsAppNumber: '',
     mobileNumber: '',
-    state: '', 
+    state: '',
     aadhaarNumber: '',
     panNumber: '',
     bankAccountNumber: '',
@@ -26,6 +26,10 @@ const RationCardForm = () => {
     panchayatName: '',
     blockName: '',
     wardNumber: '',
+    gender: '',
+    widowStatus: '',
+    handicapStatus: '',
+    dob: '',
     termsAgreed: false,
   });
   const [photoCopy, setPhotoCopy] = useState(null);
@@ -48,25 +52,30 @@ const RationCardForm = () => {
         setFormData({ ...formData, [name]: formattedValue });
       }
     } else if (type === 'checkbox') {
-      setFormData({ ...formData, [name]: checked });
-    } else {
+    setFormData({ ...formData, [name]: checked });
+  } else {
+    {
       setFormData({ ...formData, [name]: value });
     }
-  };
+  }
+};
 
   const handleSubmitStep1 = (e) => {
     e.preventDefault();
-    console.log('handleSubmitStep1 called:', formData);
     setStep(2);
   };
 
-  const handleBackStep2 = (e) => {
+  const handleSubmitStep2 = (e) => {
     e.preventDefault();
-    console.log('handleBackStep2 called');
-    setStep(1);
+    setStep(3);
   };
 
-  const handleSubmitStep2 = async (e) => {
+  const handleBackStep = (e) => {
+    e.preventDefault();
+    setStep((prevStep) => prevStep - 1);
+  };
+
+  const handleSubmitStep3 = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -81,7 +90,6 @@ const RationCardForm = () => {
         body: data,
       });
 
-      console.log('handleSubmitStep2 response:', response);
       if (response.ok) {
         setFormData({
           name: '',
@@ -92,7 +100,7 @@ const RationCardForm = () => {
           pinCode: '',
           whatsAppNumber: '',
           mobileNumber: '',
-          state: '', 
+          state: '',
           aadhaarNumber: '',
           panNumber: '',
           bankAccountNumber: '',
@@ -101,20 +109,23 @@ const RationCardForm = () => {
           panchayatName: '',
           blockName: '',
           wardNumber: '',
+          gender: '',
+          widowStatus: '',
+          handicapStatus: '',
+          dob: '',
           termsAgreed: false,
         });
         setPhotoCopy(null);
         setProfilePhoto(null);
         setStep(1);
-
-        const email = formData.email;
-        router.push(`/groceryRationCard/${email}`);
+        toast.success('Form submitted successfully!');
+        router.push(`/groceryRationCard/${formData.email}`);
       } else {
         const errorData = await response.json();
-        console.log('handleSubmitStep2 error response:', errorData);
+        toast.error(`Error: ${errorData.message}`);
       }
     } catch (error) {
-      console.log('handleSubmitStep2 catch error:', error);
+      toast.error('An error occurred while submitting the form.');
     } finally {
       setLoading(false);
     }
@@ -135,9 +146,10 @@ const RationCardForm = () => {
         <p className="text-gray-700 text-center mb-6">
           To download the grocery ration card, please fill out the form below.
         </p>
+
         {step === 1 && (
           <form onSubmit={handleSubmitStep1}>
-            <div className="mb-4">
+          <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                 Full Name
               </label>
@@ -179,7 +191,59 @@ const RationCardForm = () => {
                 required
               />
             </div>
+           
             <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatsAppNumber">
+                WhatsApp Number
+              </label>
+              <input
+                type="text"
+                id="whatsAppNumber"
+                name="whatsAppNumber"
+                value={formData.whatsAppNumber}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="mobileNumber">
+                Mobile Number
+              </label>
+              <input
+                type="text"
+                id="mobileNumber"
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="dob">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                name="dob"
+                value={formData.dob}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button type="submit" className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Next
+              </button>
+            </div>
+          </form>
+        )}
+
+        {step === 2 && (
+          <form onSubmit={handleSubmitStep2}>
+             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
                 Address
               </label>
@@ -264,34 +328,6 @@ const RationCardForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatsAppNumber">
-                WhatsApp Number
-              </label>
-              <input
-                type="text"
-                id="whatsAppNumber"
-                name="whatsAppNumber"
-                value={formData.whatsAppNumber}
-                onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="mobileNumber">
-                Mobile Number
-              </label>
-              <input
-                type="text"
-                id="mobileNumber"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
-              />
-            </div>
-            <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="state">
                 State
               </label>
@@ -314,9 +350,115 @@ const RationCardForm = () => {
                 </div>
               </div>
             </div>
-           
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">Widow Status</label>
+              <div className="flex items-center">
+                <label className="inline-flex items-center mr-4">
+                  <input
+                    type="radio"
+                    name="widowStatus"
+                    value="yes"
+                    checked={formData.widowStatus === 'yes'}
+                    onChange={handleChange}
+                    className="form-radio text-blue-500"
+                    required
+                  />
+                  <span className="ml-2">Yes</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="widowStatus"
+                    value="no"
+                    checked={formData.widowStatus === 'no'}
+                    onChange={handleChange}
+                    className="form-radio text-blue-500"
+                    required
+                  />
+                  <span className="ml-2">No</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">Handicap Status</label>
+              <div className="flex items-center">
+                <label className="inline-flex items-center mr-4">
+                  <input
+                    type="radio"
+                    name="handicapStatus"
+                    value="yes"
+                    checked={formData.handicapStatus === 'yes'}
+                    onChange={handleChange}
+                    className="form-radio text-blue-500"
+                    required
+                  />
+                  <span className="ml-2">Yes</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="handicapStatus"
+                    value="no"
+                    checked={formData.handicapStatus === 'no'}
+                    onChange={handleChange}
+                    className="form-radio text-blue-500"
+                    required
+                  />
+                  <span className="ml-2">No</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2">Gender</label>
+      <div className="flex items-center">
+        <label className="inline-flex items-center mr-4">
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            checked={formData.gender === 'male'}
+            onChange={handleChange}
+            className="form-radio text-blue-500"
+            required
+          />
+          <span className="ml-2">Male</span>
+        </label>
+        <label className="inline-flex items-center mr-4">
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            checked={formData.gender === 'female'}
+            onChange={handleChange}
+            className="form-radio text-blue-500"
+            required
+          />
+          <span className="ml-2">Female</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input
+            type="radio"
+            name="gender"
+            value="other"
+            checked={formData.gender === 'other'}
+            onChange={handleChange}
+            className="form-radio text-blue-500"
+            required
+          />
+          <span className="ml-2">Other</span>
+        </label>
+      </div>
+    </div>
             
             <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={handleBackStep}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Back
+              </button>
               <button
                 type="submit"
                 className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -326,9 +468,10 @@ const RationCardForm = () => {
             </div>
           </form>
         )}
-        {step === 2 && (
-          <form onSubmit={handleSubmitStep2}>
-             <div className="mb-4">
+
+        {step === 3 && (
+          <form onSubmit={handleSubmitStep3}>
+           <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aadhaarNumber">
                 Aadhaar Number
               </label>
@@ -443,8 +586,8 @@ const RationCardForm = () => {
             <div className="flex items-center justify-between">
               <button
                 type="button"
-                onClick={handleBackStep2}
-                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                onClick={handleBackStep}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Back
               </button>
