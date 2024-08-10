@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { FaArrowLeft, FaPhoneAlt, FaGlobe } from 'react-icons/fa';
 import { toPng } from 'html-to-image';
 import Image from 'next/image';
-import stamp from '../../../../../../../public/vegetables/stamp.png'; 
-import BanStamp from '../../../../../../../public/vegetables/banStamp.png'; 
+import stamp from '../../../../../public/vegetables/stamp.png'; 
+import BanStamp from '../../../../../public/vegetables/banStamp.png'; 
 import QRCode from 'qrcode.react'; 
 
 const formatDateTime = (dateString) => {
@@ -14,6 +14,7 @@ const formatDateTime = (dateString) => {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
+    year: 'numeric',
   };
   return date.toLocaleString('en-US', options);
 };
@@ -22,7 +23,8 @@ const GroceryRationCard = () => {
   const [rationCard, setRationCard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
-  const cardRef = useRef(null); // Define cardRef using useRef
+  const [downloaded, setDownloaded] = useState(false); // State to track download action
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const fetchRationCard = async () => {
@@ -47,7 +49,7 @@ const GroceryRationCard = () => {
   }, []);
 
   const downloadIdCard = () => {
-    const cardElement = cardRef.current; // Use cardRef.current to access the element
+    const cardElement = cardRef.current;
     if (cardElement) {
       toPng(cardElement)
         .then((dataUrl) => {
@@ -55,11 +57,16 @@ const GroceryRationCard = () => {
           link.href = dataUrl;
           link.download = 'grocery-ration-card.png';
           link.click();
+          setDownloaded(true); // Update state to trigger the display of the refresh button
         })
         .catch((error) => {
           console.error('Error generating image:', error);
         });
     }
+  };
+
+  const refreshPage = () => {
+    window.location.reload(); // Reload the current page
   };
 
   return (
@@ -72,7 +79,6 @@ const GroceryRationCard = () => {
       {rationCard ? (
         <div className="flex flex-col items-center overflow-auto max-h-[30rem]">
           <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-         
             {/* Front Side of the Card */}
             <motion.div
               className="w-full md:w-64 h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
@@ -125,6 +131,8 @@ const GroceryRationCard = () => {
                   <p><span className="font-bold">Email: </span>{rationCard.email}</p>
                   <p><span className="font-bold">Aadhaar No: </span>{rationCard.aadhaarNumber}</p>
                   <p><span className="font-bold">PAN No:</span> {rationCard.panNumber}</p>
+                  <p><span className="font-bold">Date of Birth:</span> {formatDateTime(rationCard.dob)}</p> {/* Added DOB here */}
+
                   <p className="font-bold mt-2">Bank Details:</p>
                   <p>Account No: {rationCard.bankAccountNumber}</p>
                   <p>IFSC: {rationCard.ifscCode}</p>
@@ -144,7 +152,7 @@ const GroceryRationCard = () => {
               </div>
               <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
                 <p className="flex items-center ">
-                  <span className="font-bold">Date of Issue: </span> {formatDateTime(rationCard.dateOfIssue)}
+                  <span className="">Date of Issue: </span> {formatDateTime(rationCard.dateOfIssue)}
                 </p>
               </div>
             </motion.div>
@@ -169,7 +177,7 @@ const GroceryRationCard = () => {
                   </ul>
                   <li className="font-semibold text-base">Shop Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Launch Date:</span>21/01/2025</li>
+                  <li><span className="font-medium">Launch Date:</span> 21/01/2025</li>
                   </ul>
                   <li className="font-semibold text-base">Services Provided:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
@@ -196,14 +204,21 @@ const GroceryRationCard = () => {
             </motion.div>
           </div>
 
-          {rationCard && (
+          {rationCard && !downloaded ? (
             <button
               onClick={downloadIdCard}
               className="mt-4 bg-[#ff9934] text-white p-2 rounded shadow hover:bg-[#ff7f1f]"
             >
               Download
             </button>
-          )}
+          ) : downloaded ? (
+            <button
+              onClick={refreshPage}
+              className="mt-4 bg-[#118806] text-white p-2 rounded shadow hover:bg-[#0f7e0a]"
+            >
+              Refresh
+            </button>
+          ) : null}
         </div>
       ) : (
         <p>Loading...</p>

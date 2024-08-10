@@ -14,6 +14,7 @@ const formatDateTime = (dateString) => {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
+    year: 'numeric',
   };
   return date.toLocaleString('en-US', options);
 };
@@ -130,6 +131,7 @@ const GroceryRationCard = () => {
                   <p><span className="font-bold">Email: </span>{rationCard.email}</p>
                   <p><span className="font-bold">Aadhaar No: </span>{rationCard.aadhaarNumber}</p>
                   <p><span className="font-bold">PAN No:</span> {rationCard.panNumber}</p>
+                  <p><span className="font-bold">Date of Birth:</span> {formatDateTime(rationCard.dob)}</p> 
                   <p className="font-bold mt-2">Bank Details:</p>
                   <p>Account No: {rationCard.bankAccountNumber}</p>
                   <p>IFSC: {rationCard.ifscCode}</p>
@@ -149,7 +151,9 @@ const GroceryRationCard = () => {
               </div>
               <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
                 <p className="flex items-center ">
-                  <span className="font-bold">Date of Issue: </span> {formatDateTime(rationCard.dateOfIssue)}
+                  <span className="text-sm">Date of Issue:</span>
+                  <span className='text-sm'> {formatDateTime(rationCard.dateOfIssue)}
+                    </span> 
                 </p>
               </div>
             </motion.div>
