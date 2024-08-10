@@ -74,6 +74,7 @@ export const POST = async (req) => {
       widowStatus: formValues.widowStatus,
       handicapStatus: formValues.handicapStatus,
       dob: formValues.dob,
+      seniorCitizen: formValues.seniorCitizen,
       bankAccountNumber: formValues.bankAccountNumber,
       ifscCode: formValues.ifscCode,
       bankName: formValues.bankName,

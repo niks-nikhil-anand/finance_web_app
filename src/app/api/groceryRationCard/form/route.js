@@ -67,6 +67,7 @@ export const POST = async (req) => {
       handicapStatus: formValues.handicapStatus,
       dob: formValues.dob,
       state: formValues.state,
+      seniorCitizen: formValues.seniorCitizen,
       aadhaarNumber: formValues.aadhaarNumber,
       panNumber: formValues.panNumber,
       bankAccountNumber: formValues.bankAccountNumber,

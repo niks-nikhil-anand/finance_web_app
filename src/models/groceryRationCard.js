@@ -86,6 +86,9 @@ const rationCardSchema = new mongoose.Schema({
   handicapStatus:{
     type: String,
   },
+  seniorCitizen:{
+    type: String,
+  },
   dob:{
     type: Date
   },

@@ -113,6 +113,7 @@ const RationCardForm = () => {
           widowStatus: '',
           handicapStatus: '',
           dob: '',
+          seniorCitizen:'',
           termsAgreed: false,
         });
         setPhotoCopy(null);
@@ -370,6 +371,35 @@ const RationCardForm = () => {
                   <input
                     type="radio"
                     name="widowStatus"
+                    value="no"
+                    checked={formData.widowStatus === 'no'}
+                    onChange={handleChange}
+                    className="form-radio text-blue-500"
+                    required
+                  />
+                  <span className="ml-2">No</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">Senior Citizen</label>
+              <div className="flex items-center">
+                <label className="inline-flex items-center mr-4">
+                  <input
+                    type="radio"
+                    name="seniorCitizen"
+                    value="yes"
+                    checked={formData.widowStatus === 'yes'}
+                    onChange={handleChange}
+                    className="form-radio text-blue-500"
+                    required
+                  />
+                  <span className="ml-2">Yes</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="seniorCitizen"
                     value="no"
                     checked={formData.widowStatus === 'no'}
                     onChange={handleChange}
