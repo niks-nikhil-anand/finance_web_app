@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FaArrowLeft, FaPhoneAlt, FaGlobe } from 'react-icons/fa';
 import { toPng } from 'html-to-image';
 import Image from 'next/image';
-import stamp from '../../../../../public/vegetables/stamp.png'; 
+import stamp from '../../../../../../../public/vegetables/stamp.png'; 
 import BanStamp from '../../../../../../../public/vegetables/banStamp.png'; 
 import QRCode from 'qrcode.react'; 
 
