@@ -76,6 +76,19 @@ const rationCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  gender:{
+    type: String,
+    required: true,
+  },
+  widowStatus:{
+    type: String,
+  },
+  handicapStatus:{
+    type: String,
+  },
+  dob:{
+    type: Date
+  },
   status: { 
     type: String,
     enum: {

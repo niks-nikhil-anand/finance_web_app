@@ -22,7 +22,8 @@ const GroceryRationCard = () => {
   const [rationCard, setRationCard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
-  const cardRef = useRef(null); // Define cardRef using useRef
+  const [downloaded, setDownloaded] = useState(false); // State to track download action
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const fetchRationCard = async () => {
@@ -47,7 +48,7 @@ const GroceryRationCard = () => {
   }, []);
 
   const downloadIdCard = () => {
-    const cardElement = cardRef.current; // Use cardRef.current to access the element
+    const cardElement = cardRef.current;
     if (cardElement) {
       toPng(cardElement)
         .then((dataUrl) => {
@@ -55,11 +56,16 @@ const GroceryRationCard = () => {
           link.href = dataUrl;
           link.download = 'grocery-ration-card.png';
           link.click();
+          setDownloaded(true); // Update state to trigger the display of the refresh button
         })
         .catch((error) => {
           console.error('Error generating image:', error);
         });
     }
+  };
+
+  const refreshPage = () => {
+    window.location.reload(); // Reload the current page
   };
 
   return (
@@ -72,7 +78,6 @@ const GroceryRationCard = () => {
       {rationCard ? (
         <div className="flex flex-col items-center overflow-auto max-h-[30rem]">
           <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-         
             {/* Front Side of the Card */}
             <motion.div
               className="w-full md:w-64 h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
@@ -196,14 +201,21 @@ const GroceryRationCard = () => {
             </motion.div>
           </div>
 
-          {rationCard && (
+          {rationCard && !downloaded ? (
             <button
               onClick={downloadIdCard}
               className="mt-4 bg-[#ff9934] text-white p-2 rounded shadow hover:bg-[#ff7f1f]"
             >
               Download
             </button>
-          )}
+          ) : downloaded ? (
+            <button
+              onClick={refreshPage}
+              className="mt-4 bg-[#118806] text-white p-2 rounded shadow hover:bg-[#0f7e0a]"
+            >
+              Refresh
+            </button>
+          ) : null}
         </div>
       ) : (
         <p>Loading...</p>
