@@ -13,6 +13,7 @@ const IdCard = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [buttonText, setButtonText] = useState('Download');
   const cardRef = useRef(null); 
 
   const handleSearch = async () => {
@@ -28,6 +29,7 @@ const IdCard = () => {
       if (!response.ok) throw new Error('Failed to fetch data');
       const result = await response.json();
       setRationCard(result[0]);
+      setButtonText('Download'); // Reset button text on successful search
     } catch (err) {
       setError(err.message || 'Error fetching data');
     } finally {
@@ -43,10 +45,17 @@ const IdCard = () => {
         link.href = dataUrl;
         link.download = 'grocery-ration-card.png';
         link.click();
+        setButtonText('Search Again'); // Change button text after download
       } catch (err) {
         console.error('Error generating image:', err);
       }
     }
+  };
+
+  const handleSearchAgain = () => {
+    setRationCard(null);
+    setEmail('');
+    setButtonText('Download');
   };
 
   const formatDateTime = (dateString) => {
@@ -54,7 +63,8 @@ const IdCard = () => {
     return date.toLocaleDateString('en-US', {
       weekday: 'short', 
       month: 'short', 
-      day: 'numeric'
+      day: 'numeric',
+      year: 'numeric',
     });
   };
 
@@ -138,13 +148,16 @@ const IdCard = () => {
                   <p><span className="font-bold">Email: </span>{rationCard.email}</p>
                   <p><span className="font-bold">Aadhaar No: </span>{rationCard.aadhaarNumber}</p>
                   <p><span className="font-bold">PAN No:</span> {rationCard.panNumber}</p>
+                  <p><span className="font-bold">Date of Birth:</span> {formatDateTime(rationCard.dob)}</p> 
                   <p className="font-bold mt-2">Bank Details:</p>
                   <p>Account No: {rationCard.bankAccountNumber}</p>
                   <p>IFSC: {rationCard.ifscCode}</p>
                   <p>Bank Name: {rationCard.bankName}</p>
-                 
+                  <p className="font-bold mt-2">Address:</p>
+                <p>Add: {rationCard.address}, {rationCard.district},</p>
+                <p>State: {rationCard.state}</p>
+                <p>Pin Code: {rationCard.pinCode}</p>
                 </div>
-
                 <div className='m-5'>
                 {email && (
                   <div className="flex justify-center mt-4 items-center">
@@ -182,8 +195,9 @@ const IdCard = () => {
                   </ul>
                   <li className="font-semibold text-base">Shop Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Opening Time:</span> 7:00 AM</li>
-                    <li><span className="font-medium">Closing Time:</span> 9:00 PM</li>
+                  <li><span className="font-medium">Shop Opening Time:</span>7:00 Am</li>
+                  <li><span className="font-medium">Shop Closing Time:</span>9:00 Am</li>
+                  <li><span className="font-medium">Shop Opening Date:</span>21/01/2025</li>
                   </ul>
                   <li className="font-semibold text-base">Services Provided:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
@@ -194,17 +208,10 @@ const IdCard = () => {
                   </ul>
                 </ul>
                 <hr />
-                <p className="font-bold mt-2">Address:</p>
-                  <p>Add: {rationCard.address}, {rationCard.district},</p>
-                  <p>State: {rationCard.state}</p>
-                  <p>Pin Code: {rationCard.pinCode}</p>
-                 
-                 
-                 
-                
-                
-               
-               
+                <p className="font-bold mt-2"> Office Address:</p>
+                <p>Add: Biswanath Chariali , Sonitpur </p>
+                <p>State: Assam </p>
+                <p>Pin Code: 784176</p>
               </div>
               <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
                   <p className="flex items-center mt-3 my-5">
@@ -219,10 +226,10 @@ const IdCard = () => {
 
             {rationCard && (
               <button
-                onClick={handleDownload}
-                className="mt-4 bg-[#ff9934] text-white p-2 rounded shadow hover:bg-[#ff7f1f]"
+                onClick={buttonText === 'Download' ? handleDownload : handleSearchAgain}
+                className={`mt-4 ${buttonText === 'Download' ? 'bg-[#ff9934] hover:bg-[#ff7f1f]' : 'bg-[#7f8ff4] hover:bg-blue-600'} text-white p-2 rounded shadow`}
               >
-                Download
+                {buttonText}
               </button>
             )}
           </div>
