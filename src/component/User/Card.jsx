@@ -151,8 +151,7 @@ const ColorfulCard = () => {
       ].includes(card.link);
     } else if (services === "JonoJivan Grocery") {
       return [
-        "loan",
-        "microLoan",
+        "grocery",
         "wallet",
         "profile",
         "logout",
@@ -161,7 +160,7 @@ const ColorfulCard = () => {
         "idCard",
         "certificateLegal257",
         "agreement",
-        "grocery",
+        
       ].includes(card.link);
     } else if (services === "JonoJivan Micro Loan") {
       return [
