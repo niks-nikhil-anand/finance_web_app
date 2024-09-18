@@ -8,7 +8,7 @@ const rationCardSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: [true, 'Email already exists'], 
+    unique: [true, 'Email already exists'],
   },
   fatherName: {
     type: String,
