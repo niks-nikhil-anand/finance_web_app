@@ -307,17 +307,18 @@ export default function Signup() {
               </div>
 
               <div className="mb-4">
-                <label className="block mb-1">Type of Partner</label>
+                <label className="block mb-1">Type of Partner(Fees)</label>
                 <select
                   name="partnerType"
                   value={formData.partnerType}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="" disabled>Select a type</option>
-                  <option value="DSA">CSP</option>
-                  <option value="CSP">Branch</option>
-                  <option value="BRANCH">DSA</option>
+                  <option value="" disabled>Select a type + Fees</option>
+                  <option value="DSA">DSA CODE ₹3540</option>
+                  <option value="CSP">CSP CODE ₹1180</option>
+                  <option value="BRANCH">Branch CODE ₹5900</option>
+                  <option value="JONOJIVANGROCERY">JonoJivan Grocery Warehouse ₹25,000 - ₹50,000 </option>
                 </select>
               </div>
               <button
