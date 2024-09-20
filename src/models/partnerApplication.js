@@ -61,6 +61,9 @@ const partnerApplicationSchema = new mongoose.Schema({
   aadhaarCard: { 
     type: String 
   },
+  paymentReceipt: { 
+    type: String 
+  },
   panCard: { 
     type: String 
   },

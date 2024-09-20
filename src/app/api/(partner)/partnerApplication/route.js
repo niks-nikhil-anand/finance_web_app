@@ -30,6 +30,7 @@ export const POST = async (req) => {
      const hashedPassword = await bcrypt.hash(plainPassword, 10);
 
     const aadhaarCard = formData.get("aadhaarCard");
+    const paymentReceipt = formData.get("paymentReceipt");
     const panCard = formData.get("panCard");
     const photo = formData.get("shopPhotoCopy");
     const bankPassbook = formData.get("bankPassbook");
@@ -38,6 +39,7 @@ export const POST = async (req) => {
     const tradeLicence = formData.get("tradeLicence");
 
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
+    const paymentReceiptUploadResult = paymentReceipt ? await uploadImage(paymentReceipt, "paymentReceipt") : null;
     const panUploadResult = panCard ? await uploadImage(panCard, "panCard") : null;
     const passbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
     const photoUploadResult = photo ? await uploadImage(photo, "shopPhotoCopy") : null;
@@ -59,7 +61,8 @@ export const POST = async (req) => {
       wantPartnerType,
       interest,
       message,
-      aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
+      aadhaarCard: paymentReceiptUploadResult ? paymentReceiptUploadResult.secure_url : null,
+      paymentReceipt: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
       panCard: panUploadResult ? panUploadResult.secure_url : null,
       bankPassbook: passbookUploadResult ? passbookUploadResult.secure_url : null,
       shopPhotoCopy: photoUploadResult ? photoUploadResult.secure_url : null,

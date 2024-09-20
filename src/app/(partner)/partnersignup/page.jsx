@@ -25,6 +25,7 @@ export default function Signup() {
   });
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [paymentReceipt, setPaymentReceipt] = useState(null);
   const [panCard, setPanCard] = useState(null);
   const [bankPassbook, setBankPassbook] = useState(null);
   const [shopPhotoCopy, setShopPhotoCopy] = useState(null);
@@ -108,6 +109,7 @@ export default function Signup() {
     
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
+    if (paymentReceipt) data.append('paymentReceipt', paymentReceipt);
     if (panCard) data.append('panCard', panCard);
     if (bankPassbook) data.append('bankPassbook', bankPassbook);
     if (shopPhotoCopy) data.append('shopPhotoCopy', shopPhotoCopy);
@@ -368,6 +370,14 @@ export default function Signup() {
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Payment Receipt</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setPaymentReceipt)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
