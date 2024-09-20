@@ -374,7 +374,7 @@ export default function Signup() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Payment Receipt</label>
+                <label className="block mb-1">Payment Receipt(Nonrefundable Amount)</label>
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, setPaymentReceipt)}
