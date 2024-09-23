@@ -19,7 +19,7 @@ const GroceryIdCardTable = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('/api/groceryRationCard/form');
+        const response = await axios.get('/api/branch/groceryCard');
         setApplications(response.data);
       } catch (error) {
         console.error('Error fetching applications:', error);

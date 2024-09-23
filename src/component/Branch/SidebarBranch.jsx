@@ -185,13 +185,7 @@ export function SidebarBranch() {
                 <FcMoneyTransfer className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Grocery Card Application</span>
               </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={`/branch/${partner.username}/jonoJivan_grocery/table`}
-              >
-                <FaHandHoldingUsd className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Grocery Card Table</span>
-              </Link>
+             
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
                 href={`/branch/${partner.username}/jonoJivan_grocery/download`}
