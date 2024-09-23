@@ -6,6 +6,7 @@ import growth from '../../../../public/growth.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import QrCode from '../../../../public/paymentqr.jpeg'
 
 export default function Signup() {
 
@@ -23,6 +24,9 @@ export default function Signup() {
     username: '',
     shopAddress:'' 
   });
+
+  const [showQrCode, setShowQrCode] = useState(false); 
+
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
   const [paymentReceipt, setPaymentReceipt] = useState(null);
@@ -69,6 +73,10 @@ export default function Signup() {
   const handlePreviousStep = (e) => {
     e.preventDefault();
     setStep(step - 1);
+  };
+
+  const toggleQrCode = () => {
+    setShowQrCode(!showQrCode); // Toggle the QR code visibility
   };
 
   const notifyLoading = () => {
@@ -308,25 +316,74 @@ export default function Signup() {
                 </select>
               </div>
 
-              <div className="mb-4">
-                <label className="block mb-1">Type of Partner(Fees)</label>
-                <select
-                  name="partnerType"
-                  value={formData.partnerType}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                >
-                  <option value="" disabled>Select a type + Fees</option>
-                  <option value="DSA">DSA CODE ₹3540</option>
-                  <option value="CSP">CSP CODE ₹1180</option>
-                  <option value="BRANCH">Branch CODE ₹5900</option>
-                  <option value="JONOJIVANGROCERY">JonoJivan Grocery Warehouse ₹25,000 - ₹50,000 </option>
-                </select>
-              </div>
+              <div>
+  <div className="mb-4">
+    <label className="block mb-1">Type of Partner (Fees)</label>
+    <select
+      name="partnerType"
+      value={formData.partnerType}
+      onChange={handleInputChange}
+      className="w-full border border-gray-300 p-2 rounded"
+    >
+      <option value="" disabled>
+        Select a type + Fees
+      </option>
+      <option value="DSA">DSA CODE ₹3540</option>
+      <option value="CSP">CSP CODE ₹1180</option>
+      <option value="BRANCH">Branch CODE ₹5900</option>
+      <option value="JONOJIVANGROCERY">
+        JonoJivan Grocery Warehouse ₹25,000 - ₹50,000
+      </option>
+    </select>
+  </div>
+
+  {/* View QR Code and Download Button */}
+  <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+    <button
+      onClick={toggleQrCode}
+      className="bg-green-500 text-white py-2 px-4 rounded my-1 w-full sm:w-auto"
+    >
+      View QR Code
+    </button>
+
+    <a
+      href="/paymentqr.jpeg"
+      download="paymentqr.jpeg"
+      className="bg-green-500 text-white py-2 px-4 rounded my-2 w-full sm:w-auto text-center"
+    >
+      Download QR Code
+    </a>
+  </div>
+
+  {/* Full-screen QR Code Modal */}
+  {showQrCode && (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+      <div className="relative bg-white p-4 rounded shadow-lg text-center w-11/12 md:w-3/4 lg:w-1/2">
+        <button
+          onClick={toggleQrCode}
+          className="absolute top-2 right-2 text-white bg-red-500 p-2 rounded-full"
+        >
+          Close
+        </button>
+
+        {/* QR Code Image */}
+        <Image
+          src={QrCode}
+          alt="QR Code"
+          width={400}
+          height={400}
+          className="mx-auto"
+        />
+      </div>
+    </div>
+  )}
+</div>
+
+
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="bg-blue-500 text-white p-2 rounded w-full"
+                className="bg-blue-500 text-white p-2 rounded w-full mt-10"
               >
                 Next
               </button>
