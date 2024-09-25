@@ -55,11 +55,7 @@ const jobApplicationSchema = new mongoose.Schema({
     type: String,
     
   },
-  wallet:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Wallet',
-    required: true
-  }
+ 
 }, {
   timestamps: true, 
 });
