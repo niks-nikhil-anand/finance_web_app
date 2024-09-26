@@ -151,7 +151,7 @@ const ColorfulCard = () => {
       ].includes(card.link);
     } else if (services === "JonoJivan Grocery") {
       return [
-        "grocery",
+        "groceryCardForm",
         "wallet",
         "profile",
         "logout",
