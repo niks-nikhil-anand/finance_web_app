@@ -255,11 +255,10 @@ const JobApplicationsTable = () => {
                   >
                     {[
                       "GST/ITR Services",
-                      "Fintech Services",
                       "Finance Services-Loan",
-                      "All Services",
+                      "JonoJivan Grocery",
                       "JonoJivan Micro Loan",
-                      "JonoJivan Grocery"
+                      "All Services",
                     ].map((service) => (
                       <option key={service} value={service}>
                         {service}
