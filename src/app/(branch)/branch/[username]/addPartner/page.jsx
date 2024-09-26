@@ -2,11 +2,11 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import growth from '../../../../public/growth.png';
+import growth from '../../../../../../public/growth.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
-import QrCode from '../../../../public/paymentqr.jpeg'
+import QrCode from '../../../../../../public/paymentqr.jpeg'
 
 export default function Signup() {
 
