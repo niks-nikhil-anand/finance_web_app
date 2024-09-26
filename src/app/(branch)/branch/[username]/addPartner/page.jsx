@@ -2,11 +2,11 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-// import growth from '../../../../public/growth.png';
-import growth from '../../../../../../public/growth.png'
+import growth from '../../../../public/growth.png';
 import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
+import QrCode from '../../../../public/paymentqr.jpeg'
 
 export default function Signup() {
 
@@ -24,6 +24,9 @@ export default function Signup() {
     username: '',
     shopAddress:'' 
   });
+
+  const [showQrCode, setShowQrCode] = useState(false); 
+
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
   const [paymentReceipt, setPaymentReceipt] = useState(null);
@@ -51,7 +54,6 @@ export default function Signup() {
     const value = e.target.value.replace(/\D/g, '').slice(0, 15);
     setFormData({ ...formData, username: 'Legal257' + value });
   };
-  
   const handlePhoneChange = (e) => {
     const value = e.target.value.replace(/\D/g, '').slice(0, 13);
     setFormData({ ...formData, phone: '+91' + value });
@@ -62,6 +64,7 @@ export default function Signup() {
     setFormData({ ...formData, pinCode: value });
   };
 
+
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -70,6 +73,10 @@ export default function Signup() {
   const handlePreviousStep = (e) => {
     e.preventDefault();
     setStep(step - 1);
+  };
+
+  const toggleQrCode = () => {
+    setShowQrCode(!showQrCode); // Toggle the QR code visibility
   };
 
   const notifyLoading = () => {
@@ -94,7 +101,6 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     notifyLoading(); 
-
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -108,6 +114,7 @@ export default function Signup() {
     data.append('interest', formData.interest);
     data.append('message', formData.message); 
     data.append('shopAddress', formData.shopAddress); 
+    
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
     if (paymentReceipt) data.append('paymentReceipt', paymentReceipt);
@@ -221,50 +228,76 @@ export default function Signup() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Phone Number</label>
-                <input
-                  type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handlePhoneChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                  maxLength={13}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block mb-1">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleUsernameChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                  readOnly
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="mb-4">
-                  <label className="block mb-1">City</label>
+                <label className="block mb-1">Unique Id(15 digits only)</label>
+                <div className="flex">
+                  <span className="bg-gray-200 p-2 rounded-l">Legal257</span>
                   <input
                     type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1">Pin Code</label>
-                  <input
-                    type="text"
-                    name="pinCode"
-                    value={formData.pinCode}
-                    onChange={handlePincodeChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                    maxLength={6}
+                    name="username"
+                    value={formData.username.replace('Legal257', '')}
+                    onChange={handleUsernameChange}
+                    className="w-full border border-gray-300 p-2 rounded-r"
+                    maxLength={15}
                     required
                   />
                 </div>
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Phone Number</label>
+                <div className="flex">
+                <span className="bg-gray-200 p-2 rounded-l">+91</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone.replace('+91', '')}
+                  onChange={handlePhoneChange}
+                  maxLength={10}
+                  className="w-full border border-gray-300 p-2 rounded"
+                  required
+                />
+              </div>
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Shop Address</label>
+                <textarea
+                  name="shopAddress"
+                  value={formData.shopAddress}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Pin Code</label>
+                <input
+                  type="text"
+                  name="pinCode"
+                  value={formData.pinCode}
+                  onChange={handlePincodeChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                  maxLength={6}
+                  required
+                />
               </div>
               <div className="mb-4">
                 <label className="block mb-1">State</label>
@@ -274,6 +307,7 @@ export default function Signup() {
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
+                  <option value="" disabled>Select a state</option>
                   {indianStates.map((state) => (
                     <option key={state} value={state}>
                       {state}
@@ -281,39 +315,112 @@ export default function Signup() {
                   ))}
                 </select>
               </div>
+
+              <div>
+  <div className="mb-4">
+    <label className="block mb-1">Type of Partner (Fees)</label>
+    <select
+      name="partnerType"
+      value={formData.partnerType}
+      onChange={handleInputChange}
+      className="w-full border border-gray-300 p-2 rounded"
+    >
+      <option value="" disabled>
+        Select a type + Fees
+      </option>
+      <option value="DSA">DSA CODE ₹3540</option>
+      <option value="CSP">CSP CODE ₹1180</option>
+      <option value="BRANCH">Branch CODE ₹5900</option>
+      <option value="JONOJIVANGROCERY">
+        JonoJivan Grocery Warehouse ₹25,000 - ₹50,000
+      </option>
+    </select>
+  </div>
+
+  {/* View QR Code and Download Button */}
+  <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+    <button
+      onClick={toggleQrCode}
+      className="bg-green-500 text-white py-2 px-4 rounded my-1 w-full sm:w-auto"
+    >
+      View QR Code
+    </button>
+
+    <a
+      href="/paymentqr.jpeg"
+      download="paymentqr.jpeg"
+      className="bg-green-500 text-white py-2 px-4 rounded my-2 w-full sm:w-auto text-center"
+    >
+      Download QR Code
+    </a>
+  </div>
+
+  {/* Full-screen QR Code Modal */}
+  {showQrCode && (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+      <div className="relative bg-white p-4 rounded shadow-lg text-center w-11/12 md:w-3/4 lg:w-1/2">
+        <button
+          onClick={toggleQrCode}
+          className="absolute top-2 right-2 text-white bg-red-500 p-2 rounded-full"
+        >
+          Close
+        </button>
+
+        {/* QR Code Image */}
+        <Image
+          src={QrCode}
+          alt="QR Code"
+          width={400}
+          height={400}
+          className="mx-auto"
+        />
+      </div>
+    </div>
+  )}
+</div>
+
+
               <button
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
+                type="button"
                 onClick={handleNextStep}
+                className="bg-blue-500 text-white p-2 rounded w-full mt-10"
               >
                 Next
               </button>
+              <div>
+                <p className="mt-2 text-sm text-gray-600">
+              Already have an account?{' '}
+              <Link
+                href={"/partnersignin"}
+                title=""
+                className="font-semibold text-black transition-all duration-200 hover:underline"
+              >
+               Login
+              </Link>
+            </p>
+                </div>
             </>
           )}
-
           {step === 2 && (
             <>
               <div className="mb-4">
-                <label className="block mb-1">Partner Type</label>
-                <input
-                  type="text"
-                  name="partnerType"
-                  value={formData.partnerType}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="block mb-1">Business Interest</label>
-                <input
-                  type="text"
+                <label className="block mb-1">Interest</label>
+                <select
                   name="interest"
                   value={formData.interest}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
-                />
+                >
+                  <option value="" disabled>Select an interest</option>
+                  <option value="GST/ITR Services">JonoJivan Grocery Ration Card</option>
+                  <option value="GST/ITR Services">GST/ITR Services</option>
+                  <option value="Fintech Services">Fintech Services</option>
+                  <option value="Finance Services-Loan">Finance Services-Loan</option>
+                  <option value="JonoJivan Loan Services">JonoJivan Loan Services</option>
+                  <option value="All Services">All Services</option>
+                  
+                </select>
               </div>
-
               <div className="mb-4">
                 <label className="block mb-1">Message</label>
                 <textarea
@@ -323,118 +430,86 @@ export default function Signup() {
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
               <div className="mb-4">
-                <label className="block mb-1">Shop Address</label>
+                <label className="block mb-1">Payment Receipt(Nonrefundable Amount)</label>
                 <input
-                  type="text"
-                  name="shopAddress"
-                  value={formData.shopAddress}
-                  onChange={handleInputChange}
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setPaymentReceipt)}
                   className="w-full border border-gray-300 p-2 rounded"
+                  required
                 />
               </div>
-
-              <button
-                className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600 w-full"
-                onClick={handlePreviousStep}
-              >
-                Previous
-              </button>
-              <button
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
-                onClick={handleNextStep}
-              >
-                Next
-              </button>
-            </>
-          )}
-
-          {step === 3 && (
-            <>
               <div className="mb-4">
                 <label className="block mb-1">Aadhaar Card</label>
                 <input
                   type="file"
-                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setAadhaarCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
-              <div className="mb-4">
-                <label className="block mb-1">Payment Receipt</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => handleFileChange(e, setPaymentReceipt)}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
-              </div>
-
               <div className="mb-4">
                 <label className="block mb-1">PAN Card</label>
                 <input
                   type="file"
-                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setPanCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
               <div className="mb-4">
                 <label className="block mb-1">Bank Passbook</label>
                 <input
                   type="file"
-                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setBankPassbook)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
               <div className="mb-4">
                 <label className="block mb-1">Shop Photo Copy</label>
                 <input
                   type="file"
-                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setShopPhotoCopy)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
               <div className="mb-4">
                 <label className="block mb-1">MSME Certificate</label>
                 <input
                   type="file"
-                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setMsmeCertificate)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
+              <div className="mb-4">
+                <label className="block mb-1">Photo Copy</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setPhotoCopy)}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
               <div className="mb-4">
                 <label className="block mb-1">Trade Licence</label>
                 <input
                   type="file"
-                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setTradeLicence)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-
-              <button
-                className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600 w-full"
-                onClick={handlePreviousStep}
-              >
-                Previous
-              </button>
-              <button
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
-                type="submit"
-                disabled={loading}
-              >
-                {loading ? 'Submitting...' : 'Submit'}
-              </button>
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={handlePreviousStep}
+                  className="bg-gray-500 text-white p-2 rounded"
+                >
+                  Previous
+                </button>
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white p-2 rounded "
+                >
+                   {loading ? 'Submitting...' : 'Submit'}
+                </button>
+              </div>
             </>
           )}
         </form>
