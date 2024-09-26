@@ -436,6 +436,7 @@ export default function Signup() {
                   type="file"
                   onChange={(e) => handleFileChange(e, setPaymentReceipt)}
                   className="w-full border border-gray-300 p-2 rounded"
+                  required
                 />
               </div>
               <div className="mb-4">

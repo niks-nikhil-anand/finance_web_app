@@ -1,8 +1,10 @@
 "use client";
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import growth from '../../../../public/growth.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Link from 'next/link';
 
 export default function Signup() {
 
@@ -11,16 +13,18 @@ export default function Signup() {
     email: '',
     phone: '',
     city: '',
-    pincode: '',
+    pinCode: '',
     state: '',
     partnerType: '',
     interest: '',
     message: '',
     password: '',
-    username: '', 
+    username: '',
+    shopAddress:'' 
   });
 
   const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [paymentReceipt, setPaymentReceipt] = useState(null);
   const [panCard, setPanCard] = useState(null);
   const [bankPassbook, setBankPassbook] = useState(null);
   const [shopPhotoCopy, setShopPhotoCopy] = useState(null);
@@ -45,6 +49,7 @@ export default function Signup() {
     const value = e.target.value.replace(/\D/g, '').slice(0, 15);
     setFormData({ ...formData, username: 'Legal257' + value });
   };
+  
   const handlePhoneChange = (e) => {
     const value = e.target.value.replace(/\D/g, '').slice(0, 13);
     setFormData({ ...formData, phone: '+91' + value });
@@ -52,7 +57,7 @@ export default function Signup() {
   
   const handlePincodeChange = (e) => {
     const value = e.target.value.replace(/\D/g, '').slice(0, 6);
-    setFormData({ ...formData, pincode: value });
+    setFormData({ ...formData, pinCode: value });
   };
 
   const handleNextStep = (e) => {
@@ -87,6 +92,7 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     notifyLoading(); 
+
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -95,11 +101,14 @@ export default function Signup() {
     data.append('password', formData.password);
     data.append('city', formData.city);
     data.append('state', formData.state);
+    data.append('pinCode', formData.pinCode);
     data.append('partnerType', formData.partnerType);
     data.append('interest', formData.interest);
-    data.append('message', formData.message);
+    data.append('message', formData.message); 
+    data.append('shopAddress', formData.shopAddress); 
 
     if (aadhaarCard) data.append('aadhaarCard', aadhaarCard);
+    if (paymentReceipt) data.append('paymentReceipt', paymentReceipt);
     if (panCard) data.append('panCard', panCard);
     if (bankPassbook) data.append('bankPassbook', bankPassbook);
     if (shopPhotoCopy) data.append('shopPhotoCopy', shopPhotoCopy);
@@ -108,7 +117,7 @@ export default function Signup() {
     if (tradeLicence) data.append('tradeLicence', tradeLicence);
 
     try {
-      const response = await fetch('/api/branch/partner', {
+      const response = await fetch('/api/partnerApplication', {
         method: 'POST',
         body: data,
       });
@@ -128,13 +137,14 @@ export default function Signup() {
           email: '',
           phone: '',
           city: '',
-          pincode: '',
+          pinCode: '',
           state: '',
           partnerType: '',
           interest: '',
           message: '',
           password: '',
           username: '',
+          shopAddress:''
         });
         notifySuccess();
       } else {
@@ -163,80 +173,75 @@ export default function Signup() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row mb-[20rem] md:mb-[0rem] w-full justify-center items-center ">
-      <div className="bg-white p-10 flex flex-col justify-center">
-        <h2 className="text-xl md:text-2xl font-bold mb-4">Add DSA/CSP With Legal257</h2>
+    <div className="flex flex-col md:flex-row mb-[20rem] md:mb-[0rem]">
+      <div className="md:w-1/2 bg-yellow-500 text-white p-10 flex flex-col justify-center items-center md:items-start">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left text-white">
+            Steps into the real Financial freedom.
+          </h1>
+          <div className="hidden md:block">
+            <Image
+              src={growth}
+              alt="Financial Freedom"
+              width={400}
+              height={400}
+            />
+          </div>
+        </motion.div>
+      </div>
+      <div className="md:w-1/2 bg-white p-10 flex flex-col justify-center">
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Become DSA/CSP/Branch With Legal257</h2>
         <form onSubmit={handleSubmit}>
           {step === 1 && (
             <>
-              <div className="flex flex-wrap mx-2">
-                <div className="w-full md:w-1/2  mb-4">
-                  <label className="block mb-1">Full Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  />
-                </div>
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  />
-                </div>
+              <div className="mb-4">
+                <label className="block mb-1">Full Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
               </div>
-              <div className="flex flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Unique Id(15 digits only)</label>
-                  <div className="flex">
-                    <span className="bg-gray-200 p-2 rounded-l">Legal257</span>
-                    <input
-                      type="text"
-                      name="username"
-                      value={formData.username.replace('Legal257', '')}
-                      onChange={handleUsernameChange}
-                      className="w-full border border-gray-300 p-2 rounded-r"
-                      maxLength={10}
-                      required
-                    />
-                  </div>
-                </div>
-             
-                <div className="w-full md:w-1/2 px-2 mb-4">
+              <div className="mb-4">
+                <label className="block mb-1">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
                 <label className="block mb-1">Phone Number</label>
-                <div className="flex">
-                    <span className="bg-gray-200 p-2 rounded-l">+91</span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone.replace('+91', '')}
-                    maxLength={10}
-                    onChange={handlePhoneChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                    required
-                  />
-                  </div>
-                </div>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handlePhoneChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                  maxLength={13}
+                />
               </div>
-              <div className="flex flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                    required
-                  />
-                </div>
-                <div className="w-full md:w-1/2 px-2 mb-4">
+              <div className="mb-4">
+                <label className="block mb-1">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleUsernameChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                  readOnly
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="mb-4">
                   <label className="block mb-1">City</label>
                   <input
                     type="text"
@@ -246,79 +251,67 @@ export default function Signup() {
                     className="w-full border border-gray-300 p-2 rounded"
                   />
                 </div>
-              </div>
-              <div className="flex flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Pincode</label>
+                <div className="mb-4">
+                  <label className="block mb-1">Pin Code</label>
                   <input
                     type="text"
-                    name="pincode"
-                    value={formData.pincode}
+                    name="pinCode"
+                    value={formData.pinCode}
                     onChange={handlePincodeChange}
                     className="w-full border border-gray-300 p-2 rounded"
                     maxLength={6}
+                    required
                   />
                 </div>
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">State</label>
-                  <select
-                    name="state"
-                    value={formData.state}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  >
-                    <option value="" disabled>Select State</option>
-                    {indianStates.map((state) => (
-                      <option key={state} value={state}>
-                        {state}
-                      </option>
-                    ))}
-                  </select>
-                </div>
               </div>
-              <div className="flex justify-between">
-                <button
-                  type="button"
-                  onClick={handleNextStep}
-                  className="bg-blue-500 text-white p-2 rounded"
+              <div className="mb-4">
+                <label className="block mb-1">State</label>
+                <select
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
                 >
-                  Next
-                </button>
+                  {indianStates.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
               </div>
+              <button
+                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
+                onClick={handleNextStep}
+              >
+                Next
+              </button>
             </>
           )}
+
           {step === 2 && (
             <>
-              <div className="flex flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Select</label>
-                  <select
-                    name="partnerType"
-                    value={formData.partnerType}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  >
-                    <option value="">Select</option>
-                    <option value="DSA">DSA</option>
-                    <option value="CSP">CSP</option>
-                  </select>
-                </div>
-                <div className="w-full md:w-1/2 px-2 mb-4">
-                  <label className="block mb-1">Interest</label>
-                  <select
-                    name="interest"
-                    value={formData.interest}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  >
-                    <option value="">Select Interest</option>
-                    <option value="GST/ITR Services">GST/ITR Services</option>
-                    <option value="Fintech Services">Fintech Services</option>
-                    <option value="Finance Services(Loan)">Finance Services(Loan)</option>
-                    <option value="All Services">All Services</option>
-                  </select>
-                </div>
+              <div className="mb-4">
+                <label className="block mb-1">Partner Type</label>
+                <input
+                  type="text"
+                  name="partnerType"
+                  value={formData.partnerType}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
               </div>
+
+              <div className="mb-4">
+                <label className="block mb-1">Business Interest</label>
+                <input
+                  type="text"
+                  name="interest"
+                  value={formData.interest}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+
               <div className="mb-4">
                 <label className="block mb-1">Message</label>
                 <textarea
@@ -326,115 +319,125 @@ export default function Signup() {
                   value={formData.message}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
-                ></textarea>
+                />
               </div>
-              <div className="flex justify-between">
-                <button
-                  type="button"
-                  onClick={handlePreviousStep}
-                  className="bg-gray-500 text-white p-2 rounded"
-                >
-                  Previous
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextStep}
-                  className="bg-blue-500 text-white p-2 rounded"
-                >
-                  Next
-                </button>
+
+              <div className="mb-4">
+                <label className="block mb-1">Shop Address</label>
+                <input
+                  type="text"
+                  name="shopAddress"
+                  value={formData.shopAddress}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
               </div>
+
+              <button
+                className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600 w-full"
+                onClick={handlePreviousStep}
+              >
+                Previous
+              </button>
+              <button
+                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
+                onClick={handleNextStep}
+              >
+                Next
+              </button>
             </>
           )}
+
           {step === 3 && (
             <>
-            <div className='flex flex-wrap mx-2 gap-5'>
-            <div className="mb-4">
+              <div className="mb-4">
                 <label className="block mb-1">Aadhaar Card</label>
                 <input
                   type="file"
+                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setAadhaarCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
+
+              <div className="mb-4">
+                <label className="block mb-1">Payment Receipt</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange(e, setPaymentReceipt)}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+
               <div className="mb-4">
                 <label className="block mb-1">PAN Card</label>
                 <input
                   type="file"
+                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setPanCard)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-            </div>
-             <div className='flex flex-wrap mx-2 gap-5'>
-             <div className="mb-4">
+
+              <div className="mb-4">
                 <label className="block mb-1">Bank Passbook</label>
                 <input
                   type="file"
+                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setBankPassbook)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
+
               <div className="mb-4">
                 <label className="block mb-1">Shop Photo Copy</label>
                 <input
                   type="file"
+                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setShopPhotoCopy)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
-             </div>
-             <div className='flex flex-wrap mx-2 gap-5'>
-             <div className="mb-4">
+
+              <div className="mb-4">
                 <label className="block mb-1">MSME Certificate</label>
                 <input
                   type="file"
+                  accept="image/*"
                   onChange={(e) => handleFileChange(e, setMsmeCertificate)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>
+
               <div className="mb-4">
-                  <label className="block mb-1">Photo Copy</label>
-                  <input
-                    type="file"
-                    onChange={(e) => handleFileChange(e, setPhotoCopy)}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  />
-                </div>
-             </div>
-              
-                <div className="w-full px-2 mb-4">
-                  <label className="block mb-1">Trade Licence</label>
-                  <input
-                    type="file"
-                    onChange={(e) => handleFileChange(e, setTradeLicence)}
-                    className="w-full border border-gray-300 p-2 rounded"
-                  />
-                </div>
-              <div className="flex justify-between">
-                <button
-                  type="button"
-                  onClick={handlePreviousStep}
-                  className="bg-gray-500 text-white p-2 rounded"
-                >
-                  Previous
-                </button>
-                <button
-                  type="submit"
-                  className="bg-green-500 text-white p-2 rounded"
-                  disabled={loading}
-                >
-                  Submit
-                </button>
+                <label className="block mb-1">Trade Licence</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange(e, setTradeLicence)}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
               </div>
+
+              <button
+                className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600 w-full"
+                onClick={handlePreviousStep}
+              >
+                Previous
+              </button>
+              <button
+                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? 'Submitting...' : 'Submit'}
+              </button>
             </>
           )}
         </form>
-        <ToastContainer />
-        <Link href="/" className="mt-4 text-blue-500">
-            Back to Home
-        </Link>
       </div>
+      <ToastContainer />
     </div>
   );
 }
