@@ -66,6 +66,8 @@ const UploadResumeForm = () => {
 
   const generatePDF = () => {
     const doc = new jsPDF();
+    
+    // First Page: Payment Receipt
     doc.setFontSize(14);
     doc.setTextColor(40);
     doc.text('Payment Receipt', 14, 20);
@@ -73,11 +75,19 @@ const UploadResumeForm = () => {
     // Add company name and description
     doc.setFontSize(16);
     doc.setTextColor(0, 102, 204); // Legal257 color
-    doc.text('Legal257', 14, 30);
+    doc.text('Legal257 Finacial & Tax services ', 14, 30);
+    doc.line(14, 52, 14 + textWidth, 52); // Underline
     doc.setFontSize(12);
     doc.setTextColor(0); // Default text color
-    doc.text('At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.', 14, 40, { maxWidth: 180 });
-
+    doc.text('At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients.', 14, 40, { maxWidth: 180 });
+    
+    // Underline the company description
+    const text = 'Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free.';
+    doc.setFont("helvetica", "normal");
+    doc.text(text, 14, 50, { maxWidth: 180 });
+    const textWidth = doc.getTextWidth(text);
+    
+  
     // Add client details
     doc.setFontSize(14);
     doc.text('Client Details:', 14, 100);
@@ -91,9 +101,33 @@ const UploadResumeForm = () => {
     doc.text(`Job Title: ${jobTitle}`, 14, 170);
     doc.text('Amount Paid: ₹499', 14, 180);
     
+    // Add a new page for Terms and Conditions
+    doc.addPage();
+    doc.setFontSize(18);
+    doc.setTextColor(0, 102, 204); // Legal257 color
+    doc.text('Terms and Conditions', 14, 20);
+    
+    doc.setFontSize(12);
+    doc.setTextColor(0); // Default text color
+    doc.text('Please read these terms and conditions carefully before using our services.', 14, 40, { maxWidth: 180 });
+    
+    // Add more terms and conditions
+    const terms = [
+      '1. Acceptance of Terms: By using our services, you agree to these terms and conditions.',
+      '2. Services: We provide financial and tax services as described on our website.',
+      '3. Payment: All payments must be made in advance.',
+      '4. Liability: Legal257 is not liable for any losses or damages incurred.',
+      '5. Changes to Terms: We reserve the right to change these terms at any time.'
+    ];
+    
+    terms.forEach((term, index) => {
+      doc.text(term, 14, 60 + (index * 10), { maxWidth: 180 });
+    });
+  
     // Save the PDF
     doc.save('payment_receipt.pdf');
   };
+  
 
   const handleNameChange = (e) => {
     setName(e.target.value);
