@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { jsPDF } from 'jspdf';
+import logo from '../../../public/logo2.png'
+
 
 
 
@@ -59,6 +62,37 @@ const UploadResumeForm = () => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(14);
+    doc.setTextColor(40);
+    doc.text('Payment Receipt', 14, 20);
+    
+    // Add company name and description
+    doc.setFontSize(16);
+    doc.setTextColor(0, 102, 204); // Legal257 color
+    doc.text('Legal257', 14, 30);
+    doc.setFontSize(12);
+    doc.setTextColor(0); // Default text color
+    doc.text('At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.', 14, 40, { maxWidth: 180 });
+
+    // Add client details
+    doc.setFontSize(14);
+    doc.text('Client Details:', 14, 100);
+    doc.setFontSize(12);
+    doc.text(`Name: ${name}`, 14, 110);
+    doc.text(`Email: ${email}`, 14, 120);
+    doc.text(`Mobile: ${mobile}`, 14, 130);
+    doc.text(`City: ${city}`, 14, 140);
+    doc.text(`State: ${state}`, 14, 150);
+    doc.text(`Pin Code: ${pinCode}`, 14, 160);
+    doc.text(`Job Title: ${jobTitle}`, 14, 170);
+    doc.text('Amount Paid: ₹499', 14, 180);
+    
+    // Save the PDF
+    doc.save('payment_receipt.pdf');
   };
 
   const handleNameChange = (e) => {
@@ -132,6 +166,8 @@ const UploadResumeForm = () => {
         setPinCode('');
         setJobTitle('');
         notifySuccess();
+        
+        generatePDF();
       } else {
         console.error('Error:', await response.json());
         notifyError(errorData.message);
