@@ -11,6 +11,8 @@ import logo from '../../../public/logo2.png'
 const UploadResumeForm = () => {
   const [resume, setResume] = useState(null);
   const [aadhaarCard, setAadhaarCard] = useState(null);
+  const [paymentReceipt, setPaymentReceipt] = useState(null);
+  const [bankPassbook, setBankPassbook] = useState(null);
   const [panCard, setPanCard] = useState(null);
   const [qualificationCertificate, setQualificationCertificate] = useState(null);
   const [experienceCertificate, setExperienceCertificate] = useState(null);
@@ -19,6 +21,7 @@ const UploadResumeForm = () => {
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
   const [state, setState] = useState('');
   const [pinCode, setPinCode] = useState('');
   const [jobTitle, setJobTitle] = useState('');
@@ -165,6 +168,8 @@ const UploadResumeForm = () => {
 
     const formData = new FormData();
     if (resume) formData.append('resume', resume);
+    if (paymentReceipt) formData.append('paymentReceipt', paymentReceipt);
+    if (bankPassbook) formData.append('bankPassbook', bankPassbook);
     if (aadhaarCard) formData.append('aadhaarCard', aadhaarCard);
     if (panCard) formData.append('panCard', panCard);
     if (qualificationCertificate) formData.append('qualificationCertificate', qualificationCertificate);
@@ -177,6 +182,7 @@ const UploadResumeForm = () => {
     formData.append('state', state);
     formData.append('pinCode', pinCode);
     formData.append('jobTitle', jobTitle);
+    formData.append('address' , address)
     try {
       const response = await fetch('/api/jobApplication', {
         method: 'POST',
@@ -188,12 +194,15 @@ const UploadResumeForm = () => {
         setResume(null);
         setAadhaarCard(null);
         setPanCard(null);
+        setPaymentReceipt(null);
+        setBankPassbook(null);
         setQualificationCertificate(null);
         setExperienceCertificate(null);
         setComputerCertificate(null);
         setName('');
         setEmail('');
         setMobile('');
+        setAddress('');
         setCity('');
         setState('');
         setPinCode('');
@@ -216,7 +225,7 @@ const UploadResumeForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col  items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 mb-[6rem] md:mb-[0rem]" >
+    <div className="min-h-screen flex flex-col  items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 p-6 pb-[6rem] md:mb-[0rem]" >
       <div  className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-md">
       <h2 className="text-2xl font-bold text-white mb-6">Hiring Form - Legal257</h2>
       
@@ -266,7 +275,16 @@ const UploadResumeForm = () => {
                 className="w-full p-2 rounded bg-white bg-opacity-50"
               />
             </div>
-
+            <div>
+              <label className="block text-gray-700 font-bold mb-2">Address</label>
+              <input
+                type="text"
+                name="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="w-full p-2 rounded bg-white bg-opacity-50"
+              />
+            </div>
             <div>
               <label className="block text-gray-700 font-bold mb-2">State</label>
               <select
@@ -363,6 +381,26 @@ const UploadResumeForm = () => {
           type="file"
           id="computerCertificate"
           onChange={(e) => handleFileChange(e, setComputerCertificate)}
+          className="w-full p-2 rounded bg-white bg-opacity-50"
+      
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="paymentReceipt" className="block text-gray-700 font-bold mb-2">Payment Receipt:</label>
+        <input
+          type="file"
+          id="paymentReceipt"
+          onChange={(e) => handleFileChange(e, setPaymentReceipt)}
+          className="w-full p-2 rounded bg-white bg-opacity-50"
+      
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="bankPassbook" className="block text-gray-700 font-bold mb-2">Bank Passbook:</label>
+        <input
+          type="file"
+          id="bankPassbook"
+          onChange={(e) => handleFileChange(e, setBankPassbook)}
           className="w-full p-2 rounded bg-white bg-opacity-50"
       
         />

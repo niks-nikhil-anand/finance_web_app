@@ -22,6 +22,9 @@ const jobApplicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  address:{
+    type:String,
+  },
   state: {
     type: String,
   },
@@ -42,6 +45,12 @@ const jobApplicationSchema = new mongoose.Schema({
   panCard: {
     type: String,
     
+  },
+  paymentReceipt:{
+    type:String,
+  },
+  bankPassbook:{
+    type:String,
   },
   qualificationCertificate: {
     type: String,
