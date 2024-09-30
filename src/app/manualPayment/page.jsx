@@ -7,14 +7,13 @@ import Slider from '@/component/Homepage/Slider';
 
 const page = () => {
   const services = [
-    { name: 'BRANCH CODE', price: '₹5900' },
-    { name: 'CSP CODE', price: '₹1180' },
-    { name: 'MEMBERSHIP', price: '₹590' },
-    { name: 'SHARE HOLDER', price: '₹1180' },
-    { name: 'DSA CODE', price: '₹3540' },
-    { name: 'JOB APPLY', price: '₹499' },
-    { name: 'JOB POST JOINING FEES', price: '₹2000' },
-    { name: 'JONOJIVAN GROCERY WAREHOUSE ', price: '₹25,000 - ₹50,000' },
+    { name: 'JOB POST APPLY', price: '₹499' },
+    { name: 'BRANCH CODE', price: '₹11,800' },
+    { name: 'CSP CODE', price: '₹3000' },
+    { name: 'DSA CODE', price: '₹5900' },
+    { name: 'MEMBERSHIP', price: '₹1180/Year' },
+    { name: 'SHARE HOLDER', price: '₹10,000' },
+    { name: 'JONOJIVAN GROCERY WAREHOUSE ', price: '₹50,000 - ₹120,000' },
   ];
 
   return (
