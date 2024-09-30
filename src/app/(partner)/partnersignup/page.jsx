@@ -328,11 +328,11 @@ export default function Signup() {
       <option value="" disabled>
         Select a type + Fees
       </option>
-      <option value="DSA">DSA CODE ₹3540</option>
-      <option value="CSP">CSP CODE ₹1180</option>
-      <option value="BRANCH">Branch CODE ₹5900</option>
+      <option value="DSA">DSA CODE ₹5900</option>
+      <option value="CSP">CSP CODE ₹3000</option>
+      <option value="BRANCH">BRANCH CODE ₹11800</option>
       <option value="JONOJIVANGROCERY">
-        JonoJivan Grocery Warehouse ₹25,000 - ₹50,000
+        Warehouse ₹50,000 +  ₹12,00,00
       </option>
     </select>
   </div>

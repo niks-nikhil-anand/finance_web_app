@@ -392,6 +392,7 @@ const UploadResumeForm = () => {
           id="paymentReceipt"
           onChange={(e) => handleFileChange(e, setPaymentReceipt)}
           className="w-full p-2 rounded bg-white bg-opacity-50"
+          required
       
         />
       </div>
