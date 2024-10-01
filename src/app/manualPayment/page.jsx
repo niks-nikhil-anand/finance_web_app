@@ -11,7 +11,7 @@ const page = () => {
     { name: 'BRANCH CODE', price: '₹11,800' },
     { name: 'CSP CODE', price: '₹3000' },
     { name: 'DSA CODE', price: '₹5900' },
-    { name: 'MEMBERSHIP', price: '₹1180/Year' },
+    { name: 'MEMBERSHIP', price: '₹1180 Year' },
     { name: 'SHARE HOLDER', price: '₹10,000' },
     { name: 'JONOJIVAN GROCERY WAREHOUSE ', price: '₹50,000 - ₹120,000' },
   ];
