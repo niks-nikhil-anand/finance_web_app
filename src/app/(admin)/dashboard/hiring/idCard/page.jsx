@@ -108,8 +108,8 @@ const IdCard = () => {
               </div>
 
               
-              <div className="text-center mt-10 flex justify-start flex-col mb-3"> 
-                <h2 className="text-xl text-[#118806] font-extrabold m-5 underline">{jobApplication.name}</h2>
+              <div className="text-center mt-5 flex justify-start flex-col mb-3 gap-3"> 
+                <h2 className="text-xl text-black font-extrabold mx-5 mt-3 underline">{jobApplication.name}</h2>
                 <div className="text-sm flex flex-col flex-start px-2">
                   <p><span className="font-bold">Mobile:-</span> {jobApplication.mobile}</p>
                   <p><span className="font-bold">Email:-</span>{jobApplication.email}</p>
@@ -121,59 +121,57 @@ const IdCard = () => {
               </div>
               <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
               <p className="flex items-center ">
-                    <span className="font-bold">Date of Issue: </span> {formatDateTime(jobApplication.dateOfIssue)}
+                    <span className="font-bold">Applied Date: </span>  {formatDateTime(jobApplication.createdAt)}
                   </p>
               </div>
             </motion.div>
 
+            
+
             {/* Back Side of the Card */}
-            <motion.div
-              className="w-full md:w-64 h-auto bg-[#ff9934] rounded-lg shadow-lg overflow-hidden relative"
+                        <motion.div
+              className="w-full md:w-[19rem] h-auto bg-[#ff9934] rounded-lg shadow-lg overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="p-4 text-black text-xs md:text-sm space-y-2">
-                <h2 className="text-lg md:text-xl font-bold text-center mb-3">Terms and Conditions</h2>
+                <h2 className="text-lg md:text-xl font-bold text-center mb-3">Job Card Terms and Conditions</h2>
                 <ul className="list-disc list-inside space-y-2">
-                  <li className="font-semibold text-base">Ration Card Details:</li>
+                  <li className="font-semibold text-base">Job Card Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Ration Card Type:</span> Free</li>
-                    <li><span className="font-medium">Validity:</span> 11 months</li>
-                    <li><span className="font-medium">Insurance Coverage:</span> ₹1 lakh</li>
-                    <li><span className="font-medium">Eligibility:</span> Age 18 to 45</li>
-                    <li><span className="font-medium">Usage:</span> For grocery use only (not for personal use)</li>
-                    
+                    <li><span className="font-medium">Job Type:</span> Full-Time</li>
+                    <li><span className="font-medium">Contract Period:</span> 12 months</li>
+                    <li><span className="font-medium">Insurance Coverage:</span> ₹2 lakh</li>
+                    <li><span className="font-medium">Eligibility:</span> Age 18 to 50</li>
+                    <li><span className="font-medium">Usage:</span> Valid for job-related activities only</li>
                   </ul>
-                  <li className="font-semibold text-base">Shop Details:</li>
+                  <li className="font-semibold text-base">Office Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
-                  <li><span className="font-medium">Shop Opening Time:</span>7:00 Am</li>
-                  <li><span className="font-medium">Shop Closing Time:</span>9:00 Am</li>
-                  <li><span className="font-medium">Shop Opening Date:</span>21/01/2025</li>
+                    <li><span className="font-medium">Office Working Hours:</span> 9:00 AM to 6:00 PM</li>
+                    <li><span className="font-medium">Office Opening Date:</span> 01/02/2025</li>
                   </ul>
                   <li className="font-semibold text-base">Services Provided:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Grocery Home Delivery:</span> Available</li>
-                    <li><span className="font-medium">Digital Banking Service:</span> Available</li>
-                    <li><span className="font-medium">Financial Services:</span> Available</li>
-                    <li><span className="font-medium">All Types of Finance Loan Services:</span> Available</li>
+                    <li><span className="font-medium">Financial Support:</span> Available</li>
+                    <li><span className="font-medium">Digital Banking Services:</span> Available</li>
+                    <li><span className="font-medium">Loan Options:</span> Tailored as per eligibility</li>
+                    <li><span className="font-medium">Training and Skill Development:</span> Provided</li>
                   </ul>
                 </ul>
                 <hr />
-                <p className="font-bold mt-2"> Office Address:</p>
-                <p>Add: Biswanath Chariali , Sonitpur </p>
-                <p>State: Assam </p>
-                <p>Pin Code: 784176</p>
+                
               </div>
               <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
-                  <p className="flex items-center mt-3 my-5">
-                  <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
+                <p className="flex items-center mt-3 my-5">
+                <p>Biswanath Chariali, Sonitpur, Assam - 784176</p>
                 </p>
                 <p className="flex items-center">
                   <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
                 </p>
-                  </div>
+              </div>
             </motion.div>
+
             </div>
 
             {jobApplication && (
