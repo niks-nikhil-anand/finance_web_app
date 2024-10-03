@@ -29,7 +29,7 @@ const IdCard = () => {
       if (!response.ok) throw new Error('Failed to fetch data');
       const result = await response.json();
       setRationCard(result[0]);
-      setButtonText('Download'); // Reset button text on successful search
+      setButtonText('Download'); 
     } catch (err) {
       setError(err.message || 'Error fetching data');
     } finally {
