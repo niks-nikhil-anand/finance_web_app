@@ -159,12 +159,13 @@ const IdCard = () => {
                     <li><span className="font-medium">Training and Skill Development:</span> Provided</li>
                   </ul>
                 </ul>
-                <hr />
+               
                 
               </div>
               <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
+                <p>Biswanath Chariali, Sonitpur, Assam </p>
                 <p className="flex items-center mt-3 my-5">
-                <p>Biswanath Chariali, Sonitpur, Assam - 784176</p>
+                <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
                 </p>
                 <p className="flex items-center">
                   <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
