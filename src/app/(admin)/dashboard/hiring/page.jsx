@@ -44,6 +44,8 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Resume</th>
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
               <th className="py-2 px-4 border border-gray-300">PAN Card</th>
+              <th className="py-2 px-4 border border-gray-300">Payment Receipt</th>
+              <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
               <th className="py-2 px-4 border border-gray-300">Qualification Certificate</th>
               <th className="py-2 px-4 border border-gray-300">Experience Certificate</th>
               <th className="py-2 px-4 border border-gray-300">Computer Certificate</th>
@@ -59,53 +61,113 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">{application.address}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.city} , {application.state} , {application.pinCode}</td>
                 <td className="py-2 px-4 border border-gray-300">
-                  <a href={application.resume} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">View Resume</a>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.aadhaarCard)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Aadhaar Card
-                  </a>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.panCard)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View PAN Card
-                  </a>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.qualificationCertificate)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Qualification Certificate
-                  </a>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.experienceCertificate)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Experience Certificate
-                  </a>
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  <a
-                    href="#"
-                    onClick={() => handleImageClick(application.computerCertificate)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Computer Certificate
-                  </a>
-                </td>
+                    {application.resume ? (
+                      <a href={application.resume} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                        View Resume
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.aadhaarCard ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.aadhaarCard)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Aadhaar Card
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.panCard ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.panCard)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View PAN Card
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.paymentReceipt ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.paymentReceipt)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Payment Receipt
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.bankPassbook ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.bankPassbook)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Bank Passbook
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.qualificationCertificate ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.qualificationCertificate)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Qualification Certificate
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.experienceCertificate ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.experienceCertificate)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Experience Certificate
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.computerCertificate ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.computerCertificate)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Computer Certificate
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
               </tr>
             ))}
           </tbody>
