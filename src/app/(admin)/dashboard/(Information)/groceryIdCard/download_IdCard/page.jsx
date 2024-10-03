@@ -70,24 +70,31 @@ const IdCard = () => {
 
   return (
     <div className='flex flex-col items-center bg-[#f5f6fa] w-full'>
+      <div className="text-center bg-[#dfe1e8]  p-8 shadow-3xl w-full rounded-lg">
+            <motion.input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email ID"
+              className="inline-block bg-white text-[#a3a3a3] border-0 outline-0 p-5 w-[80%] rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:shadow-2xl focus:shadow-xl focus:ring-2 focus:ring-[#7f8ff4]"
+              whileHover={{ scale: 1.05 }}
+              whileFocus={{ scale: 1.05 }}
+            />
+
+            <motion.button
+              onClick={handleSearch}
+              className="inline-block bg-[#7f8ff4] text-white rounded-lg p-3 px-9 ml-8 shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
+              whileTap={{ scale: 0.95, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
+              whileHover={{ scale: 1.05 }}
+            >
+              Search
+            </motion.button>
+
+            {loading && <p className="mt-2">Loading...</p>}
+            {error && <p className="text-red-500 mt-2">{error}</p>}
+          </div>
       <div className="py-5 w-[80%] flex flex-col">
-        <div className="text-center bg-[#ecd6d6] m-5 p-8 shadow-3xl w-full">
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email ID"
-            className="inline-block bg-white text-[#a3a3a3] shadow-md border-0 outline-0 p-5 w-[80%]"
-          />
-          <button
-            onClick={handleSearch}
-            className="inline-block bg-[#7f8ff4] text-white shadow-md rounded p-3 px-9 transition-all duration-200 ease-in cursor-pointer ml-2 hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
-          >
-            Search
-          </button>
-          {loading && <p className="mt-2">Loading...</p>}
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-        </div>
+      
 
         {rationCard && (
           <div className="flex flex-col items-center overflow-auto max-h-[30rem]">
