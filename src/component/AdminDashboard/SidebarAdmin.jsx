@@ -294,7 +294,7 @@ export function SidebarAdmin() {
 
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/groceryIdCard/download_IdCard"}
+                href={"/dashboard/hiring/idCard"}
               >
                  <FaDownload  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Download Job Card</span>
@@ -302,7 +302,7 @@ export function SidebarAdmin() {
 
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/groceryIdCard/download_IdCard"}
+                href={"/dashboard/hiring/offerLetter"}
               >
                  <FaDownload  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Download Offer Letter</span>
