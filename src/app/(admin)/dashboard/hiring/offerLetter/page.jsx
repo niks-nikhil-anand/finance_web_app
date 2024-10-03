@@ -25,7 +25,7 @@ const IdCard = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`/api/groceryRationCard/${email}`);
+      const response = await fetch(`/api/jobApplication/${email}`);
       if (!response.ok) throw new Error('Failed to fetch data');
       const result = await response.json();
       setRationCard(result[0]);
