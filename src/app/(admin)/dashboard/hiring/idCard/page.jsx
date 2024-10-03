@@ -111,6 +111,7 @@ const IdCard = () => {
               <div className="text-center mt-5 flex justify-start flex-col mb-3 gap-3"> 
                 <h2 className="text-xl text-black font-extrabold mx-5 mt-3 underline">{jobApplication.name}</h2>
                 <div className="text-sm flex flex-col flex-start px-2">
+                  <p><span className="font-bold">Job Title:-</span> {jobApplication.jobTitle}</p>
                   <p><span className="font-bold">Mobile:-</span> {jobApplication.mobile}</p>
                   <p><span className="font-bold">Email:-</span>{jobApplication.email}</p>
                 <p><span className="font-bold">City:-<span></span></span>{jobApplication.city}</p>
@@ -121,7 +122,7 @@ const IdCard = () => {
               </div>
               <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
               <p className="flex items-center ">
-                    <span className="font-bold">Applied Date: </span>  {formatDateTime(jobApplication.createdAt)}
+                    <span className="font-bold">Date Of Issue: </span>  {formatDateTime(jobApplication.createdAt)}
                   </p>
               </div>
             </motion.div>
@@ -150,23 +151,16 @@ const IdCard = () => {
                   <ul className="list-inside ml-7 space-y-1 text-sm">
                     <li><span className="font-medium">Office Working Hours:</span> 9:00 AM to 6:00 PM</li>
                     <li><span className="font-medium">Office Opening Date:</span> 01/02/2025</li>
+                    <li><span className="font-medium">Office Address:</span>Biswanath Chariali, Sonitpur, Assam</li>
+                    <li><span className="font-medium">Mob. No:-</span>+91 8761873802</li>
+
                   </ul>
-                  <li className="font-semibold text-base">Services Provided:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Financial Support:</span> Available</li>
-                    <li><span className="font-medium">Digital Banking Services:</span> Available</li>
-                    <li><span className="font-medium">Loan Options:</span> Tailored as per eligibility</li>
-                    <li><span className="font-medium">Training and Skill Development:</span> Provided</li>
-                  </ul>
+                  
                 </ul>
                
                 
               </div>
               <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
-                <p>Biswanath Chariali, Sonitpur, Assam </p>
-                <p className="flex items-center mt-3 my-5">
-                <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
-                </p>
                 <p className="flex items-center">
                   <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
                 </p>
