@@ -1,5 +1,5 @@
 import connectDB from "@/lib/dbConnect";
-import loanApplicationModel from "@/models/loanApplicationModel";
+import jobApplicationModel from "@/models/jobApplicationModel";
 import { NextResponse } from "next/server";
 
 
@@ -10,7 +10,7 @@ export const GET = async (request, { params }) => {
   try {
     await connectDB();
 
-    const applications = await loanApplicationModel.find({ email });
+    const applications = await jobApplicationModel.find({ email });
     console.log(applications)
     return NextResponse.json(applications, {
       status: 200
