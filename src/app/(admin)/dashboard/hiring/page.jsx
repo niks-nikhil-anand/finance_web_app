@@ -1,193 +1,180 @@
 "use client";
-import React, { useState, useRef } from 'react';
-import { FaPhoneAlt, FaGlobe } from 'react-icons/fa';
-import Image from 'next/image';
-import { toPng } from 'html-to-image';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 
 
-const IdCard = () => {
-  const [jobApplication, setJobApplication] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [buttonText, setButtonText] = useState('Download');
-  const cardRef = useRef(null); 
+const JobApplicationsTable = () => {
+  const [applications, setApplications] = useState([]);
 
-  const handleSearch = async () => {
-    if (email.trim() === '') {
-      setError('Email is required');
-      return;
-    }
-
-    setLoading(true);
-    setError('');
-    try {
-      const response = await fetch(`/api/jobApplication/${email}`);
-      if (!response.ok) throw new Error('Failed to fetch data');
-      const result = await response.json();
-      setJobApplication(result[0]);
-      setButtonText('Download'); 
-    } catch (err) {
-      setError(err.message || 'Error fetching data');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDownload = async () => {
-    if (cardRef.current) {
+  useEffect(() => {
+    const fetchApplications = async () => {
       try {
-        const dataUrl = await toPng(cardRef.current);
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = 'job-card-Legal257.png';
-        link.click();
-        setButtonText('Search Again'); 
-      } catch (err) {
-        console.error('Error generating image:', err);
+        const response = await axios.get('/api/jobApplication');
+        setApplications(response.data.applications);
+      } catch (error) {
+        console.error('Error fetching job applications:', error);
       }
-    }
-  };
+    };
 
-  const handleSearchAgain = () => {
-    setRationCard(null);
-    setEmail('');
-    setButtonText('Download');
-  };
+    fetchApplications();
+  }, []);
 
-  const formatDateTime = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric',
-      year: 'numeric',
-    });
+  const handleImageClick = (imageUrl) => {
+    window.open(imageUrl, '_blank');
   };
 
   return (
-    <div className='flex flex-col items-center bg-[#f5f6fa] w-full'>
-      <div className="text-center bg-[#dfe1e8]  p-8 shadow-3xl w-full rounded-lg">
-            <motion.input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter email ID"
-              className="inline-block bg-white text-[#a3a3a3] border-0 outline-0 p-5 w-[80%] rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:shadow-2xl focus:shadow-xl focus:ring-2 focus:ring-[#7f8ff4]"
-              whileHover={{ scale: 1.05 }}
-              whileFocus={{ scale: 1.05 }}
-            />
+    <motion.div 
+    initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="container mx-auto  w-[80%] bg-gray-100">
+      <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">Job Applications</h2>
+      <div className="overflow-auto max-h-[30rem]">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead className='bg-purple-100'>
+            <tr>
+              <th className="py-2 px-4 border border-gray-300">Name</th>
+              <th className="py-2 px-4 border border-gray-300">Email</th>
+              <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
+              <th className="py-2 px-4 border border-gray-300">Job Title</th>
+              <th className="py-2 px-4 border border-gray-300">Address</th>
+              <th className="py-2 px-4 border border-gray-300">City/State/Pincode</th>
+              <th className="py-2 px-4 border border-gray-300">Resume</th>
+              <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
+              <th className="py-2 px-4 border border-gray-300">PAN Card</th>
+              <th className="py-2 px-4 border border-gray-300">Payment Receipt</th>
+              <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
+              <th className="py-2 px-4 border border-gray-300">Qualification Certificate</th>
+              <th className="py-2 px-4 border border-gray-300">Experience Certificate</th>
+              <th className="py-2 px-4 border border-gray-300">Computer Certificate</th>
+            </tr>
+          </thead>
+          <tbody>
+            {applications.map((application, index) => (
+              <tr key={index} className="hover:bg-gray-100">
+                <td className="py-2 px-4 border border-gray-300">{application.name}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.email}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.mobile}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.jobTitle}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.address}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.city} , {application.state} , {application.pinCode}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                    {application.resume ? (
+                      <a href={application.resume} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                        View Resume
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-            <motion.button
-              onClick={handleSearch}
-              className="inline-block bg-[#7f8ff4] text-white rounded-lg p-3 px-9 ml-8 shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
-              whileTap={{ scale: 0.95, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              Search
-            </motion.button>
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.aadhaarCard ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.aadhaarCard)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Aadhaar Card
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-            {loading && <p className="mt-2">Loading...</p>}
-            {error && <p className="text-red-500 mt-2">{error}</p>}
-          </div>
-      <div className="py-5 w-[90%] flex flex-col">
-        {jobApplication && (
-          <div className="flex flex-col items-center overflow-auto max-h-[30rem]">
-            <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-             
-           <motion.div
-              className="w-full md:w-[19rem] h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="bg-black h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
-                <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard Legal257</h1>
-                <p className="text-[10px] text-white font-extrabold mt-2 p-5">Top-notch financial , tax services also  include expert GST and ITR filing services to ensure your business remains compliant and stress-free</p>
-              </div>
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.panCard ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.panCard)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View PAN Card
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-              
-              <div className="text-center mt-5 flex justify-start flex-col mb-3 gap-3"> 
-                <h2 className="text-xl text-black font-extrabold mx-5 mt-3 underline">{jobApplication.name}</h2>
-                <div className="text-sm flex flex-col flex-start px-2">
-                  <p><span className="font-bold">Mobile:-</span> {jobApplication.mobile}</p>
-                  <p><span className="font-bold">Email:-</span>{jobApplication.email}</p>
-                <p><span className="font-bold">City:-<span></span></span>{jobApplication.city}</p>
-                <p><span className="font-bold">State:</span> {jobApplication.state}</p>
-                <p><span className="font-bold">Pin Code:-</span> {jobApplication.pinCode}</p>
-                <p><span className="font-bold">Address:-</span> {jobApplication.address}</p>
-                </div>
-              </div>
-              <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
-              <p className="flex items-center ">
-                    <span className="font-bold">Applied Date: </span>  {formatDateTime(jobApplication.createdAt)}
-                  </p>
-              </div>
-            </motion.div>
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.paymentReceipt ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.paymentReceipt)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Payment Receipt
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-            
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.bankPassbook ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.bankPassbook)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Bank Passbook
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-            {/* Back Side of the Card */}
-                        <motion.div
-              className="w-full md:w-[19rem] h-auto bg-[#ff9934] rounded-lg shadow-lg overflow-hidden relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="p-4 text-black text-xs md:text-sm space-y-2">
-                <h2 className="text-lg md:text-xl font-bold text-center mb-3">Job Card Terms and Conditions</h2>
-                <ul className="list-disc list-inside space-y-2">
-                  <li className="font-semibold text-base">Job Card Details:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Job Type:</span> Full-Time</li>
-                    <li><span className="font-medium">Contract Period:</span> 12 months</li>
-                    <li><span className="font-medium">Insurance Coverage:</span> ₹2 lakh</li>
-                    <li><span className="font-medium">Eligibility:</span> Age 18 to 50</li>
-                    <li><span className="font-medium">Usage:</span> Valid for job-related activities only</li>
-                  </ul>
-                  <li className="font-semibold text-base">Office Details:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Office Working Hours:</span> 9:00 AM to 6:00 PM</li>
-                    <li><span className="font-medium">Office Opening Date:</span> 01/02/2025</li>
-                  </ul>
-                  <li className="font-semibold text-base">Services Provided:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Financial Support:</span> Available</li>
-                    <li><span className="font-medium">Digital Banking Services:</span> Available</li>
-                    <li><span className="font-medium">Loan Options:</span> Tailored as per eligibility</li>
-                    <li><span className="font-medium">Training and Skill Development:</span> Provided</li>
-                  </ul>
-                </ul>
-               
-                
-              </div>
-              <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
-                <p>Biswanath Chariali, Sonitpur, Assam </p>
-                <p className="flex items-center mt-3 my-5">
-                <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
-                </p>
-                <p className="flex items-center">
-                  <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
-                </p>
-              </div>
-            </motion.div>
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.qualificationCertificate ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.qualificationCertificate)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Qualification Certificate
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-            </div>
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.experienceCertificate ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.experienceCertificate)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Experience Certificate
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
 
-            {jobApplication && (
-              <button
-                onClick={buttonText === 'Download' ? handleDownload : handleSearchAgain}
-                className={`mt-4 ${buttonText === 'Download' ? 'bg-[#ff9934] hover:bg-[#ff7f1f]' : 'bg-[#7f8ff4] hover:bg-blue-600'} text-white p-2 rounded shadow`}
-              >
-                {buttonText}
-              </button>
-            )}
-          </div>
-        )}
+                  <td className="py-2 px-4 border border-gray-300">
+                    {application.computerCertificate ? (
+                      <a
+                        href="#"
+                        onClick={() => handleImageClick(application.computerCertificate)}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Computer Certificate
+                      </a>
+                    ) : (
+                      "Not available"
+                    )}
+                  </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default IdCard;
+export default JobApplicationsTable;
