@@ -149,13 +149,6 @@ export function SidebarAdmin() {
                 <IoShareSocialSharp  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Refer Leads</span>
               </Link>
-              <Link
-                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                href={"/dashboard/hiring"}
-              >
-                <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium"> Hiring Leads</span>
-              </Link>
             </div>
             <div className="space-y-3">
               <label className="px-3 text-xs font-semibold uppercase text-white">Available Pincode</label>
@@ -283,6 +276,36 @@ export function SidebarAdmin() {
               >
                  <FaDownload  className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Download Id Card</span>
+              </Link>
+              
+            </div>
+
+            <div className="space-y-3">
+              <label className="px-3 text-xs font-semibold uppercase text-white">Hiring</label>
+              
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/hiring"}
+              >
+                 <FaHireAHelper  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Job Application</span>
+              </Link>
+
+
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/groceryIdCard/download_IdCard"}
+              >
+                 <FaDownload  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Download Job Card</span>
+              </Link>
+
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-white transition-colors duration-300 hover:bg-gray-700"
+                href={"/dashboard/groceryIdCard/download_IdCard"}
+              >
+                 <FaDownload  className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Download Offer Letter</span>
               </Link>
               
             </div>
