@@ -43,7 +43,7 @@ const IdCard = () => {
         link.href = dataUrl;
         link.download = 'job-card-Legal257.png';
         link.click();
-        setButtonText('Search Again'); // Change button text after download
+        setButtonText('Search Again'); 
       } catch (err) {
         console.error('Error generating image:', err);
       }
@@ -97,7 +97,7 @@ const IdCard = () => {
             <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
              
            <motion.div
-              className="w-full md:w-64 h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
+              className="w-full md:w-[19rem] h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -113,12 +113,10 @@ const IdCard = () => {
                 <div className="text-sm flex flex-col flex-start px-2">
                   <p><span className="font-bold">Mobile:-</span> {jobApplication.mobile}</p>
                   <p><span className="font-bold">Email:-</span>{jobApplication.email}</p>
-                  
-                  <p className=" mt-2 font-bold">Address:</p>
-                <p><span className="">City:-</span>{jobApplication.city}</p>
-                <p>State: {jobApplication.state}</p>
-                <p>Pin Code: {jobApplication.pinCode}</p>
-                <p>Add: {jobApplication.address}</p>
+                <p><span className="font-bold">City:-<span></span></span>{jobApplication.city}</p>
+                <p><span className="font-bold">State:</span> {jobApplication.state}</p>
+                <p><span className="font-bold">Pin Code:-</span> {jobApplication.pinCode}</p>
+                <p><span className="font-bold">Address:-</span> {jobApplication.address}</p>
                 </div>
               </div>
               <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
