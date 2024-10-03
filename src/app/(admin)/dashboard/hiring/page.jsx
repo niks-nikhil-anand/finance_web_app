@@ -38,6 +38,9 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">Name</th>
               <th className="py-2 px-4 border border-gray-300">Email</th>
               <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
+              <th className="py-2 px-4 border border-gray-300">Job Title</th>
+              <th className="py-2 px-4 border border-gray-300">Address</th>
+              <th className="py-2 px-4 border border-gray-300">City/State/Pincode</th>
               <th className="py-2 px-4 border border-gray-300">Resume</th>
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
               <th className="py-2 px-4 border border-gray-300">PAN Card</th>
@@ -52,6 +55,9 @@ const JobApplicationsTable = () => {
                 <td className="py-2 px-4 border border-gray-300">{application.name}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.email}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.mobile}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.jobTitle}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.address}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.city} , {application.state} , {application.pinCode}</td>
                 <td className="py-2 px-4 border border-gray-300">
                   <a href={application.resume} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">View Resume</a>
                 </td>
