@@ -68,7 +68,7 @@ const UploadResumeForm = () => {
     }
   };
 
-  const generatePDF = () => {
+  const generatePDF = (name = '', email = '', mobile = '', city = '', state = '', pinCode = '', jobTitle = '') => {
     const doc = new jsPDF();
 
     // First Page: Payment Receipt
@@ -78,19 +78,20 @@ const UploadResumeForm = () => {
     
     // Add company name and description
     doc.setFontSize(16);
-    doc.setTextColor(0, 102, 204); // Legal257 color
+    doc.setTextColor(252, 186, 3); // Legal257 color
     doc.text('Legal257 Financial & Tax Services', 14, 30);
+    doc.setFont("helvetica", "normal");
 
     // Company description text
-    const text = 'Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free.';
-    doc.setFont("helvetica", "normal");
-    doc.text(text, 14, 50, { maxWidth: 180 });
-    
-    // Calculate text width before using it
-    const textWidth = doc.getTextWidth(text);
-    doc.line(14, 52, 14 + textWidth, 52); // Underline
+    doc.setFontSize(14);
+    doc.setTextColor(0);
+    const companyDescription = 'Thank you for your payment! This receipt confirms that we have successfully received your payment. Below are the details of your transaction:';
+    doc.text(companyDescription, 14, 50, { maxWidth: 180 });
 
-    // Add client details
+    // Add an underline below the company description
+    doc.line(14, 55, 200, 55);
+
+    // Add client details (with default values)
     doc.setFontSize(14);
     doc.text('Client Details:', 14, 100);
     doc.setFontSize(12);
@@ -102,7 +103,15 @@ const UploadResumeForm = () => {
     doc.text(`Pin Code: ${pinCode}`, 14, 160);
     doc.text(`Job Title: ${jobTitle}`, 14, 170);
     doc.text('Amount Paid: ₹499', 14, 180);
-    
+
+    clientDetails.forEach((detail, index) => {
+        doc.text(detail, 14, 110 + (index * 10));
+    });
+
+    // Second block of description text
+    const serviceDescription = 'At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.';
+    doc.text(serviceDescription, 14, 190, { maxWidth: 180 });
+
     // Add a new page for Terms and Conditions
     doc.addPage();
     doc.setFontSize(18);
@@ -115,20 +124,34 @@ const UploadResumeForm = () => {
     
     // Add more terms and conditions
     const terms = [
-        '1. Acceptance of Terms: By using our services, you agree to these terms and conditions.',
-        '2. Services: We provide financial and tax services as described on our website.',
-        '3. Payment: All payments must be made in advance.',
-        '4. Liability: Legal257 is not liable for any losses or damages incurred.',
-        '5. Changes to Terms: We reserve the right to change these terms at any time.'
+        '1. Acceptance of Terms: By using the services of Legal257, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions. These terms apply to all services offered by Legal257, including financial, tax, and related services. If you do not agree with any of these terms, you must discontinue the use of our services immediately.',
+        '2. Services: Legal257 provides a variety of financial and tax-related services, including but not limited to GST filing, ITR filing, mobile and DTH recharge, UPI payments, AEPS & MATM services, and loan options. A full description of our services can be found on our website. Legal257 reserves the right to modify, suspend, or discontinue any of its services at any time without prior notice.',
+        '3. Payment: All payments for services rendered by Legal257 are required in advance. Once a payment is made, it is considered final and non-refundable. This includes payments for GST filing, ITR services, loan consultation fees, mobile recharges, and other services offered. It is your responsibility to ensure that the information provided at the time of payment is correct. In case of payment issues, you are required to contact us immediately.',
+        '4. Non-Refundable Payment Policy: All payments made to Legal257 are non-refundable. Under no circumstances will refunds be provided after the payment is made, regardless of whether the service is used or not. You agree to this non-refundable policy at the time of making any purchase or payment for services.',
+        '5. Candidate Responsibility for Interviews: If you are applying for a job through Legal257, it is your responsibility to ensure that your interview is scheduled within one week of your application. If no interview is arranged during this period, you must contact Legal257 promptly via email, phone, or the contact form on our website. Failure to do so within the specified time may result in the termination of your application process.',
+        '6. Job Application Receipt: Upon applying for a job through Legal257, you will receive an official receipt confirming your application. This receipt does not guarantee a job offer but serves as proof of your submission. The processing time and scheduling of interviews will depend on the company discretion. Legal257 is not responsible for any delays in the hiring process.',
+        '7. Liability: Legal257 is not liable for any direct, indirect, incidental, special, or consequential damages that may arise from the use of our services. This includes but is not limited to any errors, inaccuracies, or delays in the services provided, or any losses incurred as a result of decisions made based on the information provided by Legal257. You agree to use our services at your own risk.',
+        '8. Changes to Terms: Legal257 reserves the right to modify, amend, or update these terms and conditions at any time without prior notice. Any changes made will be effective immediately upon posting on our website. It is your responsibility to review the terms and conditions periodically to stay informed of any changes.',
+        '9. Termination of Service: Legal257 reserves the right to terminate or suspend access to our services for any reason, including violation of these terms and conditions. If services are terminated due to a violation, no refund will be provided.',
+        '10. Governing Law: These terms and conditions shall be governed and construed in accordance with the laws of the jurisdiction in which Legal257 operates, without regard to its conflict of law provisions.'
     ];
-    
-    terms.forEach((term, index) => {
-        doc.text(term, 14, 60 + (index * 10), { maxWidth: 180 });
+
+    // Split the terms into multiple lines and add them with extra gap
+    let currentY = 60;
+    const lineHeight = 10; // Adjust line height if necessary
+    terms.forEach((term) => {
+        const wrappedText = doc.splitTextToSize(term, 180);
+        wrappedText.forEach(line => {
+            doc.text(line, 14, currentY);
+            currentY += lineHeight;
+        });
+        currentY += 10; // Extra gap between terms
     });
 
     // Save the PDF
     doc.save('payment_receipt.pdf');
 };
+
 
   
 

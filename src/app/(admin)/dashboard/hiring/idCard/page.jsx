@@ -27,6 +27,7 @@ const IdCard = () => {
       if (!response.ok) throw new Error('Failed to fetch data');
       const result = await response.json();
       setJobApplication(result[0]);
+      
       setButtonText('Download'); 
     } catch (err) {
       setError(err.message || 'Error fetching data');
@@ -102,12 +103,24 @@ const IdCard = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-black h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
-                <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard Legal257</h1>
-                <p className="text-[10px] text-white font-extrabold mt-2 p-5">Top-notch financial , tax services also  include expert GST and ITR filing services to ensure your business remains compliant and stress-free</p>
-              </div>
-
-              
+                              <div className="bg-gradient-to-r from-black to-gray-800 h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
+                    <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard Legal257</h1>
+                    {jobApplication?.profilePhoto ? (
+                      <div className="w-24 h-24 mt-4 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                        <Image 
+                          src={jobApplication.profilePhoto} 
+                          alt="Profile Photo"
+                          width={96} 
+                          height={96} 
+                          className="object-cover w-full h-full" 
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-24 h-24 mt-4 rounded-full overflow-hidden shadow-lg border-4 border-white flex items-center justify-center bg-gray-300">
+                        <span className="text-sm text-gray-600">No Image</span>
+                      </div>
+                    )}
+                  </div>
               <div className="text-center mt-5 flex justify-start flex-col mb-3 gap-3"> 
                 <h2 className="text-xl text-black font-extrabold mx-5 mt-3 underline">{jobApplication.name}</h2>
                 <div className="text-sm flex flex-col flex-start px-2">
