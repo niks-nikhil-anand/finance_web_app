@@ -22,6 +22,7 @@ export const POST = async (req) => {
     const jobTitle = formData.get("jobTitle");
 
     const resume = formData.get("resume");
+    const profilePhoto = formData.get("profilePhoto");
     const aadhaarCard = formData.get("aadhaarCard");
     const panCard = formData.get("panCard");
     const paymentReceipt = formData.get("paymentReceipt");
@@ -37,6 +38,7 @@ export const POST = async (req) => {
 
     // Upload files and get their URLs
     const resumeUploadResult = resume ? await uploadImage(resume, "resume") : null;
+    const profilePhotoUploadResult = profilePhoto ? await uploadImage(profilePhoto, "profilePhoto") : null;
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
     const paymentReceiptUploadResult = paymentReceipt ? await uploadImage(paymentReceipt, "paymentReceipt") : null;
     const bankPassbookUploadResult = bankPassbook ? await uploadImage(bankPassbook, "bankPassbook") : null;
@@ -56,6 +58,7 @@ export const POST = async (req) => {
       pinCode,
       address,
       resume: resumeUploadResult ? resumeUploadResult.secure_url : null,
+      profilePhoto: profilePhotoUploadResult ? profilePhotoUploadResult.secure_url : null,
       aadhaarCard: aadhaarUploadResult ? aadhaarUploadResult.secure_url : null,
       bankPassbook: bankPassbookUploadResult ? bankPassbookUploadResult.secure_url : null,
       aadhaarCard: paymentReceiptUploadResult ? paymentReceiptUploadResult.secure_url : null,

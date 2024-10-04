@@ -10,6 +10,7 @@ import logo from '../../../public/logo2.png'
 
 const UploadResumeForm = () => {
   const [resume, setResume] = useState(null);
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const [aadhaarCard, setAadhaarCard] = useState(null);
   const [paymentReceipt, setPaymentReceipt] = useState(null);
   const [bankPassbook, setBankPassbook] = useState(null);
@@ -168,6 +169,7 @@ const UploadResumeForm = () => {
 
     const formData = new FormData();
     if (resume) formData.append('resume', resume);
+    if (profilePhoto) formData.append('profilePhoto', profilePhoto);
     if (paymentReceipt) formData.append('paymentReceipt', paymentReceipt);
     if (bankPassbook) formData.append('bankPassbook', bankPassbook);
     if (aadhaarCard) formData.append('aadhaarCard', aadhaarCard);
@@ -192,6 +194,7 @@ const UploadResumeForm = () => {
       if (response.ok) {
         console.log(formData)
         setResume(null);
+        setProfilePhoto(null);
         setAadhaarCard(null);
         setPanCard(null);
         setPaymentReceipt(null);
@@ -325,6 +328,16 @@ const UploadResumeForm = () => {
               ))}
             </select>
           </div>
+          <div className="mb-4">
+        <label htmlFor="profilePhoto" className="block text-gray-700 font-bold mb-2">Upload Profile Photo:</label>
+        <input
+          type="file"
+          id="resume"
+          onChange={(e) => handleFileChange(e, setProfilePhoto)}
+          className="w-full p-2 rounded bg-white bg-opacity-50"
+          required
+        />
+      </div>
       <div className="mb-4">
         <label htmlFor="resume" className="block text-gray-700 font-bold mb-2">Upload Resume:</label>
         <input

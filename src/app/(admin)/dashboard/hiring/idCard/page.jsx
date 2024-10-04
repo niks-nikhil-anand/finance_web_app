@@ -137,7 +137,7 @@ const IdCard = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="p-4 text-black text-xs md:text-sm space-y-2">
-                <h2 className="text-lg md:text-xl font-bold text-center mb-3">Job Card Terms and Conditions</h2>
+                <h2 className="text-lg md:text-xl font-bold text-center mb-3">Terms and Conditions</h2>
                 <ul className="list-disc list-inside space-y-2">
                   <li className="font-semibold text-base">Job Card Details:</li>
                   <ul className="list-inside ml-7 space-y-1 text-sm">

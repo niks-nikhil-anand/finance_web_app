@@ -34,9 +34,11 @@ const jobApplicationSchema = new mongoose.Schema({
   jobTitle: {
     type: String,
   },
-  resume: {
+  profilePhoto:{
     type: String,
-    
+  },
+  resume: {
+    type: String,  
   },
   aadhaarCard: {
     type: String,
