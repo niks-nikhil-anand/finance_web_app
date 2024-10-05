@@ -98,12 +98,12 @@ const IdCard = () => {
             <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
              
            <motion.div
-              className="w-full md:w-[19rem] h-auto bg-[#ff9934] rounded-lg shadow-2xl overflow-hidden relative"
+              className="w-full md:w-[19rem] h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-                              <div className="bg-gradient-to-r from-black to-gray-800 h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
+                              <div className="bg-[#ff9934] h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
                     <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard Legal257</h1>
                     {jobApplication?.profilePhoto ? (
                       <div className="w-24 h-24 mt-4 rounded-full overflow-hidden shadow-lg border-4 border-white">
