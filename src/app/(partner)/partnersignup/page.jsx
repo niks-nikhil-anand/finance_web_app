@@ -355,7 +355,7 @@ export default function Signup() {
     </a>
   </div>
 
-  {/* Full-screen QR Code Modal */}
+ 
   {showQrCode && (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
       <div className="relative bg-white p-4 rounded shadow-lg text-center w-11/12 md:w-3/4 lg:w-1/2">

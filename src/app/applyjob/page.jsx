@@ -29,6 +29,10 @@ const UploadResumeForm = () => {
   const [loading, setLoading] = useState(false);
 
 
+  const [showQrCode, setShowQrCode] = useState(false); 
+
+
+
   const statesOfIndia = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi",
     "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
@@ -170,6 +174,10 @@ const UploadResumeForm = () => {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
+  };
+
+  const toggleQrCode = () => {
+    setShowQrCode(!showQrCode); // Toggle the QR code visibility
   };
 
   const handleEmailChange = (e) => {
@@ -455,6 +463,30 @@ const UploadResumeForm = () => {
       
         />
       </div>
+
+
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+                  <button
+                    onClick={toggleQrCode}
+                    className="bg-green-500 text-white py-2 px-4 rounded my-1 w-full sm:w-auto"
+                  >
+                    View QR Code
+                  </button>
+
+                  <a
+                    href="/paymentqr.jpeg"
+                    download="paymentqr.jpeg"
+                    className="bg-green-500 text-white py-2 px-4 rounded my-2 w-full sm:w-auto text-center"
+                  >
+                    Download QR Code
+                  </a>
+                </div>
+
+                
+
+
+
+
       <div className="mb-4">
       
         <div className="flex items-center">
