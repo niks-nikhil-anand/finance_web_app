@@ -68,7 +68,7 @@ const UploadResumeForm = () => {
     }
   };
 
-  const generatePDF = (name, email, mobile, city, state, pinCode, jobTitle) => {
+  const generatePDF = () => {
     const doc = new jsPDF();
 
     // First Page: Payment Receipt
@@ -82,64 +82,76 @@ const UploadResumeForm = () => {
     doc.text('Legal257 Financial & Tax Services', 14, 30);
     doc.setFont("helvetica", "normal");
 
+    
+
     // Company description text
     doc.setFontSize(14);
     doc.setTextColor(0);
     const companyDescription = 'Thank you for your payment! This receipt confirms that we have successfully received your payment. Below are the details of your transaction:';
     doc.text(companyDescription, 14, 50, { maxWidth: 180 });
 
-    // Add an underline below the company description
-    doc.line(14, 55, 200, 55);
+    
 
     // Add client details
     doc.setFontSize(12);
-    const clientDetails = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Mobile: ${mobile}`,
-        `City: ${city}`,
-        `State: ${state}`,
-        `Pin Code: ${pinCode}`,
-        `Job Title: ${jobTitle}`,
-        `Amount Paid: ₹499`
-    ];
+    doc.text(`Name: ${name}`, 14, 70);
+    doc.text(`Email: ${email}`, 14, 80);
+    doc.text(`Mobile: ${mobile}`, 14, 90);
+    doc.text(`City: ${city}`, 14, 100);
+    doc.text(`State: ${state}`, 14, 110);
+    doc.text(`Pin Code: ${pinCode}`, 14, 120);
+    doc.text(`Job Title: ${jobTitle}`, 14, 130);
+    doc.text('Amount Paid: ₹499', 14, 140);
 
-    clientDetails.forEach((detail, index) => {
-        doc.text(detail, 14, 110 + (index * 10));
-    });
-
-    // Second block of description text
+    // Service Description
     const serviceDescription = 'At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.';
-    doc.text(serviceDescription, 14, 190, { maxWidth: 180 });
+    doc.text(serviceDescription, 14, 160, { maxWidth: 180 });
 
-    // Add a new page for Terms and Conditions
+    // Add a new page for Terms and Conditions (first 5 terms)
     doc.addPage();
-    doc.setFontSize(18);
-    doc.setTextColor(0, 102, 204); // Legal257 color
+    doc.setFontSize(10);
+    doc.setTextColor(0);
     doc.text('Terms and Conditions', 14, 20);
-    
-    doc.setFontSize(12);
-    doc.setTextColor(0); // Default text color
-    doc.text('Please read these terms and conditions carefully before using our services.', 14, 40, { maxWidth: 180 });
-    
-    // Add more terms and conditions
-    const terms = [
+
+    // Terms and Conditions text (first 5 terms)
+    const termsPage2 = [
         '1. Acceptance of Terms: By using the services of Legal257, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions. These terms apply to all services offered by Legal257, including financial, tax, and related services. If you do not agree with any of these terms, you must discontinue the use of our services immediately.',
         '2. Services: Legal257 provides a variety of financial and tax-related services, including but not limited to GST filing, ITR filing, mobile and DTH recharge, UPI payments, AEPS & MATM services, and loan options. A full description of our services can be found on our website. Legal257 reserves the right to modify, suspend, or discontinue any of its services at any time without prior notice.',
         '3. Payment: All payments for services rendered by Legal257 are required in advance. Once a payment is made, it is considered final and non-refundable. This includes payments for GST filing, ITR services, loan consultation fees, mobile recharges, and other services offered. It is your responsibility to ensure that the information provided at the time of payment is correct. In case of payment issues, you are required to contact us immediately.',
         '4. Non-Refundable Payment Policy: All payments made to Legal257 are non-refundable. Under no circumstances will refunds be provided after the payment is made, regardless of whether the service is used or not. You agree to this non-refundable policy at the time of making any purchase or payment for services.',
         '5. Candidate Responsibility for Interviews: If you are applying for a job through Legal257, it is your responsibility to ensure that your interview is scheduled within one week of your application. If no interview is arranged during this period, you must contact Legal257 promptly via email, phone, or the contact form on our website. Failure to do so within the specified time may result in the termination of your application process.',
-        '6. Job Application Receipt: Upon applying for a job through Legal257, you will receive an official receipt confirming your application. This receipt does not guarantee a job offer but serves as proof of your submission. The processing time and scheduling of interviews will depend on the company’s discretion. Legal257 is not responsible for any delays in the hiring process.',
+    ];
+
+    // Add the first 5 terms on the second page
+    let currentY = 40;
+    const lineHeight = 10;
+
+    termsPage2.forEach((term) => {
+        const wrappedText = doc.splitTextToSize(term, 180);
+        wrappedText.forEach(line => {
+            doc.text(line, 14, currentY);
+            currentY += lineHeight;
+        });
+        currentY += 5; // Add extra space between terms
+    });
+
+    // Add a new page for remaining terms (Page 3)
+    doc.addPage();
+    doc.setFontSize(10);
+    doc.text('Terms and Conditions', 14, 20);
+
+    // Remaining terms on the third page
+    const termsPage3 = [
+        '6. Job Application Receipt: Upon applying for a job through Legal257, you will receive an official receipt confirming your application. This receipt does not guarantee a job offer but serves as proof of your submission. The processing time and scheduling of interviews will depend on the company discretion. Legal257 is not responsible for any delays in the hiring process.',
         '7. Liability: Legal257 is not liable for any direct, indirect, incidental, special, or consequential damages that may arise from the use of our services. This includes but is not limited to any errors, inaccuracies, or delays in the services provided, or any losses incurred as a result of decisions made based on the information provided by Legal257. You agree to use our services at your own risk.',
         '8. Changes to Terms: Legal257 reserves the right to modify, amend, or update these terms and conditions at any time without prior notice. Any changes made will be effective immediately upon posting on our website. It is your responsibility to review the terms and conditions periodically to stay informed of any changes.',
         '9. Termination of Service: Legal257 reserves the right to terminate or suspend access to our services for any reason, including violation of these terms and conditions. If services are terminated due to a violation, no refund will be provided.',
         '10. Governing Law: These terms and conditions shall be governed and construed in accordance with the laws of the jurisdiction in which Legal257 operates, without regard to its conflict of law provisions.'
     ];
 
-    // Split the terms into multiple lines and add them
-    let currentY = 60;
-    const lineHeight = 10; // Adjust line height if necessary
-    terms.forEach((term) => {
+    // Add remaining terms to the third page
+    currentY = 40;
+    termsPage3.forEach((term) => {
         const wrappedText = doc.splitTextToSize(term, 180);
         wrappedText.forEach(line => {
             doc.text(line, 14, currentY);
@@ -149,10 +161,8 @@ const UploadResumeForm = () => {
     });
 
     // Save the PDF
-    doc.save('payment_receipt.pdf');
+    doc.save('payment_receipt_with_terms.pdf');
 };
-
-
 
 
   
@@ -360,7 +370,7 @@ const UploadResumeForm = () => {
           id="resume"
           onChange={(e) => handleFileChange(e, setProfilePhoto)}
           className="w-full p-2 rounded bg-white bg-opacity-50"
-          required
+          
         />
       </div>
       <div className="mb-4">
@@ -370,7 +380,7 @@ const UploadResumeForm = () => {
           id="resume"
           onChange={(e) => handleFileChange(e, setResume)}
           className="w-full p-2 rounded bg-white bg-opacity-50"
-          required
+          
         />
       </div>
       <div className="mb-4">
@@ -430,7 +440,7 @@ const UploadResumeForm = () => {
           id="paymentReceipt"
           onChange={(e) => handleFileChange(e, setPaymentReceipt)}
           className="w-full p-2 rounded bg-white bg-opacity-50"
-          required
+          
       
         />
       </div>
@@ -451,7 +461,7 @@ const UploadResumeForm = () => {
             type="checkbox"
             id="terms"
             className="mr-2"
-            required
+            
           />
           <details>
   <summary>I declare that I have not been convicted of any criminal offence</summary>
