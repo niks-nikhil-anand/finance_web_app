@@ -98,7 +98,7 @@ const IdCard = () => {
             <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
              
            <motion.div
-              className="w-full md:w-[19rem] h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
+              className="w-full md:w-[19rem] h-auto bg-[#ff9934] rounded-lg shadow-2xl overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}

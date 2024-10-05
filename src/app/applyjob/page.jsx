@@ -60,6 +60,7 @@ const UploadResumeForm = () => {
     { title: 'Direct Selling Agent', code: 'DSA', type: 'Fulltime', salary: '₹96k - 540k/year' },
     { title: 'Royal Branch Manager', code: 'RBM', type: 'Fulltime', salary: '₹96k - 540k/year' },
     { title: 'Area Branch Manager', code: 'ABM', type: 'Fulltime', salary: '₹96k - 540k/year' },
+    { title: 'Home Delivery Grocery Ration Agent', code: 'HDGRA', type: 'Fulltime', salary: '₹96k - 540k/year' },
   ];
 
   const handleFileChange = (e, setFile) => {
