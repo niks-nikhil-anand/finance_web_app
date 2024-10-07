@@ -36,9 +36,9 @@ const IdCard = () => {
   };
 
   const generatePDF = () => {
-    const doc = new jsPDF();
-    const { name, email, mobile, city, state, pinCode, jobTitle } = jobApplication;
 
+    const { name, email, mobile, city, state, pinCode, jobTitle } = jobApplication;
+    const doc = new jsPDF();
 
     // First Page: Offer Letter Title
     doc.setFontSize(16);
@@ -52,7 +52,7 @@ const IdCard = () => {
     doc.setFont("helvetica", "normal");
 
     // Greeting and offer introduction
-    doc.setFontSize(14);
+    doc.setFontSize(12);  // Reduced text size
     doc.setTextColor(0);
     const greeting = `Dear ${name},`;
     const offerIntro = `We are pleased to extend you an offer for the position of ${jobTitle} at Legal257 Financial & Tax Services. We believe that your skills and experience will be an ideal match for our team.`;
@@ -61,30 +61,28 @@ const IdCard = () => {
 
     // Job details
     doc.text(`Position: ${jobTitle}`, 14, 80);
+    
 
     // Offer details and description of company
     const offerDescription = `At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.`;
     doc.text(offerDescription, 14, 130, { maxWidth: 180 });
 
-    // Terms of employment
+    // Terms of employment (shortened on the first page)
     const employmentTerms = [
-        '1. Acceptance of Offer: This offer is contingent upon the successful completion of any pre-employment requirements and the verification of the information you have provided.',
-        '2. Confidentiality: During the course of your employment, you may have access to sensitive information. You agree to maintain confidentiality and not disclose any such information outside of the company.',
-        '3. Termination: Either party may terminate the employment agreement by providing 30 days written notice.',
-        '4. Benefits: You will be entitled to benefits in accordance with the company policies, which will be further discussed upon your joining.',
-        '5. Governing Law: This offer letter shall be governed by and construed in accordance with the laws of the jurisdiction in which Legal257 operates.',
+        '1. Acceptance of Offer: This offer is contingent upon successful completion of any pre-employment requirements.',
+        '2. Confidentiality: You agree to maintain confidentiality and not disclose any sensitive information outside of the company.',
+        '3. Termination: Either party may terminate the employment agreement with 30 days written notice.'
     ];
 
     let currentY = 160;
-    const lineHeight = 10;
+    const lineHeight = 8;
 
     employmentTerms.forEach((term) => {
         const wrappedText = doc.splitTextToSize(term, 180);
         wrappedText.forEach(line => {
-            doc.text(line, 12, currentY);
+            doc.text(line, 14, currentY);
             currentY += lineHeight;
         });
-        currentY += 5; // Extra space between terms
     });
 
     // Sign off
@@ -96,9 +94,40 @@ const IdCard = () => {
     doc.text('Legal257 Financial & Tax Services', 14, currentY + 50);
     doc.text('HR Manager', 14, currentY + 60);
 
+    // Add a new page for Terms and Conditions
+    doc.addPage();
+    
+    // Second Page: Terms and Conditions Title
+    doc.setFontSize(16);
+    doc.setTextColor(40);
+    doc.text('Terms and Conditions', 14, 20);
+
+    // Content of Terms and Conditions
+    doc.setFontSize(12);  // Decreased text size
+    const termsAndConditions = [
+        '1. Confidentiality: During your employment, you will have access to confidential information, including but not limited to trade secrets, client lists, and proprietary data. You are required to maintain strict confidentiality of all such information.',
+        '2. Intellectual Property: Any inventions, designs, processes, or works created by you during your employment will be considered the intellectual property of Legal257.',
+        '3. Non-Compete Agreement: During your employment and for a period of one year after termination, you agree not to engage in any business activities that are in direct competition with Legal257.',
+        '4. Conflict of Interest: You are required to avoid any situation that could lead to a conflict of interest between your personal interests and those of Legal257.',
+        '5. Employment at Will: Your employment with Legal257 is at will, meaning either you or the company may terminate the employment relationship at any time for any reason.',
+        '6. Compliance with Policies: You are expected to comply with all Legal257 policies and procedures, including but not limited to those outlined in the employee handbook.'
+    ];
+
+    let termsY = 40;
+
+    termsAndConditions.forEach((condition) => {
+        const wrappedText = doc.splitTextToSize(condition, 180);
+        wrappedText.forEach(line => {
+            doc.text(line, 14, termsY);
+            termsY += lineHeight;
+        });
+        termsY += 5; // Extra space between terms
+    });
+
     // Save the PDF
     doc.save('job_offer_Legal257.pdf');
 };
+
 
 
   const handleSearchAgain = () => {
