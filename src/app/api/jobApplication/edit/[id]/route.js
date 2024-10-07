@@ -30,13 +30,13 @@ export const DELETE = async (req, { params }) => {
 };
 
 // PUT API - Edit a job application by ID
-export const PUT = async (req) => {
+export const PUT = async (req, { params }) => {
   try {
     // Connect to the database
     await connectDB();
 
     // Extract the ID from the request query using req.nextUrl.searchParams
-    const id = req.nextUrl.searchParams.get("id");
+    const { id } = params;
 
     if (!id) {
       return NextResponse.json({ msg: "Job application ID is required" }, { status: 400 });

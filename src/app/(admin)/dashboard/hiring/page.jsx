@@ -56,6 +56,23 @@ const JobApplicationsTable = () => {
     });
   };
 
+  const handleRoleChange = async (userId, status) => {
+    try {
+      notifyLoading();
+      await axios.post("/api/jobApplication/updateRole", { userId, status });
+      setApplications((prevApplications) =>
+        prevApplications.map((application) =>
+          application._id === userId ? { ...application, status } : application
+        )
+      );
+      notifySuccess();
+    } catch (error) {
+      notifyError("Error updating role and services");
+      console.error("Error updating role and services:", error);
+    }
+  };
+
+
   const handleEditSubmit = async (id) => {
     try {
       await axios.put(`/api/jobApplication/${id}`, editData);
@@ -132,16 +149,11 @@ const JobApplicationsTable = () => {
                   <select
                     value={application.status}
                     onChange={(e) =>
-                      handleRoleChange(
-                        application._id,
-                        application.role,
-                        e.target.value,
-                        application.services
-                      )
+                      handleRoleChange(application._id, e.target.value) // Pass the new status
                     }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {["Active", "Blocked" , "Pending" , "inReview"].map((status) => (
+                    {["Active", "Blocked", "Pending", "In Review"].map((status) => (
                       <option key={status} value={status}>
                         {status}
                       </option>
