@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
@@ -30,6 +32,30 @@ const JobApplicationsTable = () => {
     setEditData(application); // Prepopulate with existing data
   };
 
+  const notifyLoading = () => {
+    toast.info("Submitting...", {
+      position: "bottom-right",
+    });
+  };
+
+  const notifyDelete = () => {
+    toast.success("Deleted successfully!", {
+      position: "bottom-right",
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Updated successfully!", {
+      position: "bottom-right",
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(`Error: ${message}`, {
+      position: "bottom-right",
+    });
+  };
+
   const handleEditSubmit = async (id) => {
     try {
       await axios.put(`/api/jobApplication/${id}`, editData);
@@ -46,10 +72,10 @@ const JobApplicationsTable = () => {
     try {
       await axios.delete(`/api/jobApplication/edit/${id}`);
       setApplications((prev) => prev.filter((app) => app._id !== id)); // Remove deleted application
-      alert("Application deleted successfully!");
+      notifyDelete();
     } catch (error) {
       console.error("Error deleting application:", error);
-      alert("Failed to delete application");
+      notifyError("Error deleting application");
     }
   };
 
@@ -230,19 +256,23 @@ const JobApplicationsTable = () => {
 
                 {/* Actions (Edit/Delete) */}
                 <td className="py-2 px-4 border border-gray-300">
-                  <button
-                    className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 mr-2"
+                <div className="flex gap-4">
+                  <motion.button
+                    className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => handleEditClick(application)}
                   >
                     Edit
-                  </button>
-                  <button
-                    className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+                  </motion.button>
+                  <motion.button
+                    className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => handleDeleteClick(application._id)}
                   >
                     Delete
-                  </button>
-                </td>
+                  </motion.button>
+                </div>
+              </td>
               </tr>
             ))}
           </tbody>
