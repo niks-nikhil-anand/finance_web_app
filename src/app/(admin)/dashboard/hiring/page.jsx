@@ -75,6 +75,8 @@ const JobApplicationsTable = () => {
               <th className="py-2 px-4 border border-gray-300">City/State/Pincode</th>
               <th className="py-2 px-4 border border-gray-300">Date of Joining</th>
               <th className="py-2 px-4 border border-gray-300">Salary</th>
+              <th className="py-2 px-4 border border-gray-300">Unique Id</th>
+              <th className="py-2 px-4 border border-gray-300">Status</th>
               <th className="py-2 px-4 border border-gray-300">Resume</th>
               <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
               <th className="py-2 px-4 border border-gray-300">PAN Card</th>
@@ -99,6 +101,27 @@ const JobApplicationsTable = () => {
                 </td>
                 <td className="py-2 px-4 border border-gray-300">{application.dateOfJoining}</td>
                 <td className="py-2 px-4 border border-gray-300">{application.salary}</td>
+                <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  <select
+                    value={application.status}
+                    onChange={(e) =>
+                      handleRoleChange(
+                        application._id,
+                        application.role,
+                        e.target.value,
+                        application.services
+                      )
+                    }
+                    className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                  >
+                    {["Active", "Blocked" , "Pending" , "inReview"].map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </td>
                 <td className="py-2 px-4 border border-gray-300">
                   {application.resume ? (
                     <a

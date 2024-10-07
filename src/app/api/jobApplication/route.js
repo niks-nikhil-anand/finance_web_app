@@ -4,8 +4,23 @@ import JobApplication from "@/models/jobApplicationModel";
 import { NextResponse } from "next/server";
 
 
+const generateUniqueNumber = async () => {
+  let uniqueNumber;
+  let isUnique = false;
 
-// POST API
+  while (!isUnique) {
+    uniqueNumber = Math.floor(1000000 + Math.random() * 9000000).toString();
+    console.log(`Generated unique number: ${uniqueNumber}`);
+    const existingRecord = await JobApplication.findOne({ uniqueNumber });
+    if (!existingRecord) {
+      isUnique = true;
+    }
+  }
+  
+  return uniqueNumber;
+};
+
+
 export const POST = async (req) => {
   try {
     await connectDB();
@@ -47,6 +62,8 @@ export const POST = async (req) => {
     const experienceUploadResult = experienceCertificate ? await uploadImage(experienceCertificate, "experienceCertificate") : null;
     const computerUploadResult = computerCertificate ? await uploadImage(computerCertificate, "computerCertificate") : null;
 
+    const uniqueNumber = await generateUniqueNumber();
+
     // Prepare application data for database insertion
     const applicationData = {
       name,
@@ -66,6 +83,7 @@ export const POST = async (req) => {
       qualificationCertificate: qualificationUploadResult ? qualificationUploadResult.secure_url : null,
       experienceCertificate: experienceUploadResult ? experienceUploadResult.secure_url : null,
       computerCertificate: computerUploadResult ? computerUploadResult.secure_url : null,
+      uniqueNumber:uniqueNumber
     };
 
 await JobApplication.create(applicationData);

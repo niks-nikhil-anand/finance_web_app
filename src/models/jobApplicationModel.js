@@ -81,6 +81,9 @@ const jobApplicationSchema = new mongoose.Schema({
     },
     default: 'Pending'
   }, 
+  uniqueNumber:{
+    type:String
+  }
 }, {
   timestamps: true, 
 });
