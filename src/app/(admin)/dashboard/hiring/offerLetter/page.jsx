@@ -4,7 +4,7 @@ import { FaPhoneAlt, FaGlobe } from 'react-icons/fa';
 import Image from 'next/image';
 import { toPng } from 'html-to-image';
 import { motion } from 'framer-motion';
-
+import jsPDF from 'jspdf'; // Import jsPDF for PDF generation
 
 const IdCard = () => {
   const [jobApplication, setJobApplication] = useState(null);
@@ -35,157 +35,115 @@ const IdCard = () => {
     }
   };
 
-  const handleDownload = async () => {
-    if (cardRef.current) {
-      try {
-        const dataUrl = await toPng(cardRef.current);
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = 'job-card-Legal257.png';
-        link.click();
-        setButtonText('Search Again'); 
-      } catch (err) {
-        console.error('Error generating image:', err);
-      }
-    }
-  };
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    const { name, email, mobile, city, state, pinCode, jobTitle } = jobApplication;
+
+
+    // First Page: Offer Letter Title
+    doc.setFontSize(16);
+    doc.setTextColor(40);
+    doc.text('Job Offer Letter', 14, 20);
+
+    // Add company name and introduction
+    doc.setFontSize(18);
+    doc.setTextColor(252, 186, 3); // Legal257 color
+    doc.text('Legal257 Financial & Tax Services', 14, 30);
+    doc.setFont("helvetica", "normal");
+
+    // Greeting and offer introduction
+    doc.setFontSize(14);
+    doc.setTextColor(0);
+    const greeting = `Dear ${name},`;
+    const offerIntro = `We are pleased to extend you an offer for the position of ${jobTitle} at Legal257 Financial & Tax Services. We believe that your skills and experience will be an ideal match for our team.`;
+    doc.text(greeting, 14, 50);
+    doc.text(offerIntro, 14, 60, { maxWidth: 180 });
+
+    // Job details
+    doc.text(`Position: ${jobTitle}`, 14, 80);
+
+    // Offer details and description of company
+    const offerDescription = `At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.`;
+    doc.text(offerDescription, 14, 130, { maxWidth: 180 });
+
+    // Terms of employment
+    const employmentTerms = [
+        '1. Acceptance of Offer: This offer is contingent upon the successful completion of any pre-employment requirements and the verification of the information you have provided.',
+        '2. Confidentiality: During the course of your employment, you may have access to sensitive information. You agree to maintain confidentiality and not disclose any such information outside of the company.',
+        '3. Termination: Either party may terminate the employment agreement by providing 30 days written notice.',
+        '4. Benefits: You will be entitled to benefits in accordance with the company policies, which will be further discussed upon your joining.',
+        '5. Governing Law: This offer letter shall be governed by and construed in accordance with the laws of the jurisdiction in which Legal257 operates.',
+    ];
+
+    let currentY = 160;
+    const lineHeight = 10;
+
+    employmentTerms.forEach((term) => {
+        const wrappedText = doc.splitTextToSize(term, 180);
+        wrappedText.forEach(line => {
+            doc.text(line, 12, currentY);
+            currentY += lineHeight;
+        });
+        currentY += 5; // Extra space between terms
+    });
+
+    // Sign off
+    const signOff = `We look forward to working with you and are confident that you will make a significant contribution to our team. Please confirm your acceptance of this offer by signing and returning a copy of this letter.`;
+    doc.text(signOff, 14, currentY + 10, { maxWidth: 180 });
+
+    // Signature
+    doc.text('Sincerely,', 14, currentY + 40);
+    doc.text('Legal257 Financial & Tax Services', 14, currentY + 50);
+    doc.text('HR Manager', 14, currentY + 60);
+
+    // Save the PDF
+    doc.save('job_offer_Legal257.pdf');
+};
+
 
   const handleSearchAgain = () => {
-    setRationCard(null);
+    setJobApplication(null);
     setEmail('');
     setButtonText('Download');
-  };
-
-  const formatDateTime = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric',
-      year: 'numeric',
-    });
   };
 
   return (
     <div className='flex flex-col items-center bg-[#f5f6fa] w-full'>
       <div className="text-center bg-[#dfe1e8]  p-8 shadow-3xl w-full rounded-lg">
-            <motion.input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter email ID"
-              className="inline-block bg-white text-[#a3a3a3] border-0 outline-0 p-5 w-[80%] rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:shadow-2xl focus:shadow-xl focus:ring-2 focus:ring-[#7f8ff4]"
-              whileHover={{ scale: 1.05 }}
-              whileFocus={{ scale: 1.05 }}
-            />
+        <motion.input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email ID"
+          className="inline-block bg-white text-[#a3a3a3] border-0 outline-0 p-5 w-[80%] rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:shadow-2xl focus:shadow-xl focus:ring-2 focus:ring-[#7f8ff4]"
+          whileHover={{ scale: 1.05 }}
+          whileFocus={{ scale: 1.05 }}
+        />
 
-            <motion.button
-              onClick={handleSearch}
-              className="inline-block bg-[#7f8ff4] text-white rounded-lg p-3 px-9 ml-8 shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
-              whileTap={{ scale: 0.95, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              Search
-            </motion.button>
+        <motion.button
+          onClick={handleSearch}
+          className="inline-block bg-[#7f8ff4] text-white rounded-lg p-3 px-9 ml-8 shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:bg-blue-600 active:bg-blue-500 active:shadow-inner"
+          whileTap={{ scale: 0.95, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
+          whileHover={{ scale: 1.05 }}
+        >
+          Search
+        </motion.button>
 
-            {loading && <p className="mt-2">Loading...</p>}
-            {error && <p className="text-red-500 mt-2">{error}</p>}
-          </div>
-      <div className="py-5 w-[90%] flex flex-col">
-        {jobApplication && (
-          <div className="flex flex-col items-center overflow-auto max-h-[30rem]">
-            <div ref={cardRef} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-             
-           <motion.div
-              className="w-full md:w-[19rem] h-auto bg-[#ffffff] rounded-lg shadow-2xl overflow-hidden relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="bg-black h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
-                <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard Legal257</h1>
-                <p className="text-[10px] text-white font-extrabold mt-2 p-5">Top-notch financial , tax services also  include expert GST and ITR filing services to ensure your business remains compliant and stress-free</p>
-              </div>
-
-              
-              <div className="text-center mt-5 flex justify-start flex-col mb-3 gap-3"> 
-                <h2 className="text-xl text-black font-extrabold mx-5 mt-3 underline">{jobApplication.name}</h2>
-                <div className="text-sm flex flex-col flex-start px-2">
-                  <p><span className="font-bold">Mobile:-</span> {jobApplication.mobile}</p>
-                  <p><span className="font-bold">Email:-</span>{jobApplication.email}</p>
-                <p><span className="font-bold">City:-<span></span></span>{jobApplication.city}</p>
-                <p><span className="font-bold">State:</span> {jobApplication.state}</p>
-                <p><span className="font-bold">Pin Code:-</span> {jobApplication.pinCode}</p>
-                <p><span className="font-bold">Address:-</span> {jobApplication.address}</p>
-                </div>
-              </div>
-              <div className='bg-[#118806] w-full  border-t-2 text-white p-5'>
-              <p className="flex items-center ">
-                    <span className="font-bold">Applied Date: </span>  {formatDateTime(jobApplication.createdAt)}
-                  </p>
-              </div>
-            </motion.div>
-
-            
-
-            {/* Back Side of the Card */}
-                        <motion.div
-              className="w-full md:w-[19rem] h-auto bg-[#ff9934] rounded-lg shadow-lg overflow-hidden relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="p-4 text-black text-xs md:text-sm space-y-2">
-                <h2 className="text-lg md:text-xl font-bold text-center mb-3">Job Card Terms and Conditions</h2>
-                <ul className="list-disc list-inside space-y-2">
-                  <li className="font-semibold text-base">Job Card Details:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Job Type:</span> Full-Time</li>
-                    <li><span className="font-medium">Contract Period:</span> 12 months</li>
-                    <li><span className="font-medium">Insurance Coverage:</span> ₹2 lakh</li>
-                    <li><span className="font-medium">Eligibility:</span> Age 18 to 50</li>
-                    <li><span className="font-medium">Usage:</span> Valid for job-related activities only</li>
-                  </ul>
-                  <li className="font-semibold text-base">Office Details:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Office Working Hours:</span> 9:00 AM to 6:00 PM</li>
-                    <li><span className="font-medium">Office Opening Date:</span> 01/02/2025</li>
-                  </ul>
-                  <li className="font-semibold text-base">Services Provided:</li>
-                  <ul className="list-inside ml-7 space-y-1 text-sm">
-                    <li><span className="font-medium">Financial Support:</span> Available</li>
-                    <li><span className="font-medium">Digital Banking Services:</span> Available</li>
-                    <li><span className="font-medium">Loan Options:</span> Tailored as per eligibility</li>
-                    <li><span className="font-medium">Training and Skill Development:</span> Provided</li>
-                  </ul>
-                </ul>
-               
-                
-              </div>
-              <div className='bg-[#118806] w-full p-4 border-t-2 text-white'>
-                <p>Biswanath Chariali, Sonitpur, Assam </p>
-                <p className="flex items-center mt-3 my-5">
-                <FaPhoneAlt className="mr-2 text-xl" />+91 8761873802
-                </p>
-                <p className="flex items-center">
-                  <FaGlobe className="mr-2 text-2xl" /> <a href="http://legal257.in" className="underline">www.legal257.in</a>
-                </p>
-              </div>
-            </motion.div>
-
-            </div>
-
-            {jobApplication && (
-              <button
-                onClick={buttonText === 'Download' ? handleDownload : handleSearchAgain}
-                className={`mt-4 ${buttonText === 'Download' ? 'bg-[#ff9934] hover:bg-[#ff7f1f]' : 'bg-[#7f8ff4] hover:bg-blue-600'} text-white p-2 rounded shadow`}
-              >
-                {buttonText}
-              </button>
-            )}
-          </div>
-        )}
+        {loading && <p className="mt-2">Loading...</p>}
+        {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>
+
+      {/* Show download button when jobApplication is found */}
+      {jobApplication && (
+        <motion.button
+          onClick={buttonText === 'Download' ? generatePDF : handleSearchAgain}
+          className="mt-5 bg-green-500 text-white p-3 rounded-lg shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:bg-green-600 active:bg-green-700"
+          whileTap={{ scale: 0.95, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
+          whileHover={{ scale: 1.05 }}
+        >
+          {buttonText}
+        </motion.button>
+      )}
     </div>
   );
 };
