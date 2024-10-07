@@ -64,9 +64,23 @@ const jobApplicationSchema = new mongoose.Schema({
   },
   computerCertificate: {
     type: String,
-    
   },
- 
+  dateOfJoining: {
+    type: Date,
+    default: Date.now, 
+  },
+  salary: {
+    type: String,
+    default: '0', 
+  },
+  status: { 
+    type: String,
+    enum: {
+      values: ['Blocked', 'Active', 'Pending' , 'inReview'],
+      message: 'Approval status must be one of Blocked, Active, Pending, inReview'
+    },
+    default: 'Pending'
+  }, 
 }, {
   timestamps: true, 
 });
