@@ -125,6 +125,8 @@ const IdCard = () => {
                 <h2 className="text-xl text-black font-extrabold mx-5 mt-3 underline">{jobApplication.name}</h2>
                 <div className="text-sm flex flex-col flex-start px-2">
                   <p><span className="font-bold">Job Title:-</span> {jobApplication.jobTitle}</p>
+                  <p><span className="font-bold">Receipt No.:-</span> {jobApplication.uniqueNumber}</p>
+                  <p><span className="font-bold">Status:-</span> {jobApplication.status}</p>
                   <p><span className="font-bold">Mobile:-</span> {jobApplication.mobile}</p>
                   <p><span className="font-bold">Email:-</span>{jobApplication.email}</p>
                 <p><span className="font-bold">City:-<span></span></span>{jobApplication.city}</p>
