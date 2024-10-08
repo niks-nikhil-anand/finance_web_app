@@ -7,8 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
-  const [isEditing, setIsEditing] = useState(null); // Track editing state
-  const [editData, setEditData] = useState({}); // Data to edit
+  const [isEditing, setIsEditing] = useState(null);
+  const [editData, setEditData] = useState({});
+  const [loading, setLoading] = useState(false); // Initialize loading state
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -28,8 +29,8 @@ const JobApplicationsTable = () => {
   };
 
   const handleEditClick = (application) => {
-    setIsEditing(application._id); // Set editing state with the ID
-    setEditData(application); // Prepopulate with existing data
+    setIsEditing(application._id);
+    setEditData(application);
   };
 
   const handleEditChange = (field, value) => {
@@ -98,7 +99,7 @@ const JobApplicationsTable = () => {
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`/api/jobApplication/edit/${id}`);
-      setApplications((prev) => prev.filter((app) => app._id !== id)); 
+      setApplications((prev) => prev.filter((app) => app._id !== id));
       notifyDelete();
     } catch (error) {
       console.error("Error deleting application:", error);
@@ -122,9 +123,9 @@ const JobApplicationsTable = () => {
           <thead className="bg-purple-100">
             <tr>
               {[
-                "Name", "Email", "Mobile Number", "Job Title", "Address", 
-                "City", "State" , "Pincode" ,  "status", "Date of Joining", "Salary", 
-                "Unique Id", "Status", "Resume", "Aadhaar Card", 
+                "Profile" , "Name", "Email", "Mobile Number", "Job Title", "Address", 
+                "City", "State" , "Pincode" ,  "Status", "Date of Joining", "Salary", 
+                "Unique Id",  "Resume", "Aadhaar Card", 
                 "PAN Card", "Payment Receipt", "Bank Passbook", 
                 "Qualification Certificate", "Experience Certificate", 
                 "Computer Certificate", "Actions"
@@ -205,22 +206,6 @@ const JobApplicationsTable = () => {
                       />
                     </td>
                     <td className="py-2 px-4 border border-gray-300">
-                      <input
-                        type="number"
-                        value={editData.salary}
-                        onChange={(e) => handleEditChange("salary", e.target.value)}
-                        className="py-1 px-2 border border-gray-300 rounded-md"
-                      />
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      <input
-                        type="text"
-                        value={editData.uniqueNumber}
-                        onChange={(e) => handleEditChange("uniqueNumber", e.target.value)}
-                        className="py-1 px-2 border border-gray-300 rounded-md"
-                      />
-                    </td>
-                    <td className="py-2 px-4 border border-gray-300">
                       <select
                         value={editData.status}
                         onChange={(e) => handleEditChange("status", e.target.value)}
@@ -233,6 +218,28 @@ const JobApplicationsTable = () => {
                         ))}
                       </select>
                     </td>
+
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="date" // Use date input type for Date of Joining
+                        value={editData.dateOfJoining.split('T')[0]} // Format date for input
+                        onChange={(e) => handleEditChange("dateOfJoining", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="number"
+                        value={editData.salary}
+                        onChange={(e) => handleEditChange("salary", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <span>{application.uniqueNumber}</span> {/* Display Unique Id as read-only */}
+                    </td>
+                    
                     {/* Add input fields for all other document fields similarly */}
                     <td className="py-2 px-4 border border-gray-300">
                       <div className="flex space-x-2">
@@ -257,6 +264,14 @@ const JobApplicationsTable = () => {
                   </>
                 ) : (
                   <>
+                  <td className="py-2 px-4 border border-gray-300">
+                      <img
+                        src={application.profilePhoto} // Assuming profilePhoto is a URL
+                        alt={`${application.name}'s profile`}
+                        className="w-12 h-12 rounded-full cursor-pointer"
+                        onClick={() => handleImageClick(application.profilePhoto)}
+                      />
+                    </td>
                     <td className="py-2 px-4 border border-gray-300">{application.name}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.email}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.mobile}</td>
@@ -289,7 +304,6 @@ const JobApplicationsTable = () => {
                 </td>
                     <td className="py-2 px-4 border border-gray-300">{application.salary}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
-                    <td className="py-2 px-4 border border-gray-300">{application.status}</td>
                     <td className="py-2 px-4 border border-gray-300">
                       <a
                         href={application.resume}
