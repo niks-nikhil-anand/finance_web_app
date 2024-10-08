@@ -32,6 +32,27 @@ const JobApplicationsTable = () => {
     setEditData(application); // Prepopulate with existing data
   };
 
+  const handleEditChange = (field, value) => {
+    setEditData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleEditSubmit = async (id) => {
+    try {
+      await axios.put(`/api/jobApplication/edit/${id}`, editData);
+      setApplications((prev) =>
+        prev.map((app) => (app._id === id ? editData : app))
+      );
+      setIsEditing(null); // Exit editing mode
+      notifySuccess();
+    } catch (error) {
+      console.error("Error updating application:", error);
+      notifyError("Failed to update application");
+    }
+  };
+
   const notifyLoading = () => {
     toast.info("Submitting...", {
       position: "bottom-right",
@@ -72,23 +93,10 @@ const JobApplicationsTable = () => {
     }
   };
 
-
-  const handleEditSubmit = async (id) => {
-    try {
-      await axios.put(`/api/jobApplication/${id}`, editData);
-      // Optionally, refetch the updated data or modify state
-      setIsEditing(null); // Exit editing mode
-      alert("Application updated successfully!");
-    } catch (error) {
-      console.error("Error updating application:", error);
-      alert("Failed to update application");
-    }
-  };
-
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`/api/jobApplication/edit/${id}`);
-      setApplications((prev) => prev.filter((app) => app._id !== id)); // Remove deleted application
+      setApplications((prev) => prev.filter((app) => app._id !== id)); 
       notifyDelete();
     } catch (error) {
       console.error("Error deleting application:", error);
@@ -110,42 +118,140 @@ const JobApplicationsTable = () => {
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-purple-100">
             <tr>
-              <th className="py-2 px-4 border border-gray-300">Name</th>
-              <th className="py-2 px-4 border border-gray-300">Email</th>
-              <th className="py-2 px-4 border border-gray-300">Mobile Number</th>
-              <th className="py-2 px-4 border border-gray-300">Job Title</th>
-              <th className="py-2 px-4 border border-gray-300">Address</th>
-              <th className="py-2 px-4 border border-gray-300">City/State/Pincode</th>
-              <th className="py-2 px-4 border border-gray-300">Date of Joining</th>
-              <th className="py-2 px-4 border border-gray-300">Salary</th>
-              <th className="py-2 px-4 border border-gray-300">Unique Id</th>
-              <th className="py-2 px-4 border border-gray-300">Status</th>
-              <th className="py-2 px-4 border border-gray-300">Resume</th>
-              <th className="py-2 px-4 border border-gray-300">Aadhaar Card</th>
-              <th className="py-2 px-4 border border-gray-300">PAN Card</th>
-              <th className="py-2 px-4 border border-gray-300">Payment Receipt</th>
-              <th className="py-2 px-4 border border-gray-300">Bank Passbook</th>
-              <th className="py-2 px-4 border border-gray-300">Qualification Certificate</th>
-              <th className="py-2 px-4 border border-gray-300">Experience Certificate</th>
-              <th className="py-2 px-4 border border-gray-300">Computer Certificate</th>
-              <th className="py-2 px-4 border border-gray-300">Actions</th>
+              {[
+                "Name", "Email", "Mobile Number", "Job Title", "Address", 
+                "City/State/Pincode", "status","Date of Joining", "Salary", 
+                "Unique Id", "Status", "Resume", "Aadhaar Card", 
+                "PAN Card", "Payment Receipt", "Bank Passbook", 
+                "Qualification Certificate", "Experience Certificate", 
+                "Computer Certificate", "Actions"
+              ].map((header) => (
+                <th key={header} className="py-2 px-4 border border-gray-300">
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {applications.map((application, index) => (
               <tr key={index} className="hover:bg-gray-100">
-                <td className="py-2 px-4 border border-gray-300">{application.name}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.email}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.mobile}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.jobTitle}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.address}</td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.city}, {application.state}, {application.pinCode}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">{application.dateOfJoining}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.salary}</td>
-                <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
-                <td className="py-2 px-4 border border-gray-300">
+                {isEditing === application._id ? (
+                  <>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.name}
+                        onChange={(e) => handleEditChange("name", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="email"
+                        value={editData.email}
+                        onChange={(e) => handleEditChange("email", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.mobile}
+                        onChange={(e) => handleEditChange("mobile", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.jobTitle}
+                        onChange={(e) => handleEditChange("jobTitle", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.address}
+                        onChange={(e) => handleEditChange("address", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.city}
+                        onChange={(e) => handleEditChange("city", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.state}
+                        onChange={(e) => handleEditChange("state", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="number"
+                        value={editData.salary}
+                        onChange={(e) => handleEditChange("salary", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
+                        type="text"
+                        value={editData.uniqueNumber}
+                        onChange={(e) => handleEditChange("uniqueNumber", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <select
+                        value={editData.status}
+                        onChange={(e) => handleEditChange("status", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      >
+                        {["Active", "Blocked", "Pending", "In Review"].map((status) => (
+                          <option key={status} value={status}>
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    {/* Add input fields for all other document fields similarly */}
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex space-x-2">
+                        <motion.button
+                          className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => handleEditSubmit(application._id)}
+                        >
+                          Save
+                        </motion.button>
+                        <motion.button
+                          className="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setIsEditing(null)} // Reset the edit state
+                        >
+                          Cancel
+                        </motion.button>
+                        </div>
+                    </td>
+
+                  </>
+                ) : (
+                  <>
+                    <td className="py-2 px-4 border border-gray-300">{application.name}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.email}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.mobile}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.jobTitle}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.address}</td>
+                    <td className="py-2 px-4 border border-gray-300">  {application.city} , {application.state} , {application.pinCode}</td>
+                    <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.status}
                     onChange={(e) =>
@@ -160,138 +266,117 @@ const JobApplicationsTable = () => {
                     ))}
                   </select>
                 </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.resume ? (
-                    <a
-                      href={application.resume}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Resume
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.aadhaarCard ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.aadhaarCard)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Aadhaar Card
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.panCard ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.panCard)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View PAN Card
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.paymentReceipt ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.paymentReceipt)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Payment Receipt
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.bankPassbook ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.bankPassbook)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Bank Passbook
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.qualificationCertificate ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.qualificationCertificate)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Qualification Certificate
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.experienceCertificate ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.experienceCertificate)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Experience Certificate
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-                <td className="py-2 px-4 border border-gray-300">
-                  {application.computerCertificate ? (
-                    <a
-                      href="#"
-                      onClick={() => handleImageClick(application.computerCertificate)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Computer Certificate
-                    </a>
-                  ) : (
-                    "Not available"
-                  )}
-                </td>
-
-                {/* Actions (Edit/Delete) */}
-                <td className="py-2 px-4 border border-gray-300">
-                <div className="flex gap-4">
-                  <motion.button
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleEditClick(application)}
-                  >
-                    Edit
-                  </motion.button>
-                  <motion.button
-                    className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleDeleteClick(application._id)}
-                  >
-                    Delete
-                  </motion.button>
-                </div>
-              </td>
+                    <td className="py-2 px-4 border border-gray-300">{application.dateOfJoining}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.salary}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.status}</td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.resume}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Resume
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.aadhaarCard}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Aadhaar
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.panCard}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View PAN
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.paymentReceipt}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Payment Receipt
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.bankPassbook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Bank Passbook
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.qualificationCertificate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Qualification Certificate
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.experienceCertificate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Experience Certificate
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <a
+                        href={application.computerCertificate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        View Computer Certificate
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300 flex space-x-4">
+                      <motion.button
+                        className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleEditClick(application)}
+                      >
+                        Edit
+                      </motion.button>
+                      <motion.button
+                        className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleDeleteClick(application._id)}
+                      >
+                        Delete
+                      </motion.button>
+                    </td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <ToastContainer />
     </motion.div>
   );
 };
 
 export default JobApplicationsTable;
+
