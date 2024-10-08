@@ -40,16 +40,18 @@ const JobApplicationsTable = () => {
   };
 
   const handleEditSubmit = async (id) => {
+    setLoading(true);
     try {
       await axios.put(`/api/jobApplication/edit/${id}`, editData);
       setApplications((prev) =>
         prev.map((app) => (app._id === id ? editData : app))
       );
-      setIsEditing(null); // Exit editing mode
+      setIsEditing(null);
       notifySuccess();
     } catch (error) {
-      console.error("Error updating application:", error);
       notifyError("Failed to update application");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -114,13 +116,14 @@ const JobApplicationsTable = () => {
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">
         Job Applications
       </h2>
+      
       <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-purple-100">
             <tr>
               {[
                 "Name", "Email", "Mobile Number", "Job Title", "Address", 
-                "City/State/Pincode", "status","Date of Joining", "Salary", 
+                "City", "State" , "Pincode" ,  "status", "Date of Joining", "Salary", 
                 "Unique Id", "Status", "Resume", "Aadhaar Card", 
                 "PAN Card", "Payment Receipt", "Bank Passbook", 
                 "Qualification Certificate", "Experience Certificate", 
@@ -195,6 +198,14 @@ const JobApplicationsTable = () => {
                     </td>
                     <td className="py-2 px-4 border border-gray-300">
                       <input
+                        type="text"
+                        value={editData.pinCode}
+                        onChange={(e) => handleEditChange("pinCode", e.target.value)}
+                        className="py-1 px-2 border border-gray-300 rounded-md"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <input
                         type="number"
                         value={editData.salary}
                         onChange={(e) => handleEditChange("salary", e.target.value)}
@@ -225,17 +236,18 @@ const JobApplicationsTable = () => {
                     {/* Add input fields for all other document fields similarly */}
                     <td className="py-2 px-4 border border-gray-300">
                       <div className="flex space-x-2">
-                        <motion.button
-                          className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => handleEditSubmit(application._id)}
-                        >
-                          Save
-                        </motion.button>
+                      <motion.button
+                        className={`bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 shadow-lg ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
+                        onClick={() => handleEditSubmit(application._id)}
+                        disabled={loading}
+                      >
+                        {loading ? 'Saving...' : 'Save'}
+                      </motion.button>
+
                         <motion.button
                           className="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => setIsEditing(null)} // Reset the edit state
+                          onClick={() => setIsEditing(null)}
                         >
                           Cancel
                         </motion.button>
@@ -250,7 +262,9 @@ const JobApplicationsTable = () => {
                     <td className="py-2 px-4 border border-gray-300">{application.mobile}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.jobTitle}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.address}</td>
-                    <td className="py-2 px-4 border border-gray-300">  {application.city} , {application.state} , {application.pinCode}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.city}</td>
+                    <td className="py-2 px-4 border border-gray-300">{application.state}</td>
+                    <td className="py-2 px-4 border border-gray-300">  {application.pinCode} </td>
                     <td className="py-2 px-4 border border-gray-300">
                   <select
                     value={application.status}
@@ -266,7 +280,13 @@ const JobApplicationsTable = () => {
                     ))}
                   </select>
                 </td>
-                    <td className="py-2 px-4 border border-gray-300">{application.dateOfJoining}</td>
+                <td className="py-2 px-4 border border-gray-300">
+                  {new Date(application.dateOfJoining).toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                  })}
+                </td>
                     <td className="py-2 px-4 border border-gray-300">{application.salary}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
                     <td className="py-2 px-4 border border-gray-300">{application.status}</td>
