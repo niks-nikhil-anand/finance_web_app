@@ -141,10 +141,6 @@ const IdCard = () => {
                   </p>
               </div>
             </motion.div>
-
-            
-
-            {/* Back Side of the Card */}
                         <motion.div
               className="w-full md:w-[19rem] h-auto bg-[#ff9934] rounded-lg shadow-lg overflow-hidden relative"
               initial={{ opacity: 0, scale: 0.8 }}
