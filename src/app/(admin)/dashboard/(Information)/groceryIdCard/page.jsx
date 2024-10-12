@@ -448,38 +448,46 @@ const GroceryIdCardTable = () => {
                   )}
                 </td>
                 <td className="py-2 px-4 border border-gray-300">
-                  {editingApplication && editingApplication._id === application._id ? (
-                    <>
-                      <button
-                        onClick={handleEditSave}
-                        className="py-1 px-2 bg-green-500 text-white rounded-md"
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={handleCancelClick}
-                        className="py-1 px-2 bg-gray-500 text-white rounded-md"
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => handleEditClick(application)}
-                        className="py-1 px-2 bg-blue-500 text-white rounded-md"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteClick(application._id)}
-                        className="py-1 px-2 bg-red-500 text-white rounded-md mt-4"
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </td>
+  {editingApplication && editingApplication._id === application._id ? (
+    <div className="flex space-x-4">
+      <motion.button
+        onClick={handleEditSave}
+        className="flex items-center justify-center py-2 px-4 bg-green-500 text-white rounded-md shadow-lg"
+        whileHover={{ scale: 1.1, boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)' }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Save
+      </motion.button>
+      <motion.button
+        onClick={handleCancelClick}
+        className="flex items-center justify-center py-2 px-4 bg-gray-500 text-white rounded-md shadow-lg"
+        whileHover={{ scale: 1.1, boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)' }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Cancel
+      </motion.button>
+    </div>
+  ) : (
+    <div className="flex space-x-4">
+      <motion.button
+        onClick={() => handleEditClick(application)}
+        className="flex items-center justify-center py-2 px-4 bg-blue-500 text-white rounded-md shadow-lg"
+        whileHover={{ scale: 1.1, boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)' }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Edit
+      </motion.button>
+      <motion.button
+        onClick={() => handleDeleteClick(application._id)}
+        className="flex items-center justify-center py-2 px-4 bg-red-500 text-white rounded-md shadow-lg"
+        whileHover={{ scale: 1.1, boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)' }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Delete
+      </motion.button>
+    </div>
+  )}
+</td>
               </tr>
             ))}
           </tbody>
