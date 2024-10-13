@@ -179,7 +179,7 @@
           <table className="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg">
             <thead className="bg-gradient-to-r from-purple-400 to-blue-500 text-white">
               <tr>
-                <th className="py-2 px-4 border border-gray-300">Name</th>
+                <th className="py-2 px-4 border border-gray-300 ">Name</th>
                 <th className="py-2 px-4 border border-gray-300">Email</th>
                 <th className="py-2 px-4 border border-gray-300">Role</th>
                 <th className="py-2 px-4 border border-gray-300">Services</th>
@@ -214,7 +214,7 @@
                         name="name"
                         value={editingApplication.name}
                         onChange={handleInputChange}
-                        className="py-1 px-2 border border-gray-300 rounded-md"
+                        className="py-1 px-2 border border-gray-300 rounded-md font-bold"
                       />
                     ) : (
                       application.name

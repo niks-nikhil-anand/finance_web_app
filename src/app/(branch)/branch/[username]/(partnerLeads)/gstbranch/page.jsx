@@ -31,9 +31,9 @@ const PartnerLoanTable = () => {
       className="container mx-auto w-[80%] bg-gray-100"
     >
       <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-gradient-blue">GST User Applications</h2>
-      <div className="overflow-auto max-h-[30rem]">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
+      <div className="overflow-auto max-h-[32rem]">
+        <table className="min-w-full bg-black border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+          <thead className="bg-gradient-to-r from-purple-400 to-blue-500 text-black">
             <tr className="bg-purple-100">
               <th className="py-2 px-4 border border-gray-400">Name</th>
               <th className="py-2 px-4 border border-gray-400">Username</th>

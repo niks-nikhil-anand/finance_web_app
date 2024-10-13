@@ -19,16 +19,14 @@ const statusColors = {
 // StatusCard Component
 const StatusCard = ({ category, status, count }) => (
   <motion.div
-    className={`p-4 bg-gradient-to-r ${statusColors[status]} rounded-lg shadow-md`}
+    className={`w-40 h-40 p-4 bg-gradient-to-r ${statusColors[status]} rounded-lg shadow-md flex flex-col items-center justify-center`}
     initial={{ opacity: 0, scale: 0.8 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5 }}
   >
-    <div className="flex flex-col items-center">
-      <h2 className="text-white text-lg font-bold mb-1">{category}</h2>
-      <h3 className="text-white text-md mb-1">{status}</h3>
-      <p className="text-white text-sm">Users: {count}</p>
-    </div>
+    <h2 className="text-white text-lg font-bold mb-1">{category}</h2>
+    <h3 className="text-white text-md mb-1">{status}</h3>
+    <p className="text-white text-sm">Users: {count}</p>
   </motion.div>
 );
 
@@ -80,16 +78,20 @@ const UserStatusCard = ({ status, count }) => {
 
   return (
     <motion.div
-      className={`p-4 border rounded-lg shadow-md flex items-center justify-between ${bgColor}`}
-      whileHover={{ scale: 1.05, boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.1)' }}
-      transition={{ type: 'spring', stiffness: 300 }}
-    >
-      {icon}
-      <div>
-        <h2 className="text-xl font-semibold text-white">{status}</h2>
-        <p className="text-lg text-white">{count}</p>
-      </div>
-    </motion.div>
+    className={`w-80 h-40 border rounded-lg shadow-md flex items-center p-4 ${bgColor}`}
+    whileHover={{ scale: 1.05, boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.1)' }}
+    transition={{ type: 'spring', stiffness: 300 }}
+  >
+    <div className="flex-shrink-0 mr-4">
+      {/* Ensure the icon renders correctly */}
+      <div className="text-3xl text-white">{icon}</div> {/* Adjust size here */}
+    </div>
+    <div className="text-center flex-grow">
+      <h2 className="text-3xl font-semibold text-white">{status}</h2>
+      <p className="text-lg text-white">{count}</p>
+    </div>
+  </motion.div>
+  
   );
 };
 
@@ -101,29 +103,7 @@ const BranchApplicationStatusOverview = () => {
   const [error, setError] = useState(null);
 
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 1, ease: "easeInOut" } 
-    },
-    hover: { 
-      textShadow: "0px 4px 20px rgba(0, 255, 255, 0.7), 0px 8px 40px rgba(0, 255, 255, 0.4)", 
-      scale: 1.1 
-    }
-  };
   
-  const liquidFlowVariants = {
-    animate: {
-      backgroundPosition: ["0% 50%", "100% 50%"],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "linear"
-      }
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
