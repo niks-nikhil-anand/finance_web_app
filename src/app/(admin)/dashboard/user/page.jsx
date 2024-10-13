@@ -9,6 +9,8 @@ const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
   const [editingApplication, setEditingApplication] = useState(null);
   const [originalApplication, setOriginalApplication] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [applicationsPerPage] = useState(10); // Number of applications per page
 
   const notifyLoading = () => {
     toast.info("Submitting...", {
@@ -152,6 +154,17 @@ const JobApplicationsTable = () => {
     }
   };
 
+  const indexOfLastApplication = currentPage * applicationsPerPage;
+  const indexOfFirstApplication = indexOfLastApplication - applicationsPerPage;
+  const currentApplications = applications.slice(indexOfFirstApplication, indexOfLastApplication);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(applications.length / applicationsPerPage);
+
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -192,8 +205,8 @@ const JobApplicationsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {applications.map((application, index) => (
-              <tr key={index} className="hover:bg-gray-100">
+            {currentApplications.map((application, index) => (
+              <tr key={application._id} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border border-gray-300">
                   {editingApplication && editingApplication._id === application._id ? (
                     <input
@@ -474,6 +487,19 @@ const JobApplicationsTable = () => {
           </tbody>
         </table>
       </div>
+      <div className="flex justify-center mt-4">
+  {Array.from({ length: totalPages }, (_, index) => (
+    <button
+      key={index + 1}
+      onClick={() => paginate(index + 1)}
+      className={`mx-1 px-3 py-1 border rounded ${
+        currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+      }`}
+    >
+      {index + 1}
+    </button>
+  ))}
+</div>
       <ToastContainer />
     </motion.div>
   );
