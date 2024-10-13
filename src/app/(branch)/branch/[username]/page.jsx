@@ -108,7 +108,7 @@ const BranchApplicationStatusOverview = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/user');
+        const response = await fetch('/api/branch/allPartner');
         const data = await response.json();
 
         // Process data to get counts and status info
@@ -157,9 +157,9 @@ const BranchApplicationStatusOverview = () => {
 </h1>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">User Role Overview</h2>
+        <h2 className="text-2xl font-bold mb-4">Branch Role Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['Admin', 'DSA', 'CSP', 'User', 'Branch'].map(role => (
+          {['DSA', 'CSP', 'Branch'].map(role => (
             <UserStatusCard
               key={role}
               status={role}
@@ -170,7 +170,7 @@ const BranchApplicationStatusOverview = () => {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">User Status Overview</h2>
+        <h2 className="text-2xl font-bold mb-4">Branch Status Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {['Blocked', 'Active', 'Pending', 'inReview'].map(status => (
             <UserStatusCard
