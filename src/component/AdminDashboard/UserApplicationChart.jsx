@@ -138,17 +138,22 @@ const PartnerApplicationChart = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">User Status Overview</h1>
-      {dataFetched ? (
-        <div className="flex justify-around gap-9">
+    <div className="p-5 bg-gray-500 rounded-lg shadow-md">
+    <h1 className="text-2xl font-bold mb-6 text-center text-white">User Graphical Status Overview</h1>
+    {dataFetched ? (
+      <div className="flex justify-around gap-9">
+        <div className="bg-white rounded-lg shadow-lg p-4">
           <BarChart userRoles={userRoles} />
+        </div>
+        <div className="bg-white rounded-lg shadow-lg p-4">
           <PieChart userStatuses={userStatuses} />
         </div>
-      ) : (
-        <p className="text-center">Loading data...</p>
-      )}
-    </div>
+      </div>
+    ) : (
+      <p className="text-center font-bold text-lg text-gray-600">Loading data...</p>
+    )}
+  </div>
+  
   );
 };
 
