@@ -172,7 +172,7 @@ const BranchApplicationStatusOverview = () => {
 
   return (
     <div className="w-full p-10">
-     <h1 className="text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 animate-pulse transition-transform transform hover:scale-110 ">
+     <h1 className="text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-800 via-pink-500 to-red-500 animate-pulse transition-transform transform hover:scale-110 ">
   Branch Application Status Overview
 </h1>
 

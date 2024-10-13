@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaUserTie, FaCodeBranch, FaUsersGear } from 'react-icons/fa6';
 import { GiChessKing } from 'react-icons/gi';
+import { FaStore, FaBan } from 'react-icons/fa'; 
 
 // Define status colors and categories
 const statusColors = {
@@ -28,6 +29,35 @@ const StatusCard = ({ category, status, count }) => (
       <h2 className="text-white text-lg font-bold mb-1">{category}</h2>
       <h3 className="text-white text-md mb-1">{status}</h3>
       <p className="text-white text-sm">Users: {count}</p>
+    </div>
+  </motion.div>
+);
+
+const statusIcons = {
+  Active: <FaStore />,
+  Blocked: <FaBan />,
+};
+
+const RectangularStatusCard = ({ status, count }) => (
+  <motion.div
+    className={`flex justify-between items-center p-6 w-full h-36 bg-gradient-to-r ${statusColors[status]} rounded-lg shadow-lg`}
+    initial={{ opacity: 0, x: -100 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    {/* Icon section */}
+    <div className="flex items-center">
+      <div className="text-6xl text-white mr-4">
+        {statusIcons[status]} {/* Use appropriate icon for each status */}
+      </div>
+      <div>
+        <h2 className="text-white text-2xl font-bold">{status}</h2>
+      </div>
+    </div>
+
+    {/* Count section */}
+    <div className="text-white text-5xl font-bold">
+      {count}
     </div>
   </motion.div>
 );
@@ -97,17 +127,18 @@ const UserStatusCard = ({ status, count }) => {
 const PartnerApplicationStatusOverview = () => {
   const [roleCounts, setRoleCounts] = useState({});
   const [statusCounts, setStatusCounts] = useState({});
+  const [groceryCounts, setGroceryCounts] = useState({ Active: 0, Blocked: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/user');
-        const data = await response.json();
+        const userResponse = await fetch('/api/user');
+        const userData = await userResponse.json();
 
-        // Process data to get counts and status info
-        const roles = data.reduce((acc, user) => {
+        // Process user data to get counts and status info
+        const roles = userData.reduce((acc, user) => {
           const role = user.role;
           if (!acc[role]) {
             acc[role] = 0;
@@ -116,7 +147,7 @@ const PartnerApplicationStatusOverview = () => {
           return acc;
         }, {});
 
-        const statuses = data.reduce((acc, user) => {
+        const statuses = userData.reduce((acc, user) => {
           const status = user.status;
           if (!acc[status]) {
             acc[status] = 0;
@@ -125,8 +156,21 @@ const PartnerApplicationStatusOverview = () => {
           return acc;
         }, {});
 
+        // Fetch data from /api/grocery for Active and Blocked counts
+        const groceryResponse = await fetch('/api/groceryRationCard/form');
+        const groceryData = await groceryResponse.json();
+        const groceryStatusCounts = groceryData.reduce(
+          (acc, item) => {
+            if (item.status === 'Active') acc.Active++;
+            if (item.status === 'Blocked') acc.Blocked++;
+            return acc;
+          },
+          { Active: 0, Blocked: 0 }
+        );
+
         setRoleCounts(roles);
         setStatusCounts(statuses);
+        setGroceryCounts(groceryStatusCounts);
       } catch (error) {
         setError(error);
       } finally {
@@ -152,12 +196,8 @@ const PartnerApplicationStatusOverview = () => {
       <div className="mb-8">
         <h2 className="text-2xl font-bold mb-4">User Role Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['Admin', 'DSA', 'CSP', 'User', 'Branch'].map(role => (
-            <UserStatusCard
-              key={role}
-              status={role}
-              count={roleCounts[role] || 0}
-            />
+          {['Admin', 'DSA', 'CSP', 'User', 'Branch'].map((role) => (
+            <UserStatusCard key={role} status={role} count={roleCounts[role] || 0} />
           ))}
         </div>
       </div>
@@ -165,13 +205,17 @@ const PartnerApplicationStatusOverview = () => {
       <div className="mb-8">
         <h2 className="text-2xl font-bold mb-4">User Status Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['Blocked', 'Active', 'Pending', 'inReview'].map(status => (
-            <UserStatusCard
-              key={status}
-              status={status}
-              count={statusCounts[status] || 0}
-            />
+          {['Blocked', 'Active', 'Pending', 'inReview'].map((status) => (
+            <UserStatusCard key={status} status={status} count={statusCounts[status] || 0} />
           ))}
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Grocery Status Overview</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <RectangularStatusCard status="Active" count={groceryCounts.Active} />
+          <RectangularStatusCard status="Blocked" count={groceryCounts.Blocked} />
         </div>
       </div>
     </div>
