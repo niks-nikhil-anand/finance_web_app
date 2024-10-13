@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaUserTie, FaCodeBranch, FaUsersGear } from 'react-icons/fa6';
 import { GiChessKing } from 'react-icons/gi';
-import { FaStore, FaBan } from 'react-icons/fa'; 
+import { FaStore, FaBan } from 'react-icons/fa';
+import { FaBriefcase,  FaHourglassStart, FaEye } from 'react-icons/fa';
+
 
 // Define status colors and categories
 const statusColors = {
@@ -32,6 +34,39 @@ const StatusCard = ({ category, status, count }) => (
     </div>
   </motion.div>
 );
+
+
+const jobStatusIcons = {
+  Active: <FaBriefcase className="text-white text-4xl" />,
+  Blocked: <FaBan className="text-white text-4xl" />,
+  Pending: <FaHourglassStart className="text-white text-4xl" />,
+  inReview: <FaEye className="text-white text-4xl" />,
+};
+
+const statusColors1 = {
+  Active: 'bg-green-500',
+  Blocked: 'bg-red-500',
+  Pending: 'bg-yellow-500',
+  inReview: 'bg-blue-500',
+};
+
+const JobStatusCard = ({ status, count }) => {
+  const bgColor = statusColors1[status] || 'bg-gray-500';
+
+  return (
+    <motion.div
+      className={`p-4 border rounded-lg shadow-md flex items-center justify-between ${bgColor}`}
+      whileHover={{ scale: 1.05, boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.1)' }}
+      transition={{ type: 'spring', stiffness: 300 }}
+    >
+      {jobStatusIcons[status] || <FaBriefcase className="text-white text-4xl" />}
+      <div>
+        <h2 className="text-xl font-semibold text-black">{status}</h2>
+        <p className="text-lg text-black">{count}</p>
+      </div>
+    </motion.div>
+  );
+};
 
 const statusIcons = {
   Active: <FaStore />,
@@ -128,6 +163,7 @@ const PartnerApplicationStatusOverview = () => {
   const [roleCounts, setRoleCounts] = useState({});
   const [statusCounts, setStatusCounts] = useState({});
   const [groceryCounts, setGroceryCounts] = useState({ Active: 0, Blocked: 0 });
+  const [jobCounts, setJobCounts] = useState({ Blocked: 0, Active: 0, Pending: 0, inReview: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -157,6 +193,20 @@ const PartnerApplicationStatusOverview = () => {
         }, {});
 
         // Fetch data from /api/grocery for Active and Blocked counts
+        const jobResponse = await fetch('/api/jobApplication');
+        const jobData = await jobResponse.json();
+        console.log(jobData); 
+        const jobStatusCounts =jobData.applications.reduce(
+          (acc, item) => {
+            if (item.status === 'Active') acc.Active++;
+            if (item.status === 'Blocked') acc.Blocked++;
+            if (item.status === 'Pending') acc.Pending++;
+            if (item.status === 'inReview') acc.inReview++;
+            return acc;
+          },
+          { Blocked: 0, Active: 0, Pending: 0, inReview: 0 }
+        );
+
         const groceryResponse = await fetch('/api/groceryRationCard/form');
         const groceryData = await groceryResponse.json();
         const groceryStatusCounts = groceryData.reduce(
@@ -171,6 +221,7 @@ const PartnerApplicationStatusOverview = () => {
         setRoleCounts(roles);
         setStatusCounts(statuses);
         setGroceryCounts(groceryStatusCounts);
+        setJobCounts(jobStatusCounts);
       } catch (error) {
         setError(error);
       } finally {
@@ -211,11 +262,21 @@ const PartnerApplicationStatusOverview = () => {
         </div>
       </div>
 
+      
       <div className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Grocery Status Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           <RectangularStatusCard status="Active" count={groceryCounts.Active} />
           <RectangularStatusCard status="Blocked" count={groceryCounts.Blocked} />
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Job Status Overview</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {['Active', 'Blocked', 'Pending', 'inReview'].map((status) => (
+            <JobStatusCard key={status} status={status} count={jobCounts[status] || 0} />
+          ))}
         </div>
       </div>
     </div>
