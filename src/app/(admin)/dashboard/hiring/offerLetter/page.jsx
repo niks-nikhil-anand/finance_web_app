@@ -72,7 +72,7 @@ const IdCard = () => {
     const salaryY = statusY + 10; 
     // Adjusted the Y position for status
     doc.text(`Status of the application: ${status}`, 14, salaryY);
-    doc.text(`Salary: ${salary}`, 14, statusY);
+    doc.text(`Salary: Rs ${salary}`, 14, statusY);
     
 
     // Offer details and description of company
