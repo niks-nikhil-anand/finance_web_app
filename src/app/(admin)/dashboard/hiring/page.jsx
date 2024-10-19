@@ -9,7 +9,9 @@ const JobApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
   const [isEditing, setIsEditing] = useState(null);
   const [editData, setEditData] = useState({});
-  const [loading, setLoading] = useState(false); // Initialize loading state
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [applicationsPerPage] = useState(5); 
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -107,6 +109,16 @@ const JobApplicationsTable = () => {
     }
   };
 
+  const indexOfLastApplication = currentPage * applicationsPerPage;
+  const indexOfFirstApplication = indexOfLastApplication - applicationsPerPage;
+  const currentApplications = applications.slice(indexOfFirstApplication, indexOfLastApplication);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(applications.length / applicationsPerPage);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -120,7 +132,8 @@ const JobApplicationsTable = () => {
       
       <div className="overflow-auto max-h-[30rem]">
         <table className="min-w-full bg-white border border-gray-300">
-          <thead className="bg-purple-100">
+          
+          <thead className="bg-gradient-to-r from-purple-400 to-blue-500 text-white">
             <tr>
               {[
                 "Profile" , "Name", "Email", "Mobile Number", "Job Title", "Address", 
@@ -136,8 +149,9 @@ const JobApplicationsTable = () => {
               ))}
             </tr>
           </thead>
+          
           <tbody>
-            {applications.map((application, index) => (
+          {currentApplications.map((application, index) => (
               <tr key={index} className="hover:bg-gray-100">
                 {isEditing === application._id ? (
                   <>
@@ -407,7 +421,20 @@ const JobApplicationsTable = () => {
           </tbody>
         </table>
       </div>
-      <ToastContainer />
+      <div className="flex justify-center mt-4">
+    {Array.from({ length: totalPages }, (_, index) => (
+      <button
+        key={index + 1}
+        onClick={() => paginate(index + 1)}
+        className={`mx-1 px-3 py-1 border rounded ${
+          currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+        }`}
+      >
+        {index + 1}
+      </button>
+    ))}
+  </div>
+        <ToastContainer />
     </motion.div>
   );
 };
