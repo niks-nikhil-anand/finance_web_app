@@ -119,6 +119,33 @@ const JobApplicationsTable = () => {
   // Calculate total pages
   const totalPages = Math.ceil(applications.length / applicationsPerPage);
 
+  const handleFileUpload = async (e, fieldName, applicationId) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("field", fieldName);
+    formData.append("userId", applicationId);
+  
+    try {
+      notifyLoading(); // Notify user that upload is in progress
+      const response = await axios.post("/api/jobApplication/uploadFile", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      // Update the application data with the new file URL
+      setApplications((prevApplications) =>
+        prevApplications.map((app) =>
+          app._id === applicationId ? { ...app, [fieldName]: response.data.fileUrl } : app
+        )
+      );
+      notifySuccess(); // Notify user of successful upload
+    } catch (error) {
+      notifyError("Error uploading file");
+      console.error("Error uploading file:", error);
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -138,10 +165,10 @@ const JobApplicationsTable = () => {
               {[
                 "Profile" , "Name", "Email", "Mobile Number", "Job Title", "Address", 
                 "City", "State" , "Pincode" ,  "Status", "Date of Joining", "Salary", 
-                "Unique Id",  "Resume", "Aadhaar Card", 
+                 "Resume", "Aadhaar Card", 
                 "PAN Card", "Payment Receipt", "Bank Passbook", 
                 "Qualification Certificate", "Experience Certificate", 
-                "Computer Certificate", "Actions"
+                "Computer Certificate", "Unique Id", "Actions"
               ].map((header) => (
                 <th key={header} className="py-2 px-4 border border-gray-300">
                   {header}
@@ -155,6 +182,32 @@ const JobApplicationsTable = () => {
               <tr key={index} className="hover:bg-gray-100">
                 {isEditing === application._id ? (
                   <>
+                  <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.profilePhoto ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.profilePhoto, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("aadhaarCard")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "profilePhoto", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
                     <td className="py-2 px-4 border border-gray-300">
                       <input
                         type="text"
@@ -250,9 +303,216 @@ const JobApplicationsTable = () => {
                         className="py-1 px-2 border border-gray-300 rounded-md"
                       />
                     </td>
-                    <td className="py-2 px-4 border border-gray-300">
-                      <span>{application.uniqueNumber}</span> {/* Display Unique Id as read-only */}
+                      <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.resume ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.resume, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("aadhaarCard")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "resume", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
                     </td>
+                    
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.aadhaarCard ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.aadhaarCard, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("aadhaarCard")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "aadhaarCard", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.panCard ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.panCard, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("panCard")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "panCard", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.paymentReceipt ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.paymentReceipt, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("paymentReceipt")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "paymentReceipt", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.bankPassbook ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.bankPassbook, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("bankPassbook")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "bankPassbook", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.qualificationCertificate ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.qualificationCertificate, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("qualificationCertificate")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "qualificationCertificate", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.experienceCertificate ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.experienceCertificate, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("experienceCertificate")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "experienceCertificate", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      <div className="flex flex-col items-center">
+                        {editData.computerCertificate ? (
+                          <>
+                            <button
+                              onClick={() => window.open(editData.computerCertificate, "_blank")}
+                              className="py-1 px-2 bg-blue-500 text-white rounded-md mb-2"
+                            >
+                              View Document
+                            </button>
+                            <button
+                              onClick={() => handleFileDelete("computerCertificate")}
+                              className="py-1 px-2 bg-red-500 text-white rounded-md"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          <input
+                            type="file"
+                            onChange={(e) => handleFileUpload(e, "computerCertificate", application._id)}
+                            className="py-1 px-2 border border-gray-300 rounded-md"
+                          />
+                        )}
+                      </div>
+                    </td>
+
                     
                     {/* Add input fields for all other document fields similarly */}
                     <td className="py-2 px-4 border border-gray-300">
@@ -317,7 +577,6 @@ const JobApplicationsTable = () => {
                   })}
                 </td>
                     <td className="py-2 px-4 border border-gray-300">{application.salary}</td>
-                    <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
                     <td className="py-2 px-4 border border-gray-300">
                       <a
                         href={application.resume}
@@ -398,6 +657,8 @@ const JobApplicationsTable = () => {
                         View Computer Certificate
                       </a>
                     </td>
+                    <td className="py-2 px-4 border border-gray-300">{application.uniqueNumber}</td>
+
                     <td className="py-2 px-4 border border-gray-300 flex space-x-4">
                       <motion.button
                         className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
