@@ -37,7 +37,7 @@ const IdCard = () => {
 
   const generatePDF = () => {
 
-    const { name, email, mobile, city, state, pinCode, jobTitle , uniqueNumber , status } = jobApplication;
+    const { name, email, mobile, city, state, pinCode, jobTitle , uniqueNumber , status , salary } = jobApplication;
     const doc = new jsPDF();
 
     // First Page: Offer Letter Title
@@ -69,9 +69,10 @@ const IdCard = () => {
     } else {
         doc.text('Receipt No.: ', 14, uniqueNumberY); // Leaving blank if uniqueNumber is not available
     }
-
+    const salaryY = statusY + 10; 
     // Adjusted the Y position for status
-    doc.text(`Status of the application: ${status}`, 14, statusY);
+    doc.text(`Status of the application: ${status}`, 14, salaryY);
+    doc.text(`Salary: ${salary}`, 14, statusY);
     
 
     // Offer details and description of company
