@@ -37,8 +37,12 @@ const IdCard = () => {
 
   const generatePDF = () => {
 
-    const { name, email, mobile, city, state, pinCode, jobTitle , uniqueNumber , status , salary } = jobApplication;
+    const { name, email, mobile, city, state, pinCode, jobTitle , uniqueNumber , status , salary , dateOfJoining  } = jobApplication;
     const doc = new jsPDF();
+
+    const joiningDate = new Date(dateOfJoining);
+    const formattedJoiningDate = `${joiningDate.getDate()}-${joiningDate.toLocaleString('default', { month: 'long' })}-${joiningDate.getFullYear()}`;
+
 
     // First Page: Offer Letter Title
     doc.setFontSize(16);
@@ -62,17 +66,20 @@ const IdCard = () => {
     // Job details
     doc.text(`Position: ${jobTitle}`, 14, 80);
     const uniqueNumberY = 90;
-    const statusY = uniqueNumberY + 10; // Extra space between unique number and status
+    const statusY = uniqueNumberY + 10;
+    const salaryY = statusY + 10;  // Extra space between unique number and status
+    const dateOfJoiningY = salaryY + 10;
 
     if (uniqueNumber) {
         doc.text(`Receipt No.: ${uniqueNumber}`, 14, uniqueNumberY);
     } else {
         doc.text('Receipt No.: ', 14, uniqueNumberY); // Leaving blank if uniqueNumber is not available
     }
-    const salaryY = statusY + 10; 
+ 
     // Adjusted the Y position for status
     doc.text(`Status of the application: ${status}`, 14, salaryY);
     doc.text(`Salary: Rs ${salary}`, 14, statusY);
+    doc.text(`Date of Joining: ${formattedJoiningDate}`, 14, dateOfJoiningY);
     
 
     // Offer details and description of company
