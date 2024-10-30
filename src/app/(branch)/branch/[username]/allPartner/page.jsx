@@ -180,11 +180,11 @@ const JobApplicationsTable = () => {
                     }
                     className="py-1 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                   >
-                    {["CSP", "Branch", "DSA", "User", "Admin"].map((role) => (
-                      <option key={role} value={role} disabled={role === "Admin" || role === "Branch"}>
-                        {role}
-                      </option>
-                    ))}
+                    {['CSP', 'Branch', 'DSA', 'User', 'Admin', 'JonoJivanBranch', 'JonoJivanDSA', 'jonoJivanWareHouse', 'JonoJivan-GroceryAgent'].map((role) => (
+                    <option key={role} value={role} disabled={role !== 'CSP' && role !== 'DSA'}>
+                      {role}
+                    </option>
+                  ))}
                   </select>
                 </td>
                 <td className="py-2 px-4 border border-gray-300">

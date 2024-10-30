@@ -85,7 +85,7 @@ const partnerApplicationSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: {
-      values: ['CSP', 'Branch', 'DSA' , 'User' , 'Admin' , 'JONOJIVANGROCERY'],
+      values: ['CSP', 'Branch', 'DSA' , 'User' , 'Admin' , 'JonoJivanBranch' , 'JonoJivanDSA' , 'jonoJivanWareHouse' , 'JonoJivan-GroceryAgent'],
       message: 'Role must be one of CSP, Branch, DSA, User, Admin'
     },
     default: 'User'
