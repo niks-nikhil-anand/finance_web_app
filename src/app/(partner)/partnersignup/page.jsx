@@ -35,6 +35,7 @@ export default function Signup() {
   const [shopPhotoCopy, setShopPhotoCopy] = useState(null);
   const [msmeCertificate, setMsmeCertificate] = useState(null);
   const [photoCopy, setPhotoCopy] = useState(null);
+  const [foodLicence, setFoodLicence] = useState(null);
   const [tradeLicence, setTradeLicence] = useState(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
@@ -123,6 +124,7 @@ export default function Signup() {
     if (shopPhotoCopy) data.append('shopPhotoCopy', shopPhotoCopy);
     if (msmeCertificate) data.append('msmeCertificate', msmeCertificate);
     if (photoCopy) data.append('photoCopy', photoCopy);
+    if (foodLicence) data.append('foodLicence', foodLicence);
     if (tradeLicence) data.append('tradeLicence', tradeLicence);
 
     try {
@@ -140,6 +142,7 @@ export default function Signup() {
         setShopPhotoCopy(null);
         setMsmeCertificate(null);
         setPhotoCopy(null);
+        setFoodLicence(null);
         setTradeLicence(null);
         setFormData({
           name: '',
@@ -487,6 +490,14 @@ export default function Signup() {
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, setPhotoCopy)}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1">Food Licence</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setFoodLicence)}
                   className="w-full border border-gray-300 p-2 rounded"
                 />
               </div>

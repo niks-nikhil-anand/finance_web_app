@@ -79,6 +79,9 @@ const partnerApplicationSchema = new mongoose.Schema({
   photoCopy: { 
     type: String 
   },
+  foodLicence: { 
+    type: String 
+  },
   tradeLicense: { 
     type: String 
   },

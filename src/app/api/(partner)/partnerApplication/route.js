@@ -36,7 +36,10 @@ export const POST = async (req) => {
     const bankPassbook = formData.get("bankPassbook");
     const msmeCertificate = formData.get("msmeCertificate");
     const photoCopy = formData.get("photoCopy");
+    const foodLicence = formData.get("foodLicence");
     const tradeLicence = formData.get("tradeLicence");
+
+
 
     const aadhaarUploadResult = aadhaarCard ? await uploadImage(aadhaarCard, "aadhaarCard") : null;
     const paymentReceiptUploadResult = paymentReceipt ? await uploadImage(paymentReceipt, "paymentReceipt") : null;
@@ -45,6 +48,7 @@ export const POST = async (req) => {
     const photoUploadResult = photo ? await uploadImage(photo, "shopPhotoCopy") : null;
     const msmeCertificateUploadResult = msmeCertificate ? await uploadImage(msmeCertificate, "msmeCertificate") : null;
     const photoCopyUploadResult = msmeCertificate ? await uploadImage(photoCopy, "photoCopy") : null;
+    const foodLicenceUploadResult = foodLicence ? await uploadImage(foodLicence, "foodLicence") : null;
     const tradeLicenceUploadResult = tradeLicence ? await uploadImage(tradeLicence, "tradeLicence") : null;
 
     // Prepare application data for database insertion
@@ -68,6 +72,7 @@ export const POST = async (req) => {
       shopPhotoCopy: photoUploadResult ? photoUploadResult.secure_url : null,
       msmeCertificate: msmeCertificateUploadResult ? msmeCertificateUploadResult.secure_url : null,
       photoCopy: photoCopyUploadResult ? photoCopyUploadResult.secure_url : null,
+      foodLicence: foodLicenceUploadResult ? foodLicenceUploadResult.secure_url : null,
       tradeLicense: tradeLicenceUploadResult ? tradeLicenceUploadResult.secure_url : null,
     };
 
