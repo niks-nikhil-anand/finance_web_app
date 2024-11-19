@@ -332,10 +332,10 @@ export default function Signup() {
       <option value="CSP">Banking CSP  ₹1,180 </option>
       <option value="DSA">Financial DSA ₹2,500</option>
 
-      <option value="JonoJivanDSA">JonoJivan DSA  ₹5,900 </option>
-      <option value="JonoJivanBranch">JonoJivan Branch  ₹15,000 </option>
+      <option value="JonoJivanDSA">JonoJivan DSA  ₹11,800 </option>
+      <option value="JonoJivanBranch">JonoJivan Branch  ₹25,000 </option>
       <option value="jonoJivanWareHouse">JonoJivan WareHouse ₹12,0000 </option>
-      <option value="JonoJivan-GroceryAgent">JonoJivan Grocery Agent ₹3,000 </option>
+      <option value="JonoJivan-GroceryAgent">JonoJivan Grocery Agent ₹5,900 </option>
      
     </select>
   </div>
