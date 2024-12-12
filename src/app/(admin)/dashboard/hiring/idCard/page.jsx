@@ -104,7 +104,7 @@ const IdCard = () => {
               transition={{ duration: 0.5 }}
             >
                               <div className="bg-[#ff9934] h-25 justify-center items-center relative rounded-t-lg flex flex-col py-5 shadow-2xl">
-                    <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard Legal257</h1>
+                    <h1 className="text-lg text-white font-extrabold mt-3 underline">JobCard-JonoJivan</h1>
                     {jobApplication?.profilePhoto ? (
                       <div className="w-24 h-24 mt-4 rounded-full overflow-hidden shadow-lg border-4 border-white">
                         <Image 
