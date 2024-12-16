@@ -61,10 +61,22 @@ const GroceryRationCard = () => {
     return `${start}${masked}${end}`;
 }
 
-rationCard.aadhaarNumber = maskNumber(rationCard.aadhaarNumber);
-rationCard.panNumber = maskNumber(rationCard.panNumber);
-rationCard.bankAccountNumber = maskNumber(rationCard.bankAccountNumber);
-rationCard.ifscCode = maskNumber(rationCard.ifscCode);
+if (rationCard && rationCard.aadhaarNumber) {
+  rationCard.aadhaarNumber = maskNumber(rationCard.aadhaarNumber);
+}
+if (rationCard && rationCard.panNumber) {
+  rationCard.panNumber = maskNumber(rationCard.panNumber);
+}
+if (rationCard && rationCard.aadhaarNumber) {
+  rationCard.aadhaarNumber = maskNumber(rationCard.aadhaarNumber);
+}
+if (rationCard && rationCard.bankAccountNumber) {
+  rationCard.bankAccountNumber = maskNumber(rationCard.bankAccountNumber);
+}
+if (rationCard && rationCard.ifscCode) {
+  rationCard.ifscCode = maskNumber(rationCard.ifscCode);
+}
+
 
   const downloadIdCard = () => {
     const cardElement = cardRef.current;
