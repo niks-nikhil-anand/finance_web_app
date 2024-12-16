@@ -370,21 +370,22 @@ export default function Signup() {
   </div>
 
   {/* Buttons for QR Code */}
-  <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
-    <button
-      onClick={toggleQrCode}
-      className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded shadow w-full sm:w-auto transition duration-200"
-    >
-      View QR Code
-    </button>
-    <a
-      href="/paymentqr.jpeg"
-      download="paymentqr.jpeg"
-      className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded shadow w-full sm:w-auto text-center transition duration-200"
-    >
-      Download QR Code
-    </a>
-  </div>
+  <div className="flex flex-row justify-between items-center gap-2">
+  <button
+    onClick={toggleQrCode}
+    className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded shadow text-sm transition duration-200"
+  >
+    View QR Code
+  </button>
+  <a
+    href="/paymentqr.jpeg"
+    download="paymentqr.jpeg"
+    className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded shadow text-sm text-center transition duration-200"
+  >
+    Download QR Code
+  </a>
+</div>
+
 
   {/* QR Code Modal */}
   {showQrCode && (
