@@ -34,12 +34,12 @@ export default function Home() {
    <EmiCalculator/>
     <InterestRate/>
     <Banner2/>
+    <FAQSection/>
    
    <ReferEarn/>
     <Testimonial/>
    
     <DownloadAppSection/>
-    <FAQSection/>
     <Slider/>
 
    

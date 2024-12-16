@@ -42,38 +42,42 @@ const FAQSection = () => {
   };
 
   return (
-    <div>
-      <Container>
-      <h2 className="text-3xl font-bold text-center mb-10 mt-10">Frequently Asked Questions</h2>
-      <div className="space-y-4 mb-10">
-        {faqs.map((faq, index) => (
-          <div key={index} className="border-b-2 border-gray-200 pb-4">
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full text-left flex justify-between items-center py-2 text-sm md:text-xl font-medium"
-            >
-              {faq.question}
-              <motion.span
-                initial={false}
-                animate={{ rotate: expanded === index ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                &#9660;
-              </motion.span>
-            </button>
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: expanded === index ? 'auto' : 0, opacity: expanded === index ? 1 : 0 }}
+<div className="py-8">
+  <Container className="px-6 md:px-12">
+    <h2 className="text-3xl font-bold text-center mb-12 mt-12">Frequently Asked Questions</h2>
+    <div className="space-y-6 mb-12">
+      {faqs.map((faq, index) => (
+        <div key={index} className="border-b-2 border-gray-200 pb-6">
+          <motion.button
+            onClick={() => toggleFAQ(index)}
+            className="w-full text-left flex justify-between items-center py-3 text-sm md:text-xl font-medium text-gray-700 hover:text-gray-900 transition-all"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
+            {faq.question}
+            <motion.span
+              initial={false}
+              animate={{ rotate: expanded === index ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="overflow-hidden"
+              className="text-lg"
             >
-              <p className="pt-2 text-gray-600">{faq.answer}</p>
-            </motion.div>
-          </div>
-        ))}
-      </div>
-      </Container>
+              &#9660;
+            </motion.span>
+          </motion.button>
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: expanded === index ? 'auto' : 0, opacity: expanded === index ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <p className="pt-4 text-gray-600">{faq.answer}</p>
+          </motion.div>
+        </div>
+      ))}
     </div>
+  </Container>
+</div>
+
   );
 };
 
