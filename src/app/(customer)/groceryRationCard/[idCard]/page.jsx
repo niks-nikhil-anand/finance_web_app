@@ -9,6 +9,8 @@ import BanStamp from '../../../../../public/vegetables/banStamp.png';
 import QRCode from 'qrcode.react'; 
 
 const formatDateTime = (dateString) => {
+
+
   const date = new Date(dateString);
   const options = {
     weekday: 'short',
@@ -47,6 +49,22 @@ const GroceryRationCard = () => {
 
     fetchRationCard();
   }, []);
+
+
+  function maskNumber(value) {
+    if (value.length <= 5) {
+        return value; // If the value is too short, return as is.
+    }
+    const start = value.substring(0, 2);
+    const end = value.substring(value.length - 3);
+    const masked = "*".repeat(value.length - 5);
+    return `${start}${masked}${end}`;
+}
+
+rationCard.aadhaarNumber = maskNumber(rationCard.aadhaarNumber);
+rationCard.panNumber = maskNumber(rationCard.panNumber);
+rationCard.bankAccountNumber = maskNumber(rationCard.bankAccountNumber);
+rationCard.ifscCode = maskNumber(rationCard.ifscCode);
 
   const downloadIdCard = () => {
     const cardElement = cardRef.current;
