@@ -319,60 +319,83 @@ export default function Signup() {
                 </select>
               </div>
 
-              <div>
+              <div className="space-y-6">
+  {/* Partner Type Dropdown */}
   <div className="mb-4">
-    <label className="block mb-1">Type of Partner (Fees)</label>
+    <label className="block mb-1 text-sm font-medium text-gray-700">
+      Type of Partner (Fees)
+    </label>
     <select
       name="partnerType"
       value={formData.partnerType}
       onChange={handleInputChange}
-      className="w-full border border-gray-300 p-2 rounded"
+      className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
     >
       <option value="" disabled>
         Select a type + Fees
       </option>
-      <option value="BRANCH">Banking Branch  ₹5,900 </option>
-      <option value="CSP">Banking CSP  ₹1,180 </option>
-      <option value="DSA">Financial DSA ₹2,500</option>
-
-      <option value="JonoJivanDSA">JonoJivan DSA  ₹11,800 </option>
-      <option value="JonoJivanBranch">JonoJivan Branch  ₹25,000 </option>
-      <option value="jonoJivanWareHouse">JonoJivan WareHouse ₹12,0000 </option>
-      <option value="JonoJivan-GroceryAgent">JonoJivan Grocery Agent ₹5,900 </option>
-     
+      <option value="BANKING_BRANCH">Banking Branch ₹11,800</option>
+      <option value="BANKING_CSP">Banking CSP ₹5,900</option>
+      <option value="FINANCIAL_DSA">Financial DSA ₹2,500</option>
+      <option value="JONOJIVAN_BRANCH">JonoJivan Grocery Branch ₹30,000</option>
+      <option value="JONOJIVAN_DSA">JonoJivan Grocery DSA ₹15,000</option>
+      <option value="GP_JONOJIVAN_WAREHOUSE">
+        GP JonoJivan Grocery Warehouse ₹70,000
+      </option>
+      <option value="JONOJIVAN_PINCODE_WAREHOUSE">
+        JonoJivan Delivery Area Pin Code Warehouse ₹1,20,000
+      </option>
+      <option value="CITY_JONOJIVAN_COURIER">
+        City JonoJivan Courier Booking Franchise ₹2,500
+      </option>
+      <option value="ZONAL_JONOJIVAN_GROCERY">
+        Zonal JonoJivan Grocery Distribution ₹7,00,000
+      </option>
+      <option value="ZONAL_JONOJIVAN_DELIVERY">
+        Zonal JonoJivan Delivery Warehouse ₹5,00,000
+      </option>
+      <option value="ZONAL_JONOJIVAN_COURIER">
+        Zonal JonoJivan Courier Booking Franchise Warehouse ₹3,00,000
+      </option>
+      <option value="DISTRICT_JONOJIVAN_WAREHOUSE">
+        District JonoJivan Grocery Warehouse ₹2,50,000
+      </option>
+      <option value="DISTRICT_JONOJIVAN_COURIER">
+        District JonoJivan Courier Booking Franchise ₹50,000
+      </option>
+      <option value="DISTRICT_JONOJIVAN_DELIVERY">
+        District JonoJivan Delivery Warehouse ₹2,00,000
+      </option>
     </select>
   </div>
 
-  {/* View QR Code and Download Button */}
+  {/* Buttons for QR Code */}
   <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
     <button
       onClick={toggleQrCode}
-      className="bg-green-500 text-white py-2 px-4 rounded my-1 w-full sm:w-auto"
+      className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded shadow w-full sm:w-auto transition duration-200"
     >
       View QR Code
     </button>
-
     <a
       href="/paymentqr.jpeg"
       download="paymentqr.jpeg"
-      className="bg-green-500 text-white py-2 px-4 rounded my-2 w-full sm:w-auto text-center"
+      className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded shadow w-full sm:w-auto text-center transition duration-200"
     >
       Download QR Code
     </a>
   </div>
 
- 
+  {/* QR Code Modal */}
   {showQrCode && (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-      <div className="relative bg-white p-4 rounded shadow-lg text-center w-11/12 md:w-3/4 lg:w-1/2">
+      <div className="relative bg-white p-6 rounded shadow-lg text-center w-11/12 md:w-3/4 lg:w-1/2">
         <button
           onClick={toggleQrCode}
-          className="absolute top-2 right-2 text-white bg-red-500 p-2 rounded-full"
+          className="absolute top-3 right-3 text-white bg-red-500 p-2 rounded-full hover:bg-red-600 transition duration-200"
         >
           Close
         </button>
-
-        {/* QR Code Image */}
         <Image
           src={QrCode}
           alt="QR Code"
@@ -384,6 +407,7 @@ export default function Signup() {
     </div>
   )}
 </div>
+
 
 
               <button
