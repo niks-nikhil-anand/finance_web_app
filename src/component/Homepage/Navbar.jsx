@@ -157,7 +157,7 @@ const Navbar = () => {
     <div className="hidden md:flex ml-4 items-center md:ml-6">
       <Link href="/partnersignin">
         <motion.button
-          className="px-4 py-1 font-medium text-black transition-all bg-yellow-400  rounded-lg shadow-lg hover:shadow-xl hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-yellow-500 transition duration-300"
+          className="px-4 py-1 font-medium text-black  bg-yellow-400  rounded-lg shadow-lg hover:shadow-xl hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-yellow-500 transition duration-300"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
