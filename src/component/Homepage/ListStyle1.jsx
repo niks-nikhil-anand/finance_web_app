@@ -32,8 +32,8 @@ import Link from "next/link";
 
 const Portfolio = () => {
   // State for controlling which category to display, default to "loan"
-  const [showCard, setShowCard] = useState("FINANCE LOAN"); // Change default to "FINANCE LOAN"
-
+  const [showCard, setShowCard] = useState("FINANCE LOAN");
+  const [visibleCount, setVisibleCount] = useState(5); // Initial visible cards set to 5
 
   const handleProject = (category) => {
     setShowCard(category); // Update showCard state with the selected category
@@ -62,14 +62,18 @@ const Portfolio = () => {
     // Set default color for "FINTECH LOAN" when component mounts
     handleProject("FINANCE LOAN");
   }, []);
+
+  const handleViewMore = () => {
+    setVisibleCount((prevCount) => prevCount + 5); // Load 5 more cards
+  };
   
   
   
 
   return (
     <>
-      <Container className="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark mt-5">
-        <div className="container mx-auto">
+      <Container className=" pb-12 lg:pt-[70px] lg:pb-[90px] dark:bg-dark mt-5">
+        <div className=" mx-auto">
           {/* Portfolio header */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -78,47 +82,53 @@ const Portfolio = () => {
             className="flex flex-wrap -mx-4"
           >
             {/* Portfolio title and description */}
-            <div className="w-full px-4">
-              <div className="mx-auto mb-[20px] max-w-[510px] text-center">
-                <span className="text-primary mb-2 block text-lg font-semibold">
-                  Our Portfolio
-                </span>
-                <h2 className="text-dark mb-3 text-3xl leading-[1.208] font-bold sm:text-4xl md:text-[40px]">
-                  Our Recent Projects
-                </h2>
-                <p className="text-body-color text-base dark:text-dark-6">
-                Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
-                </p>
-                
-              </div>
-            </div>
+            <div className="w-full px-4 py-1 md:px-8">
+          <div className="mx-auto mb-8 max-w-screen-lg text-center">
+            <span className="text-primary mb-4 block text-sm font-semibold text-yellow-400">
+              Our Portfolio
+            </span>
+            <h2 className="text-dark mb-4 text-xl leading-tight font-bold sm:text-4xl md:text-5xl">
+              Our Recent Projects
+            </h2>
+            <p className="text-body-color text-base dark:text-dark-6 sm:text-lg md:text-xl">
+              Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
+            </p>
+          </div>
+        </div>
+
           </motion.div>
           
           {/* Category buttons */}
           <div className="w-full flex flex-wrap justify-center items-center">
-            <div className="w-full ">
-              <ul className="flex flex-wrap justify-center mb-2 ">
-                {[ "FINTECH BANKING", "FINANCE LOAN", "GST/ITR TAX PAY"].map((category) => (
-                  <li className="mb-1" key={category}>
-                    {/* Category button */}
-                    <button
-  onClick={() => handleProject(category.toLowerCase())} // Lowercase the category name
-  className={`portfolio-button inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 text-body-color dark:text-dark-6 hover:bg-primary hover:text-gray`}
->
-  {category}
-</button>
+      <div className="w-full">
+        <ul className="flex flex-wrap justify-center mb-2">
+          {["FINTECH BANKING", "FINANCE LOAN", "GST/ITR TAX PAY"].map((category) => (
+            <motion.li
+              key={category}
+              className="mb-1"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <button
+                onClick={() => handleProject(category.toLowerCase())} // Lowercase the category name
+                className={`portfolio-button inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 text-body-color dark:text-dark-6 hover:bg-primary hover:text-gray`}
+              >
+                {category}
+              </button>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </div>
 
-                  </li>
-                ))}
-              </ul>
-             
-            </div>
-          </div>
-
-          {/* Portfolio cards */}
-          <div className="flex flex-wrap -mx-4">
-            {/* Map through portfolio data and render PortfolioCard component */}
-            {portfolioData.map((project, index) => (
+       {/* Portfolio cards */}
+       <div className="flex flex-wrap -mx-4">
+          {/* Filtered and limited portfolio data */}
+          {portfolioData
+            .filter((project) => project.category.toLowerCase() === showCard.toLowerCase())
+            .slice(0, visibleCount) // Only show the visibleCount cards
+            .map((project, index) => (
               <PortfolioCard
                 key={index}
                 ImageHref={project.ImageHref}
@@ -129,9 +139,21 @@ const Portfolio = () => {
                 showCard={showCard}
               />
             ))}
-          </div>
         </div>
-      </Container>
+
+        {/* View More Button */}
+        {visibleCount < portfolioData.filter((project) => project.category.toLowerCase() === showCard.toLowerCase()).length && (
+          <div className="text-center mt-8">
+            <button
+              onClick={handleViewMore}
+              className="py-2 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            >
+              View More
+            </button>
+          </div>
+        )}
+      </div>
+    </Container>
     </>
   );
 };
