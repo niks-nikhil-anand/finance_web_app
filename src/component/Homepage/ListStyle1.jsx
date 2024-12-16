@@ -136,6 +136,8 @@ const Portfolio = () => {
   );
 };
 
+
+
 const PortfolioCard = ({
   showCard,
   category,
@@ -145,40 +147,56 @@ const PortfolioCard = ({
   buttonHref,
 }) => {
   return (
-    <>
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`w-full px-4 md:w-1/2 xl:w-1/3 ${
-          showCard === "FINANCE LOAN" || showCard === category.toLowerCase()
-            ? "block"
-            : "hidden"
-        }`}
-      >
-        <div className="relative mb-12">
-          <div className="overflow-hidden rounded-[10px] ">
-            <Image src={ImageHref} alt="portfolio" className="w-full" height={800} width={800} />
-          </div>
-          <div className="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark ">
-            <span className="text-primary mb-2 block text-sm font-medium">
-              {category}
-            </span>
-            <h3 className="text-dark dark:text-white mb-5 text-xl font-bold">
-              {title}
-            </h3>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className={`w-full px-4 md:w-1/2 xl:w-1/3 ${
+        showCard === "FINANCE LOAN" || showCard === category.toLowerCase()
+          ? "block"
+          : "hidden"
+      }`}
+    >
+      <div className="relative mb-12">
+        <div className="overflow-hidden rounded-[15px] shadow-lg transition-transform transform hover:scale-105">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="relative"
+          >
+            <Image 
+              src={ImageHref} 
+              alt="portfolio" 
+              className="w-full" 
+              height={800} 
+              width={800} 
+            />
+          </motion.div>
+        </div>
+        <div className="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-2xl dark:shadow-box-dark transition-all">
+          <span className="text-primary mb-2 block text-sm font-medium dark:text-gray-400">
+            {category}
+          </span>
+          <h3 className="text-dark dark:text-white mb-5 text-xl font-bold">
+            {title}
+          </h3>
+          <motion.div
+            whileHover={{ scale: 1.1, opacity: 0.9 }}
+            transition={{ duration: 0.3 }}
+          >
             <Link
               href={buttonHref}
-              className=" gradient_yellow  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-black frame"
+              className="gradient_yellow inline-block rounded-md border border-stroke dark:border-dark-3 py-[12px] px-7 text-sm font-medium transition hover:text-black dark:hover:text-white hover:shadow-lg"
             >
               {button}
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
-    </>
+      </div>
+    </motion.div>
   );
 };
+
+
 
 const portfolioData = [
  
