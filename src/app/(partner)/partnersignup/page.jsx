@@ -323,7 +323,7 @@ export default function Signup() {
   {/* Partner Type Dropdown */}
   <div className="mb-4">
     <label className="block mb-1 text-sm font-medium text-gray-700">
-      Type of Partner (Fees)
+      Type of Partner 
     </label>
     <select
       name="partnerType"
@@ -331,41 +331,10 @@ export default function Signup() {
       onChange={handleInputChange}
       className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
     >
-      <option value="" disabled>
-        Select a type + Fees
-      </option>
-      <option value="BANKING_BRANCH">Banking Branch ₹11,800</option>
-      <option value="BANKING_CSP">Banking CSP ₹5,900</option>
-      <option value="FINANCIAL_DSA">Financial DSA ₹2,500</option>
-      <option value="JONOJIVAN_BRANCH">JonoJivan Grocery Branch ₹30,000</option>
-      <option value="JONOJIVAN_DSA">JonoJivan Grocery DSA ₹15,000</option>
-      <option value="GP_JONOJIVAN_WAREHOUSE">
-        GP JonoJivan Grocery Warehouse ₹70,000
-      </option>
-      <option value="JONOJIVAN_PINCODE_WAREHOUSE">
-        JonoJivan Delivery Area Pin Code Warehouse ₹1,20,000
-      </option>
-      <option value="CITY_JONOJIVAN_COURIER">
-        City JonoJivan Courier Booking Franchise ₹2,500
-      </option>
-      <option value="ZONAL_JONOJIVAN_GROCERY">
-        Zonal JonoJivan Grocery Distribution ₹7,00,000
-      </option>
-      <option value="ZONAL_JONOJIVAN_DELIVERY">
-        Zonal JonoJivan Delivery Warehouse ₹5,00,000
-      </option>
-      <option value="ZONAL_JONOJIVAN_COURIER">
-        Zonal JonoJivan Courier Booking Franchise Warehouse ₹3,00,000
-      </option>
-      <option value="DISTRICT_JONOJIVAN_WAREHOUSE">
-        District JonoJivan Grocery Warehouse ₹2,50,000
-      </option>
-      <option value="DISTRICT_JONOJIVAN_COURIER">
-        District JonoJivan Courier Booking Franchise ₹50,000
-      </option>
-      <option value="DISTRICT_JONOJIVAN_DELIVERY">
-        District JonoJivan Delivery Warehouse ₹2,00,000
-      </option>
+      <option value="" disabled>Select a partner type</option>
+    <option value="CSP">CSP</option>
+    <option value="Branch">Branch</option>
+    <option value="DSA">DSA</option>
     </select>
   </div>
 
@@ -435,20 +404,48 @@ export default function Signup() {
           {step === 2 && (
             <>
               <div className="mb-4">
-                <label className="block mb-1">Interest</label>
+                <label className="block mb-1">Interest with Fees</label>
                 <select
                   name="interest"
                   value={formData.interest}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="" disabled>Select an interest</option>
-                  <option value="GST/ITR Services">JonoJivan Grocery Ration Card</option>
-                  <option value="GST/ITR Services">GST/ITR Services</option>
-                  <option value="Fintech Services">Fintech Services</option>
-                  <option value="Finance Services-Loan">Finance Services-Loan</option>
-                  <option value="JonoJivan Loan Services">JonoJivan Loan Services</option>
-                  <option value="All Services">All Services</option>
+                  <option value="" disabled>
+        Select a type + Fees
+      </option>
+      <option value="BANKING_BRANCH">Banking Branch ₹11,800</option>
+      <option value="BANKING_CSP">Banking CSP ₹5,900</option>
+      <option value="FINANCIAL_DSA">Financial DSA ₹2,500</option>
+      <option value="JONOJIVAN_BRANCH">JonoJivan Grocery Branch ₹30,000</option>
+      <option value="JONOJIVAN_DSA">JonoJivan Grocery DSA ₹15,000</option>
+      <option value="GP_JONOJIVAN_WAREHOUSE">
+        GP JonoJivan Grocery Warehouse ₹70,000
+      </option>
+      <option value="JONOJIVAN_PINCODE_WAREHOUSE">
+        JonoJivan Delivery Area Pin Code Warehouse ₹1,20,000
+      </option>
+      <option value="CITY_JONOJIVAN_COURIER">
+        City JonoJivan Courier Booking Franchise ₹2,500
+      </option>
+      <option value="ZONAL_JONOJIVAN_GROCERY">
+        Zonal JonoJivan Grocery Distribution ₹7,00,000
+      </option>
+      <option value="ZONAL_JONOJIVAN_DELIVERY">
+        Zonal JonoJivan Delivery Warehouse ₹5,00,000
+      </option>
+      <option value="ZONAL_JONOJIVAN_COURIER">
+        Zonal JonoJivan Courier Booking Franchise Warehouse ₹3,00,000
+      </option>
+      <option value="DISTRICT_JONOJIVAN_WAREHOUSE">
+        District JonoJivan Grocery Warehouse ₹2,50,000
+      </option>
+      <option value="DISTRICT_JONOJIVAN_COURIER">
+        District JonoJivan Courier Booking Franchise ₹50,000
+      </option>
+      <option value="DISTRICT_JONOJIVAN_DELIVERY">
+        District JonoJivan Delivery Warehouse ₹2,00,000
+      </option>
                   
                 </select>
               </div>
