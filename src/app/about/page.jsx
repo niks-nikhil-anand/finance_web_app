@@ -72,7 +72,7 @@ export default function AboutPageOne() {
             src="https://dev-ui-image-assets.s3.ap-south-1.amazonaws.com/google-map.jpg"
             alt="Office Location Map"
           />
-          <div className={`absolute bottom-0 left-0 right-0 ${darkMode ? 'bg-black/70' : 'bg-white/70'} backdrop-blur-sm p-4`}>
+          <div className={`absolute bottom-0 left-0 right-0 ${darkMode ? 'bg-black/70 border-t border-white' : 'bg-white/70'} backdrop-blur-sm p-4`}>
             <p className="text-lg font-semibold">Our Office Location</p>
           </div>
         </div>
@@ -142,6 +142,7 @@ export default function AboutPageOne() {
                 href="tel:+919435266783" 
                 className={`inline-flex items-center gap-2 rounded-lg ${darkMode ? 'bg-gray-800 hover:bg-gray-700 border border-gray-700' : 'bg-gray-100 hover:bg-gray-200'} px-4 py-3 text-sm font-medium transition-colors`}
               >
+                <Clock size={18} />
                 <Phone size={18} />
                 Call Us
               </a>
