@@ -24,17 +24,7 @@ export default function AboutPageOne() {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
       {/* Navigation Bar with Dark Mode Toggle */}
-      <nav className={`sticky top-0 z-10 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-        <div className="mx-auto max-w-7xl px-4 py-4 flex justify-between items-center">
-          <div className="font-bold text-xl">Legal<span className={`${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Services</span></div>
-          <button 
-            onClick={toggleDarkMode} 
-            className={`p-2 rounded-full ${darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-100 text-gray-700'}`}
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-        </div>
-      </nav>
+      
 
       <div className="mx-auto max-w-7xl px-4">
         {/* Hero Section */}
@@ -79,7 +69,7 @@ export default function AboutPageOne() {
         <div className="w-full space-y-4 relative overflow-hidden rounded-xl">
           <img
             className="h-[300px] w-full object-cover md:h-[400px] transition-transform duration-500 hover:scale-105"
-            src="/api/placeholder/1000/500"
+            src="https://dev-ui-image-assets.s3.ap-south-1.amazonaws.com/google-map.jpg"
             alt="Office Location Map"
           />
           <div className={`absolute bottom-0 left-0 right-0 ${darkMode ? 'bg-black/70' : 'bg-white/70'} backdrop-blur-sm p-4`}>
@@ -161,7 +151,7 @@ export default function AboutPageOne() {
           <div className="md:w-1/2">
             <div className={`rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 ${darkMode ? 'shadow-blue-500/20 shadow-lg' : 'shadow-lg'}`}>
               <img
-                src="/api/placeholder/600/400"
+                src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29udGFjdCUyMHVzfGVufDB8fDB8fHww"
                 alt="Contact Us"
                 className="w-full rounded-2xl"
               />
@@ -169,15 +159,6 @@ export default function AboutPageOne() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className={`mt-12 py-8 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
-        <div className="mx-auto max-w-7xl px-4 text-center">
-          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            © {new Date().getFullYear()} Legal Services. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
