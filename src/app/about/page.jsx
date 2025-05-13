@@ -33,7 +33,7 @@ export default function AboutPageOne() {
               <MapPin className="h-5 w-5" />
               <p className="w-full text-xl font-semibold  text-gray-900">ISO 9001:2015 R 24/7</p>
               <p className="w-full text-base text-gray-700">BISWANATH CHARIALI , SONITPUR ASSAM , 784176</p>
-              <p className="text-sm font-medium"> Contact No. :- 8761873802</p>
+              <p className="text-sm font-medium"> Contact No. :- +91 9435266783</p>
               <p className="text-sm font-medium"> Email :- legal257rgvf@gmail.com</p>
             </div>
           
