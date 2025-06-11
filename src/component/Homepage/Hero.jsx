@@ -3,16 +3,15 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Typing from "react-typing-effect";
 import Image from "next/image";
-import hero2 from "../../../public/hero2.jpg";
-import hero3 from "../../../public/hero3.jpg";
-import Aadhar from "../../../public/services/Aadhar.jpg";
-import gst1 from "../../../public/services/gst1.png";
-import HeroSection1 from "../../../public/services/HeroSection1.jpg";
+import GST from "../../../public/heroSection/GST.jpg";
+import businessLoan from "../../../public/heroSection/businessLoan.jpg";
+import godlLoan from "../../../public/heroSection/goldLoan.jpg";
+import personalLoan from "../../../public/heroSection/personalLoan.jpg";
 
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [HeroSection1 , hero2, hero3, Aadhar, gst1 , ];
+  const slides = [GST , businessLoan, godlLoan, personalLoan , ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,14 +33,13 @@ const Hero = () => {
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 1 }}
             key={currentSlide}
-            className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]"
+            className="relative w-full h-[40vh] md:h-[60vh] lg:h-[70vh]"
           >
             <Image
               src={slides[currentSlide]}
               alt={`Hero ${currentSlide + 1}`}
               layout="fill"
-              objectFit="cover"
-              className=""
+             
             />
           </motion.div>
         </div>
