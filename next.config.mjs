@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const remoteHosts = ['readymadeui.com', 'via.placeholder.com', 'res.cloudinary.com', 'images.unsplash.com'];
+
 const nextConfig = {
   images: {
-    domains: ['www.apnarupee.com', 'readymadeui.com' , 'via.placeholder.com' , "res.cloudinary.com" , "images.unsplash.com"], // Add your domains here
+    remotePatterns: remoteHosts.map((hostname) => ({ protocol: 'https', hostname })),
   },
 };
 
