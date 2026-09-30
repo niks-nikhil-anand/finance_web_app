@@ -2,64 +2,96 @@ import Image from 'next/image'
 import React from 'react'
 import logo2 from '../../../public/logo2.png'
 import Link from 'next/link'
+import { Mail, MapPin, Phone } from 'lucide-react'
+import { formatAddress, site } from '@/lib/seo/site'
+
+const columns = [
+  {
+    title: "Loans",
+    links: [
+      { href: "/personalloan", label: "Personal Loan" },
+      { href: "/businessloan", label: "Business Loan" },
+      { href: "/homeloan", label: "Home Loan" },
+      { href: "/loanproperty", label: "Loan Against Property" },
+      { href: "/microloan", label: "Micro Finance Group Loan" },
+      { href: "/applyloan", label: "Apply for a Loan" },
+    ],
+  },
+  {
+    title: "Tools & Services",
+    links: [
+      { href: "/#eligibility", label: "Loan Eligibility Checker" },
+      { href: "/#emi-calculator", label: "EMI Calculator" },
+      { href: "/applynow", label: "GST / ITR Filing" },
+      { href: "/availablePincode", label: "Check Available Pincode" },
+      { href: "/refer", label: "Refer & Earn" },
+      { href: "/partnersignup", label: "Become Our Partner" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About Us" },
+      { href: "/contact", label: "Contact Us" },
+      { href: "/career", label: "Career" },
+      { href: "/terms&conditions", label: "Terms and Conditions" },
+      { href: "/privacyPolicy", label: "Privacy Policy" },
+      { href: "/returnPolicy", label: "Return Policy" },
+    ],
+  },
+]
 
 const Footer = () => {
   return (
-    <div>
-        <footer class="bg-gray-900 font-sans tracking-wide">
-      <div class="py-14 px-6 sm:px-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-
-          <div class="lg:col-span-2">
-            <a href='javascript:void(0)'><Image src={logo2} alt="logo"
-              class='w-44 mb-8'  height={70} width={200}/></a>
-            <p class="text-gray-300 text-sm">At Legal257, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.</p>
-          </div>
-
-          <div>
-            <h4 class="text-lg font-semibold mb-8 text-white">Navigation</h4>
-            <ul class="space-y-4">
-              <li><Link href={"/availablePincode"} class="text-gray-300 hover:text-white text-sm">Check for Available PinCode</Link></li>
-              <li><Link href={"/partnersignup"} class="text-gray-300 hover:text-white text-sm">Loan Calculator</Link></li>
-              <li><Link href={"/refer"} class="text-gray-300 hover:text-white text-sm">Refer & Earn</Link></li>
-              <li><Link href={"/career"} class="text-gray-300 hover:text-white text-sm">Career</Link></li>
+    <footer className="bg-primary-950 text-primary-100">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <Link href="/" aria-label="Legal257 home" className="inline-block rounded-lg bg-white px-3 py-2">
+              <Image src={logo2} alt="Legal257" className="h-10 w-auto" height={40} width={160} />
+            </Link>
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-primary-200">
+              Legal257 helps individuals and businesses get the right loan and stay compliant with expert GST and ITR filing.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-accent-300" />
+                <address className="not-italic">{formatAddress(site.address)}</address>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone aria-hidden className="h-4 w-4 shrink-0 text-accent-300" />
+                <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="hover:text-white">{site.phone}</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail aria-hidden className="h-4 w-4 shrink-0 text-accent-300" />
+                <a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a>
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h4 class="text-lg font-semibold mb-8 text-white">Quick Links</h4>
-            <ul class="space-y-4">
-              <li><Link href="/microloan"  class="text-gray-300 hover:text-white text-sm">Micro Finance Group Loan</Link></li>
-              <li><Link href="/applynow" class="text-gray-300 hover:text-white text-sm">GST/ITR - Apply Now</Link></li>
-              <li><Link href="/partnersignup" class="text-gray-300 hover:text-white text-sm">Become Our Partner</Link></li>
-              <li><Link href="/applyloan" class="text-gray-300 hover:text-white text-sm">Loan </Link></li>
-            </ul>
-            
-
-          </div>
-
-          <div>
-            <h4 class="text-lg font-semibold mb-8 text-white">Customer Support </h4>
-            <ul class="space-y-4">
-            <li><Link href="/terms&conditions" class="text-gray-300 hover:text-white text-sm">Terms and Conditions</Link></li>
-              <li><Link href="/privacyPolicy"  class="text-gray-300 hover:text-white text-sm">Privacy Policy</Link></li>
-             
-              <li><Link href="/returnPolicy" class="text-gray-300 hover:text-white text-sm">Return Policy</Link></li>
-              <li><Link href="/about" class="text-gray-300 hover:text-white text-sm">About Us</Link></li>
-            </ul>
-            
-
-          </div>
-
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <h2 className="mb-5 text-base font-semibold text-white">{col.title}</h2>
+              <ul className="space-y-3">
+                {col.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-primary-200 hover:text-accent-300">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
       </div>
 
-      <div class="text-center py-5 bg-gray-600 px-5">
-        <p class='text-white text-sm'>© 2024<a href='https://devtrekker.site/' target='_blank'
-          class="hover:underline mx-1">Legal 257 | All right Reserved</a>| Developed by Nikhil</p>
+      <div className="border-t border-white/10">
+        <p className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-primary-300 sm:px-6 lg:px-8">
+          © {new Date().getFullYear()} Legal257. All rights reserved.
+        </p>
       </div>
     </footer>
-    </div>
   )
 }
 
