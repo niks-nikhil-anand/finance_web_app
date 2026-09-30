@@ -67,7 +67,7 @@ export default function AboutPageOne() {
             <MapPin className="h-6 w-6 text-blue-600" />
             <p className="text-xl font-semibold">Our Address</p>
             <p className="text-gray-700">
-              BISWANATH CHARIALI, SONITPUR ASSAM, 784176
+              BISWANATH CHARIALI, DISTRICT BISWANATH, ASSAM, PIN 784176
             </p>
           </div>
           
