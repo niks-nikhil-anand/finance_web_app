@@ -162,7 +162,7 @@ const IdCard = () => {
                   <ul className="list-inside ml-7 space-y-1 text-sm">
                     <li><span className="font-medium">Office Working Hours:</span> 9:00 AM to 6:00 PM</li>
                     <li><span className="font-medium">Office Opening Date:</span> 01/02/2025</li>
-                    <li><span className="font-medium">Office Address:</span>Biswanath Chariali, Sonitpur, Assam</li>
+                    <li><span className="font-medium">Office Address:</span>Biswanath Chariali, District Biswanath, Assam</li>
                     <li><span className="font-medium">Mob. No:-</span>+91 8761873802</li>
 
                   </ul>
