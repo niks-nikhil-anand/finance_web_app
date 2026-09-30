@@ -219,7 +219,7 @@ const IdCard = () => {
                 </ul>
                 <hr />
                 <p className="font-bold mt-2"> Office Address:</p>
-                <p>Add: Biswanath Chariali , Sonitpur </p>
+                <p>Add: Biswanath Chariali, District Biswanath </p>
                 <p>State: Assam </p>
                 <p>Pin Code: 784176</p>
               </div>
