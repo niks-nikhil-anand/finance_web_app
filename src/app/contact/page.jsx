@@ -22,7 +22,7 @@ const locations = [
   {
     title: 'ASSAM  office',
     timings: 'Mon-Sat 9am to 5pm.',
-    address: 'BISWANATH CHARIALI , SONITPUR ASSAM , 784176',
+    address: 'BISWANATH CHARIALI, DISTRICT BISWANATH, ASSAM, PIN 784176',
   },
  
 ]
