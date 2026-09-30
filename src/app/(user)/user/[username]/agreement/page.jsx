@@ -98,7 +98,7 @@ const MyDocument = ({ agreementData }) => (
           <Text style={{ fontSize: 11, marginBottom: 10 }}>
             <Text style={{ fontWeight: 'bold' }}>Legal257 PRIVATE LIMITED</Text> (from this point will be known as
             <Text style={{ fontWeight: 'bold' }}> Loan Lenders</Text>, a private limited company incorporated under the company’s act 2013, and having
-            its corporate office at <Text style={{ fontWeight: 'bold' }}>BISWANATH CHARIALI ,SONITPUR ASSAM - 784176</Text>, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
+            its corporate office at <Text style={{ fontWeight: 'bold' }}>BISWANATH CHARIALI, DISTRICT BISWANATH, ASSAM - 784176</Text>, we are dedicated to providing top-notch financial and tax services to our valued clients. Our offerings include expert GST and ITR filing services to ensure your business remains compliant and stress-free. Additionally, we offer competitive loan options tailored to meet your financial needs.
           </Text>
         </View>
 
@@ -598,7 +598,7 @@ similar to those of Company.
       }}
     >
       <Text style={{ fontSize: 12, margin: 5 }}>
-        Address: BISWANATH CHARIALI , SONITPUR ASSAM-784176 IN
+        Address: BISWANATH CHARIALI, DISTRICT BISWANATH, ASSAM-784176 IN
       </Text>
       <Text style={{ fontSize: 12, margin: 5 }}>
         Email: legal257rgvf@gmail.com
