@@ -1,306 +1,207 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useEffect, useRef, useState } from "react";
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logo2.png";
 
+const calculators = [
+  { href: "/#emi-calculator", label: "EMI Calculator" },
+  { href: "/#eligibility", label: "Loan Eligibility Checker" },
+  { href: "/calculator", label: "Loan Interest Calculator" },
+];
+
+const loans = [
+  { href: "/personalloan", label: "Personal Loan" },
+  { href: "/businessloan", label: "Business Loan" },
+  { href: "/loanproperty", label: "Loan Against Property" },
+  { href: "/homeloan", label: "Home Loan" },
+];
+
+const mediaGallery = [
+  { href: "/photogallery", label: "Photo Gallery" },
+  { href: "/videogallery", label: "Video Gallery" },
+  { href: "/partnertestimonial", label: "Partner Testimonial" },
+];
+
+const microLoans = [
+  { href: "/microloan", label: "Micro Personal Loan" },
+  { href: "/microloan", label: "Daily Collection Micro Loan" },
+  { href: "/microloan", label: "Mobile Finance Loan" },
+  { href: "/microloan", label: "Micro Finance Group Loan" },
+];
+
+const desktopNav = [
+  { label: "Home", href: "/" },
+  { label: "Calculators", items: calculators },
+  { label: "Loans", items: loans },
+  { label: "GST/ITR", href: "/applynow" },
+  { label: "About Us", href: "/about" },
+  { label: "Media", items: mediaGallery },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Become Partner", href: "/partnersignup" },
+];
+
+const mobileNav = [
+  { label: "Home", href: "/" },
+  { label: "Rozana Pay", href: "/rozanaPay" },
+  { label: "Calculators", items: calculators },
+  { label: "GST/ITR - Apply Now", href: "/applynow" },
+  { label: "About Us", href: "/about" },
+  { label: "Loans", items: loans },
+  { label: "Media Gallery", items: mediaGallery },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Refer & Earn", href: "/refer" },
+  { label: "Career", href: "/career" },
+  { label: "Job - Apply Now", href: "/applyjob" },
+  { label: "Manual Payment", href: "/manualPayment" },
+  { label: "Fintech Banking", href: "/commingSoon" },
+  { label: "JonoJivan Grocery Ration Card", href: "/groceryRationCard" },
+  { label: "JonoJivan Micro Loan", items: microLoans },
+  { label: "Become Our Partner", href: "/partnersignup" },
+  { label: "Check for Available Pincode", href: "/availablePincode" },
+  { label: "QR Code", href: "/qrCodeCollections" },
+];
+
+const linkClass = "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-ink hover:text-primary-700 transition-colors";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [loanCalcOpen, setLoanCalcOpen] = useState(false);
-  const [loansOpen, setLoansOpen] = useState(false);
-  const [mediaGalleryOpen, setMediaGalleryOpen] = useState(false);
-  const [microLoanOpen, setMicroLoanOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const navRef = useRef(null);
 
-  const toggleSubMenu = (setFunction, currentState) => () => setFunction(!currentState);
+  // Close desktop dropdowns on outside click or Escape.
+  useEffect(() => {
+    const onClick = (e) => navRef.current && !navRef.current.contains(e.target) && setOpenMenu(null);
+    const onKey = (e) => e.key === "Escape" && setOpenMenu(null);
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
 
-
-  const handleLinkClick = () => {
+  const close = () => {
     setIsOpen(false);
-    setLoanCalcOpen(false);
-    setLoansOpen(false);
-    setMediaGalleryOpen(false);
-    setMicroLoanOpen(false)
+    setOpenMenu(null);
   };
-  
-  return (
-    <nav className="bg-gray-600 text-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex justify-between items-center h-16">
-    <div className="flex items-center">
-      <div className="flex">
-        <Link href="/">
-          <Image
-            src={logo}
-            alt="TailGrids"
-            height={100}
-            width={100}
-            className="w-[12rem] md:w-[7rem] hover:opacity-80 transition duration-300"
-          />
-        </Link>
-      </div>
-      <div className="hidden md:flex ml-10 items-baseline space-x-4">
-        <Link
-          href="/"
-          className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-        >
-          Home
-        </Link>
-        <div className="relative inline-block text-left">
-          <button
-            onClick={toggleSubMenu(setLoanCalcOpen, loanCalcOpen)}
-            type="button"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-          >
-            Loan Calculator &#x25BE;
-          </button>
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: loanCalcOpen ? 1 : 0, y: loanCalcOpen ? 0 : -10 }}
-            transition={{ duration: 0.2 }}
-            className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loanCalcOpen ? "block" : "hidden"}`}
-          >
-            <Link
-              href="/calculator"
-              onClick={handleLinkClick}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-200"
-            >
-              Monthly EMI Calculator
-            </Link>
-            <Link
-              href="/applyloan"
-              onClick={handleLinkClick}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-200"
-            >
-              Eligibility Calculator
-            </Link>
-          </motion.div>
-        </div>
-        <div className="relative inline-block text-left">
-          <button
-            onClick={toggleSubMenu(setLoansOpen, loansOpen)}
-            type="button"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-          >
-            Loans &#x25BE;
-          </button>
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: loansOpen ? 1 : 0, y: loansOpen ? 0 : -10 }}
-            transition={{ duration: 0.2 }}
-            className={`absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg ${loansOpen ? "block" : "hidden"}`}
-          >
-            <Link
-              href="/personalloan"
-              onClick={handleLinkClick}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-200"
-            >
-              Personal Loan
-            </Link>
-            <Link
-              href="/businessloan"
-              onClick={handleLinkClick}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-200"
-            >
-              Business Loan
-            </Link>
-            <Link
-              href="/loanproperty"
-              onClick={handleLinkClick}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-200"
-            >
-              Loan Against Property
-            </Link>
-            <Link
-              href="/homeloan"
-              onClick={handleLinkClick}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-200"
-            >
-              Home Loan
-            </Link>
-          </motion.div>
-        </div>
-        <Link
-          href="/career"
-          className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-        >
-          Career
-        </Link>
-        <Link
-          href="/about"
-          className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-        >
-          About Us
-        </Link>
-        <Link
-          href="/photogallery"
-          className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-        >
-          Media Gallery
-        </Link>
-        <Link
-          href="/contact"
-          className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-        >
-          Contact Us
-        </Link>
-        <Link
-          href="/partnersignup"
-          className="px-3 py-2 rounded-md text-sm font-medium hover:text-yellow-500 transition duration-300"
-        >
-          Become Our Partner
-        </Link>
-      </div>
-    </div>
-    {/* Desktop Sign In button */}
-    <div className="hidden md:flex ml-4 items-center md:ml-6">
-      <Link href="/partnersignin">
-        <motion.button
-          className="px-4 py-1 font-medium text-black  bg-yellow-400  rounded-lg shadow-lg hover:shadow-xl hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-yellow-500 transition duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Sign In
-        </motion.button>
-      </Link>
-    </div>
-    <div className="-mr-2 flex md:hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        type="button"
-        className="bg-yellow-500 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-yellow-500 transition duration-300"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-      >
-        <span className="sr-only">Open main menu</span>
-        {isOpen ? (
-          <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-        ) : (
-          <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-        )}
-      </button>
-    </div>
-  </div>
-</div>
 
+  const toggle = (label) => setOpenMenu((current) => (current === label ? null : label));
+
+  return (
+    <nav ref={navRef} aria-label="Main" className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <Link href="/" onClick={close} className="shrink-0">
+            <Image src={logo} alt="Legal257" height={40} width={150} priority className="h-9 w-auto" />
+          </Link>
+
+          <ul className="hidden items-center gap-0.5 xl:flex">
+            {desktopNav.map((item) =>
+              item.items ? (
+                <li key={item.label} className="relative">
+                  <button
+                    type="button"
+                    onClick={() => toggle(item.label)}
+                    aria-expanded={openMenu === item.label}
+                    aria-haspopup="true"
+                    className={`${linkClass} inline-flex items-center gap-1`}
+                  >
+                    {item.label}
+                    <ChevronDownIcon aria-hidden className={`h-4 w-4 transition-transform ${openMenu === item.label ? "rotate-180" : ""}`} />
+                  </button>
+                  {openMenu === item.label && (
+                    <ul className="absolute left-0 z-10 mt-2 w-60 rounded-xl border border-slate-200 bg-white py-2 shadow-lg">
+                      {item.items.map((sub) => (
+                        <li key={sub.label}>
+                          <Link href={sub.href} onClick={close} className="block px-4 py-2 text-sm text-ink hover:bg-primary-50 hover:text-primary-700">
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <li key={item.label}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            )}
+          </ul>
+
+          <div className="hidden items-center gap-3 xl:flex">
+            <Link href="/partnersignin" className="rounded-lg px-4 py-2 text-sm font-semibold text-primary-700 hover:bg-primary-50">
+              Sign In
+            </Link>
+            <Link href="/applyloan" className="rounded-lg bg-accent-400 px-4 py-2 text-sm font-semibold text-primary-950 hover:bg-accent-300">
+              Apply Now
+            </Link>
+          </div>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            type="button"
+            className="inline-flex items-center justify-center rounded-md p-2 text-primary-800 hover:bg-primary-50 xl:hidden"
+            aria-controls="mobile-menu"
+            aria-expanded={isOpen}
+          >
+            <span className="sr-only">{isOpen ? "Close main menu" : "Open main menu"}</span>
+            {isOpen ? <XMarkIcon className="h-6 w-6" aria-hidden="true" /> : <Bars3Icon className="h-6 w-6" aria-hidden="true" />}
+          </button>
+        </div>
+      </div>
 
       {/* Mobile menu */}
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? "auto" : 0 }}
-        transition={{ duration: 0.3 }}
-        className={`md:hidden overflow-hidden bg-blue-50 text-black`}
-        id="mobile-menu"
-        
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <Link href="/" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Home</Link>
-          <Link href="/rozanaPay" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Rozana Pay</Link>
-          <div className="relative">
-            <button
-              onClick={toggleSubMenu(setLoanCalcOpen, loanCalcOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-black"
-            >
-              Loan Calculator
-              <span>{loanCalcOpen ? "▲" : "▼"}</span>
-            </button>
-            <motion.div
-              initial={false}
-              animate={{ height: loanCalcOpen ? "auto" : 0 }}
-              transition={{ duration: 0.3 }}
-              className={`overflow-hidden ${loanCalcOpen ? "block" : "hidden"}`}
-            >
-              <div className="ml-4">
-                <Link href="/calculator" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Monthly EMI Calculator</Link>
-                <Link href="/applyloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Eligibility Calculator</Link>
-              </div>
-            </motion.div>
+      {isOpen && (
+        <div id="mobile-menu" className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-slate-200 bg-white xl:hidden">
+          <ul className="space-y-1 px-4 py-3">
+            {mobileNav.map((item) =>
+              item.items ? (
+                <li key={item.label}>
+                  <button
+                    type="button"
+                    onClick={() => toggle(item.label)}
+                    aria-expanded={openMenu === item.label}
+                    className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-base font-medium text-ink hover:bg-primary-50"
+                  >
+                    {item.label}
+                    <ChevronDownIcon aria-hidden className={`h-5 w-5 transition-transform ${openMenu === item.label ? "rotate-180" : ""}`} />
+                  </button>
+                  {openMenu === item.label && (
+                    <ul className="ml-4 border-l border-primary-100 pl-2">
+                      {item.items.map((sub) => (
+                        <li key={sub.label}>
+                          <Link href={sub.href} onClick={close} className="block rounded-md px-3 py-2 text-sm text-ink-muted hover:text-primary-700">
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <li key={item.label}>
+                  <Link href={item.href} onClick={close} className="block rounded-md px-3 py-2.5 text-base font-medium text-ink hover:bg-primary-50">
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            )}
+          </ul>
+          <div className="grid grid-cols-2 gap-3 border-t border-slate-200 px-4 py-4">
+            <Link href="/partnersignin" onClick={close} className="rounded-lg border border-primary-700 px-4 py-2.5 text-center text-sm font-semibold text-primary-700">
+              Sign In
+            </Link>
+            <Link href="/applyloan" onClick={close} className="rounded-lg bg-accent-400 px-4 py-2.5 text-center text-sm font-semibold text-primary-950">
+              Apply Now
+            </Link>
           </div>
-          
-          <Link href="/applynow" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">GST/ITR - Apply Now </Link>
-          <Link href="/about" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">About Us</Link>
-          <div className="relative">
-            <button
-              onClick={toggleSubMenu(setLoansOpen, loansOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-black"
-            >
-              Loans
-              <span>{loansOpen ? "▲" : "▼"}</span>
-            </button>
-            <motion.div
-              initial={false}
-              animate={{ height: loansOpen ? "auto" : 0 }}
-              transition={{ duration: 0.3 }}
-              className={`overflow-hidden ${loansOpen ? "block" : "hidden"}`}
-            >
-              <div className="ml-4">
-                <Link href="/personalloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Personal Loan</Link>
-                <Link href="/businessloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Business Loan</Link>
-                <Link href="/loanproperty"  onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Loan Against Property</Link>
-                <Link href="/homeloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Home Loan</Link>
-              </div>
-            </motion.div>
-          </div>
-          <div className="relative">
-            <button
-              onClick={toggleSubMenu(setMediaGalleryOpen, mediaGalleryOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-balck"
-            >
-              Media Gallery
-              <span>{mediaGalleryOpen ? "▲" : "▼"}</span>
-            </button>
-            <motion.div
-              initial={false}
-              animate={{ height: mediaGalleryOpen ? "auto" : 0 }}
-              transition={{ duration: 0.3 }}
-              className={`overflow-hidden ${mediaGalleryOpen ? "block" : "hidden"}`}
-            >
-              <div className="ml-4">
-                <Link href="/photogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Photo Gallery</Link>
-                <Link href="/videogallery" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Video Gallery</Link>
-                <Link href="/partnertestimonial" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Partner Testimonial</Link>
-              </div>
-            </motion.div>
-          </div>
-          <Link href="/contact" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Contact Us</Link>
-          <Link href="/refer" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Refer & Earn</Link>
-          <Link href="/applyjob" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Job - Apply Now</Link>
-          <Link href="/manualPayment" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Manual Payment</Link>
-          <Link href="/commingSoon" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Fintech Banking</Link>
-          <Link href="/groceryRationCard" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">JonoJivan Grocery Ration Card</Link>
-          <div className="relative">
-            <button
-              onClick={toggleSubMenu(setMicroLoanOpen, microLoanOpen)}
-              className="w-full flex justify-between px-3 py-2 rounded-md text-base font-medium text-balck"
-            >
-             JonoJivan Micro Loan
-              <span>{microLoanOpen ? "▲" : "▼"}</span>
-            </button>
-            <motion.div
-              initial={false}
-              animate={{ height: microLoanOpen ? "auto" : 0 }}
-              transition={{ duration: 0.3 }}
-              className={`overflow-hidden ${microLoanOpen ? "block" : "hidden"}`}
-            >
-              <div className="ml-4">
-                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Personal Loan</Link>
-                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Daily Collection Micro Loan</Link>
-                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Mobile Finance Loan</Link>
-                <Link href="/microloan" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-sm font-medium text-black">Micro Finance Group Loan</Link>
-              </div>
-            </motion.div>
-          </div>
-          <Link href="/partnersignup" onClick={handleLinkClick} className="block px-3 py-2 rounded-md text-base font-medium text-black">Become Our Partner</Link>
-          <Link href="/availablePincode"  className="block px-3 py-2 rounded-md text-base font-medium text-black">Check for Available Pincode</Link>
-          <Link href="/qrCodeCollections"  className="block px-3 py-2 rounded-md text-base font-medium text-black">QR Code</Link>
-          <Link href="/partnersignin" onClick={handleLinkClick}>
-            <button className="mt-2 w-full px-6 py-2 font-medium gradient_yellow text-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ">
-              Sign 
-            </button>
-          </Link>
         </div>
-      </motion.div>
+      )}
     </nav>
   );
 };
